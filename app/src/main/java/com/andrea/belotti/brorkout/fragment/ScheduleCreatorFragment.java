@@ -36,12 +36,6 @@ public class ScheduleCreatorFragment extends Fragment {
     private static List<Esercizio> eserciziCopiaIncolla = new ArrayList<>();
     private Scheda scheda = new Scheda();
 
-    LinearLayout.LayoutParams wrapParams = new LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            1.0f
-    );
-
     int duration = Toast.LENGTH_SHORT;
 
 
@@ -59,6 +53,7 @@ public class ScheduleCreatorFragment extends Fragment {
         int numeroGiornate = 0;
         String titoloScheda = (String) getArguments().get("titoloScheda");
         scheda.setNome(titoloScheda);
+
 
         try {
             numeroGiornate = Integer.parseInt(getArguments().getString("numeroGiornate"));
@@ -114,8 +109,10 @@ public class ScheduleCreatorFragment extends Fragment {
             //gestione bottoni
             Button button = new Button(context);
             button.setText(i+"");
-            button.setLayoutParams(wrapParams);
+            //button.setLayoutParams(wrapParams); //TODO
             button.setTextSize(14);
+            button.setBackgroundColor(ExerciseConstants.Color.BUTTON_COLOR);
+            button.setTextColor(ExerciseConstants.Color.TEXT_BUTTON_COLOR);
             Integer finalI = i;
 
             button.setOnClickListener(new View.OnClickListener() {

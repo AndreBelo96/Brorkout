@@ -101,7 +101,7 @@ public class DecisioneGiornateFragment extends Fragment {
                 b.setOnClickListener(v -> {
                     giornata[0] = (String) b.getText();
                     setBasicColor(btnList);
-                    b.setBackgroundColor(0xFF061539);
+                    b.setBackgroundColor(ExerciseConstants.Color.BUTTON_PRESSED_COLOR);
                 }));
 
         confirmDays.setOnClickListener(v -> {
@@ -128,7 +128,7 @@ public class DecisioneGiornateFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void setBasicColor(List<Button> buttons) {
         buttons.forEach(b -> {
-            b.setBackgroundColor(0xFF162955);
+            b.setBackgroundColor(ExerciseConstants.Color.BUTTON_COLOR);
         });
     }
 

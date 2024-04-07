@@ -1,5 +1,7 @@
 package com.andrea.belotti.brorkout.constants;
 
+import android.widget.LinearLayout;
+
 public final class ExerciseConstants {
 
     private ExerciseConstants() {
@@ -20,5 +22,22 @@ public final class ExerciseConstants {
         public static final  String PUBLIC = "Public";
         public static final  String PRIVATE = "Private";
     }
+
+    public final class Color {
+        public static final int BUTTON_COLOR = 0xFF162955;
+        public static final int BUTTON_PRESSED_COLOR = 0xFF061539;
+        public static final int TEXT_BUTTON_COLOR = 0xFF7887AB;
+    }
+
+    public final class Layout {
+        LinearLayout.LayoutParams wrapParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                1.0f
+        );
+        //TODO
+        //wrapParams.setMargins(2, 0, 2, 0);
+    }
+
 
 }
