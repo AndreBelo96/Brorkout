@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
 
 public class InterfaceAdapter  implements JsonSerializer, JsonDeserializer {
 
-    private static final String CLASSNAME = "Esercizio";
+    private static final String CLASSNAME = "CLASSNAME";
     private static final String DATA = "DATA";
 
     public Esercizio deserialize(JsonElement jsonElement, Type type,
@@ -28,7 +28,7 @@ public class InterfaceAdapter  implements JsonSerializer, JsonDeserializer {
     }
     public JsonElement serialize(Object jsonElement, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(CLASSNAME, jsonElement.getClass().getSimpleName());
+        jsonObject.addProperty(CLASSNAME, jsonElement.getClass().getName());
         jsonObject.add(DATA, jsonSerializationContext.serialize(jsonElement));
         return jsonObject;
     }
