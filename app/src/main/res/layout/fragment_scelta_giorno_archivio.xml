@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_200"
+    tools:context=".fragment.SceltaGiornoArchivioFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/scheduleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/eliminaScheda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elimina scheda" />
+
+        <Button
+            android:id="@+id/modifySchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modifica scheda" />
+
+        <Button
+            android:id="@+id/backSceltaSchede"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Torna a scelta schede" />
+
+    </LinearLayout>
+
+</FrameLayout>

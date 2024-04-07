@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_200"
+    tools:context=".fragment.CollectDataExeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/numeroGiornataId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_blue_200"
+            android:text=""
+            android:textSize="30sp"
+            android:layout_gravity="center"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/labelNomeEsercizio"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/light_blue_200"
+                    android:layout_height="wrap_content"
+                    android:text="Esercizio :"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="12dp"
+                    />
+
+                <EditText
+                    android:id="@+id/textNomeEsercizio"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/light_blue_200"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="7"
+                    android:text=""
+                    android:textSize="20sp"
+                    />
+
+
+                <CheckBox
+                    android:id="@+id/checkBoxVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/light_blue_200"
+                    android:text="Video"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/labelIndicazioniEsercizio"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/light_blue_200"
+                    android:layout_height="wrap_content"
+                    android:text="Indicazioni :"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="12dp"
+                    />
+
+                <EditText
+                    android:id="@+id/textIndicazioniEsercizio"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/light_blue_200"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textSize="20sp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tipoEsercizio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_blue_200"
+                    android:text="Tipologia :"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="12dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/choiceExerciseType"
+                    android:textColor="@color/light_blue_200"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:entries="@array/exerciseType"/>
+
+            </LinearLayout>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerTipoEsercizio"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/createExe"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:text="aggiungi esercizio"
+                    android:layout_marginRight="@dimen/_6sdp"
+                    />
+
+                <Button
+                    android:id="@+id/deleteExe"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:text="Elimina Esercizio"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/pasteDay"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:text="incolla giornata"
+                    android:layout_marginRight="@dimen/_6sdp"
+                    />
+
+                <Button
+                    android:id="@+id/copyDay"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:text="Copia giornata"
+                    />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/deleteSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elimina tutti gli esercizi"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:id="@+id/eserciziScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/layoutSchedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </ScrollView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

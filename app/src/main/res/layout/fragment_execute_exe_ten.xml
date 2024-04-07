@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.executedata.ExecuteExeTenFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textTenRecover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/light_blue_200"
+            android:text="Recupero tenuta:" />
+
+        <TextView
+            android:id="@+id/textRecoverTenNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/light_blue_200"
+            android:text="n" />
+
+        <Button
+            android:id="@+id/buttonTenRecover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:text="Start" />
+
+
+    </LinearLayout>
+
+</FrameLayout>

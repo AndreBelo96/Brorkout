@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_200"
+    tools:context=".fragment.ExeExecutionFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/layoutDecisione"
+        android:layout_marginVertical="@dimen/_50sdp"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:gravity="center_horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_blue_200"/>
+
+        <TextView
+            android:id="@+id/textNomeEsercizio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_30sdp"
+            android:textColor="@color/light_blue_200"
+            android:text="NomeEsercizio" />
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textNumSerie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:textColor="@color/light_blue_200"
+                    android:text="Serie: 0/n" />
+
+                <TextView
+                    android:id="@+id/textNumRep"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:textColor="@color/light_blue_200"
+                    android:text="Ripetizioni: n" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/light_blue_200"
+                android:gravity="center"
+                android:textSize="@dimen/_25sdp"
+                android:text="Video On" />
+
+        </LinearLayout>
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentTenutaExeView"
+            android:name="com.andrea.belotti.brorkout.fragment.executedata.ExecuteExeTenFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textRecover"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/light_blue_200"
+                android:text="Recupero:" />
+
+            <TextView
+                android:id="@+id/textRecoverNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/light_blue_200"
+                android:text="n" />
+
+            <Button
+                android:id="@+id/buttonRecover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:text="Start" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textIndicazioniEsercizio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/light_blue_200"
+            android:text="Indicazioni: " />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textCommentiEsercizio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/light_blue_200"
+                android:text="Commenti: " />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonPreviousExe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:text="Previous Exe" />
+
+                <Button
+                    android:id="@+id/buttonNextExe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:text="Next Exe" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonEndSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="End Schedule" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_blue_200"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</FrameLayout>

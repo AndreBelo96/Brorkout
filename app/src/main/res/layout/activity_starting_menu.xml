@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_200"
+
+    tools:context=".activity.StartingMenuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_height="1dp"
+            android:background="@color/light_blue_200"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_marginTop="@dimen/_70sdp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/immagine_profilo_vuoto"
+            app:civ_border_color="@color/light_blue_200"
+            app:civ_border_width="@dimen/_4sdp" />
+
+        <TextView
+            android:id="@+id/userNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="@string/username"
+            android:textColor="@color/light_blue_200"
+            android:textSize="@dimen/_20sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/createScheduleBtn"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_75sdp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/light_blue_500"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/CreateSchedule"
+                    app:srcCompat="@drawable/ic_write"/>
+
+                <ImageButton
+                    android:id="@+id/startWorkoutBtn"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_75sdp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/light_blue_700"
+                    android:contentDescription="@string/UseSchedule"
+                    app:srcCompat="@drawable/ic_flag" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/personalArea"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_75sdp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/blue_500"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/PersonalArea"
+                    app:srcCompat="@drawable/ic_personal" />
+
+
+                <ImageButton
+                    android:id="@+id/optionBtn"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_75sdp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/blue_700"
+                    android:contentDescription="@string/OptionSchedule"
+                    app:srcCompat="@drawable/ic_settings" />
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginBottom="@dimen/_50sdp"
+                android:layout_height="1dp"
+                android:background="@color/light_blue_200"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
