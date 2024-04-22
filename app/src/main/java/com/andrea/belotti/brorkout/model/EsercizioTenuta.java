@@ -15,6 +15,9 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     private String ripetizioni;
     private String tempoEsecuzione;
 
+    public EsercizioTenuta(){
+
+    }
 
     public EsercizioTenuta(String nomeEsercizio,
                            String tipoEsercizio,

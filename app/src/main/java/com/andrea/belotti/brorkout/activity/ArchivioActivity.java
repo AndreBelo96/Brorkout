@@ -15,12 +15,9 @@ import android.widget.Button;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.fragment.SceltaSchedaArchivioFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
-import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.andrea.belotti.brorkout.utils.ScheduleCreating;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class ArchivioActivity extends AppCompatActivity {
 
@@ -42,7 +39,7 @@ public class ArchivioActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
         Button backButton = findViewById(R.id.buttonBack);
-        List<Scheda> schedaList = createListaSchede();
+        List<Scheda> schedaList = ScheduleCreating.createListaSchede(sharedPreferences);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(schedaList));
@@ -57,16 +54,6 @@ public class ArchivioActivity extends AppCompatActivity {
         });
     }
 
-    private static Scheda createSchedule(String schedule) {
-        Scheda scheda = new Scheda();
-        try {
-            scheda = JsonGeneratorUtil.generateScheduleFromJson(schedule);
-        } catch (JsonProcessingException e) {
-            Log.e("TAG", e.getMessage());
-        }
-        return scheda;
-    }
-
     public static void deleteData(String titoloScheda) {
         // Creating an Editor object to edit(write to the file)
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
@@ -79,17 +66,7 @@ public class ArchivioActivity extends AppCompatActivity {
         myEdit.commit();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public static List<Scheda> createListaSchede() {
-        List<Scheda> schedaList = new ArrayList<>();
 
-        sharedPreferences.getAll().forEach((key, value) -> {
-            String json = value.toString();
-            schedaList.add(createSchedule(json));
-        });
-
-        return schedaList;
-    }
 
 
 }

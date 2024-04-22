@@ -14,6 +14,10 @@ public class EsercizioSerie implements Esercizio, Serializable {
     private String appuntiAtleta;
     private String ripetizioni;
 
+    public EsercizioSerie(){
+
+    }
+
     public EsercizioSerie(String nomeEsercizio,
                           String tipoEsercizio,
                           String serie,

@@ -15,6 +15,10 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
     private String inizio;
     private String picco;
 
+    public EsercizioIncrementale() {
+
+    }
+
     public EsercizioIncrementale(String nomeEsercizio,
                                  String tipoEsercizio,
                                  String serie,

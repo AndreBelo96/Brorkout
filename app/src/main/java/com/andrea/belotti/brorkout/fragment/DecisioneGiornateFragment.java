@@ -1,6 +1,7 @@
 package com.andrea.belotti.brorkout.fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.activity.ArchivioActivity;
 import com.andrea.belotti.brorkout.activity.StartingMenuActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.utils.ScheduleCreating;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +27,15 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class DecisioneGiornateFragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();
+
+    // Storing data into SharedPreferences
+    private static android.content.SharedPreferences sharedPreferences;
 
     private Boolean isCloud;
     private Boolean isPublic;
@@ -37,11 +47,16 @@ public class DecisioneGiornateFragment extends Fragment {
 
         Log.i(TAG, ExerciseConstants.TAG_START_FRAGMENT);
 
+        sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref", MODE_PRIVATE);
+
+        List<Scheda> schedaList = ScheduleCreating.createListaSchede(sharedPreferences);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_decisione_giornate, container, false);
 
         Button confirmDays = view.findViewById(R.id.confirm_button);
         EditText titoloScheda = view.findViewById(R.id.titoloScheda);
+        Button copyScheduleBtn = view.findViewById(R.id.copy_schedule_button);
         Button backButton = view.findViewById(R.id.backButton);
 
         // Select days buttons
@@ -114,6 +129,12 @@ public class DecisioneGiornateFragment extends Fragment {
             bundle.putString("titoloScheda", nameSchedule);
             scheduleCreatorFragment.setArguments(bundle);
             fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, scheduleCreatorFragment);
+            fragmentTransaction.commit();
+        });
+
+        copyScheduleBtn.setOnClickListener(v -> {
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CopiaSchedaFragment.newInstance(schedaList));
             fragmentTransaction.commit();
         });
 

@@ -16,6 +16,10 @@ public class EsercizioPiramidale implements Esercizio, Serializable {
     private String picco;
     private String recuperoSerie;
 
+    public EsercizioPiramidale(){
+
+    }
+
     public EsercizioPiramidale(String nomeEsercizio,
                                String tipoEsercizio,
                                String serie,

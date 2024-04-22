@@ -27,11 +27,17 @@ import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.activity.ExecutionScheduleActivity;
+import com.andrea.belotti.brorkout.utils.ScheduleCreating;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class SceltaGiornoArchivioFragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();
+
+    // Storing data into SharedPreferences
+    private static android.content.SharedPreferences sharedPreferences;
 
     private static final String PARAM = "Scheda";
 
@@ -44,6 +50,8 @@ public class SceltaGiornoArchivioFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Log.i(TAG, ExerciseConstants.TAG_START_FRAGMENT);
+
+        sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_scelta_giorno_archivio, container, false);
@@ -69,7 +77,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.N)
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ArchivioActivity.createListaSchede()));
+                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreating.createListaSchede(sharedPreferences)));
                 fragmentTransaction.commit();
             }
         });
@@ -80,7 +88,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
                 ArchivioActivity.deleteData(finalSchedaScelta.getNome());
 
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ArchivioActivity.createListaSchede()));
+                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreating.createListaSchede(sharedPreferences)));
                 fragmentTransaction.commit();
             }
         });

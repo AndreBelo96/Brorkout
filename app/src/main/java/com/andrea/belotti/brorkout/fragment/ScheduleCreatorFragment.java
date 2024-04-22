@@ -38,7 +38,11 @@ public class ScheduleCreatorFragment extends Fragment {
 
     int duration = Toast.LENGTH_SHORT;
 
-
+    LinearLayout.LayoutParams wrapParams = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            1.0f
+    );
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,7 +108,7 @@ public class ScheduleCreatorFragment extends Fragment {
 
     private void createButtonList(int numButton, View view, Context context) {
         LinearLayout layoutElencoEsecizi = view.findViewById(R.id.daysLayout);
-
+        wrapParams.setMargins(2, 0, 2, 0);
         for (int i = 1; i <= numButton; i++) {
             //gestione bottoni
             Button button = new Button(context);
@@ -113,6 +117,7 @@ public class ScheduleCreatorFragment extends Fragment {
             button.setTextSize(14);
             button.setBackgroundColor(ExerciseConstants.Color.BUTTON_COLOR);
             button.setTextColor(ExerciseConstants.Color.TEXT_BUTTON_COLOR);
+            button.setLayoutParams(wrapParams);
             Integer finalI = i;
 
             button.setOnClickListener(new View.OnClickListener() {
