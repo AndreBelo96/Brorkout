@@ -27,7 +27,7 @@ import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.activity.ExecutionScheduleActivity;
-import com.andrea.belotti.brorkout.utils.ScheduleCreating;
+import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -77,7 +77,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.N)
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreating.createListaSchede(sharedPreferences)));
+                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
                 fragmentTransaction.commit();
             }
         });
@@ -88,7 +88,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
                 ArchivioActivity.deleteData(finalSchedaScelta.getNome());
 
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreating.createListaSchede(sharedPreferences)));
+                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
                 fragmentTransaction.commit();
             }
         });

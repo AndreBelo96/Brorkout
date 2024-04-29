@@ -3,11 +3,6 @@ package com.andrea.belotti.brorkout.fragment;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,36 +19,33 @@ import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.constants.StringOutputConstants;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExeIncrFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExePirFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExeSerFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExeTenFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.model.EsercizioBaseModel;
 import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
 import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
 import com.andrea.belotti.brorkout.model.EsercizioSerie;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class CollectDataExeFragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();
 
-    private final String recoverError = "Invalid data: recupero";
-    private final String serieError = "Invalid data: serie";
-    private final String repError = "Invalid data: ripetizioni";
-    private final String successAddingExe = "Esercizio aggiunto alla scheda";
-    private final String successDeletingAllExe = "Esercizi eliminati con successo";
-    private final String successDeletingExe = "Ultimo esercizio eliminato con successo";
-    private final String errorEmptyList = "La lista è vuota";
+    private int exePosition = 0;
 
     Context context;
     Fragment typeExeFragment = null;
@@ -111,31 +103,54 @@ public class CollectDataExeFragment extends Fragment {
             public void onClick(View v) {
                 View viewFragment = typeExeFragment.getView();
 
-                EsercizioBaseModel esercizioBaseModel = new EsercizioBaseModel();
+                Esercizio esercizio = null;
 
-                esercizioBaseModel.setNomeExeStr(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
-                esercizioBaseModel.setTypeStr(typeNumPicker.getSelectedItem().toString());
-                esercizioBaseModel.setRecoverStr(ExerciseConstants.recoverList[((NumberPicker) viewFragment.findViewById(R.id.recoverText)).getValue()]);
-                esercizioBaseModel.setSerieStr(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
-                esercizioBaseModel.setVideo(((CheckBox) view.findViewById(R.id.checkBoxVideo)).isChecked());
-                esercizioBaseModel.setIndicazioniCoach(((EditText) view.findViewById(R.id.textIndicazioniEsercizio)).getText().toString());
-                esercizioBaseModel.setAppuntiAtleta("");
+                switch (typeNumPicker.getSelectedItem().toString()) {
 
-                Map<String, Object> argsMap = argsFromExe(esercizioBaseModel.getTypeStr(), viewFragment);
+                    case "Incrementale":
+                        esercizio = new EsercizioIncrementale();
+                        esercizio.setInizio(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
+                        esercizio.setPicco(((EditText) viewFragment.findViewById(R.id.peakText)).getText().toString());
+                        break;
+                    case "Tenuta":
+                        esercizio = new EsercizioTenuta();
+                        esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.textRipetizioni)).getText().toString());
+                        esercizio.setTempoEsecuzione(((EditText) viewFragment.findViewById(R.id.textExecutionTime)).getText().toString());
+                        break;
+                    case "Serie":
+                        esercizio = new EsercizioSerie();
+                        esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.textRipetizioni)).getText().toString());
+                        break;
+                    case "Piramidale":
+                        esercizio = new EsercizioPiramidale();
+                        esercizio.setInizio(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
+                        esercizio.setPicco(((EditText) viewFragment.findViewById(R.id.peakText)).getText().toString());
+                        esercizio.setRecuperoSerie(ExerciseConstants.recoverList[((NumberPicker) viewFragment.findViewById(R.id.textRecoverSeries)).getValue()]);
+                        break;
+                    default:
+                        break;
+                }
 
-                if (!StringUtils.isNumeric(esercizioBaseModel.getRecoverStr())) {
-                    Toast toast = Toast.makeText(context, recoverError, duration);
+                esercizio.setNomeEsercizio(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
+                esercizio.setRecupero(ExerciseConstants.recoverList[((NumberPicker) viewFragment.findViewById(R.id.recoverText)).getValue()]);
+                esercizio.setSerie(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
+                esercizio.setVideo(((CheckBox) view.findViewById(R.id.checkBoxVideo)).isChecked());
+                esercizio.setIndicazioniCoach(((EditText) view.findViewById(R.id.textIndicazioniEsercizio)).getText().toString());
+                esercizio.setAppuntiAtleta("");
+
+                if (!StringUtils.isNumeric(esercizio.getRecupero())) {
+                    Toast toast = Toast.makeText(context, StringOutputConstants.recoverError, duration);
                     toast.show();
                     return;
                 }
 
-                if (!StringUtils.isNumeric(esercizioBaseModel.getSerieStr())) {
-                    Toast toast = Toast.makeText(context, serieError, duration);
+                if (!StringUtils.isNumeric(esercizio.getSerie())) {
+                    Toast toast = Toast.makeText(context, StringOutputConstants.serieError, duration);
                     toast.show();
                     return;
                 }
 
-                exerciesList.add(createExe(esercizioBaseModel, argsMap));
+                exerciesList.add(esercizio);
 
                 giornata.setEsercizi(exerciesList);
                 ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
@@ -144,7 +159,7 @@ public class CollectDataExeFragment extends Fragment {
                 linearLayoutSchedule.removeAllViews();
                 viewExe(linearLayoutSchedule);
 
-                Toast toast = Toast.makeText(context, successAddingExe, duration);
+                Toast toast = Toast.makeText(context, StringOutputConstants.successAddingExe, duration);
                 toast.show();
             }
         });
@@ -152,16 +167,19 @@ public class CollectDataExeFragment extends Fragment {
         deleteExe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!giornata.getEsercizi().isEmpty()) {
-                    giornata.getEsercizi().remove(giornata.getEsercizi().size() - 1);
-                    linearLayoutSchedule.removeViewAt(giornata.getEsercizi().size());
-                    ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
-                    Toast toast = Toast.makeText(context, successDeletingExe, duration);
+
+                if (giornata.getEsercizi().isEmpty() || exePosition >= giornata.getEsercizi().size()) {
+                    Toast toast = Toast.makeText(context, StringOutputConstants.errorEmptyList, duration);
                     toast.show();
-                } else {
-                    Toast toast = Toast.makeText(context, errorEmptyList, duration);
-                    toast.show();
+                    return;
                 }
+
+                giornata.getEsercizi().remove(exePosition);
+                linearLayoutSchedule.removeViewAt(exePosition);
+                updateButtonsId(linearLayoutSchedule);
+                ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
+                Toast toast = Toast.makeText(context, StringOutputConstants.successDeletingExe, duration);
+                toast.show();
             }
         });
 
@@ -194,7 +212,7 @@ public class CollectDataExeFragment extends Fragment {
                 giornata.getEsercizi().clear();
                 linearLayoutSchedule.removeAllViews();
                 ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
-                Toast toast = Toast.makeText(context, successDeletingAllExe, duration);
+                Toast toast = Toast.makeText(context, StringOutputConstants.successDeletingAllExe, duration);
                 toast.show();
             }
         });
@@ -246,101 +264,47 @@ public class CollectDataExeFragment extends Fragment {
         });
     }
 
-    private Esercizio createExe(EsercizioBaseModel esercizioBaseModel, Map<String, Object> argsMap) {
-        Esercizio esercizio;
-
-        if (StringUtils.equalsIgnoreCase(esercizioBaseModel.getTypeStr(), "Serie")) {
-            esercizio = new EsercizioSerie(
-                    esercizioBaseModel.getNomeExeStr(),
-                    esercizioBaseModel.getTypeStr(),
-                    esercizioBaseModel.getSerieStr(),
-                    esercizioBaseModel.getRecoverStr(),
-                    esercizioBaseModel.getVideo(),
-                    esercizioBaseModel.getIndicazioniCoach(),
-                    esercizioBaseModel.getAppuntiAtleta(),
-                    ((EditText) argsMap.get("Ripetizioni")).getText().toString());
-        }
-        else if (StringUtils.equalsIgnoreCase(esercizioBaseModel.getTypeStr(), "Incrementale")) {
-            esercizio = new EsercizioIncrementale(
-                    esercizioBaseModel.getNomeExeStr(),
-                    esercizioBaseModel.getTypeStr(),
-                    esercizioBaseModel.getSerieStr(),
-                    esercizioBaseModel.getRecoverStr(),
-                    esercizioBaseModel.getVideo(),
-                    esercizioBaseModel.getIndicazioniCoach(),
-                    esercizioBaseModel.getAppuntiAtleta(),
-                    ((EditText) argsMap.get("Inizio")).getText().toString(),
-                    ((EditText) argsMap.get("Picco")).getText().toString());
-        }
-        else if (StringUtils.equalsIgnoreCase(esercizioBaseModel.getTypeStr(), "Piramidale")) {
-            esercizio = new EsercizioPiramidale(
-                    esercizioBaseModel.getNomeExeStr(),
-                    esercizioBaseModel.getTypeStr(),
-                    esercizioBaseModel.getSerieStr(),
-                    esercizioBaseModel.getRecoverStr(),
-                    esercizioBaseModel.getVideo(),
-                    esercizioBaseModel.getIndicazioniCoach(),
-                    esercizioBaseModel.getAppuntiAtleta(),
-                    ((EditText) argsMap.get("Inizio")).getText().toString(),
-                    ((EditText) argsMap.get("Picco")).getText().toString(),
-                    ExerciseConstants.recoverList[((NumberPicker) argsMap.get("RecuperoSerie")).getValue()]);
-        }
-        else if (StringUtils.equalsIgnoreCase(esercizioBaseModel.getTypeStr(), "Tenuta")) {
-            esercizio = new EsercizioTenuta(
-                    esercizioBaseModel.getNomeExeStr(),
-                    esercizioBaseModel.getTypeStr(),
-                    esercizioBaseModel.getSerieStr(),
-                    esercizioBaseModel.getRecoverStr(),
-                    esercizioBaseModel.getVideo(),
-                    esercizioBaseModel.getIndicazioniCoach(),
-                    esercizioBaseModel.getAppuntiAtleta(),
-                    ((EditText) argsMap.get("Ripetizioni")).getText().toString(),
-                    ((EditText) argsMap.get("TempoEsecuzione")).getText().toString());
-        }
-        else {
-            esercizio = null;
-        }
-
-        return esercizio;
-    }
-
-    private Map<String, Object> argsFromExe(String typeStr, View viewFragment) {
-        Map<String, Object> map = new HashMap<>();
-
-        if (StringUtils.equalsIgnoreCase(typeStr, "Serie")) {
-            addIfNotNull(map, "Ripetizioni", viewFragment.findViewById(R.id.textRipetizioni));
-        } else if (StringUtils.equalsIgnoreCase(typeStr, "Incrementale")) {
-            addIfNotNull(map, "Inizio", viewFragment.findViewById(R.id.repetitionStartText));
-            addIfNotNull(map, "Picco", viewFragment.findViewById(R.id.peakText));
-        } else if (StringUtils.equalsIgnoreCase(typeStr, "Piramidale")) {
-            addIfNotNull(map, "Inizio", viewFragment.findViewById(R.id.repetitionStartText));
-            addIfNotNull(map, "Picco", viewFragment.findViewById(R.id.peakText));
-            addIfNotNull(map, "RecuperoSerie", viewFragment.findViewById(R.id.textRecoverSeries));
-        } else if (StringUtils.equalsIgnoreCase(typeStr, "Tenuta")) {
-            addIfNotNull(map, "TempoEsecuzione", viewFragment.findViewById(R.id.textExecutionTime));
-            addIfNotNull(map, "Ripetizioni", viewFragment.findViewById(R.id.textRipetizioni));
-        } else {
-            Toast toast = Toast.makeText(context, "MAPPA VUOTA", duration);
-            toast.show();
-            return null;
-        }
-        return map;
-    }
-
-    private static void addIfNotNull(Map<String, Object> map, String key, Object value) {
-        if (value != null) {
-            map.put(key, value);
-        }
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void viewExe(LinearLayout linearLayoutSchedule) {
+
+        final int[] i = {0};
+
         giornata.getEsercizi().forEach(elem -> {
-            TextView textView = new TextView(context);
-            textView.setTextSize(15f);
-            textView.setText(elem.toStringUI());
-            linearLayoutSchedule.addView(textView);
+            Button button = new Button(context);
+            button.setId(i[0]);
+            button.setText(elem.toStringUI());
+            button.setTextSize(15f);
+            button.setBackgroundColor(ExerciseConstants.Color.BUTTON_COLOR);
+            button.setTextColor(ExerciseConstants.Color.TEXT_BUTTON_COLOR);
+
+            button.setOnClickListener(v -> {
+                ScheduleCreatingUtils.setBasicColor(getButtonList(linearLayoutSchedule));
+                button.setBackgroundColor(ExerciseConstants.Color.BUTTON_PRESSED_COLOR);
+                exePosition = button.getId();
+            });
+
+            i[0]++;
+            linearLayoutSchedule.addView(button);
         });
+    }
+
+    private List<Button> getButtonList(LinearLayout linearLayoutSchedule) {
+        List<Button> buttonList = new ArrayList<>();
+
+        for (int i = 0; i < linearLayoutSchedule.getChildCount(); i++) {
+            buttonList.add((Button) linearLayoutSchedule.getChildAt(i));
+        }
+
+        return buttonList;
+    }
+
+    private void updateButtonsId(LinearLayout linearLayoutSchedule) {
+
+        for (int i = 0; i < linearLayoutSchedule.getChildCount(); i++) {
+            ((Button) linearLayoutSchedule.getChildAt(i)).setId(i);
+        }
+
     }
 
 }

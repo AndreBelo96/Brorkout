@@ -1,3 +1,19 @@
 
 y
 Iapp/src/main/java/com/andrea/belotti/brorkout/model/InterfaceAdapter.java,c\1\c1f594faa3b6c5f11095aaa27360f7bc6f236cb7
+€
+Papp/src/main/java/com/andrea/belotti/brorkout/activity/StartingMenuActivity.java,7\4\7457f73350185d96780407eff7326aea131bffc4
+w
+Gapp/src/main/java/com/andrea/belotti/brorkout/model/EsercizioSerie.java,a\2\a2709b78e5083ae761b1d22c47f567162cf6531c
+x
+Happ/src/main/java/com/andrea/belotti/brorkout/model/EsercizioTenuta.java,0\6\06e805294e8282e7232fa05ad3cb34a6eee6ba09
+r
+Bapp/src/main/java/com/andrea/belotti/brorkout/model/Esercizio.java,1\8\184d24f3a3dca41fdb81307c580c9b0a2116b8b2
+~
+Napp/src/main/java/com/andrea/belotti/brorkout/model/EsercizioIncrementale.java,1\e\1e2c0ea90a0c0e33e8d4ffb8322482095897eb54
+|
+Lapp/src/main/java/com/andrea/belotti/brorkout/model/EsercizioPiramidale.java,8\4\8468102de4db0def0ce332a60314c64b95f796b3
+…
+Uapp/src/main/java/com/andrea/belotti/brorkout/activity/ExecutionScheduleActivity.java,a\8\a890a55b58348ebc4e9612d6046bee75b1419c25
+ˆ
+Xapp/src/main/java/com/andrea/belotti/brorkout/fragment/SceltaSchedaArchivioFragment.java,7\7\772b7c8fc4b5a997119eea85b02d17cacc4e5a63

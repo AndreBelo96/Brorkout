@@ -4,8 +4,10 @@ import android.widget.LinearLayout;
 
 public final class ExerciseConstants {
 
-    private ExerciseConstants() {
+    private static final String UTILITY_CLASS = "Utility class";
 
+    private ExerciseConstants() {
+        throw new IllegalStateException(UTILITY_CLASS);
     }
 
     public static final String[] recoverList = {"5","10","15","20","25","30","35","40","45","50","55","60","65","70","75","80","85","90"};
@@ -17,6 +19,11 @@ public final class ExerciseConstants {
     public static final  String GIORNATA = "Giornata: ";
 
     public final class DataBase {
+
+        private DataBase() {
+            throw new IllegalStateException(UTILITY_CLASS);
+        }
+
         public static final  String CLOUD = "Cloud";
         public static final  String LOCAL = "Local";
         public static final  String PUBLIC = "Public";
@@ -24,6 +31,11 @@ public final class ExerciseConstants {
     }
 
     public final class Color {
+
+        private Color() {
+            throw new IllegalStateException(UTILITY_CLASS);
+        }
+
         public static final int BUTTON_COLOR = 0xFF162955;
         public static final int BUTTON_PRESSED_COLOR = 0xFF061539;
         public static final int TEXT_BUTTON_COLOR = 0xFF7887AB;

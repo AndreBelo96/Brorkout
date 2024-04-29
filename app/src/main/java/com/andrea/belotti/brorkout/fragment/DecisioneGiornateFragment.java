@@ -1,7 +1,6 @@
 package com.andrea.belotti.brorkout.fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,14 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ArchivioActivity;
 import com.andrea.belotti.brorkout.activity.StartingMenuActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Scheda;
-import com.andrea.belotti.brorkout.utils.ScheduleCreating;
+import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +46,7 @@ public class DecisioneGiornateFragment extends Fragment {
 
         sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
-        List<Scheda> schedaList = ScheduleCreating.createListaSchede(sharedPreferences);
+        List<Scheda> schedaList = ScheduleCreatingUtils.createListaSchede(sharedPreferences);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_decisione_giornate, container, false);
@@ -115,7 +112,7 @@ public class DecisioneGiornateFragment extends Fragment {
         btnList.forEach(b ->
                 b.setOnClickListener(v -> {
                     giornata[0] = (String) b.getText();
-                    setBasicColor(btnList);
+                    ScheduleCreatingUtils.setBasicColor(btnList);
                     b.setBackgroundColor(ExerciseConstants.Color.BUTTON_PRESSED_COLOR);
                 }));
 
@@ -134,7 +131,7 @@ public class DecisioneGiornateFragment extends Fragment {
 
         copyScheduleBtn.setOnClickListener(v -> {
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CopiaSchedaFragment.newInstance(schedaList));
+            fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CopiaSchedaFragment.newInstance(schedaList, titoloScheda.getText().toString()));
             fragmentTransaction.commit();
         });
 
@@ -146,11 +143,5 @@ public class DecisioneGiornateFragment extends Fragment {
         return view;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void setBasicColor(List<Button> buttons) {
-        buttons.forEach(b -> {
-            b.setBackgroundColor(ExerciseConstants.Color.BUTTON_COLOR);
-        });
-    }
 
 }

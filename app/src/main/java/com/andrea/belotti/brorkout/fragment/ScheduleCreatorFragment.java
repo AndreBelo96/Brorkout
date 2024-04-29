@@ -44,6 +44,25 @@ public class ScheduleCreatorFragment extends Fragment {
             1.0f
     );
 
+    public static ScheduleCreatorFragment newInstance(String scheduleTitle, String giorni) {
+        ScheduleCreatorFragment fragment = new ScheduleCreatorFragment();
+        Bundle args = new Bundle();
+        args.putString("numeroGiornate", giorni);
+        args.putString("titoloScheda", scheduleTitle);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public static ScheduleCreatorFragment newInstance(Scheda scheda, String scheduleName) {
+        ScheduleCreatorFragment fragment = new ScheduleCreatorFragment();
+        Bundle args = new Bundle();
+        args.putString("numeroGiornate", scheda.getGiornate().size()+"");
+        args.putString("titoloScheda", scheduleName);
+        args.putSerializable("Scheda", scheda);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

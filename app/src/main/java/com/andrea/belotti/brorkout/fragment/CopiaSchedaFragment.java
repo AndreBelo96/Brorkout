@@ -28,7 +28,15 @@ public class CopiaSchedaFragment extends Fragment {
     private static Context context;
 
     private static int duration = Toast.LENGTH_SHORT;
-    private static final String SUCCESS_CREATING_STRING = "Scheda salvata con successo";
+
+    public static CopiaSchedaFragment newInstance(List<Scheda> scheduleList, String nameSchedule) {
+        CopiaSchedaFragment fragment = new CopiaSchedaFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("ListaSchede", (Serializable) scheduleList);
+        args.putString("titoloScheda", nameSchedule);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,13 +49,15 @@ public class CopiaSchedaFragment extends Fragment {
 
         context = getContext();
         List<Scheda> schedaList = new ArrayList<>();
+        String scheduleName = "";
 
         if (getArguments() != null) {
             schedaList = (List<Scheda>) getArguments().get("ListaSchede");
+            scheduleName = (String) getArguments().get("titoloScheda");
         }
 
         if (schedaList != null && !schedaList.isEmpty()) {
-            createView(schedaList, view);
+            createView(schedaList, scheduleName, view);
         } else {
             Log.e(TAG, "Lista schede vuota");
         }
@@ -55,7 +65,7 @@ public class CopiaSchedaFragment extends Fragment {
         return view;
     }
 
-    private void createView(List<Scheda> schedaList, View view) {
+    private void createView(List<Scheda> schedaList, String scheduleName, View view) {
         LinearLayout scheduleLayout = view.findViewById(R.id.scheduleView);
 
 
@@ -64,31 +74,16 @@ public class CopiaSchedaFragment extends Fragment {
             button.setText(scheda.getNome());
             scheduleLayout.addView(button);
 
-
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-
-                    FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                    SceltaGiornoArchivioFragment sceltaGiornoArchivioFragment = new SceltaGiornoArchivioFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("Scheda", scheda);
-                    sceltaGiornoArchivioFragment.setArguments(bundle);
-                    fragmentTransaction.replace(R.id.fragmentContainerArchivioView, sceltaGiornoArchivioFragment);
-                    fragmentTransaction.commit();
-
-                }
+            button.setOnClickListener(v -> {
+                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator,ScheduleCreatorFragment.newInstance(scheda, scheduleName));
+                fragmentTransaction.commit();
             });
 
         }
     }
 
-    public static CopiaSchedaFragment newInstance(List<Scheda> param1) {
-        CopiaSchedaFragment fragment = new CopiaSchedaFragment();
-        Bundle args = new Bundle();
-        args.putSerializable("ListaSchede", (Serializable) param1);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
 
 }

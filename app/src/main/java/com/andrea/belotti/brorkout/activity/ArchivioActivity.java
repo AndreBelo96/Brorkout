@@ -15,7 +15,7 @@ import android.widget.Button;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.fragment.SceltaSchedaArchivioFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
-import com.andrea.belotti.brorkout.utils.ScheduleCreating;
+import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class ArchivioActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
         Button backButton = findViewById(R.id.buttonBack);
-        List<Scheda> schedaList = ScheduleCreating.createListaSchede(sharedPreferences);
+        List<Scheda> schedaList = ScheduleCreatingUtils.createListaSchede(sharedPreferences);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(schedaList));
