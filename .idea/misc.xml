@@ -47,9 +47,14 @@
         <entry key="..\:/Brorkout/app/src/main/res/mipmap-anydpi-v26/ic_launcher_muscle_round.xml" value="0.1755" />
         <entry key="..\:/Brorkout/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2815" />
         <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/activity_personal_area.xml" value="0.36302083333333335" />
+        <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/activity_schedule_creator.xml" value="0.30104166666666665" />
         <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/activity_starting_menu.xml" value="0.36302083333333335" />
         <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/fragment_collect_data_exe.xml" value="0.35625" />
+        <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/fragment_copy_schedule.xml" value="0.5042735042735043" />
+        <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/fragment_create_new_schedule.xml" value="0.5042735042735043" />
+        <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/fragment_creation_menu.xml" value="0.23596014492753623" />
         <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/fragment_decisione_giornate.xml" value="0.21693840579710144" />
+        <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/fragment_scelta_giorno_archivio.xml" value="0.4390625" />
         <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/fragment_scelta_scheda_archivio.xml" value="0.35625" />
         <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/fragment_schedule_creator.xml" value="0.35625" />
         <entry key="..\:/GIT/Brorkout/app/src/main/res/layout/fragment_schedule_summary.xml" value="0.35625" />

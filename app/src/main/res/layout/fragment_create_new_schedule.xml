@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blue_200"
-    tools:context=".fragment.DecisioneGiornateFragment">
+    tools:context=".fragment.CreateNewScheduleFragment">
 
 
     <LinearLayout
@@ -22,37 +22,6 @@
             android:background="@color/light_blue_200"/>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="right">
-
-            <Switch
-                android:id="@+id/switchDb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:showText="false"
-                android:switchPadding="@dimen/_10sdp"
-                android:text="Local"
-                android:textColor="@color/light_blue_200"
-                android:thumbTint="@color/light_blue_200"
-                android:visibility="visible" />
-
-
-            <Switch
-                android:id="@+id/switchPrivate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:showText="false"
-                android:switchPadding="@dimen/_10sdp"
-                android:text="Private"
-                android:width="@dimen/_80sdp"
-                android:textColor="@color/light_blue_200"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:thumbTint="@color/light_blue_200" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,13 +43,13 @@
                 android:id="@+id/titoloScheda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:shadowColor="#FFFFFF"
+                android:shadowColor="@color/light_blue_200"
                 android:textAlignment="center"
                 android:textColor="@color/light_blue_200"
                 android:textColorHint="@color/light_blue_200"
-                android:layout_marginBottom="@dimen/_20sdp"
                 android:textSize="20sp" />
 
             <TextView
@@ -165,22 +134,12 @@
             </LinearLayout>
 
 
-
             <Button
                 android:id="@+id/confirm_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:text="Conferma"
-                android:textColor="@color/light_blue_200"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/copy_schedule_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:text="Copy Schedule"
+                android:text="Crea nuova scheda"
                 android:textColor="@color/light_blue_200"
                 android:textSize="20sp" />
 

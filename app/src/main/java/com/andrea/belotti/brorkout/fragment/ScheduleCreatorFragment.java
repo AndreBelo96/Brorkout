@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
@@ -29,14 +28,11 @@ import java.util.Map;
 
 public class ScheduleCreatorFragment extends Fragment {
 
-    private final String TAG = this.getClass().getSimpleName();
+    private final String tag = this.getClass().getSimpleName();
 
-    private static Map<Integer,Giornata> giornateList = new HashMap<>();
-    private static final String SUCCESS_CREATING_STRING = "Scheda salvata con successo";
+    private static final Map<Integer,Giornata> giornateList = new HashMap<>();
     private static List<Esercizio> eserciziCopiaIncolla = new ArrayList<>();
-    private Scheda scheda = new Scheda();
-
-    int duration = Toast.LENGTH_SHORT;
+    private final Scheda scheda = new Scheda();
 
     LinearLayout.LayoutParams wrapParams = new LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -47,8 +43,8 @@ public class ScheduleCreatorFragment extends Fragment {
     public static ScheduleCreatorFragment newInstance(String scheduleTitle, String giorni) {
         ScheduleCreatorFragment fragment = new ScheduleCreatorFragment();
         Bundle args = new Bundle();
-        args.putString("numeroGiornate", giorni);
-        args.putString("titoloScheda", scheduleTitle);
+        args.putString(ExerciseConstants.MemorizeConstants.NUMERO_GIORNATE, giorni);
+        args.putString(ExerciseConstants.MemorizeConstants.TITOLO_SCHEDA, scheduleTitle);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,9 +52,9 @@ public class ScheduleCreatorFragment extends Fragment {
     public static ScheduleCreatorFragment newInstance(Scheda scheda, String scheduleName) {
         ScheduleCreatorFragment fragment = new ScheduleCreatorFragment();
         Bundle args = new Bundle();
-        args.putString("numeroGiornate", scheda.getGiornate().size()+"");
-        args.putString("titoloScheda", scheduleName);
-        args.putSerializable("Scheda", scheda);
+        args.putString(ExerciseConstants.MemorizeConstants.NUMERO_GIORNATE, scheda.getGiornate().size()+"");
+        args.putString(ExerciseConstants.MemorizeConstants.TITOLO_SCHEDA, scheduleName);
+        args.putSerializable(ExerciseConstants.MemorizeConstants.SCHEDA, scheda);
         fragment.setArguments(args);
         return fragment;
     }
@@ -67,25 +63,23 @@ public class ScheduleCreatorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.i(TAG, ExerciseConstants.TAG_START_FRAGMENT);
+        Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_schedule_creator, container, false);
 
         Context context = getContext();
         int numeroGiornate = 0;
-        String titoloScheda = (String) getArguments().get("titoloScheda");
-        scheda.setNome(titoloScheda);
+        String titoloScheda = "";
+        Scheda datiScheda = null;
 
-
-        try {
-            numeroGiornate = Integer.parseInt(getArguments().getString("numeroGiornate"));
-        } catch (Exception e) {
-            Toast toast = Toast.makeText(context, "Brutte robe", duration);
-            toast.show();
+        if (getArguments() != null) {
+            titoloScheda = getArguments().getString(ExerciseConstants.MemorizeConstants.TITOLO_SCHEDA);
+            numeroGiornate = Integer.parseInt(getArguments().getString(ExerciseConstants.MemorizeConstants.NUMERO_GIORNATE));
+            datiScheda = (Scheda) getArguments().get(ExerciseConstants.MemorizeConstants.SCHEDA);
         }
 
-        Scheda datiScheda = (Scheda) getArguments().get("Scheda");
+        scheda.setNome(titoloScheda);
 
         if (datiScheda != null) {
             for (int i = 1; i <= numeroGiornate; i++) {
@@ -101,22 +95,20 @@ public class ScheduleCreatorFragment extends Fragment {
 
         Button createSchedule = view.findViewById(R.id.create);
 
-        createSchedule.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                List<Giornata> giornataList = new ArrayList<>();
-                for (int i = 1; i<= ScheduleCreatorFragment.getGiornateList().size(); i++) {
-                    giornataList.add(ScheduleCreatorFragment.getGiornateList().get(i));
-                }
-
-                scheda.setGiornate(giornataList);
-                ScheduleCreatorActivity.saveData(scheda);
-
-                if (scheda != null) {
-                    getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewScheduleCreator,
-                            ScheduleSummaryFragment.newInstance(scheda,1),"ScheduleSummaryFragment").commit();
-                }
-
+        createSchedule.setOnClickListener(v -> {
+            List<Giornata> giornataList = new ArrayList<>();
+            for (int i = 1; i<= ScheduleCreatorFragment.getGiornateList().size(); i++) {
+                giornataList.add(ScheduleCreatorFragment.getGiornateList().get(i));
             }
+
+            scheda.setGiornate(giornataList);
+            ScheduleCreatorActivity.saveData(scheda);
+
+            if (scheda != null) {
+                getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewScheduleCreator,
+                        ScheduleSummaryFragment.newInstance(scheda,1),"ScheduleSummaryFragment").commit();
+            }
+
         });
 
         createButtonList(numeroGiornate, view, context);
@@ -139,19 +131,16 @@ public class ScheduleCreatorFragment extends Fragment {
             button.setLayoutParams(wrapParams);
             Integer finalI = i;
 
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                    CollectDataExeFragment collectDataExeFragment = new CollectDataExeFragment();
-                    collectDataExeFragment.setNumeroGiornata(finalI);
-                    if (giornateList.get(finalI) != null) {
-                        collectDataExeFragment.setGiornata(giornateList.get(finalI));
-                    }
-
-                    fragmentTransaction.replace(R.id.fragmentContainerViewSingolaGiornata, collectDataExeFragment);
-                    fragmentTransaction.commit();
+            button.setOnClickListener(v -> {
+                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+                CollectDataExeFragment collectDataExeFragment = new CollectDataExeFragment();
+                collectDataExeFragment.setNumeroGiornata(finalI);
+                if (giornateList.get(finalI) != null) {
+                    collectDataExeFragment.setGiornata(giornateList.get(finalI));
                 }
+
+                fragmentTransaction.replace(R.id.fragmentContainerViewSingolaGiornata, collectDataExeFragment);
+                fragmentTransaction.commit();
             });
 
             layoutElencoEsecizi.addView(button);

@@ -18,7 +18,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerViewScheduleCreator"
-            android:name="com.andrea.belotti.brorkout.fragment.DecisioneGiornateFragment"
+            android:name="com.andrea.belotti.brorkout.fragment.CreationMenuFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

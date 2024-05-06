@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_200"
+    tools:context=".fragment.CreationMenuFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/layoutDecisione"
+        android:layout_marginVertical="@dimen/_50sdp"
+        android:gravity="center_horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_blue_200"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="right">
+
+            <Switch
+                android:id="@+id/switchDb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:showText="false"
+                android:switchPadding="@dimen/_10sdp"
+                android:text="Local"
+                android:textColor="@color/light_blue_200"
+                android:thumbTint="@color/light_blue_200"
+                android:visibility="visible" />
+
+
+            <Switch
+                android:id="@+id/switchPrivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:showText="false"
+                android:switchPadding="@dimen/_10sdp"
+                android:text="Private"
+                android:width="@dimen/_80sdp"
+                android:textColor="@color/light_blue_200"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:thumbTint="@color/light_blue_200" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center_horizontal">
+
+
+            <TextView
+                android:id="@+id/TextCreation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Desideri creare una nuova scheda oppure copiarne una già esistente?"
+                android:textColor="@color/light_blue_200"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/new_schedule_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:text="Create new Schedule"
+                android:textColor="@color/light_blue_200"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/copy_schedule_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:text="Copy Schedule"
+                android:textColor="@color/light_blue_200"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_blue_200"
+                android:text="Back"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/light_blue_200"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

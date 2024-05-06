@@ -10,7 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.DecisioneGiornateFragment;
+import com.andrea.belotti.brorkout.fragment.CreationMenuFragment;
 import com.andrea.belotti.brorkout.fragment.ScheduleCreatorFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
@@ -51,11 +51,11 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
             scheduleCreatorFragment.setArguments(bundle);
 
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, scheduleCreatorFragment);
+            fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, scheduleCreatorFragment); //TODO da vedere se basta scheda
             fragmentTransaction.commit();
         } else {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.fragmentContainerViewScheduleCreator, new DecisioneGiornateFragment());
+            fragmentTransaction.add(R.id.fragmentContainerViewScheduleCreator, new CreationMenuFragment());
             fragmentTransaction.commit();
         }
 

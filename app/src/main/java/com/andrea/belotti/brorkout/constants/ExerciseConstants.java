@@ -51,5 +51,15 @@ public final class ExerciseConstants {
         //wrapParams.setMargins(2, 0, 2, 0);
     }
 
+    public final class MemorizeConstants {
+
+        private MemorizeConstants() {
+            throw new IllegalStateException(UTILITY_CLASS);
+        }
+
+        public static final String NUMERO_GIORNATE = "numeroGiornate";
+        public static final String TITOLO_SCHEDA = "titoloScheda";
+        public static final String SCHEDA = "Scheda";
+    }
 
 }

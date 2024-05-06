@@ -1,6 +1,7 @@
 package com.andrea.belotti.brorkout.fragment;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -69,6 +70,8 @@ public class ExeExecutionFragment extends Fragment {
 
         setExeOnView(view, esercizioList);
 
+        final MediaPlayer mpVaiUomo = MediaPlayer.create(this.getActivity(), R.raw.alarm);
+
         Button buttonRecover = view.findViewById(R.id.buttonRecover);
         Button nextExeButton = view.findViewById(R.id.buttonNextExe);
         Button previousExeButton = view.findViewById(R.id.buttonPreviousExe);
@@ -79,7 +82,7 @@ public class ExeExecutionFragment extends Fragment {
         TextView textNumSerie = view.findViewById(R.id.textNumSerie);
         TextView textVideo = view.findViewById(R.id.textVideo);
 
-        Long countDown = Long.parseLong(textRecoverNumber.getText().toString()) * 1000l;
+        final Long[] countDown = {Long.parseLong(textRecoverNumber.getText().toString()) * 1000l};
 
         nextExeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,14 +116,17 @@ public class ExeExecutionFragment extends Fragment {
                     setButtonClickable(false, previousExeButton, nextExeButton, buttonRecover, buttonTenRecover);
                 }
                 if (countSerieList.get(countExe) < Integer.parseInt(esercizioList.get(countExe).getSerie())) {
-                    new CountDownTimer(countDown, 1000) {
+                    countDown[0] = Long.parseLong(esercizioList.get(countExe).getRecupero()) * 1000l;
 
-                        public void onTick(long millisUntilFinished) {
-                            buttonRecover.setText(millisUntilFinished / 1000 + "\"");
+                    new CountDownTimer(countDown[0], 1000) {
+
+                        public void onTick(long countDown) {
+                            buttonRecover.setText(countDown / 1000 + "\"");
                         }
 
                         public void onFinish() {
                             buttonRecover.setText("Start");
+                            mpVaiUomo.start();
 
                             setSerieEsercizio(esercizioList.get(countExe), textNumSerie);
                             setRepForTenutaIncrementale(esercizioList.get(countExe));
