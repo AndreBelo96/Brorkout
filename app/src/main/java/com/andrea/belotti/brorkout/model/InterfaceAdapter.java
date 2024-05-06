@@ -1,6 +1,5 @@
 package com.andrea.belotti.brorkout.model;
 
-import com.google.gson.InstanceCreator;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -37,7 +36,6 @@ public class InterfaceAdapter  implements JsonSerializer, JsonDeserializer {
         try {
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
-            //e.printStackTrace();
             throw new JsonParseException(e.getMessage());
         }
     }
