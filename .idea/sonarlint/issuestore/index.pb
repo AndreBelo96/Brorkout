@@ -1,8 +1,4 @@
 
-y
-Iapp/src/main/java/com/andrea/belotti/brorkout/model/InterfaceAdapter.java,c\1\c1f594faa3b6c5f11095aaa27360f7bc6f236cb7
-w
-Gapp/src/main/java/com/andrea/belotti/brorkout/model/EsercizioSerie.java,a\2\a2709b78e5083ae761b1d22c47f567162cf6531c
 x
 Happ/src/main/java/com/andrea/belotti/brorkout/model/EsercizioTenuta.java,0\6\06e805294e8282e7232fa05ad3cb34a6eee6ba09
 r
@@ -11,10 +7,6 @@ Bapp/src/main/java/com/andrea/belotti/brorkout/model/Esercizio.java,1\8\184d24f
 Napp/src/main/java/com/andrea/belotti/brorkout/model/EsercizioIncrementale.java,1\e\1e2c0ea90a0c0e33e8d4ffb8322482095897eb54
 |
 Lapp/src/main/java/com/andrea/belotti/brorkout/model/EsercizioPiramidale.java,8\4\8468102de4db0def0ce332a60314c64b95f796b3
-…
-Uapp/src/main/java/com/andrea/belotti/brorkout/activity/ExecutionScheduleActivity.java,a\8\a890a55b58348ebc4e9612d6046bee75b1419c25
-‚
-Rapp/src/main/java/com/andrea/belotti/brorkout/fragment/CollectDataExeFragment.java,c\2\c23a4bf422573fdf2829f887de1986b45dddcb56
 ~
 Napp/src/main/java/com/andrea/belotti/brorkout/utils/ScheduleCreatingUtils.java,0\5\05e764b0bfe47bde75b9638028a5c8e5c33b43d6
 ˆ
@@ -23,3 +15,25 @@ Xapp/src/main/java/com/andrea/belotti/brorkout/fragment/SceltaGiornoArchivioFrag
 Lapp/src/main/java/com/andrea/belotti/brorkout/activity/ArchivioActivity.java,2\2\2224f404894c0bea6b96dbe9c74b3a540b7ba639
 ƒ
 Sapp/src/main/java/com/andrea/belotti/brorkout/fragment/ScheduleSummaryFragment.java,a\e\aecf9f4931195538e9911254882c673e2fb88bff
+ˆ
+Xapp/src/main/java/com/andrea/belotti/brorkout/fragment/SceltaSchedaArchivioFragment.java,7\7\772b7c8fc4b5a997119eea85b02d17cacc4e5a63
+‚
+Rapp/src/main/java/com/andrea/belotti/brorkout/constants/StringOutputConstants.java,9\e\9e6a41a849cd5b9619dc13e649f3e91ba2a438e9
+~
+Napp/src/main/java/com/andrea/belotti/brorkout/constants/ExerciseConstants.java,d\3\d300e55e21d0411c0ab423e20581060bd2d724be
+€
+Papp/src/main/java/com/andrea/belotti/brorkout/fragment/CreationMenuFragment.java,4\f\4f1bac38db0b0a834d6f50f689949b7687ceb8e8
+…
+Uapp/src/main/java/com/andrea/belotti/brorkout/fragment/CreateNewScheduleFragment.java,c\c\cc5c777475d3e13d973b2fd36586341251d39e94
+€
+Papp/src/main/java/com/andrea/belotti/brorkout/fragment/CopyScheduleFragment.java,3\d\3de7f4eac2697c1b506ee973c5cf1039b905161a
+ƒ
+Sapp/src/main/java/com/andrea/belotti/brorkout/fragment/ScheduleCreatorFragment.java,f\c\fc721022038f20c0d23159184d3cf40978de35ad
+€
+Papp/src/main/java/com/andrea/belotti/brorkout/activity/StartingMenuActivity.java,7\4\7457f73350185d96780407eff7326aea131bffc4
+o
+?app/src/main/java/com/andrea/belotti/brorkout/model/Scheda.java,b\4\b4eff600b793bcb637a4fe5466718a1246ddd17f
+y
+Iapp/src/main/java/com/andrea/belotti/brorkout/model/InterfaceAdapter.java,c\1\c1f594faa3b6c5f11095aaa27360f7bc6f236cb7
+€
+Papp/src/main/java/com/andrea/belotti/brorkout/fragment/ExeExecutionFragment.java,4\e\4e413769a6fd2110193f8f1a42500774ac861a81

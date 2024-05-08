@@ -29,14 +29,14 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_creator);
 
-        Bundle datipassati = getIntent().getExtras().getBundle("SchedaDati");
-        
+        Bundle inputData = getIntent().getExtras().getBundle("SchedaDati");
+
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
 
         if (getIntent().getExtras().getBoolean("modifica")) {
             ScheduleCreatorFragment scheduleCreatorFragment = new ScheduleCreatorFragment();
-            Scheda finalSchedaScelta = (Scheda) datipassati.getSerializable("Scheda");
+            Scheda finalSchedaScelta = (Scheda) inputData.getSerializable("Scheda");
             Bundle bundle = new Bundle();
             bundle.putString("numeroGiornate", String.valueOf(finalSchedaScelta.getGiornate().size()));
             bundle.putString("titoloScheda", finalSchedaScelta.getNome());

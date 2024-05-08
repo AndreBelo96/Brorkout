@@ -190,7 +190,7 @@ public class EsercizioSerie implements Esercizio, Serializable {
 
     @Override
     public String getRipetizioneEsercizioString() {
-        return "Ripetizioni: " + Integer.parseInt(this.getRipetizioni());
+        return "Ripetizioni: " + this.getRipetizioni();
     }
 
 }

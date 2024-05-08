@@ -26,12 +26,6 @@ public class DataExeIncrFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_exe_incr, container, false);
 
-        NumberPicker recuperoNumPicker = view.findViewById(R.id.recoverText);
-        recuperoNumPicker.setMaxValue(ExerciseConstants.recoverList.length - 1);
-        recuperoNumPicker.setMinValue(0);
-        recuperoNumPicker.setValue(5);
-        recuperoNumPicker.setDisplayedValues(ExerciseConstants.recoverList);
-
         return view;
     }
 }

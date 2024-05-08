@@ -132,7 +132,7 @@ public class CollectDataExeFragment extends Fragment {
                 }
 
                 esercizio.setNomeEsercizio(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
-                esercizio.setRecupero(ExerciseConstants.recoverList[((NumberPicker) viewFragment.findViewById(R.id.recoverText)).getValue()]);
+                esercizio.setRecupero(((EditText) view.findViewById(R.id.recoverText)).getText().toString());
                 esercizio.setSerie(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
                 esercizio.setVideo(((CheckBox) view.findViewById(R.id.checkBoxVideo)).isChecked());
                 esercizio.setIndicazioniCoach(((EditText) view.findViewById(R.id.textIndicazioniEsercizio)).getText().toString());
