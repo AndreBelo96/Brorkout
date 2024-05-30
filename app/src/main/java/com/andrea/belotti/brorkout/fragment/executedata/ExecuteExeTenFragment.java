@@ -21,6 +21,7 @@ public class ExecuteExeTenFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.i(TAG, ExerciseConstants.TAG_START_FRAGMENT);
 
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_execute_exe_ten, container, false);
     }

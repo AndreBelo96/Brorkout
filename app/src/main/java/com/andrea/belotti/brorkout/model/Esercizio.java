@@ -49,4 +49,6 @@ public interface Esercizio {
 
     String getRipetizioneEsercizioString();
 
+    void setNumeroRipetizioniDopoSerie();
+
 }

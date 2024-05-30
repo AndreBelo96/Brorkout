@@ -43,7 +43,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class CollectDataExeFragment extends Fragment {
 
-    private final String TAG = this.getClass().getSimpleName();
+    private final String tag = this.getClass().getSimpleName();
 
     private int exePosition = 0;
 
@@ -69,7 +69,7 @@ public class CollectDataExeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i(TAG, ExerciseConstants.TAG_START_FRAGMENT);
+        Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_collect_data_exe, container, false);
@@ -87,7 +87,7 @@ public class CollectDataExeFragment extends Fragment {
 
         TextView numeroGiornataTW = view.findViewById(R.id.numeroGiornataId);
         numeroGiornataTW.setText("Giornata : " + numeroGiornata);
-        Spinner typeNumPicker = view.findViewById(R.id.choiceExerciseType);
+        Spinner typeExePicker = view.findViewById(R.id.choiceExerciseType);
         LinearLayout linearLayoutSchedule = view.findViewById(R.id.layoutSchedule);
 
         giornata = ScheduleCreatorFragment.getGiornateList().get(numeroGiornata);
@@ -95,131 +95,136 @@ public class CollectDataExeFragment extends Fragment {
         exerciesList.addAll(giornata.getEsercizi());
 
         // Cambio del tipo di esercizio nel fragment
-        changeTypeExeFragment(typeNumPicker);
+        changeTypeExeFragment(typeExePicker);
 
 
-        createExeButton.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            public void onClick(View v) {
-                View viewFragment = typeExeFragment.getView();
+        createExeButton.setOnClickListener(v -> {
+            View viewFragment = typeExeFragment.getView();
 
-                Esercizio esercizio = null;
+            Esercizio esercizio = setExe(typeExePicker, viewFragment);
+            assert viewFragment != null;
 
-                switch (typeNumPicker.getSelectedItem().toString()) {
+            esercizio.setNomeEsercizio(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
+            esercizio.setRecupero(((EditText) view.findViewById(R.id.recoverText)).getText().toString());
+            esercizio.setSerie(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
+            esercizio.setVideo(((CheckBox) view.findViewById(R.id.checkBoxVideo)).isChecked());
+            esercizio.setIndicazioniCoach(((EditText) view.findViewById(R.id.textIndicazioniEsercizio)).getText().toString());
+            esercizio.setAppuntiAtleta("");
 
-                    case "Incrementale":
-                        esercizio = new EsercizioIncrementale();
-                        esercizio.setInizio(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
-                        esercizio.setPicco(((EditText) viewFragment.findViewById(R.id.peakText)).getText().toString());
-                        break;
-                    case "Tenuta":
-                        esercizio = new EsercizioTenuta();
-                        esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.textRipetizioni)).getText().toString());
-                        esercizio.setTempoEsecuzione(((EditText) viewFragment.findViewById(R.id.textExecutionTime)).getText().toString());
-                        break;
-                    case "Serie":
-                        esercizio = new EsercizioSerie();
-                        esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.textRipetizioni)).getText().toString());
-                        break;
-                    case "Piramidale":
-                        esercizio = new EsercizioPiramidale();
-                        esercizio.setInizio(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
-                        esercizio.setPicco(((EditText) viewFragment.findViewById(R.id.peakText)).getText().toString());
-                        esercizio.setRecuperoSerie(ExerciseConstants.recoverList[((NumberPicker) viewFragment.findViewById(R.id.textRecoverSeries)).getValue()]);
-                        break;
-                    default:
-                        break;
-                }
-
-                esercizio.setNomeEsercizio(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
-                esercizio.setRecupero(((EditText) view.findViewById(R.id.recoverText)).getText().toString());
-                esercizio.setSerie(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
-                esercizio.setVideo(((CheckBox) view.findViewById(R.id.checkBoxVideo)).isChecked());
-                esercizio.setIndicazioniCoach(((EditText) view.findViewById(R.id.textIndicazioniEsercizio)).getText().toString());
-                esercizio.setAppuntiAtleta("");
-
-                if (!StringUtils.isNumeric(esercizio.getRecupero())) {
-                    Toast toast = Toast.makeText(context, StringOutputConstants.recoverError, duration);
-                    toast.show();
-                    return;
-                }
-
-                if (!StringUtils.isNumeric(esercizio.getSerie())) {
-                    Toast toast = Toast.makeText(context, StringOutputConstants.serieError, duration);
-                    toast.show();
-                    return;
-                }
-
-                exerciesList.add(esercizio);
-
-                giornata.setEsercizi(exerciesList);
-                ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
-
-                // Creation of schedule
-                linearLayoutSchedule.removeAllViews();
-                viewExe(linearLayoutSchedule);
-
-                Toast toast = Toast.makeText(context, StringOutputConstants.successAddingExe, duration);
+            if (!StringUtils.isNumeric(esercizio.getRecupero()) || StringUtils.isEmpty(esercizio.getRecupero())) {
+                Toast toast = Toast.makeText(context, StringOutputConstants.recoverError, duration);
                 toast.show();
+                return;
             }
+
+            if (!StringUtils.isNumeric(esercizio.getSerie()) || StringUtils.isEmpty(esercizio.getSerie())) {
+                Toast toast = Toast.makeText(context, StringOutputConstants.serieError, duration);
+                toast.show();
+                return;
+            }
+
+            if (!StringUtils.isNumeric(esercizio.getRipetizioni()) || StringUtils.isEmpty(esercizio.getRipetizioni())) {
+                Toast toast = Toast.makeText(context, StringOutputConstants.repError, duration);
+                toast.show();
+                return;
+            }
+
+            if (StringUtils.isEmpty(esercizio.getNomeEsercizio())) {
+                Toast toast = Toast.makeText(context, StringOutputConstants.nameError, duration);
+                toast.show();
+                return;
+            }
+
+            exerciesList.add(esercizio);
+
+            giornata.setEsercizi(exerciesList);
+            ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
+
+            // Creation of schedule
+            linearLayoutSchedule.removeAllViews();
+            viewExe(linearLayoutSchedule);
+
+            Toast toast = Toast.makeText(context, StringOutputConstants.successAddingExe, duration);
+            toast.show();
         });
 
-        deleteExe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        deleteExe.setOnClickListener(v -> {
 
-                if (giornata.getEsercizi().isEmpty() || exePosition >= giornata.getEsercizi().size()) {
-                    Toast toast = Toast.makeText(context, StringOutputConstants.errorEmptyList, duration);
-                    toast.show();
-                    return;
-                }
-
-                giornata.getEsercizi().remove(exePosition);
-                linearLayoutSchedule.removeViewAt(exePosition);
-                updateButtonsId(linearLayoutSchedule);
-                ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
-                Toast toast = Toast.makeText(context, StringOutputConstants.successDeletingExe, duration);
+            if (giornata.getEsercizi().isEmpty() || exePosition >= giornata.getEsercizi().size()) {
+                Toast toast = Toast.makeText(context, StringOutputConstants.errorEmptyList, duration);
                 toast.show();
+                return;
             }
+
+            giornata.getEsercizi().remove(exePosition);
+            linearLayoutSchedule.removeViewAt(exePosition);
+            updateButtonsId(linearLayoutSchedule);
+            ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
+            Toast toast = Toast.makeText(context, StringOutputConstants.successDeletingExe, duration);
+            toast.show();
         });
 
-        copyDay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ScheduleCreatorFragment.setEserciziCopiaIncolla(giornata.getEsercizi());
-                Toast toast = Toast.makeText(context, "giornata copiata", duration);
-                toast.show();
-            }
+        copyDay.setOnClickListener(v -> {
+            ScheduleCreatorFragment.setEserciziCopiaIncolla(giornata.getEsercizi());
+            Toast toast = Toast.makeText(context, "giornata copiata", duration);
+            toast.show();
         });
 
-        pasteDay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                linearLayoutSchedule.removeAllViews();
-                List<Esercizio> exeList = new ArrayList<>();
-                exeList.addAll(ScheduleCreatorFragment.getEserciziCopiaIncolla());
-                giornata.setEsercizi(exeList);
-                ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
-                viewExe(linearLayoutSchedule);
-                Toast toast = Toast.makeText(context, "giornata incollata", duration);
-                toast.show();
-            }
+        pasteDay.setOnClickListener(v -> {
+            linearLayoutSchedule.removeAllViews();
+            List<Esercizio> exeList = new ArrayList<>(ScheduleCreatorFragment.getEserciziCopiaIncolla());
+            giornata.setEsercizi(exeList);
+            ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
+            viewExe(linearLayoutSchedule);
+            Toast toast = Toast.makeText(context, "giornata incollata", duration);
+            toast.show();
         });
 
-        deleteAllExe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                giornata.getEsercizi().clear();
-                linearLayoutSchedule.removeAllViews();
-                ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
-                Toast toast = Toast.makeText(context, StringOutputConstants.successDeletingAllExe, duration);
-                toast.show();
-            }
+        deleteAllExe.setOnClickListener(v -> {
+            giornata.getEsercizi().clear();
+            linearLayoutSchedule.removeAllViews();
+            ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
+            Toast toast = Toast.makeText(context, StringOutputConstants.successDeletingAllExe, duration);
+            toast.show();
         });
 
         return view;
     }
 
+
+    private Esercizio setExe(Spinner typeExePicker, View viewFragment) {
+        Esercizio esercizio;
+
+        switch (typeExePicker.getSelectedItem().toString()) {
+
+            case "Incrementale":
+                esercizio = new EsercizioIncrementale();
+                esercizio.setInizio(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
+                esercizio.setPicco(((EditText) viewFragment.findViewById(R.id.peakText)).getText().toString());
+                esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
+                break;
+            case "Tenuta":
+                esercizio = new EsercizioTenuta();
+                esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.textRipetizioni)).getText().toString());
+                esercizio.setTempoEsecuzione(((EditText) viewFragment.findViewById(R.id.textExecutionTime)).getText().toString());
+                break;
+            case "Serie":
+                esercizio = new EsercizioSerie();
+                esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.textRipetizioni)).getText().toString());
+                break;
+            case "Piramidale":
+                esercizio = new EsercizioPiramidale();
+                esercizio.setInizio(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
+                esercizio.setPicco(((EditText) viewFragment.findViewById(R.id.peakText)).getText().toString());
+                esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
+                esercizio.setRecuperoSerie(ExerciseConstants.recoverList[((NumberPicker) viewFragment.findViewById(R.id.textRecoverSeries)).getValue()]);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + typeExePicker.getSelectedItem().toString());
+        }
+        return esercizio;
+
+    }
 
     private void changeTypeExeFragment(Spinner typeNumPicker) {
         typeNumPicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -259,11 +264,10 @@ public class CollectDataExeFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                // è selezionato di default serie, non si può non selezionare nulla
             }
         });
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void viewExe(LinearLayout linearLayoutSchedule) {

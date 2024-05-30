@@ -195,4 +195,9 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     public String getRipetizioneEsercizioString() {
         return "Ripetizioni: " + Integer.parseInt(this.getRipetizioni());
     }
+
+    @Override
+    public void setNumeroRipetizioniDopoSerie(){
+        // Non si incrementano le ripetizioni per un esercizio di tipo serie
+    }
 }

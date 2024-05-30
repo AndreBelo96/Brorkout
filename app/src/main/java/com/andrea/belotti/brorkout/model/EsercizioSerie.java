@@ -15,25 +15,7 @@ public class EsercizioSerie implements Esercizio, Serializable {
     private String ripetizioni;
 
     public EsercizioSerie(){
-
-    }
-
-    public EsercizioSerie(String nomeEsercizio,
-                          String tipoEsercizio,
-                          String serie,
-                          String recupero,
-                          Boolean isVideo,
-                          String indicazioniCoach,
-                          String appuntiAtleta,
-                          String ripetizioni) {
-        this.nomeEsercizio = nomeEsercizio;
-        this.tipoEsercizio = tipoEsercizio;
-        this.serie = serie;
-        this.recupero = recupero;
-        this.isVideo = isVideo;
-        this.indicazioniCoach = indicazioniCoach;
-        this.appuntiAtleta = appuntiAtleta;
-        this.ripetizioni = ripetizioni;
+        // non mi serve un costruttore per ora, creo l'oggetto vuoto e uso i setter
     }
 
     public String getType() {
@@ -122,6 +104,7 @@ public class EsercizioSerie implements Esercizio, Serializable {
 
     @Override
     public void setRecuperoSerie(String recuperoSerie) {
+        // non esiste il recupero di serie negli esercizi di serie, perché corrisponde al recupero
     }
 
     @Override
@@ -131,6 +114,7 @@ public class EsercizioSerie implements Esercizio, Serializable {
 
     @Override
     public void setInizio(String inizio) {
+        // non esiste l'inizio in una serie normale perché corrisponde alle ripetizioni
     }
 
     @Override
@@ -140,6 +124,7 @@ public class EsercizioSerie implements Esercizio, Serializable {
 
     @Override
     public void setPicco(String picco) {
+        // non esiste il picco in una serie normale perché corrisponde alle ripetizioni
     }
 
     @Override
@@ -190,7 +175,12 @@ public class EsercizioSerie implements Esercizio, Serializable {
 
     @Override
     public String getRipetizioneEsercizioString() {
-        return "Ripetizioni: " + this.getRipetizioni();
+        return "Ripetizioni: " + ripetizioni;
+    }
+
+    @Override
+    public void setNumeroRipetizioniDopoSerie(){
+        // Non si incrementano le ripetizioni per un esercizio di tipo serie
     }
 
 }

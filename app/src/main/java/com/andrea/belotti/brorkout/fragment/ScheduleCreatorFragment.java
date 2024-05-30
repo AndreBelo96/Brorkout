@@ -86,6 +86,7 @@ public class ScheduleCreatorFragment extends Fragment {
                 giornateList.put(i, new Giornata(datiScheda.getGiornate().get(i-1).getEsercizi()));
             }
         } else {
+            giornateList.clear();
             List<Esercizio> esercizioList = new ArrayList<>();
             for (int i = 1; i <= numeroGiornate; i++) {
                 giornateList.put(i, new Giornata(esercizioList));

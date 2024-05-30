@@ -12,39 +12,12 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
     private Boolean isVideo;
     private String indicazioniCoach;
     private String appuntiAtleta;
+    private String ripetizioni;
     private String inizio;
     private String picco;
 
     public EsercizioIncrementale() {
 
-    }
-
-    public EsercizioIncrementale(String nomeEsercizio,
-                                 String tipoEsercizio,
-                                 String serie,
-                                 String recupero,
-                                 Boolean isVideo,
-                                 String indicazioniCoach,
-                                 String appuntiAtleta,
-                                 String inizio,
-                                 String picco) {
-        this.nomeEsercizio = nomeEsercizio;
-        this.tipoEsercizio = tipoEsercizio;
-        this.serie = serie;
-        this.recupero = recupero;
-        this.isVideo = isVideo;
-        this.indicazioniCoach = indicazioniCoach;
-        this.appuntiAtleta = appuntiAtleta;
-        this.inizio = inizio;
-        this.picco = picco;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     @Override
@@ -150,12 +123,12 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
 
     @Override
     public String getRipetizioni() {
-        return null;
+        return ripetizioni;
     }
 
     @Override
     public void setRipetizioni(String ripetizioni) {
-
+        this.ripetizioni = ripetizioni;
     }
 
     @Override
@@ -197,6 +170,12 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
 
     @Override
     public String getRipetizioneEsercizioString() {
-        return "Ripetizioni: " + Integer.parseInt(this.getInizio());
+        return "Ripetizioni: " + ripetizioni;
+    }
+
+    @Override
+    public void setNumeroRipetizioniDopoSerie(){
+        int incrementoRipetizioni = (Integer.parseInt(picco) - Integer.parseInt(inizio)) / (Integer.parseInt(serie)-1);
+        this.setRipetizioni((Integer.parseInt(this.getRipetizioni()) + incrementoRipetizioni) + "");
     }
 }

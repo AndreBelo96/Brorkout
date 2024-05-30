@@ -12,27 +12,44 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/scheduleView"
+        <ScrollView
+            android:id="@+id/eserciziScrollView"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/_12sdp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="@dimen/_400sdp">
+            <LinearLayout
+                android:id="@+id/scheduleView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:gravity="center"
+                android:orientation="vertical">
+            </LinearLayout>
+        </ScrollView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/eliminaScheda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elimina scheda"
+                android:layout_marginRight="@dimen/_10sdp"/>
+
+            <Button
+                android:id="@+id/modifySchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Modifica scheda" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/eliminaScheda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Elimina scheda" />
 
-        <Button
-            android:id="@+id/modifySchedule"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Modifica scheda" />
 
         <Button
             android:id="@+id/backSceltaSchede"
