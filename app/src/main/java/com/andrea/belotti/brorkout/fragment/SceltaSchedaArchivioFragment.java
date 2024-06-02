@@ -26,6 +26,14 @@ public class SceltaSchedaArchivioFragment extends Fragment {
     private final String tag = this.getClass().getSimpleName();
     private Context context;
 
+    public static SceltaSchedaArchivioFragment newInstance(List<Scheda> param1) {
+        SceltaSchedaArchivioFragment fragment = new SceltaSchedaArchivioFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("ListaSchede", (Serializable) param1);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,13 +84,7 @@ public class SceltaSchedaArchivioFragment extends Fragment {
         }
     }
 
-    public static SceltaSchedaArchivioFragment newInstance(List<Scheda> param1) {
-        SceltaSchedaArchivioFragment fragment = new SceltaSchedaArchivioFragment();
-        Bundle args = new Bundle();
-        args.putSerializable("ListaSchede", (Serializable) param1);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
 
 }

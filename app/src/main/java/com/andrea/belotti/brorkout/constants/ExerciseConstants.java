@@ -60,6 +60,7 @@ public final class ExerciseConstants {
         public static final String NUMERO_GIORNATE = "numeroGiornate";
         public static final String TITOLO_SCHEDA = "titoloScheda";
         public static final String SCHEDA = "Scheda";
+        public static final String TENUTA = "Tenuta";
     }
 
 }

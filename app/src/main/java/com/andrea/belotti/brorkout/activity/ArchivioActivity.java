@@ -45,12 +45,9 @@ public class ArchivioActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(schedaList));
         fragmentTransaction.commit();
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), StartingMenuActivity.class);
-                startActivity(intent);
-            }
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), StartingMenuActivity.class);
+            startActivity(intent);
         });
     }
 

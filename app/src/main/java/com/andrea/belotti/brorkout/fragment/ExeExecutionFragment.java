@@ -5,7 +5,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -13,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.andrea.belotti.brorkout.R;
@@ -63,14 +63,14 @@ public class ExeExecutionFragment extends Fragment {
             countSerieList.add(0);
         }
 
-        setExeOnView(view, esercizioList);
-
         final MediaPlayer mpVaiUomo = MediaPlayer.create(this.getActivity(), R.raw.alarm);
 
         Button buttonRecover = view.findViewById(R.id.buttonRecover);
         Button nextExeButton = view.findViewById(R.id.buttonNextExe);
         Button previousExeButton = view.findViewById(R.id.buttonPreviousExe);
         Button buttonEndSchedule = view.findViewById(R.id.buttonEndSchedule);
+
+        setExeOnView(view, esercizioList);
 
         String numSerie = esercizioList.get(countExe).getSerie();
         TextView textRecoverNumber = view.findViewById(R.id.textRecoverNumber);
@@ -141,6 +141,7 @@ public class ExeExecutionFragment extends Fragment {
             }
         });
 
+
         return view;
     }
 
@@ -152,8 +153,6 @@ public class ExeExecutionFragment extends Fragment {
         TextView textVideo = view.findViewById(R.id.textVideo);
         TextView textRecoverNumber = view.findViewById(R.id.textRecoverNumber);
         TextView textIndicazioniEsercizio = view.findViewById(R.id.textIndicazioniEsercizio);
-
-        setVisibilityOfTenutaExe(view, esercizioList.get(countExe));
 
         textNameExe.setText(esercizioList.get(countExe).getNomeEsercizio());
         textNumSerie.setText("Serie: " + countSerieList.get(countExe) + "/" + esercizioList.get(countExe).getSerie());
@@ -168,9 +167,8 @@ public class ExeExecutionFragment extends Fragment {
         textRecoverNumber.setText(esercizioList.get(countExe).getRecupero());
         textIndicazioniEsercizio.setText("Indicazioni: " + esercizioList.get(countExe).getIndicazioniCoach());
 
+        setVisibilityOfTenutaExe(view, esercizioList.get(countExe));
     }
-
-
 
     private void setSerieEsercizio(Esercizio esercizio, TextView textNumSerie) {
 
@@ -204,39 +202,38 @@ public class ExeExecutionFragment extends Fragment {
     }
 
     private void setVisibilityOfTenutaExe(View view, Esercizio esercizio) {
-        FragmentContainerView fragmentTenutaExeView = view.findViewById(R.id.fragmentTenutaExeView);
-        Button buttonRecover = view.findViewById(R.id.buttonRecover);
-        Button nextExeButton = view.findViewById(R.id.buttonNextExe);
-        Button previousExeButton = view.findViewById(R.id.buttonPreviousExe);
+
+        LinearLayout layoutTempoTenuta = view.findViewById(R.id.LayoutTempoTenuta);
 
         if (!isExeTenuta(esercizio)) {
-            fragmentTenutaExeView.setVisibility(View.GONE);
+            layoutTempoTenuta.setVisibility(View.GONE);
         } else {
+            layoutTempoTenuta.setVisibility(View.VISIBLE);
             EsercizioTenuta esercizioTenuta = (EsercizioTenuta) esercizio;
             TextView textRecoverTenNumber = view.findViewById(R.id.textRecoverTenNumber);
+
             textRecoverTenNumber.setText(esercizioTenuta.getTempoEsecuzione());
-            fragmentTenutaExeView.setVisibility(View.VISIBLE);
-
-            Button buttonTenRecover = view.findViewById(R.id.buttonTenRecover);
-
             Long countDown = Long.parseLong(textRecoverTenNumber.getText().toString()) * 1000L;
 
-            buttonTenRecover.setOnClickListener(v -> {
+            Button buttonTenuta = view.findViewById(R.id.buttonTenRecover);
 
-                setButtonClickable(false, previousExeButton, nextExeButton, buttonRecover, buttonTenRecover);
+            buttonTenuta.setOnClickListener(v -> {
+
+                //setButtonClickable(false, previousExeButton, nextExeButton, buttonRecover, buttonTenuta);
 
                 new CountDownTimer(countDown, 1000) {
                     public void onTick(long millisUntilFinished) {
-                        buttonTenRecover.setText(millisUntilFinished / 1000 + "\"");
+                        buttonTenuta.setText(millisUntilFinished / 1000 + "\"");
                     }
 
                     public void onFinish() {
-                        buttonTenRecover.setText("Start");
-                        setButtonClickable(true, previousExeButton, nextExeButton, buttonRecover, buttonTenRecover);
+                        buttonTenuta.setText("Start");
+                        //setButtonClickable(true, previousExeButton, nextExeButton, buttonRecover, buttonTenuta);
                     }
                 }.start();
 
             });
+
         }
     }
 

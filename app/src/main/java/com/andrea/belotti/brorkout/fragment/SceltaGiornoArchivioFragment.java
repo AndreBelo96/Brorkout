@@ -34,7 +34,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class SceltaGiornoArchivioFragment extends Fragment {
 
-    private final String TAG = this.getClass().getSimpleName();
+    private final String tag = this.getClass().getSimpleName();
 
     // Storing data into SharedPreferences
     private static android.content.SharedPreferences sharedPreferences;
@@ -45,11 +45,12 @@ public class SceltaGiornoArchivioFragment extends Fragment {
     private static final int duration = Toast.LENGTH_SHORT;
     private static final String SUCCESS_CREATING_STRING = "Scheda salvata con successo";
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.i(TAG, ExerciseConstants.TAG_START_FRAGMENT);
+        Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
 
         sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
@@ -69,46 +70,37 @@ public class SceltaGiornoArchivioFragment extends Fragment {
         if (schedaScelta != null) {
             createView(schedaScelta, view);
         } else {
-            Log.e(TAG, "Scheda vuota");
+            Log.e(tag, "Scheda vuota");
         }
 
         Scheda finalSchedaScelta = schedaScelta;
-        backSceltaSchede.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
-                fragmentTransaction.commit();
-            }
+        backSceltaSchede.setOnClickListener(v -> {
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
+            fragmentTransaction.commit();
         });
 
-        deleteSchedaBtn.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            public void onClick(View v) {
-                ArchivioActivity.deleteData(finalSchedaScelta.getNome());
+        deleteSchedaBtn.setOnClickListener(v -> {
+            ArchivioActivity.deleteData(finalSchedaScelta.getNome());
 
-                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
-                fragmentTransaction.commit();
-            }
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
+            fragmentTransaction.commit();
         });
 
-        modifySchedaBtn.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            public void onClick(View v) {
+        modifySchedaBtn.setOnClickListener(v -> {
 
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Scheda", finalSchedaScelta);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("Scheda", finalSchedaScelta);
 
-                Intent intent = new Intent(context, ScheduleCreatorActivity.class);
-                Toast toast = Toast.makeText(context, "robe", duration);
-                toast.show();
-                intent.putExtra("modifica", true);
-                intent.putExtra("SchedaDati", bundle);
-                startActivity(intent);
+            Intent intent = new Intent(context, ScheduleCreatorActivity.class);
+            Toast toast = Toast.makeText(context, "robe", duration);
+            toast.show();
+            intent.putExtra("modifica", true);
+            intent.putExtra("SchedaDati", bundle);
+            startActivity(intent);
 
 
-            }
         });
 
         return view;
