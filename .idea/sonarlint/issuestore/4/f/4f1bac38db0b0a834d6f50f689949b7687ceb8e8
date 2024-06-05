@@ -1,0 +1,9 @@
+
+=
+java:S5411;"(Use a primitive boolean expression here.(„¶a
+x
+java:S1450!"VRemove the "isCloud" field and declare it as a local variable in the relevant methods.(Ë¹üÿÿÿÿÿ8¤ªÖÊô1
+t
+java:S1450""WRemove the "isPublic" field and declare it as a local variable in the relevant methods.(Ú–˜ß8¤ªÖÊô1
+I
+java:S1068"",Remove this unused "isPublic" private field.(Ú–˜ß8³ªÖÊô1

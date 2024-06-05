@@ -30,7 +30,6 @@ public class ExeExecutionFragment extends Fragment {
     private final String tag = this.getClass().getSimpleName();
 
     private Integer countExe = 0;
-    private final List<Integer> countSerieList = new ArrayList<>();
 
     public static ExeExecutionFragment newInstance(Scheda scheda, Integer giorno) {
         ExeExecutionFragment fragment = new ExeExecutionFragment();
@@ -58,10 +57,6 @@ public class ExeExecutionFragment extends Fragment {
 
         List<Esercizio> esercizioList = scheda.getGiornate().get(giorno - 1).getEsercizi();
         int numeroEsercizi = scheda.getGiornate().get(giorno - 1).getEsercizi().size();
-
-        for (int i = 0; i < numeroEsercizi; i++) {
-            countSerieList.add(0);
-        }
 
         final MediaPlayer mpVaiUomo = MediaPlayer.create(this.getActivity(), R.raw.alarm);
 
@@ -91,13 +86,15 @@ public class ExeExecutionFragment extends Fragment {
 
         buttonRecover.setOnClickListener(v -> {
 
+            int serieCompletate = esercizioList.get(countExe).getSerieCompletate();
+
             if (!isExeTenuta(esercizioList.get(countExe))) {
                 setButtonClickable(false, previousExeButton, nextExeButton, buttonRecover);
             } else {
                 Button buttonTenRecover = view.findViewById(R.id.buttonTenRecover);
                 setButtonClickable(false, previousExeButton, nextExeButton, buttonRecover, buttonTenRecover);
             }
-            if (countSerieList.get(countExe) < Integer.parseInt(esercizioList.get(countExe).getSerie())) {
+            if (serieCompletate < Integer.parseInt(esercizioList.get(countExe).getSerie())) {
                 countDown[0] = Long.parseLong(esercizioList.get(countExe).getRecupero()) * 1000L;
 
                 new CountDownTimer(countDown[0], 1000) {
@@ -113,12 +110,12 @@ public class ExeExecutionFragment extends Fragment {
                         setSerieEsercizio(esercizioList.get(countExe), textNumSerie);
                         setRepAfterSerie(esercizioList.get(countExe), textNumRep);
 
-                        Log.i(ExeExecutionFragment.class.getSimpleName(), "Numero attuale di serie completate: " + countSerieList.get(countExe) + " - Numero di serie totali: " + esercizioList.get(countExe).getSerie());
-                        if (countSerieList.get(countExe) >= (Integer.parseInt(esercizioList.get(countExe).getSerie()))) {
+                        Log.i(ExeExecutionFragment.class.getSimpleName(), "Numero attuale di serie completate: " + serieCompletate + " - Numero di serie totali: " + esercizioList.get(countExe).getSerie());
+                        if (serieCompletate >= (Integer.parseInt(esercizioList.get(countExe).getSerie()))) {
                             setNewExePage(numeroEsercizi, view, esercizioList, true);
                         }
 
-                        if (countSerieList.get(countExe) >= (Integer.parseInt(numSerie) - 1) && esercizioList.get(countExe).getVideo()) {
+                        if (serieCompletate >= (Integer.parseInt(numSerie) - 1) && esercizioList.get(countExe).getVideo()) {
                             textVideo.setText("Video On");
                         }
 
@@ -155,10 +152,10 @@ public class ExeExecutionFragment extends Fragment {
         TextView textIndicazioniEsercizio = view.findViewById(R.id.textIndicazioniEsercizio);
 
         textNameExe.setText(esercizioList.get(countExe).getNomeEsercizio());
-        textNumSerie.setText("Serie: " + countSerieList.get(countExe) + "/" + esercizioList.get(countExe).getSerie());
+        textNumSerie.setText("Serie: " + esercizioList.get(countExe).getSerieCompletate() + "/" + esercizioList.get(countExe).getSerie());
         textNumRep.setText(esercizioList.get(countExe).getRipetizioneEsercizioString());
 
-        if (countSerieList.get(countExe) >= Integer.parseInt(esercizioList.get(countExe).getSerie()) - 1 && esercizioList.get(countExe).getVideo()) {
+        if (esercizioList.get(countExe).getSerieCompletate() >= Integer.parseInt(esercizioList.get(countExe).getSerie()) - 1 && esercizioList.get(countExe).getVideo()) {
             textVideo.setText("Video On");
         } else {
             textVideo.setText("");
@@ -172,8 +169,8 @@ public class ExeExecutionFragment extends Fragment {
 
     private void setSerieEsercizio(Esercizio esercizio, TextView textNumSerie) {
 
-        countSerieList.set(countExe, countSerieList.get(countExe) + 1);
-        textNumSerie.setText("Serie: " + countSerieList.get(countExe) + "/" + esercizio.getSerie());
+        esercizio.setSerieCompletate(esercizio.getSerieCompletate() + 1);
+        textNumSerie.setText("Serie: " + esercizio.getSerieCompletate() + "/" + esercizio.getSerie());
     }
 
     private void setRepAfterSerie(Esercizio esercizio, TextView textNumRipetizioni) {

@@ -106,6 +106,7 @@ public class CollectDataExeFragment extends Fragment {
 
             esercizio.setNomeEsercizio(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
             esercizio.setRecupero(((EditText) view.findViewById(R.id.recoverText)).getText().toString());
+            esercizio.setSerieCompletate(0);
             esercizio.setSerie(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
             esercizio.setVideo(((CheckBox) view.findViewById(R.id.checkBoxVideo)).isChecked());
             esercizio.setIndicazioniCoach(((EditText) view.findViewById(R.id.textIndicazioniEsercizio)).getText().toString());

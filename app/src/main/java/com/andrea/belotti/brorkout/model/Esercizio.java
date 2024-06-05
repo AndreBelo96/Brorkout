@@ -14,6 +14,9 @@ public interface Esercizio {
     String getSerie();
     void setSerie(String serie);
 
+    int getSerieCompletate();
+    void setSerieCompletate(int serieCompletate);
+
     String getRecupero();
     void setRecupero(String recupero);
 

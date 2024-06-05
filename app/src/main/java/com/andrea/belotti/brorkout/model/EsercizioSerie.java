@@ -8,6 +8,7 @@ public class EsercizioSerie implements Esercizio, Serializable {
     private String nomeEsercizio;
     private String tipoEsercizio;
     private String serie;
+    private int serieCompletate;
     private String recupero;
     private Boolean isVideo;
     private String indicazioniCoach;
@@ -57,7 +58,16 @@ public class EsercizioSerie implements Esercizio, Serializable {
     }
 
     @Override
+    public int getSerieCompletate() {
+        return serieCompletate;
+    }
 
+    @Override
+    public void setSerieCompletate(int serieCompletate) {
+        this.serieCompletate = serieCompletate;
+    }
+
+    @Override
     public String getRecupero() {
         return recupero;
     }
@@ -153,6 +163,7 @@ public class EsercizioSerie implements Esercizio, Serializable {
         return "nomeEsercizio: " + nomeEsercizio +
                 ", tipoEsercizio: " + tipoEsercizio +
                 ", serie: " + serie +
+                ", serieCompletate: " + serieCompletate +
                 ", ripetizioni: " + ripetizioni +
                 ", recupero: " + recupero;
     }

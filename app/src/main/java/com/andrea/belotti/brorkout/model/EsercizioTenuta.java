@@ -8,6 +8,7 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     private String nomeEsercizio;
     private String tipoEsercizio;
     private String serie;
+    private int serieCompletate;
     private String recupero;
     private Boolean isVideo;
     private String indicazioniCoach;
@@ -17,26 +18,6 @@ public class EsercizioTenuta implements Esercizio, Serializable {
 
     public EsercizioTenuta(){
 
-    }
-
-    public EsercizioTenuta(String nomeEsercizio,
-                           String tipoEsercizio,
-                           String serie,
-                           String recupero,
-                           Boolean isVideo,
-                           String indicazioniCoach,
-                           String appuntiAtleta,
-                           String ripetizioni,
-                           String tempoEsecuzione) {
-        this.nomeEsercizio = nomeEsercizio;
-        this.tipoEsercizio = tipoEsercizio;
-        this.serie = serie;
-        this.recupero = recupero;
-        this.isVideo = isVideo;
-        this.indicazioniCoach = indicazioniCoach;
-        this.appuntiAtleta = appuntiAtleta;
-        this.ripetizioni = ripetizioni;
-        this.tempoEsecuzione = tempoEsecuzione;
     }
 
     public String getType() {
@@ -78,7 +59,16 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     }
 
     @Override
+    public int getSerieCompletate() {
+        return serieCompletate;
+    }
 
+    @Override
+    public void setSerieCompletate(int serieCompletate) {
+        this.serieCompletate = serieCompletate;
+    }
+
+    @Override
     public String getRecupero() {
         return recupero;
     }
@@ -171,6 +161,7 @@ public class EsercizioTenuta implements Esercizio, Serializable {
         return "nomeEsercizio: " + nomeEsercizio +
                 ", tipoEsercizio: " + tipoEsercizio +
                 ", serie: " + serie +
+                ", serieCompletate: " + serieCompletate +
                 ", tempoEsecuzione: " + tempoEsecuzione +
                 ", recupero: " + recupero;
     }
