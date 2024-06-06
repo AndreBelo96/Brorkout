@@ -183,6 +183,14 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     }
 
     @Override
+    public String toStringResumeEndSchedule() {
+        return " Nome esercizio: " + nomeEsercizio +
+                "\n Numero serie: " + serieCompletate + "/" + serie +
+                "\n Ripetizioni: " + ripetizioni + " per " + tempoEsecuzione + "\"" +
+                "\n Commenti atleta: " + appuntiAtleta;
+    }
+
+    @Override
     public String getRipetizioneEsercizioString() {
         return "Ripetizioni: " + Integer.parseInt(this.getRipetizioni());
     }

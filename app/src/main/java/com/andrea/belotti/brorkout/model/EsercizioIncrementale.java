@@ -180,6 +180,14 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
     }
 
     @Override
+    public String toStringResumeEndSchedule() {
+        return " Nome esercizio: " + nomeEsercizio +
+                "\n Numero serie: " + serieCompletate + "/" + serie +
+                "\n Ripetizioni: " + inizio + "-" + picco +
+                "\n Commenti atleta: " + appuntiAtleta;
+    }
+
+    @Override
     public String getRipetizioneEsercizioString() {
         return "Ripetizioni: " + ripetizioni;
     }

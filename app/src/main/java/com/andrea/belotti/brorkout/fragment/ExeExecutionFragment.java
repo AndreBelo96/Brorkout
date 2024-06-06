@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -80,8 +81,9 @@ public class ExeExecutionFragment extends Fragment {
         previousExeButton.setOnClickListener(v -> setNewExePage(numeroEsercizi, view, esercizioList, false));
 
         buttonEndSchedule.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), StartingMenuActivity.class);
-            startActivity(intent);
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerViewGestoreScheda, EndScheduleSummaryFragment.newInstance(scheda, giorno));
+            fragmentTransaction.commit();
         });
 
         buttonRecover.setOnClickListener(v -> {

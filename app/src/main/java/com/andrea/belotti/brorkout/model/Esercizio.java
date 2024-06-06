@@ -50,6 +50,8 @@ public interface Esercizio {
 
     String toStringResumeExe();
 
+    String toStringResumeEndSchedule();
+
     String getRipetizioneEsercizioString();
 
     void setNumeroRipetizioniDopoSerie();

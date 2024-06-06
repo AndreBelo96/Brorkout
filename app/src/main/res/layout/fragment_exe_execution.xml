@@ -8,18 +8,11 @@
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
         android:id="@+id/layoutDecisione"
-        android:layout_marginVertical="@dimen/_50sdp"
-        android:paddingHorizontal="@dimen/_15sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:gravity="center_horizontal">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/light_blue_200"/>
 
         <TextView
             android:id="@+id/textNomeEsercizio"
@@ -28,9 +21,6 @@
             android:textSize="@dimen/_30sdp"
             android:textColor="@color/light_blue_200"
             android:text="NomeEsercizio" />
-
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -190,7 +180,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_marginBottom="@dimen/_15sdp"
@@ -227,20 +217,6 @@
                 android:text="End Schedule" />
 
         </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/light_blue_200"/>
-        </LinearLayout>
-
 
     </LinearLayout>
 </FrameLayout>

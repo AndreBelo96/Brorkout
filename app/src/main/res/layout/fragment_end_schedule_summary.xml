@@ -5,6 +5,49 @@
     android:layout_height="match_parent"
     tools:context=".fragment.EndScheduleSummaryFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textTitoloEGiornata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:textSize="@dimen/_30sdp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/light_blue_200"
+            android:text="Titolo e giornata" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_290sdp"
+            android:layout_marginTop="@dimen/_10sdp">
+            <LinearLayout
+                android:id="@+id/layoutSummaryEndSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/buttonBackToMainMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:text="Back to main menu" />
+        </LinearLayout>
 
 
+    </LinearLayout>
 </FrameLayout>
