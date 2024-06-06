@@ -39,8 +39,8 @@ public final class ExerciseConstants {
         public static final int BUTTON_COLOR = 0xFF162955;
         public static final int BUTTON_PRESSED_COLOR = 0xFF061539;
         public static final int TEXT_BUTTON_COLOR = 0xFF7887AB;
-        public static final int EXE_OK_COLOR = 0xA1735F2E;
-        public static final int EXE_KO_COLOR = 0xA1733B2E;
+        public static final int EXE_OK_COLOR = 0x71735F2E;
+        public static final int EXE_KO_COLOR = 0x71733B2E;
     }
 
     public final class Size {

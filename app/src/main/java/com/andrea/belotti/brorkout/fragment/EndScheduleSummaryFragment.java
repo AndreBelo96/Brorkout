@@ -21,7 +21,6 @@ import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Scheda;
 
-import java.io.Serializable;
 import java.util.List;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.EXE_KO_COLOR;
@@ -111,7 +110,7 @@ public class EndScheduleSummaryFragment extends Fragment {
             Space exercicesSpaceBack = new Space(context);
             exercicesSpaceBack.setMinimumHeight(10);
 
-            // Line //TODO esercizio non scala
+            // Line //TODO esercizio non scala - appunti atleta non salvati
             View lineView = new View(context);
             lineView.setLayoutParams(wrapParams);
             lineView.setMinimumHeight(3);
