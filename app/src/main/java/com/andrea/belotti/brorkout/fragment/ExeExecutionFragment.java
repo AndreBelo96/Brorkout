@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -73,14 +74,22 @@ public class ExeExecutionFragment extends Fragment {
         TextView textNumSerie = view.findViewById(R.id.textNumSerie);
         TextView textVideo = view.findViewById(R.id.textVideo);
         TextView textNumRep = view.findViewById(R.id.textNumRep);
+        EditText commentiAtleta = view.findViewById(R.id.commentiAtleta);
 
         final Long[] countDown = {Long.parseLong(textRecoverNumber.getText().toString()) * 1000L};
 
-        nextExeButton.setOnClickListener(v -> setNewExePage(numeroEsercizi, view, esercizioList, true));
+        nextExeButton.setOnClickListener(v -> {
+            esercizioList.get(countExe).setAppuntiAtleta(commentiAtleta.getText().toString());
+            setNewExePage(numeroEsercizi, view, esercizioList, true);
+        });
 
-        previousExeButton.setOnClickListener(v -> setNewExePage(numeroEsercizi, view, esercizioList, false));
+        previousExeButton.setOnClickListener(v -> {
+            esercizioList.get(countExe).setAppuntiAtleta(commentiAtleta.getText().toString());
+            setNewExePage(numeroEsercizi, view, esercizioList, false);
+        });
 
         buttonEndSchedule.setOnClickListener(v -> {
+            esercizioList.get(countExe).setAppuntiAtleta(commentiAtleta.getText().toString());
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerViewGestoreScheda, EndScheduleSummaryFragment.newInstance(scheda, giorno));
             fragmentTransaction.commit();
@@ -88,15 +97,13 @@ public class ExeExecutionFragment extends Fragment {
 
         buttonRecover.setOnClickListener(v -> {
 
-            int serieCompletate = esercizioList.get(countExe).getSerieCompletate();
-
             if (!isExeTenuta(esercizioList.get(countExe))) {
                 setButtonClickable(false, previousExeButton, nextExeButton, buttonRecover);
             } else {
                 Button buttonTenRecover = view.findViewById(R.id.buttonTenRecover);
                 setButtonClickable(false, previousExeButton, nextExeButton, buttonRecover, buttonTenRecover);
             }
-            if (serieCompletate < Integer.parseInt(esercizioList.get(countExe).getSerie())) {
+            if (esercizioList.get(countExe).getSerieCompletate() < Integer.parseInt(esercizioList.get(countExe).getSerie())) {
                 countDown[0] = Long.parseLong(esercizioList.get(countExe).getRecupero()) * 1000L;
 
                 new CountDownTimer(countDown[0], 1000) {
@@ -112,12 +119,12 @@ public class ExeExecutionFragment extends Fragment {
                         setSerieEsercizio(esercizioList.get(countExe), textNumSerie);
                         setRepAfterSerie(esercizioList.get(countExe), textNumRep);
 
-                        Log.i(ExeExecutionFragment.class.getSimpleName(), "Numero attuale di serie completate: " + serieCompletate + " - Numero di serie totali: " + esercizioList.get(countExe).getSerie());
-                        if (serieCompletate >= (Integer.parseInt(esercizioList.get(countExe).getSerie()))) {
+                        Log.i(ExeExecutionFragment.class.getSimpleName(), "Numero attuale di serie completate: " + esercizioList.get(countExe).getSerieCompletate() + " - Numero di serie totali: " + esercizioList.get(countExe).getSerie());
+                        if (esercizioList.get(countExe).getSerieCompletate() >= (Integer.parseInt(esercizioList.get(countExe).getSerie()))) {
                             setNewExePage(numeroEsercizi, view, esercizioList, true);
                         }
 
-                        if (serieCompletate >= (Integer.parseInt(numSerie) - 1) && esercizioList.get(countExe).getVideo()) {
+                        if (esercizioList.get(countExe).getSerieCompletate() >= (Integer.parseInt(numSerie) - 1) && esercizioList.get(countExe).getVideo()) {
                             textVideo.setText("Video On");
                         }
 
@@ -152,6 +159,7 @@ public class ExeExecutionFragment extends Fragment {
         TextView textVideo = view.findViewById(R.id.textVideo);
         TextView textRecoverNumber = view.findViewById(R.id.textRecoverNumber);
         TextView textIndicazioniEsercizio = view.findViewById(R.id.textIndicazioniEsercizio);
+        EditText textAppuntiAtleta = view.findViewById(R.id.commentiAtleta);
 
         textNameExe.setText(esercizioList.get(countExe).getNomeEsercizio());
         textNumSerie.setText("Serie: " + esercizioList.get(countExe).getSerieCompletate() + "/" + esercizioList.get(countExe).getSerie());
@@ -165,6 +173,7 @@ public class ExeExecutionFragment extends Fragment {
 
         textRecoverNumber.setText(esercizioList.get(countExe).getRecupero());
         textIndicazioniEsercizio.setText("Indicazioni: " + esercizioList.get(countExe).getIndicazioniCoach());
+        textAppuntiAtleta.setText(esercizioList.get(countExe).getAppuntiAtleta());
 
         setVisibilityOfTenutaExe(view, esercizioList.get(countExe));
     }

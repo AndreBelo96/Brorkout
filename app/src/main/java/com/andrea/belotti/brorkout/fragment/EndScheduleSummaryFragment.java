@@ -57,19 +57,27 @@ public class EndScheduleSummaryFragment extends Fragment {
         Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
 
         View view = inflater.inflate(R.layout.fragment_end_schedule_summary, container, false);
-
         context = getContext();
 
-        Scheda scheda = (Scheda) getArguments().get(ExerciseConstants.MemorizeConstants.SCHEDA);
-        Integer giorno = (Integer) getArguments().get(ExerciseConstants.MemorizeConstants.NUMERO_GIORNATE);
-
-        if (scheda != null && giorno != null) {
-            createTableOfExercises(scheda.getGiornate().get(giorno - 1).getEsercizi(), view);
-        }
         TextView textTitolo = view.findViewById(R.id.textTitoloEGiornata);
         Button buttonBack = view.findViewById(R.id.buttonBackToMainMenu);
 
-        textTitolo.setText(scheda.getNome() + " giorno " + giorno);
+        Scheda scheda = null;
+        Integer giorno = null;
+
+        if (getArguments() != null) {
+            scheda = (Scheda) getArguments().get(ExerciseConstants.MemorizeConstants.SCHEDA);
+            giorno = (Integer) getArguments().get(ExerciseConstants.MemorizeConstants.NUMERO_GIORNATE);
+        } else {
+            Log.i(tag, ExerciseConstants.ERROR_ARGUMENT);
+        }
+
+        if (scheda != null && giorno != null) {
+            createTableOfExercises(scheda.getGiornate().get(giorno - 1).getEsercizi(), view);
+            textTitolo.setText(scheda.getNome() + " giorno " + giorno);
+        } else {
+            Log.i(tag, ExerciseConstants.DATA_ARGUMENT_NULL);
+        }
 
         buttonBack.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), StartingMenuActivity.class);
@@ -110,7 +118,7 @@ public class EndScheduleSummaryFragment extends Fragment {
             Space exercicesSpaceBack = new Space(context);
             exercicesSpaceBack.setMinimumHeight(10);
 
-            // Line //TODO esercizio non scala - appunti atleta non salvati
+            // Line
             View lineView = new View(context);
             lineView.setLayoutParams(wrapParams);
             lineView.setMinimumHeight(3);

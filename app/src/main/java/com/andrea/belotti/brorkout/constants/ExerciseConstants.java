@@ -16,6 +16,10 @@ public final class ExerciseConstants {
 
     public static final  String TAG_START_FRAGMENT = "Starting fragment";
 
+    public static final  String ERROR_ARGUMENT = "Arguments is null";
+
+    public static final  String DATA_ARGUMENT_NULL = "A data in arguments is null";
+
     public static final  String GIORNATA = "Giornata: ";
 
     public final class DataBase {
