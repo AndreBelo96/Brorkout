@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment;
+package com.andrea.belotti.brorkout.fragment.creator;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +19,8 @@ import android.widget.Switch;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.StartingMenuActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.fragment.creator.CopyScheduleFragment;
+import com.andrea.belotti.brorkout.fragment.creator.CreateNewScheduleFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 

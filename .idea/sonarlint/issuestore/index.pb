@@ -1,14 +1,10 @@
 
 ~
 Napp/src/main/java/com/andrea/belotti/brorkout/utils/ScheduleCreatingUtils.java,0\5\05e764b0bfe47bde75b9638028a5c8e5c33b43d6
-€
-Papp/src/main/java/com/andrea/belotti/brorkout/activity/StartingMenuActivity.java,7\4\7457f73350185d96780407eff7326aea131bffc4
 o
 ?app/src/main/java/com/andrea/belotti/brorkout/model/Scheda.java,b\4\b4eff600b793bcb637a4fe5466718a1246ddd17f
 y
 Iapp/src/main/java/com/andrea/belotti/brorkout/model/InterfaceAdapter.java,c\1\c1f594faa3b6c5f11095aaa27360f7bc6f236cb7
-ƒ
-Sapp/src/main/java/com/andrea/belotti/brorkout/activity/ScheduleCreatorActivity.java,2\c\2cb0c8bba0cc39f5106c2a4b6e870020c79c1989
 Š
 Zapp/src/main/java/com/andrea/belotti/brorkout/fragment/collectdata/DataExeTenFragment.java,a\4\a482e5c2eef76d9a4663d2e4fdd9df3ebd01a8a5
 Š
@@ -25,14 +21,8 @@ Xapp/src/main/java/com/andrea/belotti/brorkout/fragment/SceltaGiornoArchivioFrag
 Xapp/src/main/java/com/andrea/belotti/brorkout/fragment/SceltaSchedaArchivioFragment.java,7\7\772b7c8fc4b5a997119eea85b02d17cacc4e5a63
 |
 Lapp/src/main/java/com/andrea/belotti/brorkout/activity/ArchivioActivity.java,2\2\2224f404894c0bea6b96dbe9c74b3a540b7ba639
-…
-Uapp/src/main/java/com/andrea/belotti/brorkout/fragment/CreateNewScheduleFragment.java,c\c\cc5c777475d3e13d973b2fd36586341251d39e94
 €
 Papp/src/main/java/com/andrea/belotti/brorkout/activity/PersonalAreaActivity.java,e\5\e502f4290d57ef396bfe29ebfea60332da4e7bce
-€
-Papp/src/main/java/com/andrea/belotti/brorkout/fragment/CopyScheduleFragment.java,3\d\3de7f4eac2697c1b506ee973c5cf1039b905161a
-€
-Papp/src/main/java/com/andrea/belotti/brorkout/fragment/CreationMenuFragment.java,4\f\4f1bac38db0b0a834d6f50f689949b7687ceb8e8
 …
 Uapp/src/main/java/com/andrea/belotti/brorkout/activity/ExecutionScheduleActivity.java,a\8\a890a55b58348ebc4e9612d6046bee75b1419c25
 ‚
@@ -47,3 +37,17 @@ r
 Bapp/src/main/java/com/andrea/belotti/brorkout/model/Esercizio.java,1\8\184d24f3a3dca41fdb81307c580c9b0a2116b8b2
 ~
 Napp/src/main/java/com/andrea/belotti/brorkout/model/EsercizioIncrementale.java,1\e\1e2c0ea90a0c0e33e8d4ffb8322482095897eb54
+ƒ
+Sapp/src/main/java/com/andrea/belotti/brorkout/fragment/ScheduleSummaryFragment.java,a\e\aecf9f4931195538e9911254882c673e2fb88bff
+~
+Napp/src/main/java/com/andrea/belotti/brorkout/constants/ExerciseConstants.java,d\3\d300e55e21d0411c0ab423e20581060bd2d724be
+€
+Papp/src/main/java/com/andrea/belotti/brorkout/fragment/ExeExecutionFragment.java,4\e\4e413769a6fd2110193f8f1a42500774ac861a81
+†
+Vapp/src/main/java/com/andrea/belotti/brorkout/fragment/EndScheduleSummaryFragment.java,3\3\33334dd588b47b6ab3dcfb6aa9d497ab5a086e15
+A
+gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
+7
+gradlew,5\b\5bbfa66edb4db3c7c33c5181f43510990d3307f9
+?
+settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233

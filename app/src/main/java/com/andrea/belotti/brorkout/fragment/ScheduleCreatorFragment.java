@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.fragment.creator.CollectDataExeFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -103,9 +104,10 @@ public class ScheduleCreatorFragment extends Fragment {
             }
 
             scheda.setGiornate(giornataList);
-            ScheduleCreatorActivity.saveData(scheda);
+            ScheduleCreatorActivity.saveData(scheda); //TODO controllare non sia null
 
             if (scheda != null) {
+
                 getParentFragmentManager().beginTransaction().replace(R.id.fragmentContainerViewScheduleCreator,
                         ScheduleSummaryFragment.newInstance(scheda,1),"ScheduleSummaryFragment").commit();
             }
