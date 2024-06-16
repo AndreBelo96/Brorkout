@@ -1,0 +1,18 @@
+
+b
+java:S1192,"GDefine a constant instead of duplicating this literal "scheda" 3 times.(É™˜Üøÿÿÿÿ
+h	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿ
+j
+java:S1450"URemove the "scheda" field and declare it as a local variable in the relevant methods.(¶ä„B
+k
+java:S3252!"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ðÂþÿÿÿÿ
+f
+java:S3252""PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾
+>
+java:S11853"(Remove this method to simply inherit it.(ßìê¯
+F
+java:S1874F"+Remove this use of "get"; it is deprecated.(‘†‘¬ÿÿÿÿÿ
+A
+java:S1874G"+Remove this use of "get"; it is deprecated.(Œ®’ê
+M
+java:S1135t"2Complete the task associated to this TODO comment.(Ñ†«¯þÿÿÿÿ

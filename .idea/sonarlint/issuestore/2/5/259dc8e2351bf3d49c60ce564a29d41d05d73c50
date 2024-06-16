@@ -1,0 +1,14 @@
+
+C
+java:S1604~"(Make this anonymous inner class a lambda(Êœüûÿÿÿÿ
+`
+java:S1192]"KUse already-defined constant 'PARAM' instead of duplicating its value here.(Ôí¹#
+t	java:S115,"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(„éÕÿÿÿÿÿ
+{
+java:S1450'"`Remove the "sharedPreferences" field and declare it as a local variable in the relevant methods.(ïëğÂüÿÿÿÿ
+L
+java:S26966"6Make the enclosing method "static" or remove this set.(Éï¢·
+L
+java:S2696;"6Make the enclosing method "static" or remove this set.(Ÿáü
+A
+java:S1874B"+Remove this use of "get"; it is deprecated.(•¸¥±
