@@ -3,9 +3,6 @@ package com.andrea.belotti.brorkout.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +20,8 @@ import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Scheda;
 
 import java.util.List;
+
+import androidx.fragment.app.Fragment;
 
 public class ScheduleSummaryFragment extends Fragment {
 

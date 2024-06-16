@@ -4,11 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +14,16 @@ import android.widget.Switch;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.StartingMenuActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.fragment.creator.CopyScheduleFragment;
-import com.andrea.belotti.brorkout.fragment.creator.CreateNewScheduleFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import java.util.List;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class CreationMenuFragment extends Fragment {
 

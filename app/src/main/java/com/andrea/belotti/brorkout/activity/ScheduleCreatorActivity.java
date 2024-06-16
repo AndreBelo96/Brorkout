@@ -1,17 +1,22 @@
 package com.andrea.belotti.brorkout.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.creator.CreationMenuFragment;
 import com.andrea.belotti.brorkout.fragment.ScheduleCreatorFragment;
+import com.andrea.belotti.brorkout.fragment.creator.CreationMenuFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class ScheduleCreatorActivity extends AppCompatActivity {
 
@@ -21,8 +26,7 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
     // Storing data into SharedPreferences
     private static SharedPreferences sharedPreferences;
 
-    //DB stuffs
-    //private static DatabaseReference myRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +40,7 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
-        // DATABASE
-        //add Firebase Database stuff
-        /*Firebase mFirebaseDatabase = FirebaseDatabase.getInstance(); // for using the real time database of firebase
-        myRef = mFirebaseDatabase.getReference();*/
+
 
         if (getIntent().getExtras().getBoolean("modifica")) {
             ScheduleCreatorFragment scheduleCreatorFragment = new ScheduleCreatorFragment();
@@ -64,7 +65,17 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
 
     public static void saveData(Scheda scheda) {
 
-        //myRef.child("DATA").child("scheda").child(scheda.getNome()).setValue(JsonGeneratorUtil.generateJsonFromSchedule(scheda));
+        // DATABASE
+        //add Firebase Database stuff
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Schedule");
+        myRef.setValue("ciao").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.i("INFO DB:", "Success");
+            }
+
+
+        });
 
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         myEdit.putString(scheda.getNome(), JsonGeneratorUtil.generateJsonFromSchedule(scheda));

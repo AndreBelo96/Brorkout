@@ -1,17 +1,15 @@
 package com.andrea.belotti.brorkout.fragment.collectdata;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.NumberPicker;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+
+import androidx.fragment.app.Fragment;
 
 public class DataExeIncrFragment extends Fragment {
 

@@ -1,4 +1,12 @@
 
-L
-java:S1066"/Merge this if statement with the enclosing one.(„É°8”‡´ò1
-o	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿ8³‡´ò1
+E
+java:S1066"/Merge this if statement with the enclosing one.(„É°
+h	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿ
+M
+java:S1874"7Remove this use of "getSerializable"; it is deprecated.(„É°
+M
+java:S1874"7Remove this use of "getSerializable"; it is deprecated.(ÎÕ¿¬
+A
+java:S1874"+Remove this use of "get"; it is deprecated.(¹»óí
+A
+java:S1874"+Remove this use of "get"; it is deprecated.(¹»óí
