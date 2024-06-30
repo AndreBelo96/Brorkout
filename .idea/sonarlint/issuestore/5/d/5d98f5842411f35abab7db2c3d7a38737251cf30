@@ -1,5 +1,7 @@
 
-t
-java:S1488"^Immediately return this expression instead of assigning it to the temporary variable "scheda".(¶õÎ†
-U
-java:S1118":Add a private constructor to hide the implicit public one.(Œýæïùÿÿÿÿ
+š
+java:S1488"^Immediately return this expression instead of assigning it to the temporary variable "scheda".(¶õÎ†J$62903d4c-4092-4ac8-a76f-b215cd9c20dd
+{
+java:S1118":Add a private constructor to hide the implicit public one.(ŒýæïùÿÿÿÿJ$0a947d76-4d5a-47b9-a238-728b88460326
+Î
+java:S1130"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(î¾ºL8à°Ÿ»‚2J$47c812c9-8b54-4ced-8d7c-916f896d0303

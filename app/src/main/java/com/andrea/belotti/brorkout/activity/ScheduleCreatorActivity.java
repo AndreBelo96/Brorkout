@@ -1,20 +1,22 @@
 package com.andrea.belotti.brorkout.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.ScheduleCreatorFragment;
+import com.andrea.belotti.brorkout.fragment.creator.ScheduleCreatorFragment;
 import com.andrea.belotti.brorkout.fragment.creator.CreationMenuFragment;
+import com.andrea.belotti.brorkout.model.MetaData;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import androidx.annotation.NonNull;
+import java.time.LocalDate;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -60,26 +62,28 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
+        ImageButton backButton = findViewById(R.id.buttonBack);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), StartingMenuActivity.class);
+            startActivity(intent);
+        });
+
     }
 
 
     public static void saveData(Scheda scheda) {
 
+        MetaData metaData = new MetaData(LocalDate.now(), LocalDate.now());
         // DATABASE
         //add Firebase Database stuff
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Schedule");
-        myRef.setValue("ciao").addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Log.i("INFO DB:", "Success");
-            }
-
-
-        });
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Schedules");
+        myRef.child("user").child(scheda.getNome()).child("DATA").setValue(JsonGeneratorUtil.generateJsonFromSchedule(scheda));
+        myRef.child("user").child(scheda.getNome()).child("METADATA").setValue(JsonGeneratorUtil.generateJsonFromSchedule(metaData));
 
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         myEdit.putString(scheda.getNome(), JsonGeneratorUtil.generateJsonFromSchedule(scheda));
-        myEdit.commit();
+        myEdit.apply();
     }
 
 

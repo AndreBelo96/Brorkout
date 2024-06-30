@@ -6,13 +6,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.SceltaSchedaArchivioFragment;
-import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.fragment.ManagerListFragment;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
-
-import java.util.List;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class ArchivioActivity extends AppCompatActivity {
 
     // log
-    private final String TAG = this.getClass().getSimpleName();
+    private final String tag = this.getClass().getSimpleName();
 
     // Storing data into SharedPreferences
     private static SharedPreferences sharedPreferences;
@@ -30,19 +28,21 @@ public class ArchivioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.i(TAG, "Starting activity");
+        Log.i(tag, "Starting activity");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archivio);
 
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
-        Button backButton = findViewById(R.id.buttonBack);
-        List<Scheda> schedaList = ScheduleCreatingUtils.createListaSchede(sharedPreferences);
 
+
+        //TODO questa classe viwnw inizializzata 2 volte, una di default una con questa e il newInstance vedi se è possibile farla una volta
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(schedaList));
+        fragmentTransaction.replace(R.id.fragmentContainerArchivioView, ManagerListFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
         fragmentTransaction.commit();
+
+        ImageButton backButton = findViewById(R.id.buttonBack);
 
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), StartingMenuActivity.class);
@@ -50,7 +50,7 @@ public class ArchivioActivity extends AppCompatActivity {
         });
     }
 
-    public static void deleteData(String titoloScheda) {
+    public static void deleteData(String titoloScheda) { //TODO delete da db
         // Creating an Editor object to edit(write to the file)
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
 

@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.fragment.ScheduleCreatorFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 
 import java.io.Serializable;

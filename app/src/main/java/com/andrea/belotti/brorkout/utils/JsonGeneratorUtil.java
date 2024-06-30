@@ -15,11 +15,11 @@ public class JsonGeneratorUtil {
     // log
     private static final String TAG = "JsonGeneratorUtil";
 
-    public static String generateJsonFromSchedule(Scheda scheda) {
+    public static String generateJsonFromSchedule(Object o) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Esercizio.class, new InterfaceAdapter());
         Gson gson = builder.create();
-        String json = gson.toJson(scheda);
+        String json = gson.toJson(o);
         Log.i(TAG, "Json: " + json);
         return json;
     }

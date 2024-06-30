@@ -1,7 +1,9 @@
 package com.andrea.belotti.brorkout.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.fragment.ExeExecutionFragment;
@@ -33,5 +35,12 @@ public class ExecutionScheduleActivity extends AppCompatActivity {
                         ExeExecutionFragment.newInstance(schedaOutPut, giornoOutPut), "ExeExecutionFragment").commit();
             }
         }
+
+        ImageButton backButton = findViewById(R.id.buttonBack);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), StartingMenuActivity.class);
+            startActivity(intent);
+        });
     }
 }

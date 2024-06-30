@@ -9,26 +9,17 @@
 
 
     <LinearLayout
+        android:id="@+id/layoutDecisione"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:id="@+id/layoutDecisione"
-        android:layout_marginVertical="@dimen/_50sdp"
         android:gravity="center_horizontal">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/light_blue_200"/>
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:gravity="center_horizontal">
+            android:gravity="center">
 
 
             <TextView
@@ -43,13 +34,13 @@
                 android:id="@+id/titoloScheda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:shadowColor="@color/light_blue_200"
                 android:textAlignment="center"
                 android:textColor="@color/light_blue_200"
-                android:textColorHint="@color/light_blue_200"
+                android:backgroundTint="@color/light_blue_200"
+                android:alpha="1"
                 android:textSize="20sp" />
 
             <TextView
@@ -58,26 +49,30 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/light_blue_200"
                 android:text="Seleziona i giorni della scheda: "
-                android:layout_marginBottom="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:textSize="20sp" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_30sdp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/button1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:textColor="@color/light_blue_200"
+                        android:background="@drawable/circled_button"
+                        app:backgroundTint="@color/light_blue_200"
                         android:text="1" />
 
                     <Button
@@ -85,6 +80,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:textColor="@color/light_blue_200"
+                        android:background="@drawable/circled_button"
+                        app:backgroundTint="@color/light_blue_200"
                         android:text="2" />
 
                     <Button
@@ -92,27 +90,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:textColor="@color/light_blue_200"
+                        android:background="@drawable/circled_button"
+                        app:backgroundTint="@color/light_blue_200"
                         android:text="3" />
 
                     <Button
                         android:id="@+id/button4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:textColor="@color/light_blue_200"
+                        android:background="@drawable/circled_button"
+                        app:backgroundTint="@color/light_blue_200"
                         android:text="4" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/button5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:textColor="@color/light_blue_200"
+                        android:background="@drawable/circled_button"
+                        app:backgroundTint="@color/light_blue_200"
                         android:text="5" />
 
                     <Button
@@ -120,13 +127,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:textColor="@color/light_blue_200"
+                        android:background="@drawable/circled_button"
+                        app:backgroundTint="@color/light_blue_200"
                         android:text="6" />
 
                     <Button
                         android:id="@+id/button7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_2sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:textColor="@color/light_blue_200"
+                        android:background="@drawable/circled_button"
+                        app:backgroundTint="@color/light_blue_200"
                         android:text="7" />
 
                 </LinearLayout>
@@ -138,9 +151,11 @@
                 android:id="@+id/confirm_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:text="Crea nuova scheda"
                 android:textColor="@color/light_blue_200"
+                android:background="@drawable/circled_button"
+                app:backgroundTint="@color/light_blue_200"
                 android:textSize="20sp" />
 
             <Button
@@ -148,22 +163,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/light_blue_200"
-                android:text="Back"
+                android:background="@drawable/circled_button"
+                app:backgroundTint="@color/light_blue_200"
+                android:text="Indietro"
                 android:textSize="20sp" />
 
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/light_blue_200"/>
 
         </LinearLayout>
 

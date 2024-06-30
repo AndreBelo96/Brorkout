@@ -37,6 +37,7 @@ android {
 
 dependencies {
 
+    implementation(libs.lombok)
     implementation(libs.jackson.core)
     implementation(libs.gson)
     implementation(libs.java.utils)
@@ -51,4 +52,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+
 }

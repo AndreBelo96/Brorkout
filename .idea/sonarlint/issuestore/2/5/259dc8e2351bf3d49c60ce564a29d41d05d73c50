@@ -1,14 +1,12 @@
 
-C
-java:S1604~"(Make this anonymous inner class a lambda(Êœüûÿÿÿÿ
-`
-java:S1192]"KUse already-defined constant 'PARAM' instead of duplicating its value here.(Ôí¹#
-t	java:S115,"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(„éÕÿÿÿÿÿ
-{
-java:S1450'"`Remove the "sharedPreferences" field and declare it as a local variable in the relevant methods.(ïëğÂüÿÿÿÿ
-L
-java:S26966"6Make the enclosing method "static" or remove this set.(Éï¢·
-L
-java:S2696;"6Make the enclosing method "static" or remove this set.(Ÿáü
-A
-java:S1874B"+Remove this use of "get"; it is deprecated.(•¸¥±
+j
+java:S1604Š"(Make this anonymous inner class a lambda(ÊœüûÿÿÿÿJ$1da582ed-3a70-45ea-8d1a-0c0361618eb2
+š	java:S115."ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(„éÕÿÿÿÿÿJ$bbdf7911-ae78-42e2-860a-0c2fb36d25bd
+¡
+java:S1450+"`Remove the "sharedPreferences" field and declare it as a local variable in the relevant methods.(ïëğÂüÿÿÿÿJ$535794f9-fda3-41da-968f-eac4d2f69ca0
+r
+java:S2696B"6Make the enclosing method "static" or remove this set.(Éï¢·J$8c0a1e00-d2c3-4fe4-9d87-a5bf725c840c
+r
+java:S2696G"6Make the enclosing method "static" or remove this set.(ŸáüJ$36d33433-35a1-4e10-9658-d69c95126b88
+s
+java:S1874N"+Remove this use of "get"; it is deprecated.(ªÊƒ‘úÿÿÿÿ8ª–„†2J$d7e06c9d-2d2c-4dce-85b4-21df44a1fd78

@@ -1,18 +1,18 @@
 
-b
-java:S1192,"GDefine a constant instead of duplicating this literal "scheda" 3 times.(É™˜Üøÿÿÿÿ
-h	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿ
-j
-java:S1450"URemove the "scheda" field and declare it as a local variable in the relevant methods.(¶ä„B
-k
-java:S3252!"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ğÂşÿÿÿÿ
-f
-java:S3252""PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾
->
-java:S11853"(Remove this method to simply inherit it.(ßìê¯
-F
-java:S1874F"+Remove this use of "get"; it is deprecated.(‘†‘¬ÿÿÿÿÿ
-A
-java:S1874G"+Remove this use of "get"; it is deprecated.(Œ®’ê
-M
-java:S1135t"2Complete the task associated to this TODO comment.(Ñ†«¯şÿÿÿÿ
+ˆ
+java:S1192,"GDefine a constant instead of duplicating this literal "scheda" 3 times.(É™˜ÜøÿÿÿÿJ$bdf503bf-36f4-432d-b1bb-12c2d143195b
+	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿJ$2d10ddb2-5dc3-44e1-b60b-2b3c73933127
+
+java:S1450"URemove the "scheda" field and declare it as a local variable in the relevant methods.(¶ä„BJ$18234ca4-cc5a-48a7-9c91-fb756f847082
+‘
+java:S3252!"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ğÂşÿÿÿÿJ$0547615e-3f3d-46c6-9e5c-0aa9d8fdf928
+Œ
+java:S3252""PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾J$de552c3e-c62f-41e3-bbe4-aa6c421c05d4
+d
+java:S11853"(Remove this method to simply inherit it.(ßìê¯J$363699b7-f87d-40ac-b8db-00bec1362a99
+l
+java:S1874F"+Remove this use of "get"; it is deprecated.(‘†‘¬ÿÿÿÿÿJ$d6133ec4-3d05-4e10-9d58-d0a0008ce229
+g
+java:S1874G"+Remove this use of "get"; it is deprecated.(Œ®’êJ$1326632f-d01d-4637-ae44-d1f1e824f699
+s
+java:S1135n"2Complete the task associated to this TODO comment.(Ñ†«¯şÿÿÿÿJ$0e6772da-c71c-4306-8288-1ccf966b8f59

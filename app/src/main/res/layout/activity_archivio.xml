@@ -1,30 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue_200"
+    android:orientation="vertical"
     tools:context=".activity.ArchivioActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:paddingHorizontal="@dimen/_15sdp"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/light_blue_200"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerArchivioView"
-            android:name="com.andrea.belotti.brorkout.fragment.SceltaSchedaArchivioFragment"
+            android:name="com.andrea.belotti.brorkout.fragment.ManagerListFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"/>
 
-        <Button
-            android:id="@+id/buttonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="Back to main menu"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:layout_weight="6"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/light_blue_200"/>
+
+                <ImageButton
+                    android:id="@+id/buttonBack"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/circled_button"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home_lightblue"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/light_blue_200"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

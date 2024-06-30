@@ -14,16 +14,17 @@ import android.widget.Toast;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.fragment.ScheduleCreatorFragment;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.BUTTON_PRESSED_COLOR;
 
 
 public class CreateNewScheduleFragment extends Fragment {
@@ -64,11 +65,13 @@ public class CreateNewScheduleFragment extends Fragment {
         btnList.add(btn6);
         btnList.add(btn7);
 
+
         btnList.forEach(b ->
                 b.setOnClickListener(v -> {
                     giornata[0] = (String) b.getText();
-                    ScheduleCreatingUtils.setBasicColor(btnList);
-                    b.setBackgroundColor(ExerciseConstants.Color.BUTTON_PRESSED_COLOR);
+                    ScheduleCreatingUtils.setBasicColor(btnList, context);
+                    b.setTextColor(BUTTON_PRESSED_COLOR);
+                    b.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorlist)); //blue_700
                 }));
 
         confirmScheduleData.setOnClickListener(v -> {

@@ -12,19 +12,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
+        android:layout_marginVertical="@dimen/_20sdp"
         android:paddingHorizontal="@dimen/_15sdp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
         <View
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_50sdp"
-            android:layout_height="1dp"
-            android:background="@color/light_blue_200"/>
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/light_blue_200"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_marginTop="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_50sdp"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:layout_gravity="center"
@@ -147,20 +148,44 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue_500"
-            android:text="Back"
-            android:textColor="@color/light_blue_200"/>
 
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:layout_marginBottom="@dimen/_50sdp"
-            android:layout_height="1dp"
-            android:background="@color/light_blue_200"/>
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|bottom"
+            android:layout_weight="6"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/light_blue_200"/>
+
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/circled_button"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home_lightblue"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/light_blue_200"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

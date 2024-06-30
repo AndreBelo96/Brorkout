@@ -76,17 +76,11 @@ public class ScheduleSummaryFragment extends Fragment {
 
         TextView giornataNumero = view.findViewById(R.id.giornataNumero);
         giornataNumero.setText(ExerciseConstants.GIORNATA +  giorno);
-        Button backButton = view.findViewById(R.id.backButton);
         Button prevDayButton = view.findViewById(R.id.previousDay);
         Button nextDayButton = view.findViewById(R.id.nextDay);
         Button startSchedule = view.findViewById(R.id.startScheduleButton);
 
         final Integer[] giornoMostrato = {giorno};
-
-        backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), StartingMenuActivity.class);
-            startActivity(intent);
-        });
 
         prevDayButton.setOnClickListener(v -> {
             if ((giornoMostrato[0] - 1) > 0) {

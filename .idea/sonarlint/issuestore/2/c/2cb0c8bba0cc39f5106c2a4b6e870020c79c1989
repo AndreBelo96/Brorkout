@@ -1,9 +1,7 @@
 
->
-java:S1604G"(Make this anonymous inner class a lambda(‘óˆ‰
-K
-java:S2696)"6Make the enclosing method "static" or remove this set.(¥š‡L
-R
-java:S1874/"7Remove this use of "getSerializable"; it is deprecated.(¦Ú¹Üşÿÿÿÿ
-G
-java:S11357"2Complete the task associated to this TODO comment.(Ğ¿f
+x
+java:S2696+"6Make the enclosing method "static" or remove this set.(¥š‡L8Şè¢»‚2J$9f4da79f-715e-4008-9912-11d5b68a515d
+
+java:S18741"7Remove this use of "getSerializable"; it is deprecated.(¦Ú¹Üşÿÿÿÿ8àè¢»‚2J$85af7bca-ad9d-43ae-aa2d-b847c51e7584
+t
+java:S11359"2Complete the task associated to this TODO comment.(Ğ¿f8àè¢»‚2J$8420d9dd-10d3-4691-b70e-22a2a2940b9e

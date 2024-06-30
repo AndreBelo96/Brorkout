@@ -1,6 +1,7 @@
 package com.andrea.belotti.brorkout.fragment.creator;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,6 @@ import android.widget.Toast;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.fragment.ScheduleCreatorFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExeIncrFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExePirFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExeSerFragment;
@@ -40,8 +40,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.BUTTON_PRESSED_COLOR;
 
 public class CollectDataExeFragment extends Fragment {
 
@@ -51,6 +54,7 @@ public class CollectDataExeFragment extends Fragment {
 
     Context context;
     Fragment typeExeFragment = null;
+
 
     public void setGiornata(Giornata giornata) {
         this.giornata = giornata;
@@ -85,10 +89,7 @@ public class CollectDataExeFragment extends Fragment {
         Button deleteExe = view.findViewById(R.id.deleteExe);
         Button copyDay = view.findViewById(R.id.copyDay);
         Button pasteDay = view.findViewById(R.id.pasteDay);
-        Button deleteAllExe = view.findViewById(R.id.deleteSchedule);
 
-        TextView numeroGiornataTW = view.findViewById(R.id.numeroGiornataId);
-        numeroGiornataTW.setText("Giornata : " + numeroGiornata);
         Spinner typeExePicker = view.findViewById(R.id.choiceExerciseType);
         LinearLayout linearLayoutSchedule = view.findViewById(R.id.layoutSchedule);
 
@@ -99,7 +100,6 @@ public class CollectDataExeFragment extends Fragment {
         // Cambio del tipo di esercizio nel fragment
         changeTypeExeFragment(typeExePicker);
 
-
         createExeButton.setOnClickListener(v -> {
             View viewFragment = typeExeFragment.getView();
 
@@ -107,7 +107,7 @@ public class CollectDataExeFragment extends Fragment {
             assert viewFragment != null;
 
             esercizio.setNomeEsercizio(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
-            esercizio.setRecupero(((EditText) view.findViewById(R.id.recoverText)).getText().toString());
+            esercizio.setRecupero(((EditText) viewFragment.findViewById(R.id.recoverText)).getText().toString());
             esercizio.setSerieCompletate(0);
             esercizio.setSerie(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
             esercizio.setVideo(((CheckBox) view.findViewById(R.id.checkBoxVideo)).isChecked());
@@ -162,6 +162,7 @@ public class CollectDataExeFragment extends Fragment {
             giornata.getEsercizi().remove(exePosition);
             linearLayoutSchedule.removeViewAt(exePosition);
             updateButtonsId(linearLayoutSchedule);
+
             ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
             Toast toast = Toast.makeText(context, StringOutputConstants.successDeletingExe, duration);
             toast.show();
@@ -180,14 +181,6 @@ public class CollectDataExeFragment extends Fragment {
             ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
             viewExe(linearLayoutSchedule);
             Toast toast = Toast.makeText(context, "giornata incollata", duration);
-            toast.show();
-        });
-
-        deleteAllExe.setOnClickListener(v -> {
-            giornata.getEsercizi().clear();
-            linearLayoutSchedule.removeAllViews();
-            ScheduleCreatorFragment.setGiornateList(giornata, numeroGiornata);
-            Toast toast = Toast.makeText(context, StringOutputConstants.successDeletingAllExe, duration);
             toast.show();
         });
 
@@ -280,14 +273,21 @@ public class CollectDataExeFragment extends Fragment {
         giornata.getEsercizi().forEach(elem -> {
             Button button = new Button(context);
             button.setId(i[0]);
+            //text
             button.setText(elem.toStringUI());
             button.setTextSize(15f);
-            button.setBackgroundColor(ExerciseConstants.Color.BUTTON_COLOR);
             button.setTextColor(ExerciseConstants.Color.TEXT_BUTTON_COLOR);
+            // button
+            button.setBackground(ContextCompat.getDrawable(context,R.drawable.circled_button));
+            button.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorbuttonbase));
+            //margin
+            //button.setLayoutParams();
+
 
             button.setOnClickListener(v -> {
-                ScheduleCreatingUtils.setBasicColor(getButtonList(linearLayoutSchedule));
-                button.setBackgroundColor(ExerciseConstants.Color.BUTTON_PRESSED_COLOR);
+                ScheduleCreatingUtils.setBasicColor(getButtonList(linearLayoutSchedule), context);
+                button.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorlist));
+                button.setTextColor(BUTTON_PRESSED_COLOR);
                 exePosition = button.getId();
             });
 

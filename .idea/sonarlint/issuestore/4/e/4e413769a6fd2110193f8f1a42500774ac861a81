@@ -1,23 +1,23 @@
 
-J
-java:S5411`"(Use a primitive boolean expression here.(¥½°§ÿÿÿÿÿ8‚Õô‚2
-E
-java:S5411{"(Use a primitive boolean expression here.(ñ¸ËÑ8‚Õô‚2
-J
-java:S5411"(Use a primitive boolean expression here.(¥½°§ÿÿÿÿÿ8‚Õô‚2
-K
-java:S5411‰"(Use a primitive boolean expression here.(¥½°§ÿÿÿÿÿ8ƒÕô‚2
-F
-java:S5411¤"(Use a primitive boolean expression here.(Ú–˜û8ƒÕô‚2
-K
-java:S5411Ô"(Use a primitive boolean expression here.(ß£ìÇùÿÿÿÿ8ƒÕô‚2
+p
+java:S5411`"(Use a primitive boolean expression here.(¥½°§ÿÿÿÿÿ8‚Õô‚2J$84421b5f-978b-4b94-8ecd-822f77ca00d2
+k
+java:S5411{"(Use a primitive boolean expression here.(ñ¸ËÑ8‚Õô‚2J$360f6c79-0fc6-4417-8783-2b55f16a4f50
+p
+java:S5411"(Use a primitive boolean expression here.(¥½°§ÿÿÿÿÿ8‚Õô‚2J$cd619504-8d85-4b33-89a3-54157d9d6445
+q
+java:S5411‰"(Use a primitive boolean expression here.(¥½°§ÿÿÿÿÿ8ƒÕô‚2J$fb4321e2-663b-4435-85ff-c082b02bbb9d
+l
+java:S5411¤"(Use a primitive boolean expression here.(Ú–˜û8ƒÕô‚2J$8061a947-b7f7-4257-ad3d-62c7ef358f41
+q
+java:S5411Ô"(Use a primitive boolean expression here.(ß£ìÇùÿÿÿÿ8ƒÕô‚2J$b7c2a119-eeae-4db5-9315-c8bc9d952006
 “
-java:S3776*"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(ËÄ•åûÿÿÿÿJ$a95a0d1a-a758-4caa-ab4f-d643f0c0e8e1
-M
-java:S18745"+Remove this use of "get"; it is deprecated.(ÂŒÓŠşÿÿÿÿ8¤Õô‚2
-H
-java:S18746"+Remove this use of "get"; it is deprecated.(Œ®’ê8¥Õô‚2
+java:S3776*"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(ËÄ•åûÿÿÿÿJ$764ea1dc-adc0-46c4-8525-ca147969f16f
+s
+java:S18745"+Remove this use of "get"; it is deprecated.(ÂŒÓŠşÿÿÿÿ8¤Õô‚2J$a77e35bd-aed1-4930-b577-27a1fb856e0e
+n
+java:S18746"+Remove this use of "get"; it is deprecated.(Œ®’ê8¥Õô‚2J$29fc8c72-7765-489b-8811-561c134b4a70
 i
-java:S1602à",Remove useless curly braces around statement(µøÒğJ$8cc1461c-5ef9-41e0-9da2-bf8585134a5e
-x	java:S125â"<This block of commented-out lines of code should be removed.(“ÄìÊJ$495d91c9-02a4-4445-b407-5a8fbba646e8
-}	java:S125ë"<This block of commented-out lines of code should be removed.(Ø´¼ÿÿÿÿÿJ$157a69ba-823e-421b-858d-c9cde3f8b9b5
+java:S1602à",Remove useless curly braces around statement(µøÒğJ$5b000b36-1ae2-4da5-a5c5-319e9d59d856
+x	java:S125â"<This block of commented-out lines of code should be removed.(“ÄìÊJ$a50cdef7-2d70-4fe6-994d-644261f00ef0
+}	java:S125ë"<This block of commented-out lines of code should be removed.(Ø´¼ÿÿÿÿÿJ$11fe5927-2ff2-4819-90cf-f710495b97b5

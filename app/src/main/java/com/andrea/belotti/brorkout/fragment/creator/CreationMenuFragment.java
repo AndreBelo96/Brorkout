@@ -47,7 +47,6 @@ public class CreationMenuFragment extends Fragment {
 
         Button newSchedule = view.findViewById(R.id.new_schedule_button);
         Button copyScheduleBtn = view.findViewById(R.id.copy_schedule_button);
-        Button backButton = view.findViewById(R.id.backButton);
 
         // Db switches
         Switch switchDb = view.findViewById(R.id.switchDb);
@@ -97,10 +96,6 @@ public class CreationMenuFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), StartingMenuActivity.class);
-            startActivity(intent);
-        });
 
         return view;
     }

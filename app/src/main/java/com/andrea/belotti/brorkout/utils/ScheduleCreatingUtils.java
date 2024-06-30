@@ -1,10 +1,12 @@
 package com.andrea.belotti.brorkout.utils;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 import android.widget.Button;
 
+import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.BUTTON_COLOR;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.BUTTON_PRESSED_COLOR;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.TEXT_BUTTON_COLOR;
 
 public class ScheduleCreatingUtils {
 
@@ -43,7 +50,10 @@ public class ScheduleCreatingUtils {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void setBasicColor(List<Button> buttons) {
-        buttons.forEach(b -> b.setBackgroundColor(ExerciseConstants.Color.BUTTON_COLOR));
+    public static void setBasicColor(List<Button> buttons, Context context) {
+        buttons.forEach( b -> {
+                    b.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorbuttonbase));
+                    b.setTextColor(TEXT_BUTTON_COLOR);
+                });
     }
 }

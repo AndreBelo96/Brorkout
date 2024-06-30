@@ -12,34 +12,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/layoutDecisione"
-        android:layout_marginVertical="@dimen/_50sdp"
+        android:layout_marginVertical="@dimen/_20sdp"
         android:paddingHorizontal="@dimen/_15sdp"
+        android:orientation="vertical"
         android:gravity="center_horizontal">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/light_blue_200"/>
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/light_blue_200"
+            android:layout_marginBottom="@dimen/_5sdp"/>
+
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerViewGestoreScheda"
             android:name="com.andrea.belotti.brorkout.fragment.ScheduleSummaryFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="bottom"
+            android:gravity="center_horizontal|bottom"
+            android:layout_weight="6"
             android:orientation="vertical">
-
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="bottom"
-                android:background="@color/light_blue_200"/>
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/light_blue_200"/>
+
+                <ImageButton
+                    android:id="@+id/buttonBack"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/circled_button"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home_lightblue"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/light_blue_200"/>
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>

@@ -1,9 +1,9 @@
 
-k
-java:S3252&"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ðÂþÿÿÿÿ
-f
-java:S3252'"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾
-F
-java:S1874D"+Remove this use of "get"; it is deprecated.(Û«’¥ÿÿÿÿÿ
-A
-java:S1874E"+Remove this use of "get"; it is deprecated.(ž²äû
+‘
+java:S3252&"PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ðÂþÿÿÿÿJ$769cc607-d877-4fb8-898d-95e12820a4b1
+Œ
+java:S3252'"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾J$6784ff07-c035-45c6-9d79-463d9edc70d8
+l
+java:S1874D"+Remove this use of "get"; it is deprecated.(Û«’¥ÿÿÿÿÿJ$dd5dc963-60bd-4842-91fc-bb4baf06a01d
+g
+java:S1874E"+Remove this use of "get"; it is deprecated.(ž²äûJ$f793dc68-cff4-4d9b-be6e-2ed130558780

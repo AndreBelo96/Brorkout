@@ -1,12 +1,12 @@
 
-E
-java:S1066"/Merge this if statement with the enclosing one.(„É°
-h	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿ
-M
-java:S1874"7Remove this use of "getSerializable"; it is deprecated.(„É°
-M
-java:S1874"7Remove this use of "getSerializable"; it is deprecated.(ÎÕ¿¬
-A
-java:S1874"+Remove this use of "get"; it is deprecated.(¹»óí
-A
-java:S1874"+Remove this use of "get"; it is deprecated.(¹»óí
+k
+java:S1066"/Merge this if statement with the enclosing one.(„É°J$afc50d71-3c55-4a86-b55f-c20291ffc2bd
+	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿJ$b891f351-d039-40bb-8422-fd5cc1fe1dcc
+s
+java:S1874"7Remove this use of "getSerializable"; it is deprecated.(„É°J$26bc3c05-14ae-4ea1-acf8-8fb118e4338e
+s
+java:S1874"7Remove this use of "getSerializable"; it is deprecated.(ÎÕ¿¬J$fa34756b-1cda-4fa6-9ac0-52cd5522aeb2
+g
+java:S1874 "+Remove this use of "get"; it is deprecated.(¹»óíJ$d95a2a17-28be-4a14-a620-6f1fd7ab1b40
+g
+java:S1874 "+Remove this use of "get"; it is deprecated.(¹»óíJ$40881f6a-d0d5-4b38-a5dc-df54c8d98a6d

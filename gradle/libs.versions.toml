@@ -15,6 +15,7 @@ circledImage = "3.1.0"
 javaUtils = "3.14.0"
 gson = "2.11.0"
 jacksonVersion = "2.17.1"
+lombok = "1.18.32"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -30,7 +31,7 @@ sdp = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "sdpText" 
 circled-image = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circledImage" }
 java-utils = { group = "org.apache.commons", name = "commons-lang3", version.ref = "javaUtils" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
-jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jacksonVersion" }
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
 jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jacksonVersion" }
 
 [plugins]

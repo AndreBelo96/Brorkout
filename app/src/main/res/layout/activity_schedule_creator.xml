@@ -10,15 +10,64 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_marginVertical="@dimen/_20sdp"
         android:paddingHorizontal="@dimen/_15sdp"
-        android:gravity="center">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/light_blue_200"
+            android:layout_marginBottom="@dimen/_5sdp"/>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerViewScheduleCreator"
             android:name="com.andrea.belotti.brorkout.fragment.creator.CreationMenuFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:layout_weight="6"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/light_blue_200"/>
+
+                <ImageButton
+                    android:id="@+id/buttonBack"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:background="@drawable/circled_button"
+                    android:layout_gravity="center"
+                    android:src="@drawable/home_lightblue"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_2sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/light_blue_200"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
 
     </LinearLayout>
 

@@ -24,11 +24,15 @@ import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
+import java.io.Serializable;
+import java.util.List;
+
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import static android.content.Context.MODE_PRIVATE;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 
 public class SceltaGiornoArchivioFragment extends Fragment {
@@ -38,11 +42,18 @@ public class SceltaGiornoArchivioFragment extends Fragment {
     // Storing data into SharedPreferences
     private static android.content.SharedPreferences sharedPreferences;
 
-    private static final String PARAM = "Scheda";
-
     private static Context context;
     private static final int duration = Toast.LENGTH_SHORT;
     private static final String SUCCESS_CREATING_STRING = "Scheda salvata con successo";
+
+
+    public static SceltaGiornoArchivioFragment newInstance(Scheda param1) {
+        SceltaGiornoArchivioFragment fragment = new SceltaGiornoArchivioFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(SCHEDA, param1);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -50,6 +61,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
+
 
         sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
@@ -63,7 +75,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
         Button backSceltaSchede = view.findViewById(R.id.backSceltaSchede);
 
         if (getArguments() != null) {
-            schedaScelta = (Scheda) getArguments().get(PARAM);
+            schedaScelta = (Scheda) getArguments().get(SCHEDA);
         }
 
         if (schedaScelta != null) {
@@ -75,7 +87,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
         Scheda finalSchedaScelta = schedaScelta;
         backSceltaSchede.setOnClickListener(v -> {
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
+            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, ListaSchedeLocalArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
             fragmentTransaction.commit();
         });
 
@@ -83,7 +95,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
             ArchivioActivity.deleteData(finalSchedaScelta.getNome());
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaSchedaArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
+            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, ListaSchedeLocalArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
             fragmentTransaction.commit();
         });
 
@@ -138,14 +150,5 @@ public class SceltaGiornoArchivioFragment extends Fragment {
             count++;
         }
     }
-
-    public static SceltaSchedaArchivioFragment newInstance(Scheda param) {
-        SceltaSchedaArchivioFragment fragment = new SceltaSchedaArchivioFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(PARAM, param);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
 
 }
