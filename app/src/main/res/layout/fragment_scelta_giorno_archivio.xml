@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blue_200"
-    tools:context=".fragment.SceltaGiornoArchivioFragment">
+    tools:context=".fragment.archivio.SceltaGiornoArchivioFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,20 +33,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/_10sdp">
 
             <Button
                 android:id="@+id/eliminaScheda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Elimina scheda"
-                android:layout_marginRight="@dimen/_10sdp"/>
+                android:layout_marginRight="@dimen/_10sdp"
+                android:textColor="@color/light_blue_200"
+                android:background="@drawable/circled_button"
+                app:backgroundTint="@color/light_blue_200"/>
 
             <Button
                 android:id="@+id/modifySchedule"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Modifica scheda" />
+                android:text="Modifica scheda"
+                android:textColor="@color/light_blue_200"
+                android:background="@drawable/circled_button"
+                app:backgroundTint="@color/light_blue_200"/>
 
         </LinearLayout>
 
@@ -55,7 +63,10 @@
             android:id="@+id/backSceltaSchede"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Torna a scelta schede" />
+            android:text="Torna a scelta schede"
+            android:textColor="@color/light_blue_200"
+            android:background="@drawable/circled_button"
+            app:backgroundTint="@color/light_blue_200"/>
 
     </LinearLayout>
 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_200"
+    android:orientation="vertical"
+    tools:context=".fragment.creator.newinterfacecreator.CreationPlanFragment">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabDayListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@color/light_blue_200"
+        app:tabIconTint="@color/light_blue_200"
+        app:tabTextColor="@color/light_blue_200"
+        android:background="#00000000">
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewDayListPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"
+        android:background="@color/light_blue_200"
+        android:layout_marginBottom="@dimen/_5sdp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@android:drawable/ic_menu_add"
+                app:backgroundTint="@color/light_blue_200"/>
+
+            <Button
+                android:id="@+id/modifyButton"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/ic_write"
+                app:backgroundTint="@color/light_blue_200"/>
+
+            <Button
+                android:id="@+id/deleteButton"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@android:drawable/ic_menu_delete"
+                app:backgroundTint="@color/light_blue_200"/>
+
+            <Button
+                android:id="@+id/copyButton"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="?attr/actionModeCopyDrawable"
+                app:backgroundTint="@color/light_blue_200"/>
+
+
+            <Button
+                android:id="@+id/pasteButton"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="?attr/actionModePasteDrawable"
+                app:backgroundTint="@color/light_blue_200"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/create"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crea Scheda"
+            android:textColor="@color/light_blue_200"
+            android:background="@drawable/circled_button"
+            app:backgroundTint="@color/light_blue_200"
+            android:layout_marginTop="@dimen/_10sdp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -5,11 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.ManagerListFragment;
+import com.andrea.belotti.brorkout.fragment.archivio.ManagerListFragment;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import androidx.annotation.RequiresApi;

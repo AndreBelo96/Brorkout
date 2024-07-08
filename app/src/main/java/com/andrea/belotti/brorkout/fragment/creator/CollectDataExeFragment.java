@@ -45,6 +45,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.BUTTON_PRESSED_COLOR;
+import static com.andrea.belotti.brorkout.utils.AppMethodsUtils.getButtonList;
 
 public class CollectDataExeFragment extends Fragment {
 
@@ -296,15 +297,7 @@ public class CollectDataExeFragment extends Fragment {
         });
     }
 
-    private List<Button> getButtonList(LinearLayout linearLayoutSchedule) {
-        List<Button> buttonList = new ArrayList<>();
 
-        for (int i = 0; i < linearLayoutSchedule.getChildCount(); i++) {
-            buttonList.add((Button) linearLayoutSchedule.getChildAt(i));
-        }
-
-        return buttonList;
-    }
 
     private void updateButtonsId(LinearLayout linearLayoutSchedule) {
 

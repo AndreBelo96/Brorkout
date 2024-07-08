@@ -6,14 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blue_200"
     android:orientation="vertical"
-    tools:context=".fragment.ManagerListFragment">
+    tools:context=".fragment.archivio.ManagerListFragment">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="#000000"
-            app:tabIconTint="#000000"
+            app:tabIndicatorColor="@color/light_blue_200"
+            app:tabIconTint="@color/light_blue_200"
             android:background="#00000000">
 
             <com.google.android.material.tabs.TabItem

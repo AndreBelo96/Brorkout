@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ToggleButton;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
@@ -56,4 +57,13 @@ public class ScheduleCreatingUtils {
                     b.setTextColor(TEXT_BUTTON_COLOR);
                 });
     }
+
+    public static void setUncheckedButton(List<ToggleButton> buttons, Context context, ToggleButton buttonSelected) {
+        buttons.stream().filter(b -> !b.equals(buttonSelected)).forEach( b -> {
+            b.setChecked(false);
+            b.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorbuttonbase));
+            b.setTextColor(TEXT_BUTTON_COLOR);
+        });
+    }
+
 }

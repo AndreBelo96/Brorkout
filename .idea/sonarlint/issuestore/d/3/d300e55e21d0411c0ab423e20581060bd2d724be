@@ -1,10 +1,12 @@
 
-8
-java:S2386"Make this member "protected".(ËÚÕûÿÿÿÿ
-f
-java:S3252>"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾
-f
-java:S3252?"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾
-V	java:S125C"<This block of commented-out lines of code should be removed.(•š¾áýÿÿÿÿ
-H
-java:S1135B"2Complete the task associated to this TODO comment.(…ïœ†
+e
+java:S2386"Make this member "protected".(ËÚÕûÿÿÿÿ8„¥üÎˆ2J$c284071a-8565-49e2-961a-3de57e98e4c2
+“
+java:S3252?"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾8£¥üÎˆ2J$426711d3-3973-4e1d-80d0-7a4fcec2217a
+“
+java:S3252@"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾8£¥üÎˆ2J$a9a0b413-6412-4c21-be12-abba013a34bd
+ƒ	java:S125D"<This block of commented-out lines of code should be removed.(•š¾áýÿÿÿÿ8£¥üÎˆ2J$bc49bd74-9f50-48a3-ad1e-f5b7eedaa34e
+u
+java:S1135C"2Complete the task associated to this TODO comment.(…ïœ†8£¥üÎˆ2J$db6c54a3-e302-4955-afd4-e5e641189f4d
+}
+java:S1118U":Add a private constructor to hide the implicit public one.(¥Žäþ8žªÿÎˆ2J$bda621ce-f9d6-49a5-a049-70e0359628fc

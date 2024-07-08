@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.EndScheduleSummaryFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue_200"
+    tools:context=".fragment.executor.EndScheduleSummaryFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,7 +47,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_15sdp"
-                    android:text="Back to main menu" />
+                    android:text="Back to main menu"
+                    android:textColor="@color/light_blue_200"
+                    android:background="@drawable/circled_button"
+                    app:backgroundTint="@color/light_blue_200"/>
         </LinearLayout>
 
 

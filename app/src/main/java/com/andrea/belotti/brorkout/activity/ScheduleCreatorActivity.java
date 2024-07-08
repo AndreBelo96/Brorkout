@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.fragment.creator.ScheduleCreatorFragment;
 import com.andrea.belotti.brorkout.fragment.creator.CreationMenuFragment;
+import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.MetaData;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
@@ -24,6 +25,11 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
 
     // log
     private final String tag = this.getClass().getSimpleName();
+
+    // shared variables beetween fragments
+    Esercizio addExeInCreation;
+
+    Integer selectedExe;
 
     // Storing data into SharedPreferences
     private static SharedPreferences sharedPreferences;
@@ -84,6 +90,22 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         myEdit.putString(scheda.getNome(), JsonGeneratorUtil.generateJsonFromSchedule(scheda));
         myEdit.apply();
+    }
+
+    public void setAddExeCreation(Esercizio addExeInCreation) {
+        this.addExeInCreation = addExeInCreation;
+    }
+
+    public Esercizio getAddExeCreation() {
+        return addExeInCreation;
+    }
+
+    public void setSelectedExe(Integer selectedExe) {
+        this.selectedExe = selectedExe;
+    }
+
+    public Integer getSelectedExe() {
+        return selectedExe;
     }
 
 

@@ -14,7 +14,6 @@ import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.fragment.ScheduleSummaryFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;

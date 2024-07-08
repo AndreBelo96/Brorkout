@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blue_200"
-    tools:context=".fragment.ExeExecutionFragment">
+    tools:context=".fragment.executor.ExeExecutionFragment">
 
 
     <LinearLayout
         android:id="@+id/layoutDecisione"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
@@ -20,6 +21,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/_30sdp"
             android:textColor="@color/light_blue_200"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:text="NomeEsercizio" />
 
         <LinearLayout
@@ -38,7 +40,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
                     android:textColor="@color/light_blue_200"
                     android:text="Serie: 0/n" />
 
@@ -52,11 +53,6 @@
                     android:text="Ripetizioni: n" />
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textVideo"
@@ -67,8 +63,6 @@
                     android:gravity="center"
                     android:textSize="@dimen/_25sdp"
                     android:text="Video On" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -94,14 +88,17 @@
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:textSize="@dimen/_15sdp"
                 android:textColor="@color/light_blue_200"
-                android:text="" />
+                android:ems="2" />
 
             <Button
                 android:id="@+id/buttonTenRecover"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_30sdp"
-                android:text="Start" />
+                android:text="Start"
+                android:textColor="@color/light_blue_200"
+                android:background="@drawable/circled_button"
+                app:backgroundTint="@color/light_blue_200" />
 
 
         </LinearLayout>
@@ -127,14 +124,17 @@
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:textSize="@dimen/_15sdp"
                 android:textColor="@color/light_blue_200"
-                android:text="n" />
+                android:ems="2"/>
 
             <Button
                 android:id="@+id/buttonRecover"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_30sdp"
-                android:text="Start" />
+                android:text="Start"
+                android:textColor="@color/light_blue_200"
+                android:background="@drawable/circled_button"
+                app:backgroundTint="@color/light_blue_200"/>
 
 
         </LinearLayout>
@@ -181,32 +181,40 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_marginBottom="@dimen/_15sdp"
             android:gravity="bottom">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="left"
+                android:layout_marginBottom="@dimen/_10sdp">
 
-                <Button
+                <ImageButton
                     android:id="@+id/buttonPreviousExe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:text="Previous Exe" />
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:background="@drawable/circled_button"
+                    app:backgroundTint="@color/light_blue_200"
+                    android:src="?attr/homeAsUpIndicator"
+                    android:drawableTint="@color/light_blue_200"
+                    app:tint="@color/light_blue_200" />
+
 
                 <Button
                     android:id="@+id/buttonNextExe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:text="Next Exe" />
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:text="Trazioni"
+                    android:drawableRight="@drawable/home"
+                    android:textColor="@color/light_blue_200"
+                    android:background="@drawable/circled_button"
+                    app:backgroundTint="@color/light_blue_200"
+                    android:drawableTint="@color/light_blue_200"/>
+
 
             </LinearLayout>
 
@@ -215,7 +223,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="End Schedule" />
+                android:text="End Schedule"
+                android:textColor="@color/light_blue_200"
+                android:background="@drawable/circled_button"
+                app:backgroundTint="@color/light_blue_200"/>
 
         </LinearLayout>
 
