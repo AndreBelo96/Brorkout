@@ -159,17 +159,6 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/prova_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:text="Prova nuovo layout"
-                android:textColor="@color/light_blue_200"
-                android:background="@drawable/circled_button"
-                app:backgroundTint="@color/light_blue_200"
-                android:textSize="20sp" />
-
-            <Button
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

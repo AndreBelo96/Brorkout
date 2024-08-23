@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.creator.newinterfacecreator;
+package com.andrea.belotti.brorkout.fragment.creator.schedulecreator;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,22 +9,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
-import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
-
-import java.util.concurrent.atomic.AtomicReference;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.BUTTON_PRESSED_COLOR;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.TEXT_BUTTON_COLOR;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
-import static com.andrea.belotti.brorkout.utils.AppMethodsUtils.getButtonList;
 import static com.andrea.belotti.brorkout.utils.AppMethodsUtils.getToggleButtonList;
 
 /**

@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/blue_200"
-    tools:context=".fragment.creator.newinterfacecreator.AddExeFragment">
+    tools:context=".fragment.creator.schedulecreator.AddExeFragment">
 
 
         <LinearLayout
@@ -30,23 +30,12 @@
                 android:textColor="@color/light_blue_200"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:ems="8"
+                android:ems="9"
                 android:text=""
                 android:backgroundTint="@color/light_blue_200"
                 android:textSize="20sp"
                 android:layout_marginRight="@dimen/_5sdp"
                 />
-
-
-            <CheckBox
-                android:id="@+id/checkBoxVideo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="Video"
-                android:textColor="@color/light_blue_200"
-                android:textSize="20sp"
-                app:buttonIconTint="@color/light_blue_200" />
 
         </LinearLayout>
 
@@ -78,6 +67,55 @@
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/labelZavorre"
+            android:layout_width="wrap_content"
+            android:textColor="@color/light_blue_200"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:textSize="20sp"
+            android:text="Zavorre :"
+            />
+
+        <EditText
+            android:id="@+id/textZavorre"
+            android:backgroundTint="@color/light_blue_200"
+            android:layout_width="wrap_content"
+            android:textColor="@color/light_blue_200"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="2"
+            android:text=""
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/labelKg"
+            android:layout_width="wrap_content"
+            android:textColor="@color/light_blue_200"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:textSize="20sp"
+            android:text="Kg"
+            />
+
+        <CheckBox
+            android:id="@+id/checkBoxVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Video"
+            android:textColor="@color/light_blue_200"
+            android:textSize="20sp"
+            app:buttonIconTint="@color/light_blue_200" />
+
+    </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,10 +142,11 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerTipoEsercizio"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

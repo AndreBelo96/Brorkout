@@ -44,10 +44,10 @@ public class SceltaGiornoArchivioFragment extends Fragment {
     private static final String SUCCESS_CREATING_STRING = "Scheda salvata con successo";
 
 
-    public static SceltaGiornoArchivioFragment newInstance(Scheda param1) {
+    public static SceltaGiornoArchivioFragment newInstance(Scheda scheda) {
         SceltaGiornoArchivioFragment fragment = new SceltaGiornoArchivioFragment();
         Bundle args = new Bundle();
-        args.putSerializable(SCHEDA, param1);
+        args.putSerializable(SCHEDA, scheda);
         fragment.setArguments(args);
         return fragment;
     }

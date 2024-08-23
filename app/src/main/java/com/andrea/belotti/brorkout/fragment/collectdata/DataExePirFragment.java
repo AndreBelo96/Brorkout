@@ -9,12 +9,24 @@ import android.widget.NumberPicker;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
+import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
 
 import androidx.fragment.app.Fragment;
+
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ESERCIZIO;
 
 public class DataExePirFragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();
+
+    public static DataExePirFragment newInstance(EsercizioPiramidale esercizio) {
+        DataExePirFragment fragment = new DataExePirFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ESERCIZIO, esercizio);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

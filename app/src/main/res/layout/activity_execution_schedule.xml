@@ -26,7 +26,6 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerViewGestoreScheda"
-            android:name="com.andrea.belotti.brorkout.fragment.creator.ScheduleSummaryFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

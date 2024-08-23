@@ -25,12 +25,14 @@
                 android:id="@+id/switchDb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checked="false"
                 android:showText="false"
                 android:switchPadding="@dimen/_10sdp"
                 android:text="Local"
                 android:textColor="@color/light_blue_200"
                 android:thumbTint="@color/light_blue_200"
-                android:visibility="visible" />
+                android:visibility="visible"
+                tools:checked="false" />
 
 
             <Switch

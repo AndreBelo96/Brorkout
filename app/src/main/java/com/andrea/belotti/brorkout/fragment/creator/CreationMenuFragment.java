@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Switch;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.activity.StartingMenuActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -29,7 +30,6 @@ public class CreationMenuFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
 
-    private Boolean isCloud;
     private Boolean isPublic;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -48,13 +48,14 @@ public class CreationMenuFragment extends Fragment {
         Button newSchedule = view.findViewById(R.id.new_schedule_button);
         Button copyScheduleBtn = view.findViewById(R.id.copy_schedule_button);
 
+        ScheduleCreatorActivity activity = (ScheduleCreatorActivity) this.getActivity();
+
         // Db switches
         Switch switchDb = view.findViewById(R.id.switchDb);
         Switch switchPrivate = view.findViewById(R.id.switchPrivate);
-        isCloud = switchDb.isChecked();
         isPublic = switchPrivate.isChecked();
 
-        if (!isCloud) {
+        if (!switchDb.isChecked()) {
             switchPrivate.setVisibility(View.INVISIBLE);
         }
 
@@ -63,12 +64,13 @@ public class CreationMenuFragment extends Fragment {
             if (isChecked) {
                 switchDb.setText(ExerciseConstants.DataBase.CLOUD);
                 switchPrivate.setVisibility(View.VISIBLE);
+                activity.setLocal(false);
             } else {
                 switchDb.setText(ExerciseConstants.DataBase.LOCAL);
                 switchPrivate.setVisibility(View.INVISIBLE);
+                activity.setLocal(true);
             }
 
-            isCloud = isChecked;
         });
 
         switchPrivate.setOnCheckedChangeListener((buttonView, isChecked) -> {

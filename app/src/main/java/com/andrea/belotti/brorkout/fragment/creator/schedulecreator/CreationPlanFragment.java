@@ -1,6 +1,7 @@
-package com.andrea.belotti.brorkout.fragment.creator.newinterfacecreator;
+package com.andrea.belotti.brorkout.fragment.creator.schedulecreator;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,9 +16,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.activity.ExecutionScheduleActivity;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.adapter.ViewPagerPlanGeneratorAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.constants.StringOutputConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -54,6 +57,16 @@ public class CreationPlanFragment extends Fragment {
         return fragment;
     }
 
+    public static CreationPlanFragment newInstance(String scheduleTitle, Integer giorni, Scheda scheda) {
+        CreationPlanFragment fragment = new CreationPlanFragment();
+        Bundle args = new Bundle();
+        args.putInt(NUMERO_GIORNATE, giorni);
+        args.putString(TITOLO_SCHEDA, scheduleTitle);
+        args.putSerializable(SCHEDA, scheda);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,6 +83,7 @@ public class CreationPlanFragment extends Fragment {
         if (getArguments() != null) {
             numeroGiornate = getArguments().getInt(NUMERO_GIORNATE);
             titoloScheda = getArguments().getString(TITOLO_SCHEDA);
+            datiScheda = (Scheda) getArguments().getSerializable(SCHEDA);
         }
 
         // Inflate the layout for this fragment
@@ -90,7 +104,7 @@ public class CreationPlanFragment extends Fragment {
         Button pasteButton = view.findViewById(R.id.pasteButton);
         Button createSchedule = view.findViewById(R.id.create);
 
-        viewPagerPlanGeneratorAdapter = new ViewPagerPlanGeneratorAdapter(this, scheda);
+        viewPagerPlanGeneratorAdapter = new ViewPagerPlanGeneratorAdapter(this, scheda); // TODO testare
 
         viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
 
@@ -106,12 +120,12 @@ public class CreationPlanFragment extends Fragment {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                // TODO document why this method is empty
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                // TODO document why this method is empty
             }
         });
 
@@ -171,12 +185,32 @@ public class CreationPlanFragment extends Fragment {
             viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
         });
 
+        createSchedule.setOnClickListener(v -> {
+
+            // se non ci sono esecizi in nessun giorno non creo la scheda //TODO pensa a come gestire se tutti i giorni o solo uno
+            if (scheda.getGiornate().stream().allMatch(g -> g.getEsercizi().isEmpty() || g.getEsercizi() == null)) {
+                Log.e(tag, "Esercizi vuoti");
+                Toast toast = Toast.makeText(context, "Inserire almeno un esercizio", StringOutputConstants.shortDuration);
+                toast.show();
+                return;
+            }
+
+            //Salvataggio a DB e in locale
+            activity.saveData(scheda);
+
+
+            Intent intent = new Intent(getActivity(), ExecutionScheduleActivity.class);
+            intent.putExtra("scheda", scheda);
+            intent.putExtra("giornoScelto", 1);
+            startActivity(intent);
+        });
+
         return view;
     }
 
     private Scheda initWorkoutPlan(String titoloScheda, int numeroGiornate, Scheda datiScheda) {
 
-        Scheda scheda = new Scheda();
+        Scheda scheda = new Scheda(); // TODO TESTARE
 
         if (datiScheda != null && StringUtils.isEmpty(titoloScheda)) {
             return datiScheda;

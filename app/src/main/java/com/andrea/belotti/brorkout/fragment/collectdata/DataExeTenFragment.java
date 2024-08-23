@@ -8,12 +8,24 @@ import android.view.ViewGroup;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
+import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 
 import androidx.fragment.app.Fragment;
+
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ESERCIZIO;
 
 public class DataExeTenFragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();
+
+    public static DataExeTenFragment newInstance(EsercizioTenuta esercizio) {
+        DataExeTenFragment fragment = new DataExeTenFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ESERCIZIO, esercizio);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

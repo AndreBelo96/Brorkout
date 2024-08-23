@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
+import com.andrea.belotti.brorkout.fragment.creator.schedulecreator.CreationPlanFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 
 import java.io.Serializable;
@@ -88,7 +89,7 @@ public class CopyScheduleFragment extends Fragment {
                     toast.show();
                 } else {
                     FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, ScheduleCreatorFragment.newInstance(scheda, scheduleName));
+                    fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(scheduleName, scheda.getGiornate().size(),scheda));
                     fragmentTransaction.commit();
                 }
             });

@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.fragment.creator.newinterfacecreator.CreationPlanFragment;
+import com.andrea.belotti.brorkout.fragment.creator.schedulecreator.CreationPlanFragment;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.ArrayList;
@@ -46,7 +46,6 @@ public class CreateNewScheduleFragment extends Fragment {
         Button confirmScheduleData = view.findViewById(R.id.confirm_button);
         EditText titoloScheda = view.findViewById(R.id.titoloScheda);
         Button backButton = view.findViewById(R.id.backButton);
-        Button prova = view.findViewById(R.id.prova_button);
 
         // Select days buttons
         final String[] giornata = {""};
@@ -77,31 +76,6 @@ public class CreateNewScheduleFragment extends Fragment {
                 }));
 
         confirmScheduleData.setOnClickListener(v -> {
-
-            String days = giornata[0];
-            String scheduleName = titoloScheda.getText().toString();
-
-            if (scheduleName.isEmpty()) {
-                Log.e(tag, "Titolo scheda vuoto");
-                Toast toast = Toast.makeText(context, "Titolo scheda vuoto", StringOutputConstants.shortDuration);
-                toast.show();
-                return;
-            }
-            if (days.isEmpty()) {
-                Log.e(tag, "Numero di giorni non selezionato");
-                Toast toast = Toast.makeText(context, "Numero di giorni non selezionato", StringOutputConstants.shortDuration);
-                toast.show();
-                return;
-            }
-
-            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, ScheduleCreatorFragment.newInstance(scheduleName, days));
-            fragmentTransaction.commit();
-
-        });
-
-
-        prova.setOnClickListener(v -> {
 
             String days = giornata[0];
             String scheduleName = titoloScheda.getText().toString();

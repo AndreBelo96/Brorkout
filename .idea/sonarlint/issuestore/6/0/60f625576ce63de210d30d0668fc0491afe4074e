@@ -1,4 +1,4 @@
 
-
-java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "view".(©ù×ÊøÿÿÿÿJ$72b99745-70eb-4c6d-b5c0-624502d94dff
-	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿJ$88b00403-e402-468d-90a5-dfb47484988d
+•	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿ8ğŒ„É‰2J$f6012b5d-f5aa-461c-af1a-262df2c7e7ea
+z
+java:S1874*"7Remove this use of "getSerializable"; it is deprecated.(ë«Î¡8š„É‰2J$229eac81-a279-425f-b05e-9932705a6217

@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment.creator.newinterfacecreator.ExeListFragment">
+    android:background="@color/blue_200"
+    tools:context=".fragment.creator.schedulecreator.ExeListFragment">
 
 
     <ScrollView
@@ -15,9 +16,7 @@
             android:id="@+id/exeListLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-
+            android:orientation="vertical">
         </LinearLayout>
 
     </ScrollView>

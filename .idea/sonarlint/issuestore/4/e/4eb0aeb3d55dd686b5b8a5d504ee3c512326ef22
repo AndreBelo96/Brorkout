@@ -1,4 +1,4 @@
 
-q
-java:S1488"\Immediately return this expression instead of assigning it to the temporary variable "view".(Úú¢
-h	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿ
+—
+java:S1488%"\Immediately return this expression instead of assigning it to the temporary variable "view".(Úú¢J$1ed73438-c009-4b62-a81c-30448e7b56cc
+	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿJ$28592502-bb6c-4efb-b666-ca36c2dd04f3

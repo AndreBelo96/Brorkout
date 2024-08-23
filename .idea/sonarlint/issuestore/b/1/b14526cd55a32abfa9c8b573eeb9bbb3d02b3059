@@ -1,18 +1,16 @@
 
-b
-java:S1192+"GDefine a constant instead of duplicating this literal "scheda" 3 times.(É™˜Üøÿÿÿÿ
-h	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿ
-j
-java:S1450"URemove the "scheda" field and declare it as a local variable in the relevant methods.(¶ä„B
-k
-java:S3252 "PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ðÂþÿÿÿÿ
-f
-java:S3252!"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾
->
-java:S11852"(Remove this method to simply inherit it.(ßìê¯
-F
-java:S1874E"+Remove this use of "get"; it is deprecated.(‘†‘¬ÿÿÿÿÿ
-A
-java:S1874F"+Remove this use of "get"; it is deprecated.(Œ®’ê
-M
-java:S1135m"2Complete the task associated to this TODO comment.(Ñ†«¯þÿÿÿÿ
+Ž	java:S116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›—íúÿÿÿÿJ$e05d7b21-ba57-45df-9134-12979a3635e9
+
+java:S1450"URemove the "scheda" field and declare it as a local variable in the relevant methods.(¶ä„BJ$b0621752-bb9e-473b-b924-aa4394bb03a1
+‘
+java:S3252 "PUse static access with "android.view.ViewGroup$LayoutParams" for "MATCH_PARENT".(„¸ðÂþÿÿÿÿJ$1ac75100-4139-43e8-8633-85f90fc77916
+Œ
+java:S3252!"PUse static access with "android.view.ViewGroup$LayoutParams" for "WRAP_CONTENT".(œšÌ¾J$a9bea1d4-f8c7-4e48-a406-0402226e402a
+d
+java:S1185+"(Remove this method to simply inherit it.(ßìê¯J$b5d46825-ff7c-4564-8fd5-1647071fb8ed
+l
+java:S1874>"+Remove this use of "get"; it is deprecated.(‘†‘¬ÿÿÿÿÿJ$0c7ab69a-e820-4ee1-914e-ab54aa51888d
+g
+java:S1874?"+Remove this use of "get"; it is deprecated.(Œ®’êJ$51bb1373-5e1d-4691-b8db-e1537e1d1c9a
+s
+java:S1135f"2Complete the task associated to this TODO comment.(Ñ†«¯þÿÿÿÿJ$c8991553-8c21-4f14-8bbf-b69201bf41ce

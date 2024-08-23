@@ -7,8 +7,8 @@ import android.util.Log;
 import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.creator.ScheduleCreatorFragment;
 import com.andrea.belotti.brorkout.fragment.creator.CreationMenuFragment;
+import com.andrea.belotti.brorkout.fragment.creator.schedulecreator.CreationPlanFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.MetaData;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -27,9 +27,13 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
     private final String tag = this.getClass().getSimpleName();
 
     // shared variables beetween fragments
-    Esercizio addExeInCreation;
+    private Esercizio addExeInCreation;
 
-    Integer selectedExe;
+    private Integer selectedExe;
+
+
+
+    private boolean isLocal = true;
 
     // Storing data into SharedPreferences
     private static SharedPreferences sharedPreferences;
@@ -45,23 +49,16 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_schedule_creator);
 
         Bundle inputData = getIntent().getExtras().getBundle("SchedaDati");
-
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
-
-
         if (getIntent().getExtras().getBoolean("modifica")) {
-            ScheduleCreatorFragment scheduleCreatorFragment = new ScheduleCreatorFragment();
-            Scheda finalSchedaScelta = (Scheda) inputData.getSerializable("Scheda");
-            Bundle bundle = new Bundle();
-            bundle.putString("numeroGiornate", String.valueOf(finalSchedaScelta.getGiornate().size()));
-            bundle.putString("titoloScheda", finalSchedaScelta.getNome());
-            bundle.putSerializable("Scheda", finalSchedaScelta);
-            scheduleCreatorFragment.setArguments(bundle);
+
+            Scheda schedaScelta = (Scheda) inputData.getSerializable("Scheda");
 
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, scheduleCreatorFragment); //TODO da vedere se basta scheda
+            fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(schedaScelta.getNome(), schedaScelta.getGiornate().size(), schedaScelta));
             fragmentTransaction.commit();
+
         } else {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.fragmentContainerViewScheduleCreator, new CreationMenuFragment());
@@ -78,14 +75,16 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
     }
 
 
-    public static void saveData(Scheda scheda) {
+    public void saveData(Scheda scheda) {
 
         MetaData metaData = new MetaData(LocalDate.now(), LocalDate.now());
-        // DATABASE
-        //add Firebase Database stuff
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Schedules");
-        myRef.child("user").child(scheda.getNome()).child("DATA").setValue(JsonGeneratorUtil.generateJsonFromSchedule(scheda));
-        myRef.child("user").child(scheda.getNome()).child("METADATA").setValue(JsonGeneratorUtil.generateJsonFromSchedule(metaData));
+        if (!isLocal()) {
+            // DATABASE
+            //add Firebase Database stuff
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Schedules");
+            myRef.child("user").child(scheda.getNome()).child("DATA").setValue(JsonGeneratorUtil.generateJsonFromSchedule(scheda));
+            myRef.child("user").child(scheda.getNome()).child("METADATA").setValue(JsonGeneratorUtil.generateJsonFromSchedule(metaData));
+        }
 
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
         myEdit.putString(scheda.getNome(), JsonGeneratorUtil.generateJsonFromSchedule(scheda));
@@ -108,5 +107,11 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
         return selectedExe;
     }
 
+    public boolean isLocal() {
+        return isLocal;
+    }
 
+    public void setLocal(boolean local) {
+        isLocal = local;
+    }
 }

@@ -80,6 +80,7 @@ public final class ExerciseConstants {
         public static final String TENUTA = "Tenuta";
         public  static final String LISTA_SCHEDE = "ListaSchede";
         public  static final String GIORNATA = "Giornata";
+        public  static final String ESERCIZIO = "Esercizio";
     }
 
     public final class ToastMessageConstants {

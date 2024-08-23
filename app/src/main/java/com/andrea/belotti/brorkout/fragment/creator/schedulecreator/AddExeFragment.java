@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.creator.newinterfacecreator;
+package com.andrea.belotti.brorkout.fragment.creator.schedulecreator;
 
 import android.os.Bundle;
 
@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -19,7 +18,6 @@ import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
-import com.andrea.belotti.brorkout.adapter.ViewPagerPlanGeneratorAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExeIncrFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExePirFragment;
@@ -30,14 +28,8 @@ import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
 import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
 import com.andrea.belotti.brorkout.model.EsercizioSerie;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
-import com.andrea.belotti.brorkout.model.Giornata;
-import com.andrea.belotti.brorkout.model.Scheda;
 
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.List;
-
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
 
 /**
  * A simple {@link Fragment} subclass.

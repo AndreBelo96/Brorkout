@@ -198,7 +198,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:background="@drawable/circled_button"
                     app:backgroundTint="@color/light_blue_200"
-                    android:src="?attr/homeAsUpIndicator"
+                    android:src="@drawable/arrow_left"
                     android:drawableTint="@color/light_blue_200"
                     app:tint="@color/light_blue_200" />
 
@@ -208,8 +208,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:text="Trazioni"
-                    android:drawableRight="@drawable/home"
+                    android:text="Testo"
+                    android:drawableRight="@drawable/arrow_right"
                     android:textColor="@color/light_blue_200"
                     android:background="@drawable/circled_button"
                     app:backgroundTint="@color/light_blue_200"

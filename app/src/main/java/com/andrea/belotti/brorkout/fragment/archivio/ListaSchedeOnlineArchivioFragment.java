@@ -112,12 +112,8 @@ public class ListaSchedeOnlineArchivioFragment extends Fragment {
 
             button.setOnClickListener(v -> {
 
-                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                SceltaGiornoArchivioFragment sceltaGiornoArchivioFragment = new SceltaGiornoArchivioFragment();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Scheda", scheda);
-                sceltaGiornoArchivioFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, sceltaGiornoArchivioFragment);
+                FragmentTransaction fragmentTransaction = getParentFragment().getParentFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaGiornoArchivioFragment.newInstance(scheda));
                 fragmentTransaction.commit();
 
             });
