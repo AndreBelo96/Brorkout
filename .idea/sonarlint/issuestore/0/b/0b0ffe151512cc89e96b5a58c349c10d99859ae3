@@ -1,0 +1,31 @@
+
+{
+java:S1854h"?Remove this useless assignment to local variable "pasteButton".(öïº´J$d61582d3-fa7d-4e9a-ac7f-dc58e5d0531d
+
+java:S1854g">Remove this useless assignment to local variable "copyButton".(ÚêòıÿÿÿÿJ$16ec7098-9f5d-4ff8-9ac0-39e4a1fa1ee1
+x
+java:S1874V"7Remove this use of "getSerializable"; it is deprecated.(Ë¬Û‹ùÿÿÿÿJ$a7bac14a-8820-422f-9892-72c79f15da0f
+w
+java:S2696_"6Make the enclosing method "static" or remove this set.(¬…äıÿÿÿÿJ$25629f25-bb91-457f-a32d-9c4df689b41a
+q
+java:S2696b"6Make the enclosing method "static" or remove this set.(¨ò¯yJ$ab9c0d1a-b41e-4420-8815-82c7613d58b8
+p
+java:S1481g"/Remove this unused "copyButton" local variable.(ÚêòıÿÿÿÿJ$6f92886b-ae67-4706-806a-f99ff876f99c
+l
+java:S1481h"0Remove this unused "pasteButton" local variable.(öïº´J$75dc27ba-dcfe-4d32-a6ea-5f64aee591aa
+w
+java:S2696k"6Make the enclosing method "static" or remove this set.(÷–…ğÿÿÿÿÿJ$bd2fb3bb-4ed4-4446-aaa6-540776259898
+s
+java:S1135k"2Complete the task associated to this TODO comment.(÷–…ğÿÿÿÿÿJ$5a7fd81e-010f-4527-ad9c-ae9be896d6dd
+n
+java:S1135{"2Complete the task associated to this TODO comment.(˜âÅ»J$a4128865-666c-44ef-95f4-22a0b0102f10
+o
+java:S1135€"2Complete the task associated to this TODO comment.(˜âÅ»J$5e73741b-28ff-4d60-9c8c-38635bc73de9
+o
+java:S1135"2Complete the task associated to this TODO comment.(ØªÊ…J$8219923f-3f12-465a-bfb8-c2aaf91dbdb0
+o
+java:S1135¾"2Complete the task associated to this TODO comment.(ô£èüJ$a2e75541-a4b5-40de-9af7-b5310aff0c1d
+|
+java:S1117Õ":Rename "scheda" which hides the field declared at line 45.(‘»Ê…ûÿÿÿÿJ$37b1c978-0a88-4c1e-8881-e25ee741d307
+t
+java:S1135Õ"2Complete the task associated to this TODO comment.(‘»Ê…ûÿÿÿÿJ$cf1752d2-6eba-4682-9afb-d3631edf41ff
