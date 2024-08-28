@@ -3,11 +3,12 @@
     <color name="blue_200">#FF2E4172</color>
     <color name="blue_500">#FF162955</color>
     <color name="blue_700">#FF061539</color>
-    <color name="light_blue_200">#FF7887AB</color>
+    <color name="light_blue_200">#9BAACD</color>
     <color name="light_blue_500">#FF62739A</color>
     <color name="light_blue_700">#FF4F628E</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="buttonPressed">#FF061539</color>
     <color name="buttonUnpressed">#FF7887AB</color>
+    <color name="backgroundMenu">#E4E9F4</color>
 </resources>

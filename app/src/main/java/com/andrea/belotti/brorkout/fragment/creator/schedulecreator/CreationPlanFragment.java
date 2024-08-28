@@ -162,6 +162,7 @@ public class CreationPlanFragment extends Fragment {
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.hide(this);
+            viewPagerPlanGeneratorAdapter.resetButtonList(tabLayout.getSelectedTabPosition());
             fragmentTransaction.commit();
         });
 
@@ -179,18 +180,22 @@ public class CreationPlanFragment extends Fragment {
 
             // remove selected exe in the current exeList
             actualExeList.remove(exe);
+
             //set selected exercise to null
             activity.setSelectedExe(null);
+
+            viewPagerPlanGeneratorAdapter.resetButtonList(tabLayout.getSelectedTabPosition());
+
             //refresh viewPager2
             viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
         });
 
         createSchedule.setOnClickListener(v -> {
 
-            // se non ci sono esecizi in nessun giorno non creo la scheda //TODO pensa a come gestire se tutti i giorni o solo uno
-            if (scheda.getGiornate().stream().allMatch(g -> g.getEsercizi().isEmpty() || g.getEsercizi() == null)) {
+            if (scheda.getGiornate().get(0).getEsercizi() == null ||
+                    scheda.getGiornate().get(0).getEsercizi().isEmpty()) {
                 Log.e(tag, "Esercizi vuoti");
-                Toast toast = Toast.makeText(context, "Inserire almeno un esercizio", StringOutputConstants.shortDuration);
+                Toast toast = Toast.makeText(context, "Inserire almeno un esercizio nella prima giornata", StringOutputConstants.shortDuration);
                 toast.show();
                 return;
             }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
@@ -29,19 +30,21 @@ public class StartingMenuActivity extends AppCompatActivity {
         Log.i(tag, "Starting activity");
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_starting_menu);
+        setContentView(R.layout.activity_main_menu);
 
         String startWorkoutActivity = getResources().getString(R.string.UseSchedule);
         String scheduleCreatorActivity = getResources().getString(R.string.CreateSchedule);
+        String archivioActivity = getResources().getString(R.string.ArchvioSchedule);
         String optionActivity = getResources().getString(R.string.OptionSchedule);
         String personalAreaCreatorActivity = getResources().getString(R.string.PersonalArea);
 
         Context context = getApplicationContext();
 
-        ImageButton startWorkoutBtn = findViewById(R.id.startWorkoutBtn);
-        ImageButton createScheduleBtn = findViewById(R.id.createScheduleBtn);
-        ImageButton personalAreaBtn = findViewById(R.id.personalArea);
-        ImageButton optionBtn = findViewById(R.id.optionBtn);
+        LinearLayout startWorkoutBtn = findViewById(R.id.startWorkoutBtn);
+        LinearLayout createScheduleBtn = findViewById(R.id.createScheduleBtn);
+        LinearLayout archivioBtn = findViewById(R.id.archivioBtn);
+        LinearLayout personalAreaBtn = findViewById(R.id.personalArea);
+        LinearLayout optionBtn = findViewById(R.id.optionBtn);
 
 
         startWorkoutBtn.setOnClickListener(v -> {
@@ -57,6 +60,13 @@ public class StartingMenuActivity extends AppCompatActivity {
             toast.show();
             intent.putExtra("modifica", false);
             startActivity(intent);
+        });
+
+        archivioBtn.setOnClickListener(v -> {
+
+            Toast toast = Toast.makeText(context, archivioActivity, duration);
+            toast.show();
+
         });
 
         personalAreaBtn.setOnClickListener(v -> {

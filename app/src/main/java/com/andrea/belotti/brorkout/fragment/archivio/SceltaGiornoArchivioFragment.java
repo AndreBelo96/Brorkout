@@ -19,6 +19,7 @@ import com.andrea.belotti.brorkout.activity.ArchivioActivity;
 import com.andrea.belotti.brorkout.activity.ExecutionScheduleActivity;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.constants.StringOutputConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -83,9 +84,11 @@ public class SceltaGiornoArchivioFragment extends Fragment {
 
         Scheda finalSchedaScelta = schedaScelta;
         backSceltaSchede.setOnClickListener(v -> {
+
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, ListaSchedeLocalArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
+            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, ManagerListFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
             fragmentTransaction.commit();
+
         });
 
         deleteSchedaBtn.setOnClickListener(v -> {
@@ -107,8 +110,6 @@ public class SceltaGiornoArchivioFragment extends Fragment {
             intent.putExtra("modifica", true);
             intent.putExtra("SchedaDati", bundle);
             startActivity(intent);
-
-
         });
 
         return view;
@@ -134,6 +135,14 @@ public class SceltaGiornoArchivioFragment extends Fragment {
             int finalCount = count;
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+
+                    if (scheda.getGiornate().get(finalCount-1).getEsercizi() == null ||
+                            scheda.getGiornate().get(finalCount-1).getEsercizi().isEmpty()) {
+                        Log.e(tag, "Esercizi vuoti");
+                        Toast toast = Toast.makeText(context, "Modificare la scheda e inserire almeno un esercizio nella giornata selezionata", StringOutputConstants.shortDuration);
+                        toast.show();
+                        return;
+                    }
 
                     Intent intent = new Intent(getContext(), ExecutionScheduleActivity.class);
                     intent.putExtra("scheda", scheda);

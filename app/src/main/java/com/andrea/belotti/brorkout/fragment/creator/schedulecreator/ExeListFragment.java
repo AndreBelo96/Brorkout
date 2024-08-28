@@ -31,7 +31,7 @@ public class ExeListFragment extends Fragment {
 
 
     Giornata giornata;
-
+    LinearLayout layout;
     public static ExeListFragment newInstance(Giornata gioranta) {
         ExeListFragment fragment = new ExeListFragment();
         Bundle args = new Bundle();
@@ -51,7 +51,7 @@ public class ExeListFragment extends Fragment {
             giornata = (Giornata) getArguments().getSerializable(GIORNATA);
         }
 
-        LinearLayout layout = view.findViewById(R.id.exeListLayout);
+        layout = view.findViewById(R.id.exeListLayout);
 
         if (giornata.getEsercizi() != null) {
             initView(giornata, layout, getContext());
@@ -113,6 +113,17 @@ public class ExeListFragment extends Fragment {
             i[0]++;
             layout.addView(button);
         });
+
+    }
+
+    public void resetButton() {
+        int count = layout.getChildCount();
+
+        for (int i = 0; i < count; i++) {
+
+            ToggleButton button = (ToggleButton) layout.getChildAt(i);
+            button.setChecked(false);
+        }
 
     }
 

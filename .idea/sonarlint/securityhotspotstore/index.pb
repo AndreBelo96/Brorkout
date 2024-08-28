@@ -1242,3 +1242,17 @@ happ/src/main/java/com/andrea/belotti/brorkout/fragment/creator/schedulecreator/
 bapp/src/main/java/com/andrea/belotti/brorkout/fragment/creator/schedulecreator/AddExeFragment.java,e\1\e13e35e03d597620b713d31feb06b23d8ebe7dd3
 ì
 capp/src/main/java/com/andrea/belotti/brorkout/fragment/creator/schedulecreator/ExeListFragment.java,f\2\f290c24b68c71d8c92e1be43fb43b406522f13db
+Å
+Q.idea/sonarlint/securityhotspotstore/1/e/1e2c0ea90a0c0e33e8d4ffb8322482095897eb54,5\3\53f417992308c6bce84349327060e7e7db0c0dc5
+Å
+Q.idea/sonarlint/securityhotspotstore/f/2/f290c24b68c71d8c92e1be43fb43b406522f13db,3\f\3f06853a3b0723f38d39a93c3a7ead72320065c2
+Å
+Q.idea/sonarlint/securityhotspotstore/e/1/e13e35e03d597620b713d31feb06b23d8ebe7dd3,8\3\830a3548268d75431b37baf37759282e1e441e6a
+Å
+Q.idea/sonarlint/securityhotspotstore/9/8/986b41067d4e04a0da4b1618cc51a61e12454a28,4\1\41b3df757449a0264919af151f83f9cc3bc44ce6
+w
+G.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,e\d\ed67eb178d523a4b3f117dcbe0eda5196367ceec
+Å
+Q.idea/sonarlint/securityhotspotstore/0/b/0b0ffe151512cc89e96b5a58c349c10d99859ae3,2\0\20d7efb25cfda90a0f264398733614d97ea0997a
+Å
+Q.idea/sonarlint/securityhotspotstore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,3\0\30205a209c6ce77c4cfc19a09e6f57c588b7fb88
