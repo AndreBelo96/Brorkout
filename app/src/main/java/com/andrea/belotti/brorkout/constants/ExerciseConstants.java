@@ -88,4 +88,15 @@ public final class ExerciseConstants {
         public static final int DURATION = Toast.LENGTH_SHORT;
     }
 
+    public static final class PersonalData {
+
+        private PersonalData() {}
+
+        public static final String USERNAME = "Username";
+        public static final String WEIGHT = "Weight";
+        public static final String HEIGHT = "Height";
+        public static final String FAT_PERCENTILE = "Fat Percentile";
+
+    }
+
 }

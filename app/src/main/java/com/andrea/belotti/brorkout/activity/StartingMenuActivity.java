@@ -2,13 +2,16 @@ package com.andrea.belotti.brorkout.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,11 +35,8 @@ public class StartingMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        String startWorkoutActivity = getResources().getString(R.string.UseSchedule);
-        String scheduleCreatorActivity = getResources().getString(R.string.CreateSchedule);
         String archivioActivity = getResources().getString(R.string.ArchvioSchedule);
         String optionActivity = getResources().getString(R.string.OptionSchedule);
-        String personalAreaCreatorActivity = getResources().getString(R.string.PersonalArea);
 
         Context context = getApplicationContext();
 
@@ -46,18 +46,20 @@ public class StartingMenuActivity extends AppCompatActivity {
         LinearLayout personalAreaBtn = findViewById(R.id.personalArea);
         LinearLayout optionBtn = findViewById(R.id.optionBtn);
 
+        TextView username = findViewById(R.id.userNameText);
+
+        // init val
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        username.setText(sharedPreferences.getString(ExerciseConstants.PersonalData.USERNAME, "Username"));
+        // init dell'immagine + fare metodo a aprte
 
         startWorkoutBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), ArchivioActivity.class);
-            Toast toast = Toast.makeText(context, startWorkoutActivity, duration);
-            toast.show();
             startActivity(intent);
         });
 
         createScheduleBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), ScheduleCreatorActivity.class);
-            Toast toast = Toast.makeText(context, scheduleCreatorActivity, duration);
-            toast.show();
             intent.putExtra("modifica", false);
             startActivity(intent);
         });
@@ -71,8 +73,6 @@ public class StartingMenuActivity extends AppCompatActivity {
 
         personalAreaBtn.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), PersonalAreaActivity.class);
-            Toast toast = Toast.makeText(context, personalAreaCreatorActivity, duration);
-            toast.show();
             startActivity(intent);
         });
 
