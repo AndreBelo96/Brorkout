@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blue_200"
     android:orientation="vertical"
-    tools:context=".fragment.creator.schedulecreator.CreationPlanFragment">
+    tools:context=".fragment.schedule_creator.CreationPlanFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabDayListLayout"

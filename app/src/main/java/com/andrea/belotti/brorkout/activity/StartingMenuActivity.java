@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.utils.ImageUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.PersonalData.IMAGE_DATA;
 
 /**
  * @author      Andrea Belotti <andreablt96@hotmail.it>
@@ -47,14 +50,19 @@ public class StartingMenuActivity extends AppCompatActivity {
         LinearLayout optionBtn = findViewById(R.id.optionBtn);
 
         TextView username = findViewById(R.id.userNameText);
+        CircleImageView image = findViewById(R.id.profile_image);
 
         // init val
         SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         username.setText(sharedPreferences.getString(ExerciseConstants.PersonalData.USERNAME, "Username"));
-        // init dell'immagine + fare metodo a aprte
+
+        if (ImageUtils.covertFromStringToBitmap(sharedPreferences.getString(IMAGE_DATA, "")) != null) {
+            image.setImageBitmap(ImageUtils.covertFromStringToBitmap(sharedPreferences.getString(IMAGE_DATA, "")));
+        }
+        // init dell'immagine + fare metodo a parte
 
         startWorkoutBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(getBaseContext(), ArchivioActivity.class);
+            Intent intent = new Intent(getBaseContext(), SelectScheduleActivity.class);
             startActivity(intent);
         });
 
@@ -66,8 +74,8 @@ public class StartingMenuActivity extends AppCompatActivity {
 
         archivioBtn.setOnClickListener(v -> {
 
-            Toast toast = Toast.makeText(context, archivioActivity, duration);
-            toast.show();
+            Intent intent = new Intent(getBaseContext(), ScheduleArchiveActivity.class);
+            startActivity(intent);
 
         });
 

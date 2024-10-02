@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/blue_200"
-    tools:context=".fragment.creator.schedulecreator.ExeListFragment">
+    tools:context=".fragment.schedule_creator.schedulecreator.ExeListFragment">
 
 
     <ScrollView

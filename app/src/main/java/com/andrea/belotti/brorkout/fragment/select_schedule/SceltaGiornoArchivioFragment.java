@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.archivio;
+package com.andrea.belotti.brorkout.fragment.select_schedule;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ArchivioActivity;
+import com.andrea.belotti.brorkout.activity.SelectScheduleActivity;
 import com.andrea.belotti.brorkout.activity.ExecutionScheduleActivity;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
@@ -92,7 +92,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
         });
 
         deleteSchedaBtn.setOnClickListener(v -> {
-            ArchivioActivity.deleteData(finalSchedaScelta.getNome());
+            SelectScheduleActivity.deleteData(finalSchedaScelta.getNome());
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerArchivioView, ListaSchedeLocalArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));

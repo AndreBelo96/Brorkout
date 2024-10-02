@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.archivio;
+package com.andrea.belotti.brorkout.fragment.select_schedule;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.fragment.archivio.SceltaGiornoArchivioFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;

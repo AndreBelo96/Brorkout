@@ -6,6 +6,7 @@ import java.util.List;
 public class Scheda implements Serializable {
 
     private List<Giornata> giornate;
+    private int numeroGiornate;
     private String nome;
 
     public Scheda(List<Giornata> giornate) {
@@ -29,11 +30,20 @@ public class Scheda implements Serializable {
         this.nome = nome;
     }
 
+    public int getNumeroGiornate() {
+        return numeroGiornate;
+    }
+
+    public void setNumeroGiornate(int numeroGiornate) {
+        this.numeroGiornate = numeroGiornate;
+    }
+
     @Override
     public String toString() {
-        return "Scheda{" +
-                "giornate=" + giornate +
-                ", nome='" + nome + '\'' +
+        return "Scheda {" +
+                "nome = '" + nome + '\'' +
+                ", numeroGiornate = " + numeroGiornate +
+                ", giornate = " + giornate +
                 '}';
     }
 }

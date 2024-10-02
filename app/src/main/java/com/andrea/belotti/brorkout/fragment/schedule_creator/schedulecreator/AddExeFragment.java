@@ -1,6 +1,10 @@
-package com.andrea.belotti.brorkout.fragment.creator.schedulecreator;
+package com.andrea.belotti.brorkout.fragment.schedule_creator.schedulecreator;
 
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,32 +23,26 @@ import com.andrea.belotti.brorkout.fragment.collectdata.DataExeIncrFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExePirFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExeSerFragment;
 import com.andrea.belotti.brorkout.fragment.collectdata.DataExeTenFragment;
+import com.andrea.belotti.brorkout.fragment.schedule_creator.CreationPlanFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
 import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
 import com.andrea.belotti.brorkout.model.EsercizioSerie;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
-import com.andrea.belotti.brorkout.model.Giornata;
 
 import org.apache.commons.lang3.StringUtils;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
-
-public class ModifyExeFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link AddExeFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class AddExeFragment extends Fragment {
 
     Fragment typeExeFragment = null;
-    Integer numeroEsercizio = null;
 
-    public static ModifyExeFragment newInstance(Giornata gioranta, Integer numeroEsercizio) {
-        ModifyExeFragment fragment = new ModifyExeFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(GIORNATA, gioranta);
-        args.putSerializable("NumeroEsercizio", numeroEsercizio);
-        fragment.setArguments(args);
-        return fragment;
+    public static AddExeFragment newInstance() {
+        return new AddExeFragment();
     }
 
     @Override
@@ -54,17 +52,7 @@ public class ModifyExeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_exe, container, false);
 
         Spinner typeExePicker = view.findViewById(R.id.choiceExerciseType);
-
-        Giornata giornata = null;
-        if (getArguments() != null) {
-
-            giornata = (Giornata) getArguments().getSerializable(GIORNATA);
-            numeroEsercizio = (Integer) getArguments().getSerializable("NumeroEsercizio");
-            initExeView(giornata.getEsercizi().get(numeroEsercizio), view);
-        }
-
-        changeTypeExeFragment(typeExePicker, giornata.getEsercizi().get(numeroEsercizio));
-
+        changeTypeExeFragment(typeExePicker);
         Button saveButton = view.findViewById(R.id.salva);
         Button annullaButton = view.findViewById(R.id.annulla);
 
@@ -84,8 +72,7 @@ public class ModifyExeFragment extends Fragment {
             activity.setAddExeCreation(esercizio);
             deleteFragmentFromStack(fragmentTransaction);
 
-            CreationPlanFragment.refreshPage(activity, numeroEsercizio);
-
+            CreationPlanFragment.refreshPage(activity);
 
         });
 
@@ -106,7 +93,7 @@ public class ModifyExeFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-    private void changeTypeExeFragment(Spinner typeNumPicker, Esercizio esercizio) {
+    private void changeTypeExeFragment(Spinner typeNumPicker) {
         typeNumPicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -116,26 +103,22 @@ public class ModifyExeFragment extends Fragment {
 
                 switch (selectedItem) {
                     case "Serie":
-                        EsercizioSerie esercizioSerie = esercizio.getTipoEsercizio().equals("Serie") ? (EsercizioSerie) esercizio : null;
-                        DataExeSerFragment dataExeSerFragment = DataExeSerFragment.newInstance(esercizioSerie);
+                        DataExeSerFragment dataExeSerFragment = new DataExeSerFragment();
                         fragmentTransaction.replace(R.id.fragmentContainerTipoEsercizio, dataExeSerFragment);
                         typeExeFragment = dataExeSerFragment;
                         break;
                     case "Incrementale":
-                        EsercizioIncrementale esercizioIncrementale = esercizio.getTipoEsercizio().equals("Incrementale") ? (EsercizioIncrementale) esercizio : null;
-                        DataExeIncrFragment dataExeIncrFragment = DataExeIncrFragment.newInstance(esercizioIncrementale);
+                        DataExeIncrFragment dataExeIncrFragment = new DataExeIncrFragment();
                         fragmentTransaction.replace(R.id.fragmentContainerTipoEsercizio, dataExeIncrFragment);
                         typeExeFragment = dataExeIncrFragment;
                         break;
                     case "Piramidale":
-                        EsercizioPiramidale esercizioPiramidale = esercizio.getTipoEsercizio().equals("Piramidale") ? (EsercizioPiramidale) esercizio : null;
-                        DataExePirFragment dataExePirFragment = DataExePirFragment.newInstance(esercizioPiramidale);
+                        DataExePirFragment dataExePirFragment = new DataExePirFragment();
                         fragmentTransaction.replace(R.id.fragmentContainerTipoEsercizio, dataExePirFragment);
                         typeExeFragment = dataExePirFragment;
                         break;
                     case "Tenuta":
-                        EsercizioTenuta esercizioTenuta = esercizio.getTipoEsercizio().equals("Tenuta") ? (EsercizioTenuta) esercizio : null;
-                        DataExeTenFragment dataExeTenFragment = DataExeTenFragment.newInstance(esercizioTenuta);
+                        DataExeTenFragment dataExeTenFragment = new DataExeTenFragment();
                         fragmentTransaction.replace(R.id.fragmentContainerTipoEsercizio, dataExeTenFragment);
                         typeExeFragment = dataExeTenFragment;
                         break;
@@ -215,27 +198,5 @@ public class ModifyExeFragment extends Fragment {
                 (StringUtils.isEmpty(esercizio.getRipetizioni()) && StringUtils.isEmpty(esercizio.getInizio()));
     }
 
-    private void initExeView(Esercizio esercizio, View view) {
-
-        /*Spinner typeExePicker = view.findViewById(R.id.choiceExerciseType);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.exerciseType, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        typeExePicker.setAdapter(adapter);
-        if (esercizio.getTipoEsercizio() != null) {
-            int spinnerPosition = adapter.getPosition(esercizio.getTipoEsercizio());
-            typeExePicker.setSelection(spinnerPosition);
-        }*/
-
-        EditText nomeEsercizio = view.findViewById(R.id.textNomeEsercizio);
-        nomeEsercizio.setText(esercizio.getNomeEsercizio());
-
-        CheckBox checkBox = view.findViewById(R.id.checkBoxVideo);
-        checkBox.setChecked(esercizio.getVideo());
-
-        EditText indicazioni = view.findViewById(R.id.textIndicazioniEsercizio);
-        indicazioni.setText(esercizio.getIndicazioniCoach());
-
-    }
 
 }

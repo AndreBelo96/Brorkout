@@ -2,6 +2,7 @@ package com.andrea.belotti.brorkout.utils;
 
 import android.util.Log;
 
+import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.InterfaceAdapter;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -15,7 +16,7 @@ public class JsonGeneratorUtil {
     // log
     private static final String TAG = "JsonGeneratorUtil";
 
-    public static String generateJsonFromSchedule(Object o) {
+    public static String generateJsonFromObject(Object o) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Esercizio.class, new InterfaceAdapter());
         Gson gson = builder.create();
@@ -29,6 +30,14 @@ public class JsonGeneratorUtil {
         builder.registerTypeAdapter(Esercizio.class, new InterfaceAdapter());
         Gson gson = builder.create();
         Scheda scheda = gson.fromJson(jsonString, Scheda.class);
+        return scheda;
+    }
+
+    public static Node generateNodeFromJson(String jsonString) throws JsonProcessingException {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(Esercizio.class, new InterfaceAdapter());
+        Gson gson = builder.create();
+        Node scheda = gson.fromJson(jsonString, Node.class);
         return scheda;
     }
 }

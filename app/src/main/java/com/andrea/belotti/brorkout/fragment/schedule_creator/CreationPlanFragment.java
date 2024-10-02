@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.creator.schedulecreator;
+package com.andrea.belotti.brorkout.fragment.schedule_creator;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +21,8 @@ import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.adapter.ViewPagerPlanGeneratorAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
+import com.andrea.belotti.brorkout.fragment.schedule_creator.schedulecreator.AddExeFragment;
+import com.andrea.belotti.brorkout.fragment.schedule_creator.schedulecreator.ModifyExeFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -221,14 +223,17 @@ public class CreationPlanFragment extends Fragment {
             return datiScheda;
         } else if (datiScheda != null && StringUtils.isNotEmpty(titoloScheda)) {
             scheda.setNome(titoloScheda);
+            scheda.setNumeroGiornate(numeroGiornate);
             scheda.setGiornate(datiScheda.getGiornate());
         } else {
             scheda.setNome(titoloScheda);
+            scheda.setNumeroGiornate(numeroGiornate);
             List<Giornata> giornateList = new ArrayList<>();
             for (int i = 1; i <= numeroGiornate; i++) {
                 Giornata g = new Giornata();
                 List<Esercizio> exeList = new ArrayList<>();
                 g.setEsercizi(exeList);
+                g.setNumeroGiornata(i);
                 giornateList.add(g);
             }
             scheda.setGiornate(giornateList);

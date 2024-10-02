@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.creator;
+package com.andrea.belotti.brorkout.fragment.schedule_creator;
 
 import android.content.Context;
 import android.os.Build;
@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.fragment.creator.schedulecreator.CreationPlanFragment;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.ArrayList;

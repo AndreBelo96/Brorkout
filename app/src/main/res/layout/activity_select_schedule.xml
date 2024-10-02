@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/blue_200"
     android:orientation="vertical"
-    tools:context=".activity.ArchivioActivity">
+    tools:context=".activity.SelectScheduleActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerArchivioView"
-            android:name="com.andrea.belotti.brorkout.fragment.archivio.ManagerListFragment"
+            android:name="com.andrea.belotti.brorkout.fragment.select_schedule.ManagerListFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

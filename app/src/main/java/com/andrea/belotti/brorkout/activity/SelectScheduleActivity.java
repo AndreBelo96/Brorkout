@@ -8,14 +8,14 @@ import android.util.Log;
 import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.archivio.ManagerListFragment;
+import com.andrea.belotti.brorkout.fragment.select_schedule.ManagerListFragment;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-public class ArchivioActivity extends AppCompatActivity {
+public class SelectScheduleActivity extends AppCompatActivity {
 
     // log
     private final String tag = this.getClass().getSimpleName();
@@ -30,7 +30,7 @@ public class ArchivioActivity extends AppCompatActivity {
         Log.i(tag, "Starting activity");
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_archivio);
+        setContentView(R.layout.activity_select_schedule);
 
         sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 

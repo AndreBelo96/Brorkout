@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.creator.schedulecreator;
+package com.andrea.belotti.brorkout.fragment.schedule_creator.schedulecreator;
 
 import android.content.Context;
 import android.os.Bundle;

@@ -1,7 +1,5 @@
 package com.andrea.belotti.brorkout.model;
 
-import java.io.Serializable;
-
 import androidx.annotation.Keep;
 
 @Keep

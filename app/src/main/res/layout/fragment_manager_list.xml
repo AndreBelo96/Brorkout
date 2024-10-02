@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blue_200"
     android:orientation="vertical"
-    tools:context=".fragment.archivio.ManagerListFragment">
+    tools:context=".fragment.select_schedule.ManagerListFragment">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

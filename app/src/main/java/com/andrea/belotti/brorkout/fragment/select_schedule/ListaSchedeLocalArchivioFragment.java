@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.archivio;
+package com.andrea.belotti.brorkout.fragment.select_schedule;
 
 import android.content.Context;
 import android.os.Bundle;

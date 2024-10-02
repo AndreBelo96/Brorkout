@@ -7,8 +7,8 @@ import android.util.Log;
 import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.creator.CreationMenuFragment;
-import com.andrea.belotti.brorkout.fragment.creator.schedulecreator.CreationPlanFragment;
+import com.andrea.belotti.brorkout.fragment.schedule_creator.CreationMenuFragment;
+import com.andrea.belotti.brorkout.fragment.schedule_creator.CreationPlanFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.MetaData;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -20,6 +20,8 @@ import java.time.LocalDate;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 public class ScheduleCreatorActivity extends AppCompatActivity {
 
@@ -82,12 +84,12 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
             // DATABASE
             //add Firebase Database stuff
             DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Schedules");
-            myRef.child("user").child(scheda.getNome()).child("DATA").setValue(JsonGeneratorUtil.generateJsonFromSchedule(scheda));
-            myRef.child("user").child(scheda.getNome()).child("METADATA").setValue(JsonGeneratorUtil.generateJsonFromSchedule(metaData));
+            myRef.child("user").child(scheda.getNome()).child("DATA").setValue(JsonGeneratorUtil.generateJsonFromObject(scheda));
+            myRef.child("user").child(scheda.getNome()).child("METADATA").setValue(JsonGeneratorUtil.generateJsonFromObject(metaData));
         }
 
         SharedPreferences.Editor myEdit = sharedPreferences.edit();
-        myEdit.putString(scheda.getNome(), JsonGeneratorUtil.generateJsonFromSchedule(scheda));
+        myEdit.putString(SCHEDA + "_" + scheda.getNome(), JsonGeneratorUtil.generateJsonFromObject(scheda));
         myEdit.apply();
     }
 

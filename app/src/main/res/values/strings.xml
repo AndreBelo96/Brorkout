@@ -30,11 +30,11 @@
         <item>Tenuta</item>
     </string-array>
 
-    <string-array name="exerciseTypeLabels" >
-        <item ><FONT COLOR="@color/light_blue_200"><b>Serie</b></FONT></item>
-        <item ><FONT COLOR="@color/light_blue_200"><b>Incrementale</b></FONT></item>
-        <item ><FONT COLOR="@color/light_blue_200"><b>Piramidale</b></FONT></item>
-        <item ><FONT COLOR="@color/light_blue_200"><b>Tenuta</b></FONT></item>
+    <string-array name="exerciseTypeLabels">
+        <item><FONT COLOR="@color/light_blue_200"><b>Serie</b></FONT></item>
+        <item><FONT COLOR="@color/light_blue_200"><b>Incrementale</b></FONT></item>
+        <item><FONT COLOR="@color/light_blue_200"><b>Piramidale</b></FONT></item>
+        <item><FONT COLOR="@color/light_blue_200"><b>Tenuta</b></FONT></item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

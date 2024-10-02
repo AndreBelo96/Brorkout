@@ -8,8 +8,9 @@ import android.widget.Button;
 import android.widget.ToggleButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.ArrayList;
@@ -18,9 +19,9 @@ import java.util.List;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.BUTTON_COLOR;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.BUTTON_PRESSED_COLOR;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.TEXT_BUTTON_COLOR;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ROOT;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 public class ScheduleCreatingUtils {
 
@@ -33,11 +34,37 @@ public class ScheduleCreatingUtils {
         List<Scheda> schedaList = new ArrayList<>();
 
         sharedPreferences.getAll().forEach((key, value) -> {
-            String json = value.toString();
-            schedaList.add(createSchedule(json));
+            if (key.startsWith(SCHEDA)) {
+                String json = value.toString();
+                schedaList.add(createSchedule(json));
+            }
         });
 
         return schedaList;
+    }
+
+    //TODO controllo sui nullpointer
+    public static Node getNodeFromPref(SharedPreferences sharedPreferences) {
+        final Node[] rootNode = {new Node()};
+
+        sharedPreferences.getAll().forEach((key, value) -> {
+            if (key.startsWith(ROOT)) {
+                String json = value.toString();
+                rootNode[0] = createNode(json);
+            }
+        });
+
+        return rootNode[0];
+    }
+
+    private static Node createNode(String node) {
+        Node rootNode = new Node();
+        try {
+            rootNode = JsonGeneratorUtil.generateNodeFromJson(node);
+        } catch (JsonProcessingException e) {
+            Log.e("TAG", "ERROR CREATING NODE FROM LOCAL MEMORY");
+        }
+        return rootNode;
     }
 
     private static Scheda createSchedule(String schedule) {
@@ -64,6 +91,20 @@ public class ScheduleCreatingUtils {
             b.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorbuttonbase));
             b.setTextColor(TEXT_BUTTON_COLOR);
         });
+    }
+
+    public static Long getMaxId(List<Node> yearNodeList) {
+        Long max = 0L;
+        for (Node year : yearNodeList) {
+            for(Node month : year.getChildren()) {
+                for (PlanCompletedNode plan : month.getData()) {
+                    if (plan.getId() > max) {
+                        max = plan.getId();
+                    }
+                }
+            }
+        }
+        return max;
     }
 
 }
