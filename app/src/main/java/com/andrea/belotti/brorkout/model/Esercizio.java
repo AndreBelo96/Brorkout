@@ -5,8 +5,8 @@ import androidx.annotation.Keep;
 @Keep
 public interface Esercizio {
 
-    String getNomeEsercizio();
-    void setNomeEsercizio(String nomeEsercizio);
+    String getName();
+    void setName(String name);
 
     String getTipoEsercizio();
     void setTipoEsercizio(String tipoEsercizio);
@@ -44,6 +44,12 @@ public interface Esercizio {
     String getTempoEsecuzione();
     void setTempoEsecuzione(String tempoEsecuzione);
 
+    String getElastico();
+    void setElastico(String elastico);
+
+    String getZavorre();
+    void setZavorre(String zavorre);
+
     String toString();
 
     String toStringUI();
@@ -55,5 +61,6 @@ public interface Esercizio {
     String getRipetizioneEsercizioString();
 
     void setNumeroRipetizioniDopoSerie();
+
 
 }

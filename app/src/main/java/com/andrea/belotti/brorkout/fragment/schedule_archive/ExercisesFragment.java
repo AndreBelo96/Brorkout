@@ -1,31 +1,32 @@
 package com.andrea.belotti.brorkout.fragment.schedule_archive;
 
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
+
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
+import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
-
-import java.util.List;
-
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.GIORNATA;
-import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicTextView;
 
 public class ExercisesFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
     private Context context;
+    private ScheduleArchiveActivity activity;
 
     public static ExercisesFragment newInstance(Giornata day) {
         ExercisesFragment fragment = new ExercisesFragment();
@@ -34,7 +35,6 @@ public class ExercisesFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,46 +46,39 @@ public class ExercisesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_exercises, container, false);
 
-        // da prendere nel bundle
-        Giornata day = new Giornata();
+        activity = (ScheduleArchiveActivity) this.getActivity();
 
+        // retrieve data
+        Giornata day = new Giornata();
         if (getArguments() != null) {
             day = (Giornata) getArguments().get(GIORNATA);
         }
 
-        LinearLayout exercisesLayout = view.findViewById(R.id.exercises);
+        // set recyclerView info
+        RecyclerView recyclerView = view.findViewById(R.id.exercises);
+        EsercizioAdapter adapter = new EsercizioAdapter(context, day.getEsercizi().toArray(new Esercizio[0]), activity, getParentFragmentManager());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(adapter);
 
-        if (day != null) {
-            initView(day, exercisesLayout);
-        } else {
-            initEmptyView(exercisesLayout);
-        }
+        // back button
+        LinearLayout buttonBack = view.findViewById(R.id.back);
+
+        buttonBack.setOnClickListener(v -> {
+
+            String path = activity.getPath();
+            String sub[] = path.split("/");
+
+            activity.setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/");
+
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance(activity.getPlanCompletedNode()));
+            fragmentTransaction.commit();
+
+        });
+
 
         return view;
     }
-
-    private void initEmptyView(LinearLayout monthsLayout) {
-        Log.e(tag, "Nessuna scheda completata");
-        monthsLayout.addView(createBasicTextView(context, "Nessuna scheda completata"));
-    }
-
-    private void initView(Giornata day, LinearLayout exercisesLayout) {
-        List<Esercizio> exercises = day.getEsercizi();
-        setExeText(exercises, exercisesLayout);
-    }
-
-    private void setExeText(List<Esercizio> exercises, LinearLayout exercisesLayout) {
-
-        for (Esercizio exercise : exercises) {
-
-            // Create button
-            TextView exeTextView = createBasicTextView(context, exercise.getNomeEsercizio());
-
-            // Add button to layout
-            exercisesLayout.addView(exeTextView);
-
-        }
-    }
-
 
 }

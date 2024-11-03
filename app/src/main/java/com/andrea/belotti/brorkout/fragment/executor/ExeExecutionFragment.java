@@ -158,11 +158,11 @@ public class ExeExecutionFragment extends Fragment {
         EditText textAppuntiAtleta = view.findViewById(R.id.commentiAtleta);
         Button nextExeButton = view.findViewById(R.id.buttonNextExe);
 
-        textNameExe.setText(esercizioList.get(countExe).getNomeEsercizio());
+        textNameExe.setText(esercizioList.get(countExe).getName());
         textNumSerie.setText("Serie: " + esercizioList.get(countExe).getSerieCompletate() + "/" + esercizioList.get(countExe).getSerie());
         textNumRep.setText(esercizioList.get(countExe).getRipetizioneEsercizioString());
         if (countExe + 1 < esercizioList.size()) {
-            nextExeButton.setText(esercizioList.get(countExe + 1).getNomeEsercizio());
+            nextExeButton.setText(esercizioList.get(countExe + 1).getName());
         } else {
             nextExeButton.setText("FINE");
         }

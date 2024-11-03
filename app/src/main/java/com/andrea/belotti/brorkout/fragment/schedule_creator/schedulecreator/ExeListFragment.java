@@ -67,7 +67,7 @@ public class ExeListFragment extends Fragment {
 
         giornata.getEsercizi().forEach(exe -> {
 
-            String buttonText = exe.getNomeEsercizio() + "\nSerie: " + exe.getSerie() + "x" + exe.getRipetizioni() + "\nRecupero: " + exe.getRecupero();
+            String buttonText = exe.getName() + "\nSerie: " + exe.getSerie() + "x" + exe.getRipetizioni() + "\nRecupero: " + exe.getRecupero();
 
             ToggleButton button = new ToggleButton(context);
             button.setId(i[0]);

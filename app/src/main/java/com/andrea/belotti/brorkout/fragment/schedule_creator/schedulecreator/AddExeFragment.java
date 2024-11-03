@@ -145,7 +145,7 @@ public class AddExeFragment extends Fragment {
         Esercizio esercizio = initExe(typeExePicker, viewFragment);
 
         esercizio.setTipoEsercizio(((Spinner) view.findViewById(R.id.choiceExerciseType)).getSelectedItem().toString());
-        esercizio.setNomeEsercizio(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
+        esercizio.setName(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
         esercizio.setRecupero(((EditText) viewFragment.findViewById(R.id.recoverText)).getText().toString());
         esercizio.setSerieCompletate(0);
         esercizio.setSerie(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
@@ -194,7 +194,7 @@ public class AddExeFragment extends Fragment {
 
         return StringUtils.isEmpty(esercizio.getSerie()) ||
                 StringUtils.isEmpty(esercizio.getRecupero()) ||
-                StringUtils.isEmpty(esercizio.getNomeEsercizio()) ||
+                StringUtils.isEmpty(esercizio.getName()) ||
                 (StringUtils.isEmpty(esercizio.getRipetizioni()) && StringUtils.isEmpty(esercizio.getInizio()));
     }
 

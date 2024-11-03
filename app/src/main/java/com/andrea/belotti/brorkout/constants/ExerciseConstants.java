@@ -21,8 +21,6 @@ public final class ExerciseConstants {
 
     public static final  String DATA_ARGUMENT_NULL = "A data in arguments is null";
 
-    public static final  String GIORNATA = "Giornata: ";
-
     public final class DataBase {
 
         private DataBase() {
@@ -46,6 +44,7 @@ public final class ExerciseConstants {
         public static final int TEXT_BUTTON_COLOR = 0xFF162955;
         public static final int EXE_OK_COLOR = 0x71735F2E;
         public static final int EXE_KO_COLOR = 0x71733B2E;
+
     }
 
     public final class Size {
@@ -84,7 +83,6 @@ public final class ExerciseConstants {
         public static final String TITOLO_SCHEDA = "titoloScheda";
         public static final String SCHEDA = "Scheda";
         public static final String ROOT = "ROOT";
-        public static final String TENUTA = "Tenuta";
         public static final String LISTA_SCHEDE = "ListaSchede";
         public static final String GIORNATA = "Giornata";
         public static final String ESERCIZIO = "Esercizio";
@@ -106,6 +104,17 @@ public final class ExerciseConstants {
         public static final String HEIGHT = "height";
         public static final String FAT_PERCENTILE = "fat_percentile";
         public static final String IMAGE_DATA = "image_data";
+
+    }
+
+    public static final class ExeType {
+
+        private ExeType() {}
+
+        public static final String INCREMENTALE = "Incrementale";
+        public static final String SERIE = "Serie";
+        public static final String TENUTA = "Tenuta";
+        public static final String PIRAMIDALE = "Piramidale";
 
     }
 

@@ -1,6 +1,7 @@
 package com.andrea.belotti.brorkout.fragment.schedule_archive;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
+import com.andrea.belotti.brorkout.activity.StartingMenuActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
@@ -53,6 +55,15 @@ public class YearsFragment extends Fragment {
 
         activity = (ScheduleArchiveActivity) this.getActivity();
 
+        // back button
+        LinearLayout buttonBack = view.findViewById(R.id.back);
+
+        buttonBack.setOnClickListener(v -> {
+            Intent intent = new Intent(context, StartingMenuActivity.class);
+            startActivity(intent);
+        });
+
+
         if (!rootNode.isEmpty()) {
             initView(rootNode, yearsLayout);
         } else {
@@ -66,7 +77,7 @@ public class YearsFragment extends Fragment {
 
     private void initEmptyView(LinearLayout plansCompletedLayout) {
 
-        plansCompletedLayout.addView(createBasicTextView(context, "Nessuna scheda completata"));
+        plansCompletedLayout.addView(createBasicTextView(context, "Nessuna scheda completata", 15f));
     }
 
     private void initView(Node rootNode, LinearLayout plansCompletedLayout) {
@@ -78,27 +89,25 @@ public class YearsFragment extends Fragment {
     private void setYearButtons(List<Node> yearNodes, LinearLayout plansCompletedLayout) {
 
         for(Node year : yearNodes) {
-
             // Create button
-            LinearLayout yearButton = createBasicButtonLayout(context, year.getName());
+            LinearLayout yearButton = createBasicButtonLayout(context, year.getName(), 20f);
+            yearButton.setPadding(60, 20,60, 20);
+
+
             // Add button to layout
             plansCompletedLayout.addView(yearButton);
 
             yearButton.setOnClickListener( v-> {
 
                 activity.setPath(year.getName() + "/");
+                activity.setYearNode(year);
 
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentContainerArchiveView, MonthsFragment.newInstance(year));
                 fragmentTransaction.commit();
             });
-
         }
+
     }
-
-
-
-
-
 
 }

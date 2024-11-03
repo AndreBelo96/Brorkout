@@ -74,12 +74,29 @@ public class DaysFragment extends Fragment {
             initEmptyView(daysLayout);
         }
 
+        // back button
+        LinearLayout buttonBack = view.findViewById(R.id.back);
+
+        buttonBack.setOnClickListener(v -> {
+
+            String path = activity.getPath();
+            String sub[] = path.split("/");
+
+            activity.setPath(sub[0] + "/" + sub[1] + "/");
+
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansFragment.newInstance(activity.getMonthNode()));
+            fragmentTransaction.commit();
+
+        });
+
+
         return view;
     }
 
     private void initEmptyView(LinearLayout monthsLayout) {
         Log.e(tag, "Nessuna scheda completata");
-        monthsLayout.addView(createBasicTextView(context, "Nessuna scheda completata"));
+        monthsLayout.addView(createBasicTextView(context, "Nessuna scheda completata", 20f));
     }
 
     private void initView(PlanCompletedNode planNode, LinearLayout daysLayout) {
@@ -93,7 +110,9 @@ public class DaysFragment extends Fragment {
         for (Giornata day : days) {
 
             // Create button
-            LinearLayout dayButton = createBasicButtonLayout(context, "Giornata: " + day.getNumeroGiornata());
+            LinearLayout dayButton = createBasicButtonLayout(context, "Giornata: " + day.getNumeroGiornata(), 20f);
+
+            dayButton.setPadding(40,15,40,15);
 
             // Add button to layout
             daysLayout.addView(dayButton);
@@ -101,35 +120,13 @@ public class DaysFragment extends Fragment {
             dayButton.setOnClickListener(v -> {
 
                 activity.setPath(activity.getPath() + day.getNumeroGiornata() + "/");
+                activity.setDay(day);
 
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(day));
                 fragmentTransaction.commit();
             });
         }
-
-
-        LinearLayout buttonBack = createBasicButtonLayout(context, "Back");
-
-        buttonBack.setOnClickListener(v -> {
-
-            String path = activity.getPath();
-            String sub[] = path.split("/");
-
-            SharedPreferences sharedPreferences = getContext().getSharedPreferences("MySharedPref", MODE_PRIVATE);
-            Node rootNode = ScheduleCreatingUtils.getNodeFromPref(sharedPreferences);
-
-            Node month = (Node) rootNode.findChildById(monthParentId, rootNode.getChildren());
-
-            activity.setPath(sub[0] + "/" + sub[1] + "/");
-
-            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansFragment.newInstance(month));
-            fragmentTransaction.commit();
-
-        });
-
-        daysLayout.addView(buttonBack);
 
     }
 

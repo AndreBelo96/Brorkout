@@ -1,10 +1,12 @@
 package com.andrea.belotti.brorkout.model;
 
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.SERIE;
+
 import java.io.Serializable;
 
 public class EsercizioSerie implements Esercizio, Serializable {
 
-    private String type = "Serie";
+    private String type = SERIE;
     private String nomeEsercizio;
     private String tipoEsercizio;
     private String serie;
@@ -14,10 +16,8 @@ public class EsercizioSerie implements Esercizio, Serializable {
     private String indicazioniCoach;
     private String appuntiAtleta;
     private String ripetizioni;
-
-    public EsercizioSerie(){
-        // non mi serve un costruttore per ora, creo l'oggetto vuoto e uso i setter
-    }
+    private String elastico;
+    private String zavorre;
 
     public String getType() {
         return type;
@@ -28,13 +28,13 @@ public class EsercizioSerie implements Esercizio, Serializable {
     }
 
     @Override
-    public String getNomeEsercizio() {
+    public String getName() {
         return nomeEsercizio;
     }
 
     @Override
-    public void setNomeEsercizio(String nomeEsercizio) {
-        this.nomeEsercizio = nomeEsercizio;
+    public void setName(String name) {
+        this.nomeEsercizio = name;
     }
 
     @Override
@@ -157,6 +157,25 @@ public class EsercizioSerie implements Esercizio, Serializable {
 
     }
 
+    @Override
+    public String getElastico() {
+        return elastico;
+    }
+
+    @Override
+    public void setElastico(String elastico) {
+        this.elastico = elastico;
+    }
+
+    @Override
+    public String getZavorre() {
+        return zavorre;
+    }
+
+    @Override
+    public void setZavorre(String zavorre) {
+        this.zavorre = zavorre;
+    }
 
     @Override
     public String toString() {

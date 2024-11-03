@@ -1,10 +1,12 @@
 package com.andrea.belotti.brorkout.model;
 
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.PIRAMIDALE;
+
 import java.io.Serializable;
 
 public class EsercizioPiramidale implements Esercizio, Serializable {
 
-    private String type = "Piramidale";
+    private String type = PIRAMIDALE;
     private String nomeEsercizio;
     private String tipoEsercizio;
     private String serie;
@@ -17,20 +19,17 @@ public class EsercizioPiramidale implements Esercizio, Serializable {
     private String ripetizioni;
     private String picco;
     private String recuperoSerie;
-
-    public EsercizioPiramidale(){
-
-    }
-
+    private String elastico;
+    private String zavorre;
 
     @Override
-    public String getNomeEsercizio() {
+    public String getName() {
         return nomeEsercizio;
     }
 
     @Override
-    public void setNomeEsercizio(String nomeEsercizio) {
-        this.nomeEsercizio = nomeEsercizio;
+    public void setName(String name) {
+        this.nomeEsercizio = name;
     }
 
     @Override
@@ -153,6 +152,27 @@ public class EsercizioPiramidale implements Esercizio, Serializable {
     public void setPicco(String picco) {
         this.picco = picco;
     }
+
+    @Override
+    public String getElastico() {
+        return elastico;
+    }
+
+    @Override
+    public void setElastico(String elastico) {
+        this.elastico = elastico;
+    }
+
+    @Override
+    public String getZavorre() {
+        return zavorre;
+    }
+
+    @Override
+    public void setZavorre(String zavorre) {
+        this.zavorre = zavorre;
+    }
+
 
     @Override
     public String toString() {

@@ -1,10 +1,12 @@
 package com.andrea.belotti.brorkout.model;
 
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.INCREMENTALE;
+
 import java.io.Serializable;
 
 public class EsercizioIncrementale implements Esercizio, Serializable {
 
-    private String type = "Incrementale";
+    private String type = INCREMENTALE;
     private String nomeEsercizio;
     private String tipoEsercizio;
     private String serie;
@@ -16,19 +18,17 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
     private String ripetizioni;
     private String inizio;
     private String picco;
-
-    public EsercizioIncrementale() {
-
-    }
+    private String elastico;
+    private String zavorre;
 
     @Override
-    public String getNomeEsercizio() {
+    public String getName() {
         return nomeEsercizio;
     }
 
     @Override
-    public void setNomeEsercizio(String nomeEsercizio) {
-        this.nomeEsercizio = nomeEsercizio;
+    public void setName(String name) {
+        this.nomeEsercizio = name;
     }
 
     @Override
@@ -149,6 +149,32 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
     @Override
     public void setTempoEsecuzione(String tempoEsecuzione) {
 
+    }
+
+    @Override
+    public String getElastico() {
+        return elastico;
+    }
+
+    @Override
+    public void setElastico(String elastico) {
+        this.elastico = elastico;
+    }
+
+    @Override
+    public String getZavorre() {
+        return zavorre;
+    }
+
+    @Override
+    public void setZavorre(String zavorre) {
+        this.zavorre = zavorre;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override

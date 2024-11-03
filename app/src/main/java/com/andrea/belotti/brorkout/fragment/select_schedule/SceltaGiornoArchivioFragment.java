@@ -127,7 +127,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
 
             for (Esercizio esercizio : giornata.getEsercizi()) {
                 TextView exerciseName = new TextView(context);
-                exerciseName.setText(esercizio.getNomeEsercizio());
+                exerciseName.setText(esercizio.getName());
                 exerciseName.setTextColor(Color.rgb(3,169,244));
                 scheduleLayout.addView(exerciseName);
             }

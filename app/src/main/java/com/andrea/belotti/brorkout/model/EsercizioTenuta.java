@@ -1,10 +1,12 @@
 package com.andrea.belotti.brorkout.model;
 
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.TENUTA;
+
 import java.io.Serializable;
 
 public class EsercizioTenuta implements Esercizio, Serializable {
 
-    private String type = "Tenuta";
+    private String type = TENUTA;
     private String nomeEsercizio;
     private String tipoEsercizio;
     private String serie;
@@ -15,10 +17,8 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     private String appuntiAtleta;
     private String ripetizioni;
     private String tempoEsecuzione;
-
-    public EsercizioTenuta(){
-
-    }
+    private String elastico;
+    private String zavorre;
 
     public String getType() {
         return type;
@@ -29,13 +29,13 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     }
 
     @Override
-    public String getNomeEsercizio() {
+    public String getName() {
         return nomeEsercizio;
     }
 
     @Override
-    public void setNomeEsercizio(String nomeEsercizio) {
-        this.nomeEsercizio = nomeEsercizio;
+    public void setName(String name) {
+        this.nomeEsercizio = name;
     }
 
     @Override
@@ -153,6 +153,26 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     @Override
     public void setTempoEsecuzione(String tempoEsecuzione) {
         this.tempoEsecuzione = tempoEsecuzione;
+    }
+
+    @Override
+    public String getElastico() {
+        return elastico;
+    }
+
+    @Override
+    public void setElastico(String elastico) {
+        this.elastico = elastico;
+    }
+
+    @Override
+    public String getZavorre() {
+        return zavorre;
+    }
+
+    @Override
+    public void setZavorre(String zavorre) {
+        this.zavorre = zavorre;
     }
 
 

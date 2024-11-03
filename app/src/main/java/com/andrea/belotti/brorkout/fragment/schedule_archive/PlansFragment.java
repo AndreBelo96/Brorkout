@@ -1,39 +1,44 @@
 package com.andrea.belotti.brorkout.fragment.schedule_archive;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-
-import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
-import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.model.nodes.Node;
-import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
-import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
-
-import java.util.List;
-
 import static android.content.Context.MODE_PRIVATE;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.NODE;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicButtonLayout;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicTextView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
+import com.andrea.belotti.brorkout.adapter.PlanAdapter;
+import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.nodes.Node;
+import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
+import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlansFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
     private Context context;
-
     private ScheduleArchiveActivity activity;
+    private long parentId;
 
     public static PlansFragment newInstance(Node monthNode) {
         PlansFragment fragment = new PlansFragment();
@@ -60,78 +65,33 @@ public class PlansFragment extends Fragment {
             monthNode = (Node) getArguments().get(NODE);
         }
 
-        LinearLayout plansLayout = view.findViewById(R.id.plans);
-
+        parentId = monthNode.getParentId();
         activity = (ScheduleArchiveActivity) this.getActivity();
 
-        if (!monthNode.isEmpty()) {
-            initView(monthNode, plansLayout);
-        } else {
+        // set recyclerView info
+        RecyclerView recyclerView = view.findViewById(R.id.plans);
+        PlanAdapter adapter = new PlanAdapter(context,  monthNode.getData().toArray(new PlanCompletedNode[0]), activity, getParentFragmentManager());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(adapter);
 
-            Log.e(tag, "Nessuna scheda completata");
-            initEmptyView(plansLayout);
-        }
-
-        return view;
-    }
-
-    private void initEmptyView(LinearLayout monthsLayout) {
-        monthsLayout.addView(createBasicTextView(context, "Nessuna scheda completata"));
-    }
-
-    private void initView(Node monthNode, LinearLayout plansLayout) {
-        List<PlanCompletedNode> planNodes = monthNode.getData();
-        setPlanButtons(planNodes, plansLayout, monthNode.getParentId());
-    }
-
-    private void setPlanButtons(List<PlanCompletedNode> planNodes, LinearLayout plansLayout, Long yearParentId) {
-
-        for(PlanCompletedNode plan : planNodes) {
-
-            if (!plan.isEmpty()) {
-
-                // Create button
-                LinearLayout planButton = createBasicButtonLayout(context, plan.getName());
-
-                // Add button to layout
-                plansLayout.addView(planButton);
-
-                planButton.setOnClickListener(v -> {
-
-                    activity.setPath(activity.getPath() + plan.getName() + "/");
-
-                    FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance(plan));
-                    fragmentTransaction.commit();
-                });
-            }
-        }
-
-        LinearLayout buttonBack = createBasicButtonLayout(context, "Back");
+        // back button
+        LinearLayout buttonBack = view.findViewById(R.id.back);
 
         buttonBack.setOnClickListener(v -> {
 
             String path = activity.getPath();
             String sub[] = path.split("/");
 
-            SharedPreferences sharedPreferences = getContext().getSharedPreferences("MySharedPref", MODE_PRIVATE);
-            Node rootNode = ScheduleCreatingUtils.getNodeFromPref(sharedPreferences);
-
-            Node year = (Node) rootNode.findChildById(yearParentId, rootNode.getChildren());
-
             activity.setPath(sub[0] + "/");
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, MonthsFragment.newInstance(year));
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, MonthsFragment.newInstance(activity.getYearNode()));
             fragmentTransaction.commit();
 
         });
 
-
-        plansLayout.addView(buttonBack);
-
+        return view;
     }
-
-
 
 }
