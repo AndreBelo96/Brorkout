@@ -7,30 +7,24 @@ import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.TE
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ESERCIZIO;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
 import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
 import com.andrea.belotti.brorkout.model.EsercizioSerie;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 
-/**
- * A simple {@link Fragment} subclass.
- * The newInstance method create an instance of this fragment.
- */
 public class SingleExeFragment extends Fragment {
 
-    private ScheduleArchiveActivity activity;
+    private final String tag = this.getClass().getSimpleName();
 
     public static SingleExeFragment newInstance(Esercizio esercizio) {
         SingleExeFragment fragment = new SingleExeFragment();
@@ -58,10 +52,10 @@ public class SingleExeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.i(tag, "Starting Fragment...");
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_single_exe, container, false);
-
-        activity = (ScheduleArchiveActivity) this.getActivity();
 
         // retrieve data
         Esercizio esercizio;
@@ -71,9 +65,11 @@ public class SingleExeFragment extends Fragment {
             return view;
         }
 
-
         TextView title = view.findViewById(R.id.titoloText);
         title.setText(esercizio.getName());
+
+        TextView type = view.findViewById(R.id.textType);
+        type.setText("Tipo: " + esercizio.getTipoEsercizio());
 
         TextView set = view.findViewById(R.id.textSerie);
         set.setText("Set: " + esercizio.getSerieCompletate() + "/" + esercizio.getSerie());
@@ -105,22 +101,6 @@ public class SingleExeFragment extends Fragment {
 
         TextView appunti = view.findViewById(R.id.textAppuntiAtleta);
         appunti.setText("Appunti atleta: " + esercizio.getAppuntiAtleta());
-
-        // back button
-        LinearLayout buttonBack = view.findViewById(R.id.back);
-
-        buttonBack.setOnClickListener(v -> {
-
-            String path = activity.getPath();
-            String sub[] = path.split("/");
-
-            activity.setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/" + sub[3] + "/");
-
-            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(activity.getDay()));
-            fragmentTransaction.commit();
-
-        });
 
         return view;
     }
