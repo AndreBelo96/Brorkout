@@ -1,27 +1,27 @@
 package com.andrea.belotti.brorkout.utils;
 
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.TEXT_BUTTON_COLOR;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ROOT;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.util.Log;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
-
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.TEXT_BUTTON_COLOR;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ROOT;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 public class ScheduleCreatingUtils {
 
@@ -78,15 +78,14 @@ public class ScheduleCreatingUtils {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void setBasicColor(List<Button> buttons, Context context) {
-        buttons.forEach( b -> {
-                    b.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorbuttonbase));
-                    b.setTextColor(TEXT_BUTTON_COLOR);
-                });
+    public static void setBasicColor(List<LinearLayout> buttons) {
+        buttons.forEach(b -> {
+            b.setBackgroundResource(R.drawable.blue_top_button);
+        });
     }
 
     public static void setUncheckedButton(List<ToggleButton> buttons, Context context, ToggleButton buttonSelected) {
-        buttons.stream().filter(b -> !b.equals(buttonSelected)).forEach( b -> {
+        buttons.stream().filter(b -> !b.equals(buttonSelected)).forEach(b -> {
             b.setChecked(false);
             b.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorbuttonbase));
             b.setTextColor(TEXT_BUTTON_COLOR);
@@ -96,7 +95,7 @@ public class ScheduleCreatingUtils {
     public static Long getMaxId(List<Node> yearNodeList) {
         Long max = 0L;
         for (Node year : yearNodeList) {
-            for(Node month : year.getChildren()) {
+            for (Node month : year.getChildren()) {
                 for (PlanCompletedNode plan : month.getData()) {
                     if (plan.getId() > max) {
                         max = plan.getId();

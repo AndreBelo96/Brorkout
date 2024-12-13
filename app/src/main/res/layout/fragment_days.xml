@@ -21,21 +21,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <GridLayout
         android:id="@+id/days"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:columnCount="1"
+        android:rowCount="7"
+        android:verticalSpacing="6dp"
         app:layout_constraintBottom_toTopOf="@+id/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
-
-    </LinearLayout>
+    </GridLayout>
 
     <LinearLayout
         android:id="@+id/back"

@@ -4,69 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_200"
+    android:background="@color/backgroundMenu"
     tools:context=".activity.ScheduleCreatorActivity">
 
     <LinearLayout
+        android:id="@+id/lineAbove"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginVertical="@dimen/_20sdp"
-        android:paddingHorizontal="@dimen/_15sdp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="top"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_marginTop="25dp"
+        android:paddingHorizontal="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_2sdp"
-            android:background="@color/light_blue_200"
-            android:layout_marginBottom="@dimen/_5sdp"/>
+            android:background="@color/blue_500" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerViewScheduleCreator"
-            android:name="com.andrea.belotti.brorkout.fragment.schedule_creator.CreationMenuFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"/>
+    </LinearLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerViewScheduleCreator"
+        android:name="com.andrea.belotti.brorkout.fragment.schedule_creator.CreationMenuFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/footerContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineAbove" />
+
+
+    <LinearLayout
+        android:id="@+id/footerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:layout_marginBottom="25dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal|bottom"
-            android:orientation="vertical">
-            <LinearLayout
+            android:orientation="horizontal">
+
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="@dimen/_2sdp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/blue_500" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@color/light_blue_200"/>
+            <ImageView
+                android:id="@+id/buttonBack"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/circled_button"
+                android:src="@drawable/home"
+                app:tint="@color/blue_500" />
 
-                <ImageButton
-                    android:id="@+id/buttonBack"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:background="@drawable/circled_button"
-                    android:layout_gravity="center"
-                    android:src="@drawable/home_lightblue"
-                    />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/blue_500" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:background="@color/light_blue_200"/>
-
-            </LinearLayout>
         </LinearLayout>
-
 
     </LinearLayout>
 

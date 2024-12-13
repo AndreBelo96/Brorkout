@@ -38,7 +38,6 @@ public class StartingMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        String archivioActivity = getResources().getString(R.string.ArchvioSchedule);
         String optionActivity = getResources().getString(R.string.OptionSchedule);
 
         Context context = getApplicationContext();

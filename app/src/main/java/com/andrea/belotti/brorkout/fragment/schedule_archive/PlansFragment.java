@@ -1,18 +1,13 @@
 package com.andrea.belotti.brorkout.fragment.schedule_archive;
 
-import static android.content.Context.MODE_PRIVATE;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.NODE;
-import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicButtonLayout;
-import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicTextView;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
@@ -24,14 +19,8 @@ import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.adapter.PlanAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
-import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PlansFragment extends Fragment {
 
@@ -70,7 +59,7 @@ public class PlansFragment extends Fragment {
 
         // set recyclerView info
         RecyclerView recyclerView = view.findViewById(R.id.plans);
-        PlanAdapter adapter = new PlanAdapter(context,  monthNode.getData().toArray(new PlanCompletedNode[0]), activity, getParentFragmentManager());
+        PlanAdapter adapter = new PlanAdapter(context, monthNode.getData().toArray(new PlanCompletedNode[0]), activity, getParentFragmentManager());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);

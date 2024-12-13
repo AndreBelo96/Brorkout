@@ -24,6 +24,7 @@ public class GenerateDrawableObjUtils {
         textView.setText(text);
         textView.setTextSize(textSize);
         textView.setGravity(1);
+        textView.setPadding(20, 10, 20, 10);
 
         return textView;
     }
@@ -36,7 +37,7 @@ public class GenerateDrawableObjUtils {
         buttonLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.blue_top_button));
         buttonLayout.setOrientation(LinearLayout.HORIZONTAL);
         buttonLayout.setElevation(3f);
-        buttonLayout.setPadding(0, 20, 0, 20);
+        buttonLayout.setPadding(0, 40, 0, 40);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,

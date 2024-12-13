@@ -1,10 +1,15 @@
 package com.andrea.belotti.brorkout.activity;
 
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.fragment.schedule_creator.CreationMenuFragment;
@@ -18,29 +23,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
-
 public class ScheduleCreatorActivity extends AppCompatActivity {
-
-    // log
-    private final String tag = this.getClass().getSimpleName();
-
-    // shared variables beetween fragments
-    private Esercizio addExeInCreation;
-
-    private Integer selectedExe;
-
-
-
-    private boolean isLocal = true;
 
     // Storing data into SharedPreferences
     private static SharedPreferences sharedPreferences;
-
-
+    // log
+    private final String tag = this.getClass().getSimpleName();
+    // shared variables beetween fragments
+    private Esercizio addExeInCreation;
+    private Integer selectedExe;
+    private boolean isLocal = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +59,7 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
-        ImageButton backButton = findViewById(R.id.buttonBack);
+        ImageView backButton = findViewById(R.id.buttonBack);
 
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), StartingMenuActivity.class);
@@ -93,20 +85,20 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
         myEdit.apply();
     }
 
-    public void setAddExeCreation(Esercizio addExeInCreation) {
-        this.addExeInCreation = addExeInCreation;
-    }
-
     public Esercizio getAddExeCreation() {
         return addExeInCreation;
     }
 
-    public void setSelectedExe(Integer selectedExe) {
-        this.selectedExe = selectedExe;
+    public void setAddExeCreation(Esercizio addExeInCreation) {
+        this.addExeInCreation = addExeInCreation;
     }
 
     public Integer getSelectedExe() {
         return selectedExe;
+    }
+
+    public void setSelectedExe(Integer selectedExe) {
+        this.selectedExe = selectedExe;
     }
 
     public boolean isLocal() {
