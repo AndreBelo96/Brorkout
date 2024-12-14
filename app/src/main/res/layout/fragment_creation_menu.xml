@@ -41,7 +41,8 @@
             android:switchPadding="@dimen/_10sdp"
             android:text="Private"
             android:textColor="@color/blue_500"
-            android:thumbTint="@color/blue_500" />
+            android:thumbTint="@color/blue_500"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -351,17 +352,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonContainer">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lista Schede"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_marginBottom="10dp"/>
+
         <ScrollView
             android:id="@+id/plan_scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_plans_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"/>
         </ScrollView>
     </LinearLayout>
 

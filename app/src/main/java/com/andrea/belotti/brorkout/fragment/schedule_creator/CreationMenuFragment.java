@@ -20,11 +20,16 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
+import com.andrea.belotti.brorkout.adapter.CreationCopyPlanAdapter;
+import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
+import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
@@ -37,7 +42,9 @@ public class CreationMenuFragment extends Fragment {
 
     private Boolean isNew = false;
     private Boolean isCopy = false;
+
     private Scheda selectedPlan = null;
+    private String day = "";
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -52,24 +59,25 @@ public class CreationMenuFragment extends Fragment {
         ScheduleCreatorActivity activity = (ScheduleCreatorActivity) this.getActivity();
         Context context = getContext();
 
-        // Retrieve data - TODO capire se serve tutto scriverlo meglio
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        List<Scheda> schedaList = ScheduleCreatingUtils.createListaSchede(sharedPreferences);
+        List<Scheda> schedaList = new ArrayList<>();
+
+        // Retrieve data
+        if (activity != null) {
+            SharedPreferences sharedPreferences = activity.getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            schedaList = ScheduleCreatingUtils.createListaSchede(sharedPreferences);
+        }
 
         // ------------------------ Initialize Variables ------------------------
 
-        // Take Db switches
+        // Initialize switches
         Switch switchDb = view.findViewById(R.id.switchDb);
         Switch switchPrivate = view.findViewById(R.id.switchPrivate);
 
-        // Title text
+        // Initialize Title text
         EditText planTitle = view.findViewById(R.id.titoloScheda);
 
-        // Take layout from xml
+        // Initialize New Schedule layout
         LinearLayout newSchedule = view.findViewById(R.id.new_schedule_button);
-        LinearLayout copyScheduleBtn = view.findViewById(R.id.copy_schedule_button);
-
-        // New Schedule layout
         LinearLayout buttonDaysContainer = view.findViewById(R.id.dayNumberContainer);
         LinearLayout buttonDay1 = view.findViewById(R.id.buttonDay1);
         LinearLayout buttonDay2 = view.findViewById(R.id.buttonDay2);
@@ -79,17 +87,17 @@ public class CreationMenuFragment extends Fragment {
         LinearLayout buttonDay6 = view.findViewById(R.id.buttonDay6);
         LinearLayout buttonDay7 = view.findViewById(R.id.buttonDay7);
 
-        // Copy Schedule layout
+        // Initialize Copy Schedule layout
+        LinearLayout copyScheduleBtn = view.findViewById(R.id.copy_schedule_button);
         LinearLayout copyPlanContainer = view.findViewById(R.id.copy_plan_container);
-        LinearLayout plansContainer = view.findViewById(R.id.list_plans_container);
+        RecyclerView plansContainer = view.findViewById(R.id.list_plans_container);
 
-        // Create Button
+        // Initialize Create Button
         LinearLayout createPlanButton = view.findViewById(R.id.confirm_button);
 
 
         // ------------------------ Set Variables ------------------------
 
-        final String[] day = {""};
         List<LinearLayout> daysButtonList = new ArrayList<>();
         daysButtonList.add(buttonDay1);
         daysButtonList.add(buttonDay2);
@@ -99,20 +107,18 @@ public class CreationMenuFragment extends Fragment {
         daysButtonList.add(buttonDay6);
         daysButtonList.add(buttonDay7);
 
-        // TODO metti qui la scheda scelta non come globale
-        List<LinearLayout> plansButtonList = new ArrayList<>();
+        CreationCopyPlanAdapter adapter;
 
-
-        if (schedaList != null && !schedaList.isEmpty()) {
-            createView(schedaList, plansContainer, plansButtonList, context);
-        } else {
+        if (schedaList.isEmpty()) {
+            adapter = null;
+            // TODO potrei creare una textbox che dice che non ci sono liste
             Log.e(tag, "Lista schede vuota");
+        } else {
+            adapter = new CreationCopyPlanAdapter(context, schedaList.toArray(new Scheda[0]), this);
+            plansContainer.setHasFixedSize(true);
+            plansContainer.setLayoutManager(new LinearLayoutManager(context));
+            plansContainer.setAdapter(adapter);
         }
-
-        if (!switchDb.isChecked()) {
-            switchPrivate.setVisibility(View.INVISIBLE);
-        }
-
 
         // ---------------------- ClickListeners ----------------------
 
@@ -154,19 +160,19 @@ public class CreationMenuFragment extends Fragment {
                 newSchedule.setBackgroundResource(R.drawable.blue_top_button); //TODO metodo
                 buttonDaysContainer.setVisibility(View.GONE);
                 createPlanButton.setVisibility(View.GONE);
-                day[0] = "";
+                day = "";
                 ScheduleCreatingUtils.setBasicColor(daysButtonList);
             }
 
             copyScheduleBtn.setBackgroundResource(R.drawable.blue_top_button);
             copyPlanContainer.setVisibility(View.GONE);
             selectedPlan = null;
-            ScheduleCreatingUtils.setBasicColor(plansButtonList);
+            ScheduleCreatingUtils.setCardViewBasicColor(adapter.getCardViewList());
 
         });
 
         daysButtonList.forEach(b -> b.setOnClickListener(v -> {
-            day[0] = ((TextView) b.getChildAt(0)).getText().toString();
+            day = ((TextView) b.getChildAt(0)).getText().toString();
             ScheduleCreatingUtils.setBasicColor(daysButtonList);
             b.setBackgroundResource(R.drawable.basic_button_pressed_bg);
         }));
@@ -185,16 +191,15 @@ public class CreationMenuFragment extends Fragment {
                 copyScheduleBtn.setBackgroundResource(R.drawable.blue_top_button);
                 createPlanButton.setVisibility(View.GONE);
                 copyPlanContainer.setVisibility(View.GONE);
-                ScheduleCreatingUtils.setBasicColor(plansButtonList);
+                ScheduleCreatingUtils.setCardViewBasicColor(adapter.getCardViewList());
                 selectedPlan = null;
             }
 
             newSchedule.setBackgroundResource(R.drawable.blue_top_button);
             buttonDaysContainer.setVisibility(View.GONE);
-            day[0] = "";
+            day = "";
             ScheduleCreatingUtils.setBasicColor(daysButtonList);
 
-            /*CopyScheduleFragment*/
         });
 
         // ---------------------- Create Click Listeners ----------------------
@@ -202,7 +207,6 @@ public class CreationMenuFragment extends Fragment {
         createPlanButton.setOnClickListener(v -> {
 
             if (isNew) {
-                String days = day[0];
                 String scheduleName = planTitle.getText().toString();
 
                 if (scheduleName.isEmpty()) {
@@ -211,7 +215,7 @@ public class CreationMenuFragment extends Fragment {
                     toast.show();
                     return;
                 }
-                if (days.isEmpty()) {
+                if (day.isEmpty()) {
                     Log.e(tag, "Numero di giorni non selezionato");
                     Toast toast = Toast.makeText(context, "Numero di giorni non selezionato", StringOutputConstants.shortDuration);
                     toast.show();
@@ -219,7 +223,7 @@ public class CreationMenuFragment extends Fragment {
                 }
 
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(scheduleName, Integer.parseInt(days)));
+                fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(scheduleName, Integer.parseInt(day)));
                 fragmentTransaction.commit();
             }
 
@@ -251,22 +255,8 @@ public class CreationMenuFragment extends Fragment {
         return view;
     }
 
-
-    private void createView(List<Scheda> schedaList, LinearLayout plansContainer, List<LinearLayout> plansButtonList, Context context) {
-
-        for (Scheda scheda : schedaList) {
-            LinearLayout planButton = createBasicButtonLayout(context, scheda.getNome(), 16f);
-
-            plansButtonList.add(planButton);
-            plansContainer.addView(planButton);
-
-            planButton.setOnClickListener(v -> {
-                ScheduleCreatingUtils.setBasicColor(plansButtonList);
-                planButton.setBackgroundResource(R.drawable.basic_button_pressed_bg);
-                selectedPlan = scheda;
-            });
-
-        }
+    public void setSelectedPlan(Scheda selectedPlan) {
+        this.selectedPlan = selectedPlan;
     }
 
 }

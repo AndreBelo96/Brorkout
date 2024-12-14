@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.andrea.belotti.brorkout.R;
@@ -77,10 +78,19 @@ public class ScheduleCreatingUtils {
         return scheda;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public static void setBasicColor(List<LinearLayout> buttons) {
         buttons.forEach(b -> {
             b.setBackgroundResource(R.drawable.blue_top_button);
+        });
+    }
+
+    public static void setCardViewBasicColor(List<CardView> cards) {
+        if (cards == null) {
+            return;
+        }
+
+        cards.forEach(c -> {
+            c.setBackgroundResource(R.drawable.blue_top_button);
         });
     }
 
