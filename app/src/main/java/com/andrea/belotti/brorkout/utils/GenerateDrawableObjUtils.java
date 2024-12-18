@@ -93,6 +93,50 @@ public class GenerateDrawableObjUtils {
         return buttonLayout;
     }
 
+    public static LinearLayout createHorizotalLinearLayout(Context context, int marginTop, int marginLeft, int marginRight, int marginBottom) {
+
+        LinearLayout horizontalLayout = new LinearLayout(context);
+
+        horizontalLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        Resources r = context.getResources();
+
+        int realMT = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                marginTop,
+                r.getDisplayMetrics()
+        );
+
+        int realMB = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                marginBottom,
+                r.getDisplayMetrics()
+        );
+
+        int realMR = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                marginRight,
+                r.getDisplayMetrics()
+        );
+
+        int realML = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                marginLeft,
+                r.getDisplayMetrics()
+        );
+
+        params.setMargins(realML, realMT, realMR, realMB);
+
+        horizontalLayout.setLayoutParams(params);
+
+        return horizontalLayout;
+    }
+
     public static LinearLayout createBasicCardView(Context context) {
 
         GridLayout.LayoutParams param = new GridLayout.LayoutParams(

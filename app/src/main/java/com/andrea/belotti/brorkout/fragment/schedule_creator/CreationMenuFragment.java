@@ -1,17 +1,20 @@
 package com.andrea.belotti.brorkout.fragment.schedule_creator;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicButtonLayout;
+import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicTextView;
+import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createHorizotalLinearLayout;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -26,10 +29,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.adapter.CreationCopyPlanAdapter;
-import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
@@ -45,6 +48,11 @@ public class CreationMenuFragment extends Fragment {
 
     private Scheda selectedPlan = null;
     private String day = "";
+
+    private LinearLayout treePlanContainer;
+    private LinearLayout infoPlanContainer;
+    private LinearLayout copyPlanContainer;
+    private LinearLayout  createPlanButton;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -89,11 +97,16 @@ public class CreationMenuFragment extends Fragment {
 
         // Initialize Copy Schedule layout
         LinearLayout copyScheduleBtn = view.findViewById(R.id.copy_schedule_button);
-        LinearLayout copyPlanContainer = view.findViewById(R.id.copy_plan_container);
+        copyPlanContainer = view.findViewById(R.id.copy_plan_container);
         RecyclerView plansContainer = view.findViewById(R.id.list_plans_container);
 
+        // Initialize info-plan layout
+        infoPlanContainer = view.findViewById(R.id.info_container);
+        treePlanContainer = view.findViewById(R.id.tree_container);
+        LinearLayout backInfoButton = view.findViewById(R.id.back_info_button);
+
         // Initialize Create Button
-        LinearLayout createPlanButton = view.findViewById(R.id.confirm_button);
+        createPlanButton = view.findViewById(R.id.confirm_button);
 
 
         // ------------------------ Set Variables ------------------------
@@ -166,6 +179,7 @@ public class CreationMenuFragment extends Fragment {
 
             copyScheduleBtn.setBackgroundResource(R.drawable.blue_top_button);
             copyPlanContainer.setVisibility(View.GONE);
+            infoPlanContainer.setVisibility(View.GONE);
             selectedPlan = null;
             ScheduleCreatingUtils.setCardViewBasicColor(adapter.getCardViewList());
 
@@ -187,23 +201,32 @@ public class CreationMenuFragment extends Fragment {
                 copyScheduleBtn.setBackgroundResource(R.drawable.basic_button_pressed_bg);
                 createPlanButton.setVisibility(View.VISIBLE);
                 copyPlanContainer.setVisibility(View.VISIBLE);
+                infoPlanContainer.setVisibility(View.GONE);
             } else {
                 copyScheduleBtn.setBackgroundResource(R.drawable.blue_top_button);
                 createPlanButton.setVisibility(View.GONE);
                 copyPlanContainer.setVisibility(View.GONE);
+                infoPlanContainer.setVisibility(View.GONE);
                 ScheduleCreatingUtils.setCardViewBasicColor(adapter.getCardViewList());
                 selectedPlan = null;
             }
 
             newSchedule.setBackgroundResource(R.drawable.blue_top_button);
             buttonDaysContainer.setVisibility(View.GONE);
+            infoPlanContainer.setVisibility(View.GONE);
             day = "";
             ScheduleCreatingUtils.setBasicColor(daysButtonList);
 
         });
 
-        // ---------------------- Create Click Listeners ----------------------
+        // ---------------------- Info Schedule Click Listeners ----------------------
+        backInfoButton.setOnClickListener( v -> {
+            infoPlanContainer.setVisibility(View.GONE);
+            copyPlanContainer.setVisibility(View.VISIBLE);
+            createPlanButton.setVisibility(View.VISIBLE);
+        });
 
+        // ---------------------- Create Click Listeners ----------------------
         createPlanButton.setOnClickListener(v -> {
 
             if (isNew) {
@@ -253,6 +276,49 @@ public class CreationMenuFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void setInfoPlan(Scheda plan, Context context) {
+        treePlanContainer.removeAllViews();
+
+        TextView namePlan = createBasicTextView(context, plan.getNome(), 25f);
+        namePlan.setGravity(Gravity.LEFT);
+        treePlanContainer.addView(namePlan);
+
+        for(Giornata day : plan.getGiornate()) {
+            LinearLayout dayLayout = createHorizotalLinearLayout(context, 0, 30, 0, 0);
+            TextView dayName = createBasicTextView(context, "Giornata " + day.getNumeroGiornata(), 20f);
+
+            ImageView dayImageView = new ImageView(context);
+            dayImageView.setBackgroundResource(R.drawable.item_tree_view);
+            dayImageView.setPadding(0,0,0,0);
+
+            dayLayout.addView(dayImageView);
+            dayLayout.addView(dayName);
+
+            treePlanContainer.addView(dayLayout);
+
+            for(Esercizio exe : day.getEsercizi()) {
+                LinearLayout exeLayout = createHorizotalLinearLayout(context, 0, 90, 0, 0);
+                TextView exeName = createBasicTextView(context, exe.getName(), 18f);
+
+                ImageView exeImageView = new ImageView(context);
+                exeImageView.setBackgroundResource(R.drawable.item_tree_view);
+                exeImageView.setPadding(0,0,0,0);
+
+                exeLayout.addView(exeImageView);
+                exeLayout.addView(exeName);
+
+                treePlanContainer.addView(exeLayout);
+            }
+
+        }
+
+
+        copyPlanContainer.setVisibility(View.GONE);
+        createPlanButton.setVisibility(View.GONE);
+        infoPlanContainer.setVisibility(View.VISIBLE);
+
     }
 
     public void setSelectedPlan(Scheda selectedPlan) {

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.constants.StringOutputConstants;
 import com.andrea.belotti.brorkout.fragment.schedule_creator.CreationMenuFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
@@ -63,6 +65,10 @@ public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPl
             fragment.setSelectedPlan(plans[position]);
             ScheduleCreatingUtils.setCardViewBasicColor(cardViewList);
             holder.cardView.setBackgroundResource(R.drawable.basic_button_pressed_bg);
+        });
+
+        holder.planImg.setOnClickListener(v-> {
+            fragment.setInfoPlan(plans[position], context);
         });
 
     }
