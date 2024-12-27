@@ -7,20 +7,14 @@
     <group android:pivotX="6"
         android:pivotY="6">
 
-        <path
-            android:fillColor="@color/blue_500"
-            android:pathData="M1,1 h1 v2 h-1 z"
-            />
+
 
         <path
             android:fillColor="@color/blue_500"
-            android:pathData="M1,3 C1,5 1,5 3,5 v-1 C2,4 2,4 2,3"
+            android:pathData="M2,3 C2,1.7 4,1.7 4,3 C4,4.3 2,4.3 2,3"
             />
 
-        <path
-            android:fillColor="@color/blue_500"
-            android:pathData="M3,4 h2 v1 h-2 z"
-            />
+
 
     </group>
 </vector>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/blue_200"
+    android:background="@color/backgroundMenu"
     android:orientation="vertical"
     tools:context=".fragment.schedule_creator.CreationPlanFragment">
 
@@ -12,12 +12,10 @@
         android:id="@+id/tabDayListLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="@color/light_blue_200"
-        app:tabIconTint="@color/light_blue_200"
-        app:tabTextColor="@color/light_blue_200"
+        app:tabIndicatorColor="@color/blue_500"
+        app:tabIconTint="@color/blue_500"
+        app:tabTextColor="@color/blue_500"
         android:background="#00000000">
-
-
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
@@ -35,7 +33,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_2sdp"
-        android:background="@color/light_blue_200"
+        android:background="@color/blue_500"
         android:layout_marginBottom="@dimen/_5sdp"/>
 
         <LinearLayout
@@ -43,53 +41,70 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageView
                 android:id="@+id/addButton"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:background="@android:drawable/ic_menu_add"
-                app:backgroundTint="@color/light_blue_200"/>
+                android:scaleY="0.8"
+                android:scaleX="0.8"
+                app:srcCompat="@drawable/ic_add"
+                app:tint="@color/blue_500" />
 
-            <Button
+            <ImageView
                 android:id="@+id/modifyButton"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:background="@drawable/ic_write"
-                app:backgroundTint="@color/light_blue_200"/>
+                android:scaleY="0.8"
+                android:scaleX="0.8"
+                app:srcCompat="@drawable/ic_modify"
+                app:tint="@color/blue_500" />
 
-            <Button
+            <ImageView
                 android:id="@+id/deleteButton"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:background="@android:drawable/ic_menu_delete"
-                app:backgroundTint="@color/light_blue_200"/>
+                android:scaleY="0.8"
+                android:scaleX="0.8"
+                app:srcCompat="@drawable/ic_delete"
+                app:tint="@color/blue_500" />
 
-            <Button
+            <ImageView
                 android:id="@+id/copyButton"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:background="?attr/actionModeCopyDrawable"
-                app:backgroundTint="@color/light_blue_200"/>
+                app:srcCompat="?attr/actionModeCopyDrawable"
+                app:tint="@color/blue_500" />
 
 
-            <Button
+            <ImageView
                 android:id="@+id/pasteButton"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:background="?attr/actionModePasteDrawable"
-                app:backgroundTint="@color/light_blue_200"/>
+                app:srcCompat="?attr/actionModePasteDrawable"
+                app:tint="@color/blue_500" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/create"
+        <LinearLayout
+            android:id="@+id/create_plan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Crea Scheda"
-            android:textColor="@color/light_blue_200"
-            android:background="@drawable/circled_button"
-            app:backgroundTint="@color/light_blue_200"
-            android:layout_marginTop="@dimen/_10sdp"/>
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:elevation="6dp"
+            android:background="@drawable/blue_top_button"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="20dp"
+                android:text="Crea scheda"
+                android:textAlignment="center"
+                android:textColor="@color/blue_500"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -127,7 +127,7 @@ public class CreationMenuFragment extends Fragment {
             // TODO potrei creare una textbox che dice che non ci sono liste
             Log.e(tag, "Lista schede vuota");
         } else {
-            adapter = new CreationCopyPlanAdapter(context, schedaList.toArray(new Scheda[0]), this);
+            adapter = new CreationCopyPlanAdapter(view, context, schedaList.toArray(new Scheda[0]), this);
             plansContainer.setHasFixedSize(true);
             plansContainer.setLayoutManager(new LinearLayoutManager(context));
             plansContainer.setAdapter(adapter);
@@ -278,19 +278,19 @@ public class CreationMenuFragment extends Fragment {
         return view;
     }
 
-    public void setInfoPlan(Scheda plan, Context context) {
+    public void setInfoPlan(Scheda plan, View view, Context context) {
+        TextView planTitle = view.findViewById(R.id.plan_title);
+        planTitle.setText(plan.getNome());
+
         treePlanContainer.removeAllViews();
 
-        TextView namePlan = createBasicTextView(context, plan.getNome(), 25f);
-        namePlan.setGravity(Gravity.LEFT);
-        treePlanContainer.addView(namePlan);
-
         for(Giornata day : plan.getGiornate()) {
-            LinearLayout dayLayout = createHorizotalLinearLayout(context, 0, 30, 0, 0);
+            LinearLayout dayLayout = createHorizotalLinearLayout(context, 0, 0, 0, 0);
+            dayLayout.setGravity(Gravity.CENTER);
             TextView dayName = createBasicTextView(context, "Giornata " + day.getNumeroGiornata(), 20f);
 
             ImageView dayImageView = new ImageView(context);
-            dayImageView.setBackgroundResource(R.drawable.item_tree_view);
+            dayImageView.setBackgroundResource(R.drawable.point_tree_view);
             dayImageView.setPadding(0,0,0,0);
 
             dayLayout.addView(dayImageView);
@@ -299,14 +299,9 @@ public class CreationMenuFragment extends Fragment {
             treePlanContainer.addView(dayLayout);
 
             for(Esercizio exe : day.getEsercizi()) {
-                LinearLayout exeLayout = createHorizotalLinearLayout(context, 0, 90, 0, 0);
-                TextView exeName = createBasicTextView(context, exe.getName(), 18f);
+                LinearLayout exeLayout = createHorizotalLinearLayout(context, 0, 40, 0, 0);
+                TextView exeName = createBasicTextView(context, "- " + exe.getName(), 18f);
 
-                ImageView exeImageView = new ImageView(context);
-                exeImageView.setBackgroundResource(R.drawable.item_tree_view);
-                exeImageView.setPadding(0,0,0,0);
-
-                exeLayout.addView(exeImageView);
                 exeLayout.addView(exeName);
 
                 treePlanContainer.addView(exeLayout);

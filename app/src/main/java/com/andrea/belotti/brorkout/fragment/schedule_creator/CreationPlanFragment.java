@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
@@ -99,12 +101,12 @@ public class CreationPlanFragment extends Fragment {
         tabLayout = view.findViewById(R.id.tabDayListLayout);
         viewPager2 = view.findViewById(R.id.viewDayListPager);
 
-        Button addButton = view.findViewById(R.id.addButton);
-        Button modifyButton = view.findViewById(R.id.modifyButton);
-        Button deleteButton = view.findViewById(R.id.deleteButton);
-        Button copyButton = view.findViewById(R.id.copyButton);
-        Button pasteButton = view.findViewById(R.id.pasteButton);
-        Button createSchedule = view.findViewById(R.id.create);
+        ImageView addButton = view.findViewById(R.id.addButton);
+        ImageView modifyButton = view.findViewById(R.id.modifyButton);
+        ImageView deleteButton = view.findViewById(R.id.deleteButton);
+        ImageView copyButton = view.findViewById(R.id.copyButton);
+        ImageView pasteButton = view.findViewById(R.id.pasteButton);
+        LinearLayout createSchedule = view.findViewById(R.id.create_plan);
 
         viewPagerPlanGeneratorAdapter = new ViewPagerPlanGeneratorAdapter(this, scheda); // TODO testare
 

@@ -354,13 +354,40 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonContainer">
 
         <LinearLayout
-            android:id="@+id/tree_container"
+            android:id="@+id/all_tree_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
             android:layout_weight="1"
             android:gravity="start"
-            android:background="@drawable/blue_top_button"/>
+            android:paddingStart="27dp"
+            android:paddingTop="13dp"
+            android:background="@drawable/blue_top_button">
+
+            <TextView
+                android:id="@+id/plan_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Titolo"
+                android:textSize="25sp"
+                android:textColor="@color/blue_500"
+                android:textStyle="bold"
+                />
+
+            <LinearLayout
+                android:id="@+id/tree_container"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:paddingStart="18dp"
+                android:background="@drawable/blue_top_button">
+
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/back_info_button"
@@ -377,7 +404,6 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="10dp"
                 android:paddingHorizontal="20dp"
-                android:layout_marginBottom="8dp"
                 android:text="Indietro"
                 android:textAlignment="center"
                 android:textColor="@color/blue_500"

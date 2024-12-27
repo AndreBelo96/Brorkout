@@ -30,6 +30,7 @@ import java.util.List;
 public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPlanAdapter.ViewHolder> {
 
     private Scheda[] plans;
+    private View view;
     private Context context;
     private CreationMenuFragment fragment;
 
@@ -39,7 +40,8 @@ public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPl
 
     private List<CardView> cardViewList = new ArrayList<>();
 
-    public CreationCopyPlanAdapter(Context context, Scheda[] plans, CreationMenuFragment fragment) {
+    public CreationCopyPlanAdapter(View view, Context context, Scheda[] plans, CreationMenuFragment fragment) {
+        this.view = view;
         this.context = context;
         this.plans = plans;
         this.fragment = fragment;
@@ -68,7 +70,7 @@ public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPl
         });
 
         holder.planImg.setOnClickListener(v-> {
-            fragment.setInfoPlan(plans[position], context);
+            fragment.setInfoPlan(plans[position], view, context);
         });
 
     }
