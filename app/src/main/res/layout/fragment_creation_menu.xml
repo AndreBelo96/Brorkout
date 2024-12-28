@@ -25,8 +25,8 @@
             android:showText="false"
             android:switchPadding="@dimen/_10sdp"
             android:text="Local"
-            android:textColor="@color/blue_500"
-            android:thumbTint="@color/blue_500"
+            android:textColor="@color/text_color"
+            android:thumbTint="@color/text_color"
             android:visibility="visible"
             tools:checked="false" />
 
@@ -40,8 +40,8 @@
             android:showText="false"
             android:switchPadding="@dimen/_10sdp"
             android:text="Private"
-            android:textColor="@color/blue_500"
-            android:thumbTint="@color/blue_500"
+            android:textColor="@color/text_color"
+            android:thumbTint="@color/text_color"
             android:visibility="gone" />
     </LinearLayout>
 
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Titolo scheda: "
-            android:textColor="@color/blue_500"
+            android:textColor="@color/text_color"
             android:textSize="20sp"
             android:layout_marginBottom="10dp"/>
 
@@ -70,11 +70,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="1"
-            android:backgroundTint="@color/blue_500"
+            android:backgroundTint="@color/text_color"
             android:ems="10"
             android:inputType="textPersonName"
             android:textAlignment="center"
-            android:textColor="@color/blue_500"
+            android:textColor="@color/text_color"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -107,7 +107,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/ic_new"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -116,7 +116,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="Crea Nuova"
                 android:textAlignment="center"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -136,7 +136,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 app:srcCompat="@drawable/ic_copy"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -145,7 +145,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="Copia da esistente"
                 android:textAlignment="center"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -195,7 +195,7 @@
                     android:paddingVertical="10dp"
                     android:text="1"
                     android:textAlignment="center"
-                    android:textColor="@color/blue_500"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -217,7 +217,7 @@
                     android:paddingVertical="10dp"
                     android:text="2"
                     android:textAlignment="center"
-                    android:textColor="@color/blue_500"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -239,7 +239,7 @@
                     android:paddingVertical="10dp"
                     android:text="3"
                     android:textAlignment="center"
-                    android:textColor="@color/blue_500"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -261,7 +261,7 @@
                     android:paddingVertical="10dp"
                     android:text="4"
                     android:textAlignment="center"
-                    android:textColor="@color/blue_500"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -289,7 +289,7 @@
                     android:paddingVertical="10dp"
                     android:text="5"
                     android:textAlignment="center"
-                    android:textColor="@color/blue_500"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -310,7 +310,7 @@
                     android:paddingVertical="10dp"
                     android:text="6"
                     android:textAlignment="center"
-                    android:textColor="@color/blue_500"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -331,7 +331,7 @@
                     android:paddingVertical="10dp"
                     android:text="7"
                     android:textAlignment="center"
-                    android:textColor="@color/blue_500"
+                    android:textColor="@color/text_color"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -370,7 +370,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Titolo"
                 android:textSize="25sp"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textStyle="bold"
                 />
 
@@ -406,7 +406,7 @@
                 android:paddingHorizontal="20dp"
                 android:text="Indietro"
                 android:textAlignment="center"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -470,7 +470,7 @@
             android:paddingVertical="10dp"
             android:text="Crea scheda"
             android:textAlignment="center"
-            android:textColor="@color/blue_500"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
             android:textStyle="bold" />
     </LinearLayout>

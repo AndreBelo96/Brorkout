@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -53,8 +54,8 @@ public class AddExeFragment extends Fragment {
 
         Spinner typeExePicker = view.findViewById(R.id.choiceExerciseType);
         changeTypeExeFragment(typeExePicker);
-        Button saveButton = view.findViewById(R.id.salva);
-        Button annullaButton = view.findViewById(R.id.annulla);
+        LinearLayout saveButton = view.findViewById(R.id.salva);
+        LinearLayout undoButton = view.findViewById(R.id.annulla);
 
         ScheduleCreatorActivity activity = (ScheduleCreatorActivity) this.getActivity();
 
@@ -76,7 +77,7 @@ public class AddExeFragment extends Fragment {
 
         });
 
-        annullaButton.setOnClickListener(v -> {
+        undoButton.setOnClickListener(v -> {
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             deleteFragmentFromStack(fragmentTransaction);
         });
@@ -181,7 +182,7 @@ public class AddExeFragment extends Fragment {
                 esercizio.setInizio(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
                 esercizio.setPicco(((EditText) viewFragment.findViewById(R.id.peakText)).getText().toString());
                 esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
-                esercizio.setRecuperoSerie(ExerciseConstants.recoverList[((NumberPicker) viewFragment.findViewById(R.id.textRecoverSeries)).getValue()]);
+                esercizio.setRecuperoSerie(((EditText) viewFragment.findViewById(R.id.textRecoverSeries)).getText().toString());
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + typeExePicker.getSelectedItem().toString());

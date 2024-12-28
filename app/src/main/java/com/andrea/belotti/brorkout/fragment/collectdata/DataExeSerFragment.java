@@ -34,7 +34,7 @@ public class DataExeSerFragment extends Fragment {
         Log.i(TAG, ExerciseConstants.TAG_START_FRAGMENT);
 
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_data_exe_ser, container, false);
+        View view = inflater.inflate(R.layout.fragment_data_exe_ser, container, false);
 
         EsercizioSerie esercizio;
 

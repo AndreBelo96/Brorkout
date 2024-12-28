@@ -8,7 +8,7 @@
         android:pivotX="12"
         android:pivotY="12">
         <path
-            android:fillColor="@color/blue_500"
+            android:fillColor="@color/text_color"
             android:pathData="M 3,4 h18 v1 h-2 v14 h2 v1 h-18 v-1 h15 v-14 h-15 v1
             M16,12.5 C15,12.5 15,11 16,11
             M16,12.5 C17,12.5 17,11 16,11

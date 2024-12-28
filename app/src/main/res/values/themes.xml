@@ -24,7 +24,7 @@
     <style name="Theme.Brorkout" parent="Base.Theme.Brorkout" />
 
     <style name="prova" parent="TextAppearance.AppCompat.Button">
-        <item name="android:background">@color/blue_500</item>
+        <item name="android:background">@color/text_color</item>
 
     </style>
 </resources>

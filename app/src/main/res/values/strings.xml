@@ -21,6 +21,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="recupero">Recupero :</string>
     <string name="quote">\"</string>
+    <string name="zavorre">Zavorre :</string>
 
     <!-- Number Picker numeri giornate-->
     <string-array name="exerciseType">

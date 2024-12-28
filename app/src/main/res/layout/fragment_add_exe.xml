@@ -1,109 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/blue_200"
+    android:background="@color/backgroundMenu"
     tools:context=".fragment.schedule_creator.schedulecreator.AddExeFragment">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/labelNomeEsercizio"
-                android:layout_width="wrap_content"
-                android:textColor="@color/light_blue_200"
-                android:layout_height="wrap_content"
-                android:text="Esercizio : "
-                android:textSize="20sp"
-                />
-
-            <EditText
-                android:id="@+id/textNomeEsercizio"
-                android:layout_width="wrap_content"
-                android:textColor="@color/light_blue_200"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="9"
-                android:text=""
-                android:backgroundTint="@color/light_blue_200"
-                android:textSize="20sp"
-                android:layout_marginRight="@dimen/_5sdp"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/labelIndicazioniEsercizio"
-                android:layout_width="wrap_content"
-                android:textColor="@color/light_blue_200"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:textSize="20sp"
-                android:text="Indicazioni :"
-                />
-
-            <EditText
-                android:id="@+id/textIndicazioniEsercizio"
-                android:backgroundTint="@color/light_blue_200"
-                android:layout_width="match_parent"
-                android:textColor="@color/light_blue_200"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textSize="20sp"/>
-
-        </LinearLayout>
-
     <LinearLayout
+        android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:gravity="center">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout5">
+
+        <TextView
+            android:id="@+id/labelNomeEsercizio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Esercizio : "
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/textNomeEsercizio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:backgroundTint="@color/text_color"
+            android:hint="Trazioni"
+            android:ems="9"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+        <TextView
+            android:id="@+id/labelIndicazioniEsercizio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:text="Indicazioni :"
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/textIndicazioniEsercizio"
+            android:layout_width="match_parent"
+            android:hint="Indicazioni coach"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/text_color"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <TextView
             android:id="@+id/labelZavorre"
             android:layout_width="wrap_content"
-            android:textColor="@color/light_blue_200"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:textSize="20sp"
-            android:text="Zavorre :"
-            />
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:text="@string/zavorre"
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/textZavorre"
-            android:backgroundTint="@color/light_blue_200"
             android:layout_width="wrap_content"
-            android:textColor="@color/light_blue_200"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:gravity="center"
+            android:backgroundTint="@color/text_color"
+            android:hint="10"
             android:ems="2"
+            android:gravity="center"
+            android:inputType="textPersonName"
             android:text=""
-            android:textSize="20sp"/>
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/labelKg"
             android:layout_width="wrap_content"
-            android:textColor="@color/light_blue_200"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:textSize="20sp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:text="Kg"
-            />
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
 
         <CheckBox
             android:id="@+id/checkBoxVideo"
@@ -111,101 +121,133 @@
             android:layout_height="wrap_content"
             android:checked="false"
             android:text="Video"
-            android:textColor="@color/light_blue_200"
+            android:textColor="@color/text_color"
             android:textSize="20sp"
-            app:buttonIconTint="@color/light_blue_200" />
+            app:buttonIconTint="@color/text_color" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:gravity="center">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
         <TextView
             android:id="@+id/labelElastico"
             android:layout_width="wrap_content"
-            android:textColor="@color/light_blue_200"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:textSize="20sp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:text="Elastico :"
-            />
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/textElastico"
-            android:backgroundTint="@color/light_blue_200"
             android:layout_width="wrap_content"
-            android:textColor="@color/light_blue_200"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:backgroundTint="@color/text_color"
+            android:ems="9"
             android:gravity="center"
-            android:ems="5"
-            android:text=""
-            android:textSize="20sp"/>
+            android:inputType="textPersonName"
+            android:hint="Elastico Leggero"
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
         <TextView
             android:id="@+id/tipoEsercizio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/light_blue_200"
             android:text="Tipologia :"
-            android:textSize="20sp"
-            />
+            android:textColor="@color/text_color"
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/choiceExerciseType"
-            android:textColor="@color/light_blue_200"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:entries="@array/exerciseTypeLabels"/>
+            android:entries="@array/exerciseTypeLabels"
+            android:textColor="@color/text_color" />
 
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerTipoEsercizio"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
 
     <LinearLayout
-        android:layout_marginVertical="@dimen/_10sdp"
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:gravity="center">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+        <LinearLayout
             android:id="@+id/salva"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:text="Salva"
-            android:textColor="@color/light_blue_200"
-            android:background="@drawable/circled_button"
-            app:backgroundTint="@color/light_blue_200"/>
+            android:background="@drawable/blue_top_button"
+            android:layout_margin="15dp"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <Button
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="Salva"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/annulla"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:text="Annulla"
-            android:textColor="@color/light_blue_200"
-            android:background="@drawable/circled_button"
-            app:backgroundTint="@color/light_blue_200"/>
+            android:background="@drawable/blue_top_button"
+            android:layout_margin="15dp"
+            android:elevation="6dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:text="Annulla"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textStyle="bold" />
+        </LinearLayout>
 
     </LinearLayout>
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

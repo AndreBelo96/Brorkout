@@ -2,8 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue_200"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundMenu"
     tools:context=".fragment.collectdata.DataExeIncrFragment">
 
     <LinearLayout
@@ -21,7 +21,7 @@
                 android:id="@+id/serie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/light_blue_200"
+                android:textColor="@color/text_color"
                 android:text="Serie :"
                 android:textSize="20sp"/>
 
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:textColor="@color/light_blue_200"
+                android:textColor="@color/text_color"
                 android:ems="2"
                 android:gravity="center"
                 android:textSize="20sp" />
@@ -38,7 +38,7 @@
             <TextView
                 android:id="@+id/recover"
                 android:layout_width="wrap_content"
-                android:textColor="@color/light_blue_200"
+                android:textColor="@color/text_color"
                 android:layout_height="wrap_content"
                 android:text="Recupero :"
                 android:textSize="20sp"
@@ -49,7 +49,7 @@
                 android:id="@+id/recoverText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/light_blue_200"
+                android:textColor="@color/text_color"
                 android:inputType="textPersonName"
                 android:ems="2"
                 android:textSize="20sp"/>
@@ -57,7 +57,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/light_blue_200"
+                android:textColor="@color/text_color"
                 android:text="@string/quote"
                 android:textSize="20sp"
                 />
@@ -79,7 +79,7 @@
                     android:id="@+id/repetitionStart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_blue_200"
+                    android:textColor="@color/text_color"
                     android:text="Inizio:"
                     android:textSize="20sp" />
 
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:ems="2"
-                    android:textColor="@color/light_blue_200"
+                    android:textColor="@color/text_color"
                     android:gravity="center"
                     android:textSize="20sp"
                     android:layout_marginRight="12dp"/>
@@ -98,7 +98,7 @@
                     android:id="@+id/peak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_blue_200"
+                    android:textColor="@color/text_color"
                     android:text="Picco :"
                     android:textSize="20sp"/>
 
@@ -107,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:textColor="@color/light_blue_200"
+                    android:textColor="@color/text_color"
                     android:ems="2"
                     android:gravity="center"
                     android:textSize="20sp" />

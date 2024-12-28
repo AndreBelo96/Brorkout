@@ -76,7 +76,7 @@
                         android:layout_height="50dp"
                         android:layout_margin="10dp"
                         app:srcCompat="@drawable/write"
-                        app:tint="@color/blue_500" />
+                        app:tint="@color/text_color" />
 
                     <TextView
                         android:id="@+id/textView8"
@@ -85,7 +85,7 @@
                         android:layout_marginBottom="8dp"
                         android:text="Nuova Scheda"
                         android:textAlignment="center"
-                        android:textColor="@color/blue_500"
+                        android:textColor="@color/text_color"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -105,7 +105,7 @@
                         android:layout_height="50dp"
                         android:layout_margin="10dp"
                         app:srcCompat="@drawable/ic_flag"
-                        app:tint="@color/blue_500" />
+                        app:tint="@color/text_color" />
 
                     <TextView
                         android:id="@+id/textView9"
@@ -114,7 +114,7 @@
                         android:layout_marginBottom="8dp"
                         android:text="Comincia allenamento"
                         android:textAlignment="center"
-                        android:textColor="@color/blue_500"
+                        android:textColor="@color/text_color"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -134,7 +134,7 @@
                         android:layout_height="50dp"
                         android:layout_margin="10dp"
                         app:srcCompat="@drawable/ic_5"
-                        app:tint="@color/blue_500" />
+                        app:tint="@color/text_color" />
 
                     <TextView
                         android:id="@+id/textView10"
@@ -143,7 +143,7 @@
                         android:layout_marginBottom="8dp"
                         android:text="Archivio allenamenti"
                         android:textAlignment="center"
-                        android:textColor="@color/blue_500"
+                        android:textColor="@color/text_color"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -210,7 +210,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_personal"
-                    app:tint="@color/blue_500" />
+                    app:tint="@color/text_color" />
 
                 <TextView
                     android:id="@+id/textView11"
@@ -238,7 +238,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_settings"
-                    app:tint="@color/blue_500" />
+                    app:tint="@color/text_color" />
 
                 <TextView
                     android:id="@+id/textView12"
@@ -276,7 +276,7 @@
                 android:layout_height="@dimen/_2sdp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/blue_500" />
+                android:background="@color/text_color" />
 
             <ImageView
                 android:id="@+id/buttonBack"
@@ -291,7 +291,7 @@
                 android:layout_height="@dimen/_2sdp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/blue_500" />
+                android:background="@color/text_color" />
 
         </LinearLayout>
 

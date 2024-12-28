@@ -10,7 +10,7 @@
 
 
         <path
-            android:fillColor="@color/blue_500"
+            android:fillColor="@color/text_color"
             android:pathData="M2,3 C2,1.7 4,1.7 4,3 C4,4.3 2,4.3 2,3"
             />
 

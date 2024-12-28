@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 
 import com.andrea.belotti.brorkout.R;
@@ -37,11 +38,11 @@ public class DataExePirFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_exe_pir, container, false);
 
-        NumberPicker recuperoSeriePicker = view.findViewById(R.id.textRecoverSeries);
-        recuperoSeriePicker.setMaxValue(ExerciseConstants.recoverList.length - 1);
+        //EditText recuperoSeriePicker = view.findViewById(R.id.textRecoverSeries);
+        /*recuperoSeriePicker.setMaxValue(ExerciseConstants.recoverList.length - 1);
         recuperoSeriePicker.setMinValue(0);
         recuperoSeriePicker.setValue(5);
-        recuperoSeriePicker.setDisplayedValues(ExerciseConstants.recoverList);
+        recuperoSeriePicker.setDisplayedValues(ExerciseConstants.recoverList);*/
 
         return view;
     }

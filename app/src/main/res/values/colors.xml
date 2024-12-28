@@ -12,6 +12,7 @@
     <color name="buttonPressed">#FF061539</color>
     <color name="buttonUnpressed">#FF7887AB</color>
     <color name="backgroundMenu">#E4E9F4</color>
+    <color name="text_color">#FF162955</color>
     <color name="no_color">#00000000</color>
     <color name="exe_ok">#DD8BC34A</color>
     <color name="exe_ko">#DDEF5144</color>

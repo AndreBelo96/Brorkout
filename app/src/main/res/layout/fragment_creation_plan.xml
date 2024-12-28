@@ -12,9 +12,9 @@
         android:id="@+id/tabDayListLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorColor="@color/blue_500"
-        app:tabIconTint="@color/blue_500"
-        app:tabTextColor="@color/blue_500"
+        app:tabIndicatorColor="@color/text_color"
+        app:tabIconTint="@color/text_color"
+        app:tabTextColor="@color/text_color"
         android:background="#00000000">
     </com.google.android.material.tabs.TabLayout>
 
@@ -28,12 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_2sdp"
-        android:background="@color/blue_500"
+        android:background="@color/text_color"
         android:layout_marginBottom="@dimen/_5sdp"/>
 
         <LinearLayout
@@ -48,7 +49,7 @@
                 android:scaleY="0.8"
                 android:scaleX="0.8"
                 app:srcCompat="@drawable/ic_add"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <ImageView
                 android:id="@+id/modifyButton"
@@ -57,7 +58,7 @@
                 android:scaleY="0.8"
                 android:scaleX="0.8"
                 app:srcCompat="@drawable/ic_modify"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <ImageView
                 android:id="@+id/deleteButton"
@@ -66,14 +67,14 @@
                 android:scaleY="0.8"
                 android:scaleX="0.8"
                 app:srcCompat="@drawable/ic_delete"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <ImageView
                 android:id="@+id/copyButton"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 app:srcCompat="?attr/actionModeCopyDrawable"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
 
             <ImageView
@@ -81,7 +82,7 @@
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 app:srcCompat="?attr/actionModePasteDrawable"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
         </LinearLayout>
 
@@ -90,7 +91,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="10dp"
             android:elevation="6dp"
             android:background="@drawable/blue_top_button"
             android:orientation="vertical">
@@ -102,7 +102,7 @@
                 android:paddingHorizontal="20dp"
                 android:text="Crea scheda"
                 android:textAlignment="center"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textStyle="bold" />
         </LinearLayout>
 

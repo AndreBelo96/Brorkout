@@ -2,8 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/blue_200"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundMenu"
     tools:context=".fragment.collectdata.DataExeTenFragment">
 
     <LinearLayout
@@ -14,106 +14,141 @@
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/serie"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_blue_200"
-                    android:text="Serie :"
-                    android:textSize="20sp"/>
-
-                <EditText
-                    android:id="@+id/textSerie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/light_blue_200"
-                    android:inputType="textPersonName"
-                    android:ems="2"
                     android:gravity="center"
-                    android:textSize="20sp" />
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/executionTime"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/light_blue_200"
-                    android:layout_height="wrap_content"
-                    android:text="Tempo di esecuzione:"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:id="@+id/serie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:text="Serie :"
+                        android:textSize="20sp"/>
 
-                <EditText
-                    android:id="@+id/textExecutionTime"
+                    <EditText
+                        android:id="@+id/textSerie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:inputType="textPersonName"
+                        android:ems="2"
+                        android:gravity="center"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_blue_200"
-                    android:inputType="textPersonName"
-                    android:ems="2"
                     android:gravity="center"
-                    android:textSize="20sp"
-                    android:layout_marginRight="12dp"/>
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/light_blue_200"
-                    android:text="@string/quote"
-                    android:textSize="20sp"
-                    />
+                    <TextView
+                        android:id="@+id/executionTime"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:layout_height="wrap_content"
+                        android:text="Tempo di esecuzione:"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/textExecutionTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:inputType="textPersonName"
+                        android:ems="2"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:layout_marginRight="12dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:text="@string/quote"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/ripetizioni"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:textColor="@color/light_blue_200"
                     android:layout_height="wrap_content"
-                    android:text="Ripetizioni:"
-                    android:textSize="20sp"
-                    />
-
-                <EditText
-                    android:id="@+id/textRipetizioni"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/light_blue_200"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:ems="2"
                     android:gravity="center"
-                    android:textSize="20sp"/>
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/recover"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/light_blue_200"
-                    android:layout_height="wrap_content"
-                    android:text="Recupero :"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="12dp"
-                    />
+                    <TextView
+                        android:id="@+id/ripetizioni"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:layout_height="wrap_content"
+                        android:text="Ripetizioni:"
+                        android:textSize="20sp"
+                        />
 
-                <EditText
-                    android:id="@+id/recoverText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/light_blue_200"
-                    android:inputType="textPersonName"
-                    android:ems="2"
-                    android:textSize="20sp"/>
+                    <EditText
+                        android:id="@+id/textRipetizioni"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="2"
+                        android:gravity="center"
+                        android:textSize="20sp"/>
 
-                <TextView
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_blue_200"
-                    android:text="@string/quote"
-                    android:textSize="20sp"
-                    />
+                    android:gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/recover"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:layout_height="wrap_content"
+                        android:text="Recupero :"
+                        android:textSize="20sp"
+                        android:layout_marginLeft="12dp"/>
+
+                    <EditText
+                        android:id="@+id/recoverText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:inputType="textPersonName"
+                        android:ems="2"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_color"
+                        android:text="@string/quote"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 

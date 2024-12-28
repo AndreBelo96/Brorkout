@@ -63,14 +63,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_button_blue"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:padding="5dp"
                 app:srcCompat="@drawable/ic_add_image"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -98,14 +102,14 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="20dp"
                 app:srcCompat="@drawable/ic_user"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="Username:"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textSize="20sp" />
 
             <EditText
@@ -113,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="7"
-                android:textColor="@color/blue_500" />
+                android:textColor="@color/text_color" />
 
         </LinearLayout>
 
@@ -138,14 +142,14 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="20dp"
                 app:srcCompat="@drawable/ic_weight"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="Peso:"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textSize="20sp" />
 
             <EditText
@@ -153,14 +157,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="3"
-                android:textColor="@color/blue_500" />
+                android:textColor="@color/text_color" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="kg"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -188,14 +192,14 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="20dp"
                 app:srcCompat="@drawable/ic_height"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="Altezza:"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textSize="20sp" />
 
             <EditText
@@ -203,14 +207,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="3"
-                android:textColor="@color/blue_500" />
+                android:textColor="@color/text_color" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="cm"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -236,14 +240,14 @@
                 android:layout_height="40dp"
                 android:layout_marginRight="20dp"
                 app:srcCompat="@drawable/ic_body_fat"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="Grasso Corporeo:"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textSize="20sp" />
 
             <EditText
@@ -251,14 +255,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="2"
-                android:textColor="@color/blue_500" />
+                android:textColor="@color/text_color" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:text="%"
-                android:textColor="@color/blue_500"
+                android:textColor="@color/text_color"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -290,7 +294,7 @@
             android:textAlignment="center"
             android:paddingHorizontal="20dp"
             android:paddingVertical="10dp"
-            android:textColor="@color/blue_500"
+            android:textColor="@color/text_color"
             android:textStyle="bold"/>
 
     </LinearLayout>
@@ -316,7 +320,7 @@
                 android:layout_height="@dimen/_2sdp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/blue_500" />
+                android:background="@color/text_color" />
 
             <ImageButton
                 android:id="@+id/backButton"
@@ -325,14 +329,14 @@
                 android:layout_gravity="center"
                 android:background="@drawable/circled_button"
                 android:src="@drawable/home_lightblue"
-                app:tint="@color/blue_500"/>
+                app:tint="@color/text_color"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_2sdp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/blue_500" />
+                android:background="@color/text_color" />
 
         </LinearLayout>
 

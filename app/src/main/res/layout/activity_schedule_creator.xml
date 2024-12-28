@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
     android:background="@color/backgroundMenu"
     tools:context=".activity.ScheduleCreatorActivity">
 
@@ -15,7 +16,6 @@
         android:gravity="top"
         android:orientation="vertical"
         android:layout_marginTop="25dp"
-        android:paddingHorizontal="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,7 +23,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_2sdp"
-            android:background="@color/blue_500" />
+            android:background="@color/text_color" />
 
     </LinearLayout>
 
@@ -48,7 +48,6 @@
         android:gravity="bottom"
         android:layout_marginBottom="25dp"
         android:orientation="vertical"
-        android:paddingHorizontal="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -63,7 +62,7 @@
                 android:layout_height="@dimen/_2sdp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/blue_500" />
+                android:background="@color/text_color" />
 
             <ImageView
                 android:id="@+id/buttonBack"
@@ -72,14 +71,14 @@
                 android:layout_gravity="center"
                 android:background="@drawable/circled_button"
                 android:src="@drawable/home"
-                app:tint="@color/blue_500" />
+                app:tint="@color/text_color" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_2sdp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="@color/blue_500" />
+                android:background="@color/text_color" />
 
         </LinearLayout>
 
