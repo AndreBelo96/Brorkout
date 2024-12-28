@@ -29,10 +29,11 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
     private static SharedPreferences sharedPreferences;
     // log
     private final String tag = this.getClass().getSimpleName();
-    // shared variables beetween fragments
+    // shared variables between fragments
     private Esercizio addExeInCreation;
     private Integer selectedExe;
     private boolean isLocal = true;
+    private boolean isPrivate = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,6 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
         });
 
     }
-
 
     public void saveData(Scheda scheda) {
 
@@ -108,4 +108,13 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
     public void setLocal(boolean local) {
         isLocal = local;
     }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
 }

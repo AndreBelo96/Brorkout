@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchDb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,11 +31,11 @@
             tools:checked="false" />
 
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchPrivate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:width="@dimen/_80sdp"
             android:showText="false"
             android:switchPadding="@dimen/_10sdp"
@@ -360,7 +360,7 @@
             android:orientation="vertical"
             android:layout_weight="1"
             android:gravity="start"
-            android:paddingStart="27dp"
+            android:paddingHorizontal="27dp"
             android:paddingTop="13dp"
             android:background="@drawable/blue_top_button">
 

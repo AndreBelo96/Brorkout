@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -52,7 +52,7 @@ public class CreationMenuFragment extends Fragment {
     private LinearLayout treePlanContainer;
     private LinearLayout infoPlanContainer;
     private LinearLayout copyPlanContainer;
-    private LinearLayout  createPlanButton;
+    private LinearLayout createPlanButton;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -78,8 +78,8 @@ public class CreationMenuFragment extends Fragment {
         // ------------------------ Initialize Variables ------------------------
 
         // Initialize switches
-        Switch switchDb = view.findViewById(R.id.switchDb);
-        Switch switchPrivate = view.findViewById(R.id.switchPrivate);
+        SwitchCompat switchDb = view.findViewById(R.id.switchDb);
+        SwitchCompat switchPrivate = view.findViewById(R.id.switchPrivate);
 
         // Initialize Title text
         EditText planTitle = view.findViewById(R.id.titoloScheda);
@@ -153,8 +153,10 @@ public class CreationMenuFragment extends Fragment {
 
             if (isChecked) {
                 switchPrivate.setText(ExerciseConstants.DataBase.PUBLIC);
+                activity.setPrivate(false);
             } else {
                 switchPrivate.setText(ExerciseConstants.DataBase.PRIVATE);
+                activity.setPrivate(true);
             }
 
             //isPublic = isChecked;
@@ -220,7 +222,7 @@ public class CreationMenuFragment extends Fragment {
         });
 
         // ---------------------- Info Schedule Click Listeners ----------------------
-        backInfoButton.setOnClickListener( v -> {
+        backInfoButton.setOnClickListener(v -> {
             infoPlanContainer.setVisibility(View.GONE);
             copyPlanContainer.setVisibility(View.VISIBLE);
             createPlanButton.setVisibility(View.VISIBLE);
@@ -284,21 +286,21 @@ public class CreationMenuFragment extends Fragment {
 
         treePlanContainer.removeAllViews();
 
-        for(Giornata day : plan.getGiornate()) {
+        for (Giornata day : plan.getGiornate()) {
             LinearLayout dayLayout = createHorizotalLinearLayout(context, 0, 0, 0, 0);
             dayLayout.setGravity(Gravity.CENTER);
             TextView dayName = createBasicTextView(context, "Giornata " + day.getNumeroGiornata(), 20f);
 
             ImageView dayImageView = new ImageView(context);
             dayImageView.setBackgroundResource(R.drawable.point_tree_view);
-            dayImageView.setPadding(0,0,0,0);
+            dayImageView.setPadding(0, 0, 0, 0);
 
             dayLayout.addView(dayImageView);
             dayLayout.addView(dayName);
 
             treePlanContainer.addView(dayLayout);
 
-            for(Esercizio exe : day.getEsercizi()) {
+            for (Esercizio exe : day.getEsercizi()) {
                 LinearLayout exeLayout = createHorizotalLinearLayout(context, 0, 40, 0, 0);
                 TextView exeName = createBasicTextView(context, "- " + exe.getName(), 18f);
 

@@ -1,13 +1,13 @@
 [versions]
-agp = "8.4.2"
+agp = "8.6.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
 appcompat = "1.7.0"
 material = "1.12.0"
-constraintlayout = "2.1.4"
-navigationFragment = "2.7.7"
-navigationUi = "2.7.7"
+constraintlayout = "2.2.0"
+navigationFragment = "2.8.5"
+navigationUi = "2.8.5"
 googleGmsGoogleServices = "4.4.2"
 firebaseDatabase = "21.0.0"
 sdpText = "1.1.1"
@@ -16,7 +16,7 @@ javaUtils = "3.14.0"
 gson = "2.11.0"
 jacksonVersion = "2.17.1"
 lombok = "1.18.32"
-activity = "1.9.0"
+activity = "1.9.3"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
