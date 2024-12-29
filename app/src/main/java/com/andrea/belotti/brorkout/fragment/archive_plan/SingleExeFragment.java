@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.schedule_archive;
+package com.andrea.belotti.brorkout.fragment.archive_plan;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.INCREMENTALE;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.PIRAMIDALE;

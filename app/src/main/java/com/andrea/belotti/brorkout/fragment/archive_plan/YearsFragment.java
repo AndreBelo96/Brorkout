@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.schedule_archive;
+package com.andrea.belotti.brorkout.fragment.archive_plan;
 
 import android.content.Context;
 import android.content.Intent;

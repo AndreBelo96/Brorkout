@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.schedule_archive.YearsFragment">
+    tools:context=".fragment.archive_plan.YearsFragment">
 
     <TextView
         android:id="@+id/textView4"

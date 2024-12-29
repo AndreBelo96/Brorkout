@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.schedule_creator.schedulecreator;
+package com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,11 +15,11 @@ import android.widget.Toast;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.fragment.collectdata.DataExeIncrFragment;
-import com.andrea.belotti.brorkout.fragment.collectdata.DataExePirFragment;
-import com.andrea.belotti.brorkout.fragment.collectdata.DataExeSerFragment;
-import com.andrea.belotti.brorkout.fragment.collectdata.DataExeTenFragment;
-import com.andrea.belotti.brorkout.fragment.schedule_creator.CreationPlanFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeIncrFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExePirFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeSerFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeTenFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.CreationPlanFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
 import com.andrea.belotti.brorkout.model.EsercizioPiramidale;

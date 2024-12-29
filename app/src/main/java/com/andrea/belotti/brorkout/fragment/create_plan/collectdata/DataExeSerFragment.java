@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.collectdata;
+package com.andrea.belotti.brorkout.fragment.create_plan.collectdata;
 
 import android.os.Bundle;
 import android.util.Log;

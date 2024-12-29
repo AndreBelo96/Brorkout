@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blue_200"
-    tools:context=".fragment.executor.ExeExecutionFragment">
+    tools:context=".fragment.execute_plan.ExeExecutionFragment">
 
 
     <LinearLayout

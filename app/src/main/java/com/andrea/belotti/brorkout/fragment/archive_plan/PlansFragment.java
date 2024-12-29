@@ -1,6 +1,6 @@
-package com.andrea.belotti.brorkout.fragment.schedule_archive;
+package com.andrea.belotti.brorkout.fragment.archive_plan;
 
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.NODE;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,21 +17,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
-import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
+import com.andrea.belotti.brorkout.adapter.PlanAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.model.nodes.Node;
+import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 
-public class ExercisesFragment extends Fragment {
+public class PlansFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
     private Context context;
     private ScheduleArchiveActivity activity;
+    private long parentId;
 
-    public static ExercisesFragment newInstance(Giornata day) {
-        ExercisesFragment fragment = new ExercisesFragment();
+    public static PlansFragment newInstance(Node monthNode) {
+        PlansFragment fragment = new PlansFragment();
         Bundle args = new Bundle();
-        args.putSerializable(GIORNATA, day);
+        args.putSerializable(NODE, monthNode);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,19 +45,21 @@ public class ExercisesFragment extends Fragment {
         context = getContext();
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_exercises, container, false);
+        View view = inflater.inflate(R.layout.fragment_plans, container, false);
 
-        activity = (ScheduleArchiveActivity) this.getActivity();
+        // da prendere nel bundle
+        Node monthNode = new Node();
 
-        // retrieve data
-        Giornata day = new Giornata();
         if (getArguments() != null) {
-            day = (Giornata) getArguments().get(GIORNATA);
+            monthNode = (Node) getArguments().get(NODE);
         }
 
+        parentId = monthNode.getParentId();
+        activity = (ScheduleArchiveActivity) this.getActivity();
+
         // set recyclerView info
-        RecyclerView recyclerView = view.findViewById(R.id.exercises);
-        EsercizioAdapter adapter = new EsercizioAdapter(context, day.getEsercizi().toArray(new Esercizio[0]), activity, getParentFragmentManager());
+        RecyclerView recyclerView = view.findViewById(R.id.plans);
+        PlanAdapter adapter = new PlanAdapter(context, monthNode.getData().toArray(new PlanCompletedNode[0]), activity, getParentFragmentManager());
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
@@ -69,14 +72,13 @@ public class ExercisesFragment extends Fragment {
             String path = activity.getPath();
             String sub[] = path.split("/");
 
-            activity.setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/");
+            activity.setPath(sub[0] + "/");
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance(activity.getPlanCompletedNode()));
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, MonthsFragment.newInstance(activity.getYearNode()));
             fragmentTransaction.commit();
 
         });
-
 
         return view;
     }

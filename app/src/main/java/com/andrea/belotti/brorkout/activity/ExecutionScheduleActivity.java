@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.executor.ExeExecutionFragment;
+import com.andrea.belotti.brorkout.fragment.execute_plan.ExeExecutionFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 
 import androidx.appcompat.app.AppCompatActivity;

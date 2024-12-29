@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blue_200"
-    tools:context=".fragment.executor.EndScheduleSummaryFragment">
+    tools:context=".fragment.execute_plan.EndScheduleSummaryFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

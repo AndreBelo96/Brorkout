@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.schedule_archive;
+package com.andrea.belotti.brorkout.fragment.archive_plan;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

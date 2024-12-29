@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.select_schedule;
+package com.andrea.belotti.brorkout.fragment.select_plan;
 
 import android.content.Context;
 import android.content.Intent;

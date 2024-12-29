@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.schedule_archive.SingleExeFragment">
+    tools:context=".fragment.archive_plan.SingleExeFragment">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"

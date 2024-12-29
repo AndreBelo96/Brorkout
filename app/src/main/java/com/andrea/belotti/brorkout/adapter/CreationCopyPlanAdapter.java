@@ -7,24 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
-import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.fragment.schedule_creator.CreationMenuFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.CreationMenuFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPlanAdapter.ViewHolder> {

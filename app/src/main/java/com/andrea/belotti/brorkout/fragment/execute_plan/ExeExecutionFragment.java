@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.executor;
+package com.andrea.belotti.brorkout.fragment.execute_plan;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;

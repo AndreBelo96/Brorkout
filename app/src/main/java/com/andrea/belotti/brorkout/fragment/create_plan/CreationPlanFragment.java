@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.schedule_creator;
+package com.andrea.belotti.brorkout.fragment.create_plan;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -23,8 +22,8 @@ import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.adapter.ViewPagerPlanGeneratorAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.fragment.schedule_creator.schedulecreator.AddExeFragment;
-import com.andrea.belotti.brorkout.fragment.schedule_creator.schedulecreator.ModifyExeFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator.AddExeFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator.ModifyExeFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -206,7 +205,6 @@ public class CreationPlanFragment extends Fragment {
 
             //Salvataggio a DB e in locale
             activity.saveData(scheda);
-
 
             Intent intent = new Intent(getActivity(), ExecutionScheduleActivity.class);
             intent.putExtra("scheda", scheda);

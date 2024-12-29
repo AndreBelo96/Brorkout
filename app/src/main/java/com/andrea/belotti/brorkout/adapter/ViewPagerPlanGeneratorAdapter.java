@@ -1,6 +1,6 @@
 package com.andrea.belotti.brorkout.adapter;
 
-import com.andrea.belotti.brorkout.fragment.schedule_creator.schedulecreator.ExeListFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator.ExeListFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 
 import androidx.annotation.NonNull;
@@ -65,7 +65,7 @@ public class ViewPagerPlanGeneratorAdapter extends FragmentStateAdapter {
 
 
     public void resetButtonList(int frgNumber) {
-        switch (frgNumber) {
+        /*switch (frgNumber) {
             case 0 -> exeFrg0.resetButton();
             case 1 -> exeFrg1.resetButton();
             case 2 -> exeFrg2.resetButton();
@@ -74,7 +74,7 @@ public class ViewPagerPlanGeneratorAdapter extends FragmentStateAdapter {
             case 5 -> exeFrg5.resetButton();
             case 6 -> exeFrg6.resetButton();
             default -> new Fragment();
-        };
+        };*/
 
     }
 

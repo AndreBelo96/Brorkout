@@ -8,7 +8,7 @@ import android.util.Log;
 import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.select_schedule.ManagerListFragment;
+import com.andrea.belotti.brorkout.fragment.select_plan.ManagerListFragment;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import androidx.annotation.RequiresApi;

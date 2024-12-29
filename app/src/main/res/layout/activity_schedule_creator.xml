@@ -29,7 +29,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewScheduleCreator"
-        android:name="com.andrea.belotti.brorkout.fragment.schedule_creator.CreationMenuFragment"
+        android:name="com.andrea.belotti.brorkout.fragment.create_plan.CreationMenuFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"

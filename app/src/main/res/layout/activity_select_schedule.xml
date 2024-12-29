@@ -23,7 +23,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerArchivioView"
-            android:name="com.andrea.belotti.brorkout.fragment.select_schedule.ManagerListFragment"
+            android:name="com.andrea.belotti.brorkout.fragment.select_plan.ManagerListFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

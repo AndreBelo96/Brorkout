@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context=".fragment.schedule_archive.DaysFragment">
+    tools:context=".fragment.archive_plan.DaysFragment">
 
     <TextView
         android:id="@+id/textView4"

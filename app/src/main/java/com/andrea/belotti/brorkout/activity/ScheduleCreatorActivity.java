@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.schedule_creator.CreationMenuFragment;
-import com.andrea.belotti.brorkout.fragment.schedule_creator.CreationPlanFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.CreationMenuFragment;
+import com.andrea.belotti.brorkout.fragment.create_plan.CreationPlanFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.MetaData;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -32,6 +32,7 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
     // shared variables between fragments
     private Esercizio addExeInCreation;
     private Integer selectedExe;
+    private Scheda planToCreate;
     private boolean isLocal = true;
     private boolean isPrivate = true;
 
@@ -117,4 +118,11 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
         isPrivate = aPrivate;
     }
 
+    public Scheda getPlanToCreate() {
+        return planToCreate;
+    }
+
+    public void setPlanToCreate(Scheda planToCreate) {
+        this.planToCreate = planToCreate;
+    }
 }

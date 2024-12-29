@@ -1,12 +1,8 @@
-package com.andrea.belotti.brorkout.fragment.schedule_archive;
-
-import static android.content.Context.MODE_PRIVATE;
+package com.andrea.belotti.brorkout.fragment.archive_plan;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,12 +17,10 @@ import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.nodes.Node;
-import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.List;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.NODE;
-import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicButtonLayout;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicCardView;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicTextView;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createWrapButtonLayout;

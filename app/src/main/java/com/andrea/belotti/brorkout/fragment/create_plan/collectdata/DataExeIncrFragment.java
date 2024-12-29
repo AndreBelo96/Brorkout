@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.collectdata;
+package com.andrea.belotti.brorkout.fragment.create_plan.collectdata;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,19 +8,18 @@ import android.view.ViewGroup;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
-import com.andrea.belotti.brorkout.model.EsercizioTenuta;
+import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
 
 import androidx.fragment.app.Fragment;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ESERCIZIO;
 
-public class DataExeTenFragment extends Fragment {
+public class DataExeIncrFragment extends Fragment {
 
     private final String TAG = this.getClass().getSimpleName();
 
-    public static DataExeTenFragment newInstance(EsercizioTenuta esercizio) {
-        DataExeTenFragment fragment = new DataExeTenFragment();
+    public static DataExeIncrFragment newInstance(EsercizioIncrementale esercizio) {
+        DataExeIncrFragment fragment = new DataExeIncrFragment();
         Bundle args = new Bundle();
         args.putSerializable(ESERCIZIO, esercizio);
         fragment.setArguments(args);
@@ -34,7 +33,7 @@ public class DataExeTenFragment extends Fragment {
         Log.i(TAG, ExerciseConstants.TAG_START_FRAGMENT);
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_data_exe_ten, container, false);
+        View view = inflater.inflate(R.layout.fragment_data_exe_incr, container, false);
 
         return view;
     }

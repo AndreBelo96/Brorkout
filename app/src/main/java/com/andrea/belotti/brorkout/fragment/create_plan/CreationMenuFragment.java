@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.schedule_creator;
+package com.andrea.belotti.brorkout.fragment.create_plan;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicTextView;

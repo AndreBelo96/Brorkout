@@ -1,25 +1,20 @@
 package com.andrea.belotti.brorkout.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
-import com.andrea.belotti.brorkout.fragment.schedule_archive.DaysFragment;
-import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.fragment.archive_plan.DaysFragment;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 
 public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
