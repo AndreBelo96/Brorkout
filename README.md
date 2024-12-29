@@ -1,2 +1,2 @@
 # Brorkout
-Application for gym
+A mobile applciation for gym managmen.
