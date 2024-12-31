@@ -1,10 +1,8 @@
 package com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator;
 
+import static com.andrea.belotti.brorkout.utils.AppMethodsUtils.deleteFragmentFromStack;
+
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,27 +13,22 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.fragment.create_plan.CreationPlanFragment;
 import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeIncrFragment;
 import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExePirFragment;
 import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeSerFragment;
 import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeTenFragment;
-import com.andrea.belotti.brorkout.fragment.create_plan.CreationPlanFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
 import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
 import com.andrea.belotti.brorkout.model.EsercizioSerie;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 
-import org.apache.commons.lang3.StringUtils;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddExeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddExeFragment extends Fragment {
 
     Fragment typeExeFragment = null;
@@ -55,42 +48,29 @@ public class AddExeFragment extends Fragment {
         LinearLayout saveButton = view.findViewById(R.id.salva);
         LinearLayout undoButton = view.findViewById(R.id.annulla);
 
-        ScheduleCreatorActivity activity = (ScheduleCreatorActivity) this.getActivity();
-
         saveButton.setOnClickListener(v -> {
 
             Esercizio esercizio = createExe(view, typeExePicker);
 
-            if (dataNullOrEmpty(esercizio)) {
+            if (esercizio.isExeNotOk()) {
                 Toast toast = Toast.makeText(getContext(), "Data null or empty", ExerciseConstants.ToastMessageConstants.DURATION);
                 toast.show();
                 return;
             }
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            activity.setAddExeCreation(esercizio);
-            deleteFragmentFromStack(fragmentTransaction);
-
-            CreationPlanFragment.refreshPage(activity);
-
+            CreationPlanFragment.addExeToPlan(esercizio);
+            deleteFragmentFromStack(fragmentTransaction, this, getActivity());
         });
 
         undoButton.setOnClickListener(v -> {
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            deleteFragmentFromStack(fragmentTransaction);
+            deleteFragmentFromStack(fragmentTransaction, this, getActivity());
         });
 
         return view;
     }
 
-
-    private void deleteFragmentFromStack(FragmentTransaction fragmentTransaction) {
-        fragmentTransaction.remove(this);
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.show(getActivity().getSupportFragmentManager().getFragments().get(0));//TODO non va bene
-        fragmentTransaction.commit();
-    }
 
     private void changeTypeExeFragment(Spinner typeNumPicker) {
         typeNumPicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -187,14 +167,6 @@ public class AddExeFragment extends Fragment {
         }
         return esercizio;
 
-    }
-
-    private boolean dataNullOrEmpty(Esercizio esercizio) {
-
-        return StringUtils.isEmpty(esercizio.getSerie()) ||
-                StringUtils.isEmpty(esercizio.getRecupero()) ||
-                StringUtils.isEmpty(esercizio.getName()) ||
-                (StringUtils.isEmpty(esercizio.getRipetizioni()) && StringUtils.isEmpty(esercizio.getInizio()));
     }
 
 

@@ -56,26 +56,10 @@ public class ViewPagerPlanGeneratorAdapter extends FragmentStateAdapter {
 
     }
 
-
-
     @Override
     public int getItemCount() {
-        return 2;
+        return scheda.getGiornate().size();
     }
 
-
-    public void resetButtonList(int frgNumber) {
-        /*switch (frgNumber) {
-            case 0 -> exeFrg0.resetButton();
-            case 1 -> exeFrg1.resetButton();
-            case 2 -> exeFrg2.resetButton();
-            case 3 -> exeFrg3.resetButton();
-            case 4 -> exeFrg4.resetButton();
-            case 5 -> exeFrg5.resetButton();
-            case 6 -> exeFrg6.resetButton();
-            default -> new Fragment();
-        };*/
-
-    }
 
 }

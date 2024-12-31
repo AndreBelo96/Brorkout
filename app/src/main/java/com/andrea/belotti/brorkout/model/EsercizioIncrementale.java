@@ -2,6 +2,8 @@ package com.andrea.belotti.brorkout.model;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.INCREMENTALE;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 
 public class EsercizioIncrementale implements Esercizio, Serializable {
@@ -189,23 +191,6 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
     }
 
     @Override
-    public String toStringUI() {
-        return nomeEsercizio +
-                ", " + serie +
-                " x " + inizio +
-                "-" + picco +
-                ", rec: " + recupero + "\"";
-    }
-
-    @Override
-    public String toStringResumeExe() {
-        return " Nome esercizio: " + nomeEsercizio +
-                "\n Numero serie: " + serie +
-                "\n Ripetizioni: " + inizio + "-" + picco +
-                "\n Recupero: " + recupero;
-    }
-
-    @Override
     public String toStringResumeEndSchedule() {
         return " Nome esercizio: " + nomeEsercizio +
                 "\n Numero serie: " + serieCompletate + "/" + serie +
@@ -222,5 +207,13 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
     public void setNumeroRipetizioniDopoSerie(){
         int incrementoRipetizioni = (Integer.parseInt(picco) - Integer.parseInt(inizio)) / (Integer.parseInt(serie)-1);
         this.setRipetizioni((Integer.parseInt(this.getRipetizioni()) + incrementoRipetizioni) + "");
+    }
+
+    @Override
+    public boolean isExeNotOk() {
+        return StringUtils.isEmpty(this.getSerie()) ||
+                StringUtils.isEmpty(this.getRecupero()) ||
+                StringUtils.isEmpty(this.getName()) ||
+                StringUtils.isEmpty(this.getInizio());
     }
 }

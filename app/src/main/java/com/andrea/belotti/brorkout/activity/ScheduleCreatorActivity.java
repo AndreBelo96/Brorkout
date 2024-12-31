@@ -22,6 +22,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
+import java.util.Optional;
+
+import lombok.Getter;
+import lombok.Setter;
+
 
 public class ScheduleCreatorActivity extends AppCompatActivity {
 
@@ -31,7 +36,13 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
     private final String tag = this.getClass().getSimpleName();
     // shared variables between fragments
     private Esercizio addExeInCreation;
-    private Integer selectedExe;
+
+
+
+    private int selectedExe = -1;
+
+    @Getter
+    @Setter
     private Scheda planToCreate;
     private boolean isLocal = true;
     private boolean isPrivate = true;
@@ -94,14 +105,6 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
         this.addExeInCreation = addExeInCreation;
     }
 
-    public Integer getSelectedExe() {
-        return selectedExe;
-    }
-
-    public void setSelectedExe(Integer selectedExe) {
-        this.selectedExe = selectedExe;
-    }
-
     public boolean isLocal() {
         return isLocal;
     }
@@ -118,11 +121,11 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
         isPrivate = aPrivate;
     }
 
-    public Scheda getPlanToCreate() {
-        return planToCreate;
+    public int getSelectedExe() {
+        return selectedExe;
     }
 
-    public void setPlanToCreate(Scheda planToCreate) {
-        this.planToCreate = planToCreate;
+    public void setSelectedExe(int selectedExe) {
+        this.selectedExe = selectedExe;
     }
 }

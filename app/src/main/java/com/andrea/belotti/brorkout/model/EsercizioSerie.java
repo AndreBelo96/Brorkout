@@ -2,6 +2,8 @@ package com.andrea.belotti.brorkout.model;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.SERIE;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 
 public class EsercizioSerie implements Esercizio, Serializable {
@@ -188,22 +190,6 @@ public class EsercizioSerie implements Esercizio, Serializable {
     }
 
     @Override
-    public String toStringUI() {
-        return nomeEsercizio +
-                ", " + serie +
-                " x " + ripetizioni +
-                ", rec: " + recupero + "\"";
-    }
-
-    @Override
-    public String toStringResumeExe() {
-        return " Nome esercizio: " + nomeEsercizio +
-                "\n Numero serie: " + serie +
-                "\n Ripetizioni: " + ripetizioni +
-                "\n Recupero: " + recupero;
-    }
-
-    @Override
     public String toStringResumeEndSchedule() {
         return " Nome esercizio: " + nomeEsercizio +
                 "\n Numero serie: " + serieCompletate + "/" + serie +
@@ -219,6 +205,14 @@ public class EsercizioSerie implements Esercizio, Serializable {
     @Override
     public void setNumeroRipetizioniDopoSerie(){
         // Non si incrementano le ripetizioni per un esercizio di tipo serie
+    }
+
+    @Override
+    public boolean isExeNotOk() {
+        return StringUtils.isEmpty(this.getSerie()) ||
+                StringUtils.isEmpty(this.getRecupero()) ||
+                StringUtils.isEmpty(this.getName()) ||
+                StringUtils.isEmpty(this.getRipetizioni());
     }
 
 }

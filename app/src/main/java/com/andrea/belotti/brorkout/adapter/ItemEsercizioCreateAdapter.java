@@ -58,8 +58,8 @@ public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEserciz
 
         holder.cardView.setOnClickListener(v -> {
 
-            if (activity.getSelectedExe() != null && position == activity.getSelectedExe()) {
-                activity.setSelectedExe(null);
+            if (position == activity.getSelectedExe()) {
+                activity.setSelectedExe(-1);
                 holder.cardView.setBackgroundResource(R.drawable.blue_top_button);
             } else {
                 ScheduleCreatingUtils.setCardViewBasicColor(cardViewList);

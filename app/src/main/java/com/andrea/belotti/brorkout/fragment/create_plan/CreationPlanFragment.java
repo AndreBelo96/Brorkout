@@ -37,11 +37,6 @@ import java.util.List;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.*;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CreationPlanFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CreationPlanFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
@@ -151,45 +146,47 @@ public class CreationPlanFragment extends Fragment {
         });
 
         modifyButton.setOnClickListener(v -> {
+            assert activity != null;
 
-            List<Esercizio> actualExeList = scheda.getGiornate().get(tabLayout.getSelectedTabPosition()).getEsercizi();
+            List<Esercizio> tabDayExercicesList = scheda.getGiornate().get(tabLayout.getSelectedTabPosition()).getEsercizi();
 
-            if(activity.getSelectedExe() == null || actualExeList.size() <= activity.getSelectedExe()) {
+            int exeToModify = activity.getSelectedExe();
+
+            if(tabDayExercicesList.size() <= exeToModify || exeToModify < 0) {
                 Toast toast = Toast.makeText(getContext(), "Exe not selected", ExerciseConstants.ToastMessageConstants.DURATION);
                 toast.show();
                 return;
             }
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.fragmentContainerViewScheduleCreator, ModifyExeFragment.newInstance(scheda.getGiornate().get(tabLayout.getSelectedTabPosition()), activity.getSelectedExe()));
+            fragmentTransaction.add(R.id.fragmentContainerViewScheduleCreator, ModifyExeFragment.newInstance(scheda.getGiornate().get(tabLayout.getSelectedTabPosition()), exeToModify));
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.hide(this);
-            viewPagerPlanGeneratorAdapter.resetButtonList(tabLayout.getSelectedTabPosition());
+            //viewPagerPlanGeneratorAdapter.resetButtonList(tabLayout.getSelectedTabPosition());
             fragmentTransaction.commit();
         });
 
         deleteButton.setOnClickListener(v -> {
             assert activity != null;
-            List<Esercizio> actualExeList = scheda.getGiornate().get(tabLayout.getSelectedTabPosition()).getEsercizi();
 
-            if(activity.getSelectedExe() == null || actualExeList.size() <= activity.getSelectedExe()) {
+            List<Esercizio> tabDayExercicesList = scheda.getGiornate().get(tabLayout.getSelectedTabPosition()).getEsercizi();
+
+            int exeToDelete = activity.getSelectedExe();
+
+            if(tabDayExercicesList.size() <= exeToDelete || exeToDelete < 0) {
                 Toast toast = Toast.makeText(getContext(), "Exe not selected", ExerciseConstants.ToastMessageConstants.DURATION);
                 toast.show();
                 return;
             }
 
-            int exe = activity.getSelectedExe();
+            // remove selected exercise in the current day
+            tabDayExercicesList.remove(exeToDelete);
 
-            // remove selected exe in the current exeList
-            actualExeList.remove(exe);
+            // set selected exercise to null
+            activity.setSelectedExe(-1);
 
-            //set selected exercise to null
-            activity.setSelectedExe(null);
-
-            viewPagerPlanGeneratorAdapter.resetButtonList(tabLayout.getSelectedTabPosition());
-
-            //refresh viewPager2
+            // Refresh viewPager2
             viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
         });
 
@@ -251,12 +248,16 @@ public class CreationPlanFragment extends Fragment {
         }
     }
 
-    public static void refreshPage(ScheduleCreatorActivity activity) {
-        scheda.getGiornate().get(viewPager2.getCurrentItem()).getEsercizi().add(activity.getAddExeCreation());
+    public static void addExeToPlan(Esercizio exe) {
+        int dayToAddExe = viewPager2.getCurrentItem();
+
+        scheda.getGiornate().get(dayToAddExe).getEsercizi().add(exe);
+
         viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
+        viewPager2.setCurrentItem(dayToAddExe);
     }
 
-    public static void refreshPage(ScheduleCreatorActivity activity, Integer numberExe) {
+    public static void addExeToPlan(ScheduleCreatorActivity activity, Integer numberExe) {
         scheda.getGiornate().get(viewPager2.getCurrentItem()).getEsercizi().set(numberExe, activity.getAddExeCreation());
         viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
     }

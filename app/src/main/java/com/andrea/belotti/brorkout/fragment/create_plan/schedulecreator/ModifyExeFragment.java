@@ -5,9 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -27,12 +27,11 @@ import com.andrea.belotti.brorkout.model.EsercizioSerie;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 import com.andrea.belotti.brorkout.model.Giornata;
 
-import org.apache.commons.lang3.StringUtils;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
+import static com.andrea.belotti.brorkout.utils.AppMethodsUtils.deleteFragmentFromStack;
 
 public class ModifyExeFragment extends Fragment {
 
@@ -66,8 +65,8 @@ public class ModifyExeFragment extends Fragment {
 
         changeTypeExeFragment(typeExePicker, giornata.getEsercizi().get(numeroEsercizio));
 
-        Button saveButton = view.findViewById(R.id.salva);
-        Button annullaButton = view.findViewById(R.id.annulla);
+        LinearLayout saveButton = view.findViewById(R.id.salva);
+        LinearLayout annullaButton = view.findViewById(R.id.annulla);
 
         ScheduleCreatorActivity activity = (ScheduleCreatorActivity) this.getActivity();
 
@@ -75,7 +74,7 @@ public class ModifyExeFragment extends Fragment {
 
             Esercizio esercizio = createExe(view, typeExePicker);
 
-            if (dataNullOrEmpty(esercizio)) {
+            if (esercizio.isExeNotOk()) {
                 Toast toast = Toast.makeText(getContext(), "Data null or empty", ExerciseConstants.ToastMessageConstants.DURATION);
                 toast.show();
                 return;
@@ -83,29 +82,21 @@ public class ModifyExeFragment extends Fragment {
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             activity.setAddExeCreation(esercizio);
-            deleteFragmentFromStack(fragmentTransaction);
+            deleteFragmentFromStack(fragmentTransaction, this, getActivity());
 
-            CreationPlanFragment.refreshPage(activity, numeroEsercizio);
-
+            CreationPlanFragment.addExeToPlan(activity, numeroEsercizio);
 
         });
 
         annullaButton.setOnClickListener(v -> {
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            deleteFragmentFromStack(fragmentTransaction);
+            deleteFragmentFromStack(fragmentTransaction, this, getActivity());
         });
 
         return view;
     }
 
 
-    private void deleteFragmentFromStack(FragmentTransaction fragmentTransaction) {
-        fragmentTransaction.remove(this);
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.show(getActivity().getSupportFragmentManager().getFragments().get(0));//TODO non va bene
-        fragmentTransaction.commit();
-    }
 
     private void changeTypeExeFragment(Spinner typeNumPicker, Esercizio esercizio) {
         typeNumPicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -206,14 +197,6 @@ public class ModifyExeFragment extends Fragment {
         }
         return esercizio;
 
-    }
-
-    private boolean dataNullOrEmpty(Esercizio esercizio) {
-
-        return StringUtils.isEmpty(esercizio.getSerie()) ||
-                StringUtils.isEmpty(esercizio.getRecupero()) ||
-                StringUtils.isEmpty(esercizio.getName()) ||
-                (StringUtils.isEmpty(esercizio.getRipetizioni()) && StringUtils.isEmpty(esercizio.getInizio()));
     }
 
     private void initExeView(Esercizio esercizio, View view) {

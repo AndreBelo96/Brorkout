@@ -1,31 +1,18 @@
 package com.andrea.belotti.brorkout.utils;
 
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.ToggleButton;
-
-import java.util.ArrayList;
-import java.util.List;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class AppMethodsUtils {
 
-    public static List<Button> getButtonList(LinearLayout linearLayoutSchedule) {
-        List<Button> buttonList = new ArrayList<>();
-
-        for (int i = 0; i < linearLayoutSchedule.getChildCount(); i++) {
-            buttonList.add((Button) linearLayoutSchedule.getChildAt(i));
-        }
-
-        return buttonList;
+    public static void deleteFragmentFromStack(@NonNull FragmentTransaction fragmentTransaction, Fragment fragmentToRemove, FragmentActivity activity) {
+        fragmentTransaction.remove(fragmentToRemove);
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.show(activity.getSupportFragmentManager().getFragments().get(0));//TODO non va bene
+        fragmentTransaction.commit();
     }
 
-    public static List<ToggleButton> getToggleButtonList(LinearLayout linearLayoutSchedule) {
-        List<ToggleButton> buttonList = new ArrayList<>();
-
-        for (int i = 0; i < linearLayoutSchedule.getChildCount(); i++) {
-            buttonList.add((ToggleButton) linearLayoutSchedule.getChildAt(i));
-        }
-
-        return buttonList;
-    }
 }

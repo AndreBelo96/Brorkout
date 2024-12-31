@@ -52,15 +52,12 @@ public interface Esercizio {
 
     String toString();
 
-    String toStringUI();
-
-    String toStringResumeExe();
-
     String toStringResumeEndSchedule();
 
     String getRipetizioneEsercizioString();
 
     void setNumeroRipetizioniDopoSerie();
 
+    boolean isExeNotOk();
 
 }
