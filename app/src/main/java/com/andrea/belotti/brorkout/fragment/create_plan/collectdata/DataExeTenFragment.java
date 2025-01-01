@@ -5,9 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
+import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 
 import androidx.fragment.app.Fragment;
@@ -34,6 +36,25 @@ public class DataExeTenFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_exe_ten, container, false);
+
+        EsercizioTenuta esercizio = null;
+
+        if (getArguments() != null) {
+            esercizio = (EsercizioTenuta) getArguments().getSerializable(ESERCIZIO);
+        }
+
+        if (esercizio != null) {
+
+            EditText serie = view.findViewById(R.id.textSerie);
+            EditText exeTime = view.findViewById(R.id.textExecutionTime);
+            EditText ripetizioni = view.findViewById(R.id.textRipetizioni);
+            EditText recupero = view.findViewById(R.id.recoverText);
+
+            serie.setText(esercizio.getSerie());
+            exeTime.setText(esercizio.getTempoEsecuzione());
+            ripetizioni.setText(esercizio.getRipetizioni());
+            recupero.setText(esercizio.getRecupero());
+        }
 
         return view;
     }

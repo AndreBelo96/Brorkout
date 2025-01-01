@@ -152,11 +152,15 @@ public class CreationPlanFragment extends Fragment {
 
             int exeToModify = activity.getSelectedExe();
 
+
             if(tabDayExercicesList.size() <= exeToModify || exeToModify < 0) {
                 Toast toast = Toast.makeText(getContext(), "Exe not selected", ExerciseConstants.ToastMessageConstants.DURATION);
                 toast.show();
                 return;
             }
+
+            // set selected exercise to null
+            activity.setSelectedExe(-1);
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.fragmentContainerViewScheduleCreator, ModifyExeFragment.newInstance(scheda.getGiornate().get(tabLayout.getSelectedTabPosition()), exeToModify));
@@ -165,6 +169,9 @@ public class CreationPlanFragment extends Fragment {
             fragmentTransaction.hide(this);
             //viewPagerPlanGeneratorAdapter.resetButtonList(tabLayout.getSelectedTabPosition());
             fragmentTransaction.commit();
+
+            // Refresh viewPager2 // TODO ma va?
+            viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
         });
 
         deleteButton.setOnClickListener(v -> {

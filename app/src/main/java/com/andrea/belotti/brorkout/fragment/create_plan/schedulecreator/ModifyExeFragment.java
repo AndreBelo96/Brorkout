@@ -26,12 +26,15 @@ import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
 import com.andrea.belotti.brorkout.model.EsercizioSerie;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.utils.ExeTypeCastUtil;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
 import static com.andrea.belotti.brorkout.utils.AppMethodsUtils.deleteFragmentFromStack;
+
+import java.util.Map;
 
 public class ModifyExeFragment extends Fragment {
 
@@ -99,6 +102,18 @@ public class ModifyExeFragment extends Fragment {
 
 
     private void changeTypeExeFragment(Spinner typeNumPicker, Esercizio esercizio) {
+
+        // TODO Crea una mappa dove Serie = 0, incrementale = 1 -> etc etc a seconda dell'ordine di quello che si vede nella lista
+
+
+        for (Map.Entry<Integer, String> entry : ExeTypeCastUtil.Exetype.map.entrySet()) {
+            if (esercizio.getTipoEsercizio().equals(entry.getValue())) {
+                typeNumPicker.setSelection(entry.getKey());
+            }
+        }
+
+
+
         typeNumPicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -156,6 +171,8 @@ public class ModifyExeFragment extends Fragment {
         esercizio.setTipoEsercizio(((Spinner) view.findViewById(R.id.choiceExerciseType)).getSelectedItem().toString());
         esercizio.setName(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
         esercizio.setRecupero(((EditText) viewFragment.findViewById(R.id.recoverText)).getText().toString());
+        esercizio.setZavorre(((EditText) view.findViewById(R.id.textZavorre)).getText().toString());
+        esercizio.setElastico(((EditText) view.findViewById(R.id.textElastico)).getText().toString());
         esercizio.setSerieCompletate(0);
         esercizio.setSerie(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
         esercizio.setVideo(((CheckBox) view.findViewById(R.id.checkBoxVideo)).isChecked());
@@ -190,7 +207,7 @@ public class ModifyExeFragment extends Fragment {
                 esercizio.setInizio(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
                 esercizio.setPicco(((EditText) viewFragment.findViewById(R.id.peakText)).getText().toString());
                 esercizio.setRipetizioni(((EditText) viewFragment.findViewById(R.id.repetitionStartText)).getText().toString());
-                esercizio.setRecuperoSerie(ExerciseConstants.recoverList[((NumberPicker) viewFragment.findViewById(R.id.textRecoverSeries)).getValue()]);
+                esercizio.setRecuperoSerie(((EditText) viewFragment.findViewById(R.id.textRecoverSeries)).getText().toString());
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + typeExePicker.getSelectedItem().toString());
@@ -201,16 +218,6 @@ public class ModifyExeFragment extends Fragment {
 
     private void initExeView(Esercizio esercizio, View view) {
 
-        /*Spinner typeExePicker = view.findViewById(R.id.choiceExerciseType);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(), R.array.exerciseType, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        typeExePicker.setAdapter(adapter);
-        if (esercizio.getTipoEsercizio() != null) {
-            int spinnerPosition = adapter.getPosition(esercizio.getTipoEsercizio());
-            typeExePicker.setSelection(spinnerPosition);
-        }*/
-
         EditText nomeEsercizio = view.findViewById(R.id.textNomeEsercizio);
         nomeEsercizio.setText(esercizio.getName());
 
@@ -219,6 +226,12 @@ public class ModifyExeFragment extends Fragment {
 
         EditText indicazioni = view.findViewById(R.id.textIndicazioniEsercizio);
         indicazioni.setText(esercizio.getIndicazioniCoach());
+
+        EditText zavorre = view.findViewById(R.id.textZavorre);
+        zavorre.setText(esercizio.getZavorre());
+
+        EditText elastico = view.findViewById(R.id.textElastico);
+        elastico.setText(esercizio.getElastico());
 
     }
 

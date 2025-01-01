@@ -37,13 +37,13 @@ public class DataExeIncrFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_exe_incr, container, false);
 
-        EsercizioIncrementale esercizio;
-
-        // TODO fai due costruttori uno vuoto quando cambia, uno pieno quando carica(?)
+        EsercizioIncrementale esercizio = null;
 
         if (getArguments() != null) {
             esercizio = (EsercizioIncrementale) getArguments().getSerializable(ESERCIZIO);
+        }
 
+        if (esercizio != null) {
             EditText serie = view.findViewById(R.id.textSerie);
             EditText ripetizioniInizio = view.findViewById(R.id.repetitionStartText);
             EditText ripetizioniPicco = view.findViewById(R.id.peakText);

@@ -22,7 +22,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -36,7 +35,6 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
     private final String tag = this.getClass().getSimpleName();
     // shared variables between fragments
     private Esercizio addExeInCreation;
-
 
 
     private int selectedExe = -1;

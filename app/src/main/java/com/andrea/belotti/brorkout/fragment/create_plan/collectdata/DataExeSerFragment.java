@@ -36,11 +36,13 @@ public class DataExeSerFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_exe_ser, container, false);
 
-        EsercizioSerie esercizio;
+        EsercizioSerie esercizio = null;
 
         if (getArguments() != null) {
             esercizio = (EsercizioSerie) getArguments().getSerializable(ESERCIZIO);
+        }
 
+        if (esercizio != null) {
             EditText serie = view.findViewById(R.id.textSerie);
             EditText ripetizioni = view.findViewById(R.id.textRipetizioni);
             EditText recupero = view.findViewById(R.id.recoverText);

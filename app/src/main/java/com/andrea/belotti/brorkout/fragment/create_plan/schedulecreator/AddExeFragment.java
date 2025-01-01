@@ -126,6 +126,8 @@ public class AddExeFragment extends Fragment {
         esercizio.setTipoEsercizio(((Spinner) view.findViewById(R.id.choiceExerciseType)).getSelectedItem().toString());
         esercizio.setName(((EditText) view.findViewById(R.id.textNomeEsercizio)).getText().toString());
         esercizio.setRecupero(((EditText) viewFragment.findViewById(R.id.recoverText)).getText().toString());
+        esercizio.setZavorre(((EditText) view.findViewById(R.id.textZavorre)).getText().toString());
+        esercizio.setElastico(((EditText) view.findViewById(R.id.textElastico)).getText().toString());
         esercizio.setSerieCompletate(0);
         esercizio.setSerie(((EditText) viewFragment.findViewById(R.id.textSerie)).getText().toString());
         esercizio.setVideo(((CheckBox) view.findViewById(R.id.checkBoxVideo)).isChecked());
