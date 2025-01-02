@@ -19,21 +19,25 @@ import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEsercizioCreateAdapter.ViewHolder> {
+public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEsercizioCreateAdapter.ViewHolder>
+        implements EserciziCreazioneCallback.ListaEserciziTouchHelperContract {
 
-    public Esercizio[] esercizi;
     Context context;
     ScheduleCreatorActivity activity;
     FragmentManager fragmentManager;
+    private List<Esercizio> esercizi;
     private List<CardView> cardViewList = new ArrayList<>();
-
-    public ItemEsercizioCreateAdapter(Context context, Esercizio[] esercizi, ScheduleCreatorActivity activity, FragmentManager fragmentManager) {
+    public ItemEsercizioCreateAdapter(Context context, ScheduleCreatorActivity activity, FragmentManager fragmentManager) {
         this.context = context;
-        this.esercizi = esercizi;
         this.activity = activity;
         this.fragmentManager = fragmentManager;
+    }
+
+    public void setEsercizi(List<Esercizio> esercizi) {
+        this.esercizi = esercizi;
     }
 
     @NonNull
@@ -51,10 +55,10 @@ public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEserciz
         cardViewList.add(holder.cardView);
 
         holder.cardView.setBackgroundResource(R.drawable.blue_top_button);
-        holder.exeName.setText(esercizi[position].getName());
-        holder.exeSerie.setText("Set: " + esercizi[position].getSerieCompletate() + "/" + esercizi[position].getSerie());
-        holder.exeRipetizioni.setText("Rep: " + esercizi[position].getRipetizioni());
-        holder.exeRecupero.setText("Rec: " + esercizi[position].getRecupero() + " \"");
+        holder.exeName.setText(esercizi.get(position).getName());
+        holder.exeSerie.setText("Set: " + esercizi.get(position).getSerieCompletate() + "/" + esercizi.get(position).getSerie());
+        holder.exeRipetizioni.setText("Rep: " + esercizi.get(position).getRipetizioni());
+        holder.exeRecupero.setText("Rec: " + esercizi.get(position).getRecupero() + " \"");
 
         holder.cardView.setOnClickListener(v -> {
 
@@ -72,7 +76,32 @@ public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEserciz
 
     @Override
     public int getItemCount() {
-        return esercizi.length;
+        return esercizi.size();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+    @Override
+    public void onRowMove(int from, int to) {
+        if (from < to) {
+            for (int i = from; i < to; i++) {
+                Collections.swap(esercizi, i, i + 1);
+            }
+        } else {
+            for (int i = from; i > to; i--) {
+                Collections.swap(esercizi, i, i - 1);
+            }
+        }
+        notifyItemMoved(from, to);
+    }
+
+    @Override
+    public void onRowSelected(ViewHolder myViewHolder) {
+        myViewHolder.cardView.setBackgroundResource(R.drawable.basic_button_pressed_bg);
+    }
+
+    @Override
+    public void onRowClear(ViewHolder myViewHolder) {
+        myViewHolder.cardView.setBackgroundResource(R.drawable.blue_top_button);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

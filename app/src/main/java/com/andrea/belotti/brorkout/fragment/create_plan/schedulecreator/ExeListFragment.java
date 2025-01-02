@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ToggleButton;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
+import com.andrea.belotti.brorkout.adapter.EserciziCreazioneCallback;
 import com.andrea.belotti.brorkout.adapter.ItemEsercizioCreateAdapter;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
@@ -62,9 +64,17 @@ public class ExeListFragment extends Fragment {
         ScheduleCreatorActivity activity = (ScheduleCreatorActivity) this.getActivity();
 
         // set recyclerView info
-        ItemEsercizioCreateAdapter adapter = new ItemEsercizioCreateAdapter(context, giornata.getEsercizi().toArray(new Esercizio[0]), activity, getParentFragmentManager());
-        exeRecyclerView.setHasFixedSize(true);
-        exeRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+        //exeRecyclerView.setHasFixedSize(true);
+        exeRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        ItemEsercizioCreateAdapter adapter = new ItemEsercizioCreateAdapter(context, activity, getParentFragmentManager());
+        adapter.setEsercizi(giornata.getEsercizi());
+
+        ItemTouchHelper.Callback callback = new EserciziCreazioneCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(exeRecyclerView);
+
         exeRecyclerView.setAdapter(adapter);
 
     }
