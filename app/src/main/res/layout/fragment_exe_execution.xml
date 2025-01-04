@@ -257,41 +257,92 @@
             android:gravity="left"
             android:orientation="horizontal">
 
-            <ImageButton
+            <LinearLayout
                 android:id="@+id/buttonPreviousExe"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:background="@drawable/circled_button"
-                android:drawableTint="@color/light_blue_200"
-                android:src="@drawable/arrow_left"
-                app:backgroundTint="@color/light_blue_200"
-                app:tint="@color/light_blue_200" />
-
-
-            <Button
-                android:id="@+id/buttonNextExe"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="@drawable/circled_button"
-                android:drawableRight="@drawable/arrow_right"
-                android:drawableTint="@color/light_blue_200"
-                android:text="Testo"
-                android:textColor="@color/light_blue_200"
-                app:backgroundTint="@color/light_blue_200" />
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:gravity="center"
+                android:layout_margin="10sp"
+                android:layout_weight="1"
+                android:background="@drawable/blue_top_button"
+                android:orientation="vertical">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/arrow_left"
+                    app:tint="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/textPreviousExercise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:hint="Skin the cat"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_15sdp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/buttonNextExe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/blue_top_button"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/arrow_right"
+                    app:tint="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/textNextExercise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:hint="Prova ciao ciaocaio"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_color"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_15sdp"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <Button
+        <LinearLayout
             android:id="@+id/buttonEndSchedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
             android:layout_gravity="center"
-            android:background="@drawable/circled_button"
-            android:text="End Schedule"
-            android:textColor="@color/light_blue_200"
-            app:backgroundTint="@color/light_blue_200" />
+            android:paddingVertical="8dp"
+            android:background="@drawable/blue_top_button"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Fine Scheda"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textStyle="bold"
+                android:textSize="@dimen/_15sdp"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 

@@ -63,13 +63,12 @@ public class ExeExecutionFragment extends Fragment {
 
         LinearLayout buttonRecover = view.findViewById(R.id.buttonRecover);
         TextView textButtonRecover = view.findViewById(R.id.textButtonRecover);
-        Button nextExeButton = view.findViewById(R.id.buttonNextExe);
-        ImageButton previousExeButton = view.findViewById(R.id.buttonPreviousExe);
-        Button buttonEndSchedule = view.findViewById(R.id.buttonEndSchedule);
+        LinearLayout nextExeButton = view.findViewById(R.id.buttonNextExe);
+        LinearLayout previousExeButton = view.findViewById(R.id.buttonPreviousExe);
+        LinearLayout buttonEndSchedule = view.findViewById(R.id.buttonEndSchedule);
 
         setExeOnView(view, esercizioList);
 
-        String numSerie = esercizioList.get(countExe).getSerie();
         TextView textRecover = view.findViewById(R.id.textRecover);
         TextView textNumSerie = view.findViewById(R.id.textNumSerie);
         TextView textVideo = view.findViewById(R.id.textVideo);
@@ -167,7 +166,8 @@ public class ExeExecutionFragment extends Fragment {
         TextView textRecover = view.findViewById(R.id.textRecover);
         TextView textIndicazioniEsercizio = view.findViewById(R.id.textIndicazioniEsercizio);
         EditText textAppuntiAtleta = view.findViewById(R.id.commentiAtleta);
-        Button nextExeButton = view.findViewById(R.id.buttonNextExe);
+        TextView nextExerciseText = view.findViewById(R.id.textNextExercise);
+        TextView previousExerciseText = view.findViewById(R.id.textPreviousExercise);
 
         textNameExe.setText(esercizioList.get(countExe).getName());
         textNumSet.setText(esercizioList.get(countExe).getSetForExecution());
@@ -175,10 +175,18 @@ public class ExeExecutionFragment extends Fragment {
         textRecover.setText(esercizioList.get(countExe).getRecForExecution());
 
         if (countExe + 1 < esercizioList.size()) {
-            nextExeButton.setText(esercizioList.get(countExe + 1).getName());
+            nextExerciseText.setText(esercizioList.get(countExe + 1).getName());
         } else {
-            nextExeButton.setText("FINE");
+            nextExerciseText.setText("--");
         }
+
+        if (countExe <= 0 ) {
+            previousExerciseText.setText("--");
+        } else {
+            previousExerciseText.setText(esercizioList.get(countExe - 1).getName());
+        }
+
+
 
         if (esercizioList.get(countExe).getSerieCompletate() >= Integer.parseInt(esercizioList.get(countExe).getSerie()) - 1 &&
                 esercizioList.get(countExe).getVideo()) {
@@ -205,11 +213,7 @@ public class ExeExecutionFragment extends Fragment {
         textNumRipetizioni.setText(esercizio.getRepForExecution());
     }
 
-    private void setButtonClickable(Boolean valueButton, ImageButton imageButton, Button nextExeBtn , LinearLayout... buttonList) {
-        imageButton.setClickable(valueButton);
-        if (nextExeBtn != null) {
-            nextExeBtn.setClickable(valueButton);
-        }
+    private void setButtonClickable(Boolean valueButton, LinearLayout... buttonList) {
         for (LinearLayout button : buttonList) {
             button.setClickable(valueButton);
         }
