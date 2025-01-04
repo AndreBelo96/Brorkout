@@ -1,5 +1,7 @@
 package com.andrea.belotti.brorkout.fragment.execute_plan;
 
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.*;
+
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -33,8 +35,8 @@ public class ExeExecutionFragment extends Fragment {
     public static ExeExecutionFragment newInstance(Scheda scheda, Integer giorno) {
         ExeExecutionFragment fragment = new ExeExecutionFragment();
         Bundle args = new Bundle();
-        args.putSerializable("scheda", scheda);
-        args.putInt("giorno", giorno);
+        args.putSerializable(SCHEDA, scheda);
+        args.putInt(GIORNATA, giorno);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,15 +53,16 @@ public class ExeExecutionFragment extends Fragment {
             return view;
         }
 
-        Scheda scheda = (Scheda) getArguments().get("scheda");
-        Integer giorno = (Integer) getArguments().get("giorno");
+        Scheda plan = (Scheda) getArguments().get(SCHEDA);
+        Integer day = (Integer) getArguments().get(GIORNATA);
 
-        List<Esercizio> esercizioList = scheda.getGiornate().get(giorno - 1).getEsercizi();
-        int numeroEsercizi = scheda.getGiornate().get(giorno - 1).getEsercizi().size();
+        List<Esercizio> esercizioList = plan.getGiornate().get(day - 1).getEsercizi();
+        int numeroEsercizi = plan.getGiornate().get(day - 1).getEsercizi().size();
 
         final MediaPlayer mpVaiUomo = MediaPlayer.create(this.getActivity(), R.raw.alarm);
 
-        Button buttonRecover = view.findViewById(R.id.buttonRecover);
+        LinearLayout buttonRecover = view.findViewById(R.id.buttonRecover);
+        TextView textButtonRecover = view.findViewById(R.id.textButtonRecover);
         Button nextExeButton = view.findViewById(R.id.buttonNextExe);
         ImageButton previousExeButton = view.findViewById(R.id.buttonPreviousExe);
         Button buttonEndSchedule = view.findViewById(R.id.buttonEndSchedule);
@@ -67,13 +70,19 @@ public class ExeExecutionFragment extends Fragment {
         setExeOnView(view, esercizioList);
 
         String numSerie = esercizioList.get(countExe).getSerie();
-        TextView textRecoverNumber = view.findViewById(R.id.textRecoverNumber);
+        TextView textRecover = view.findViewById(R.id.textRecover);
         TextView textNumSerie = view.findViewById(R.id.textNumSerie);
         TextView textVideo = view.findViewById(R.id.textVideo);
         TextView textNumRep = view.findViewById(R.id.textNumRep);
         EditText commentiAtleta = view.findViewById(R.id.commentiAtleta);
 
-        final Long[] countDown = {Long.parseLong(textRecoverNumber.getText().toString()) * 1000L};
+        String recover = textRecover.getText().toString();
+
+        String[] subString = recover.split(" ");
+
+        String recoverNumber = subString[1].replace("\"", "");
+
+        final Long[] countDown = {Long.parseLong(recoverNumber) * 1000L};
 
         nextExeButton.setOnClickListener(v -> {
             esercizioList.get(countExe).setAppuntiAtleta(commentiAtleta.getText().toString());
@@ -88,7 +97,7 @@ public class ExeExecutionFragment extends Fragment {
         buttonEndSchedule.setOnClickListener(v -> {
             esercizioList.get(countExe).setAppuntiAtleta(commentiAtleta.getText().toString());
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerViewGestoreScheda, EndScheduleSummaryFragment.newInstance(scheda, giorno));
+            fragmentTransaction.replace(R.id.fragmentContainerViewGestoreScheda, EndScheduleSummaryFragment.newInstance(plan, day));
             fragmentTransaction.commit();
         });
 
@@ -97,8 +106,8 @@ public class ExeExecutionFragment extends Fragment {
             if (!isExeTenuta(esercizioList.get(countExe))) {
                 setButtonClickable(false, previousExeButton, nextExeButton, buttonRecover);
             } else {
-                Button buttonTenRecover = view.findViewById(R.id.buttonTenRecover);
-                setButtonClickable(false, previousExeButton, nextExeButton, buttonRecover, buttonTenRecover);
+                LinearLayout buttonTenRecover = view.findViewById(R.id.buttonTenRecover);
+                setButtonClickable(false, previousExeButton, nextExeButton, buttonTenRecover, buttonRecover);
             }
             if (esercizioList.get(countExe).getSerieCompletate() < Integer.parseInt(esercizioList.get(countExe).getSerie())) {
                 countDown[0] = Long.parseLong(esercizioList.get(countExe).getRecupero()) * 1000L;
@@ -106,30 +115,32 @@ public class ExeExecutionFragment extends Fragment {
                 new CountDownTimer(countDown[0], 1000) {
 
                     public void onTick(long countDown1) {
-                        buttonRecover.setText(countDown1 / 1000 + "\"");
+                        textButtonRecover.setText(countDown1 / 1000 + "\"");
                     }
 
                     public void onFinish() {
-                        buttonRecover.setText("Start");
+                        textButtonRecover.setText("Start");
                         mpVaiUomo.start();
 
                         setSerieEsercizio(esercizioList.get(countExe), textNumSerie);
                         setRepAfterSerie(esercizioList.get(countExe), textNumRep);
 
-                        Log.i(ExeExecutionFragment.class.getSimpleName(), "Numero attuale di serie completate: " + esercizioList.get(countExe).getSerieCompletate() + " - Numero di serie totali: " + esercizioList.get(countExe).getSerie());
+                        //Log.i(ExeExecutionFragment.class.getSimpleName(), "Numero attuale di serie completate: " + esercizioList.get(countExe).getSerieCompletate() + " - Numero di serie totali: " + esercizioList.get(countExe).getSerie());
+
                         if (esercizioList.get(countExe).getSerieCompletate() >= (Integer.parseInt(esercizioList.get(countExe).getSerie()))) {
                             setNewExePage(numeroEsercizi, view, esercizioList, true);
                         }
 
-                        if (esercizioList.get(countExe).getSerieCompletate() >= (Integer.parseInt(numSerie) - 1) && esercizioList.get(countExe).getVideo()) {
-                            textVideo.setText("Video On");
+                        if (esercizioList.get(countExe).getSerieCompletate() >= ((Integer.parseInt(esercizioList.get(countExe).getSerie()))  - 1) &&
+                                esercizioList.get(countExe).getVideo()) {
+                            textVideo.setVisibility(View.VISIBLE);
                         }
 
                         if (!isExeTenuta(esercizioList.get(countExe))) {
                             setButtonClickable(true, previousExeButton, nextExeButton, buttonRecover);
                         } else {
-                            Button buttonTenRecover = view.findViewById(R.id.buttonTenRecover);
-                            setButtonClickable(true, previousExeButton, nextExeButton, buttonRecover, buttonTenRecover);
+                            LinearLayout buttonTenRecover = view.findViewById(R.id.buttonTenRecover);
+                            setButtonClickable(true, previousExeButton, nextExeButton, buttonTenRecover, buttonRecover);
                         }
                     }
                 }.start();
@@ -138,8 +149,8 @@ public class ExeExecutionFragment extends Fragment {
                 if (!isExeTenuta(esercizioList.get(countExe))) {
                     setButtonClickable(true, previousExeButton, nextExeButton, buttonRecover);
                 } else {
-                    Button buttonTenRecover = view.findViewById(R.id.buttonTenRecover);
-                    setButtonClickable(true, previousExeButton, nextExeButton, buttonRecover, buttonTenRecover);
+                    LinearLayout buttonTenRecover = view.findViewById(R.id.buttonTenRecover);
+                    setButtonClickable(true, previousExeButton, nextExeButton, buttonTenRecover, buttonRecover);
                 }
             }
         });
@@ -150,30 +161,33 @@ public class ExeExecutionFragment extends Fragment {
 
     private void setExeOnView(View view, List<Esercizio> esercizioList) {
         TextView textNameExe = view.findViewById(R.id.textNomeEsercizio);
-        TextView textNumSerie = view.findViewById(R.id.textNumSerie);
+        TextView textNumSet = view.findViewById(R.id.textNumSerie);
         TextView textNumRep = view.findViewById(R.id.textNumRep);
         TextView textVideo = view.findViewById(R.id.textVideo);
-        TextView textRecoverNumber = view.findViewById(R.id.textRecoverNumber);
+        TextView textRecover = view.findViewById(R.id.textRecover);
         TextView textIndicazioniEsercizio = view.findViewById(R.id.textIndicazioniEsercizio);
         EditText textAppuntiAtleta = view.findViewById(R.id.commentiAtleta);
         Button nextExeButton = view.findViewById(R.id.buttonNextExe);
 
         textNameExe.setText(esercizioList.get(countExe).getName());
-        textNumSerie.setText("Serie: " + esercizioList.get(countExe).getSerieCompletate() + "/" + esercizioList.get(countExe).getSerie());
-        textNumRep.setText(esercizioList.get(countExe).getRipetizioneEsercizioString());
+        textNumSet.setText(esercizioList.get(countExe).getSetForExecution());
+        textNumRep.setText(esercizioList.get(countExe).getRepForExecution());
+        textRecover.setText(esercizioList.get(countExe).getRecForExecution());
+
         if (countExe + 1 < esercizioList.size()) {
             nextExeButton.setText(esercizioList.get(countExe + 1).getName());
         } else {
             nextExeButton.setText("FINE");
         }
 
-        if (esercizioList.get(countExe).getSerieCompletate() >= Integer.parseInt(esercizioList.get(countExe).getSerie()) - 1 && esercizioList.get(countExe).getVideo()) {
-            textVideo.setText("Video On");
+        if (esercizioList.get(countExe).getSerieCompletate() >= Integer.parseInt(esercizioList.get(countExe).getSerie()) - 1 &&
+                esercizioList.get(countExe).getVideo()) {
+            textVideo.setVisibility(View.VISIBLE);
         } else {
-            textVideo.setText("");
+            textVideo.setVisibility(View.GONE);
         }
 
-        textRecoverNumber.setText(esercizioList.get(countExe).getRecupero());
+
         textIndicazioniEsercizio.setText("Indicazioni: " + esercizioList.get(countExe).getIndicazioniCoach());
         textAppuntiAtleta.setText(esercizioList.get(countExe).getAppuntiAtleta());
 
@@ -183,17 +197,20 @@ public class ExeExecutionFragment extends Fragment {
     private void setSerieEsercizio(Esercizio esercizio, TextView textNumSerie) {
 
         esercizio.setSerieCompletate(esercizio.getSerieCompletate() + 1);
-        textNumSerie.setText("Serie: " + esercizio.getSerieCompletate() + "/" + esercizio.getSerie());
+        textNumSerie.setText(esercizio.getSetForExecution());
     }
 
     private void setRepAfterSerie(Esercizio esercizio, TextView textNumRipetizioni) {
         esercizio.setNumeroRipetizioniDopoSerie();
-        textNumRipetizioni.setText(esercizio.getRipetizioneEsercizioString());
+        textNumRipetizioni.setText(esercizio.getRepForExecution());
     }
 
-    private void setButtonClickable(Boolean valueButton, ImageButton imageButton ,Button... buttonList) {
+    private void setButtonClickable(Boolean valueButton, ImageButton imageButton, Button nextExeBtn , LinearLayout... buttonList) {
         imageButton.setClickable(valueButton);
-        for (Button button : buttonList) {
+        if (nextExeBtn != null) {
+            nextExeBtn.setClickable(valueButton);
+        }
+        for (LinearLayout button : buttonList) {
             button.setClickable(valueButton);
         }
     }
@@ -221,12 +238,13 @@ public class ExeExecutionFragment extends Fragment {
         } else {
             layoutTempoTenuta.setVisibility(View.VISIBLE);
             EsercizioTenuta esercizioTenuta = (EsercizioTenuta) esercizio;
-            TextView textRecoverTenNumber = view.findViewById(R.id.textRecoverTenNumber);
+            TextView textRecoverTenNumber = view.findViewById(R.id.textTenRecover);
 
-            textRecoverTenNumber.setText(esercizioTenuta.getTempoEsecuzione());
+            textRecoverTenNumber.setText("Tempo di tenuta: " + esercizioTenuta.getTempoEsecuzione());
             Long countDown = Long.parseLong(textRecoverTenNumber.getText().toString()) * 1000L;
 
-            Button buttonTenuta = view.findViewById(R.id.buttonTenRecover);
+            LinearLayout buttonTenuta = view.findViewById(R.id.buttonTenRecover);
+            TextView textButtonTenRecover = view.findViewById(R.id.textButtonTenRecover);
 
             buttonTenuta.setOnClickListener(v -> {
 
@@ -234,11 +252,11 @@ public class ExeExecutionFragment extends Fragment {
 
                 new CountDownTimer(countDown, 1000) {
                     public void onTick(long millisUntilFinished) {
-                        buttonTenuta.setText(millisUntilFinished / 1000 + "\"");
+                        textButtonTenRecover.setText(millisUntilFinished / 1000 + "\"");
                     }
 
                     public void onFinish() {
-                        buttonTenuta.setText("Start");
+                        textButtonTenRecover.setText("Start");
                         //setButtonClickable(true, previousExeButton, nextExeButton, buttonRecover, buttonTenuta);
                     }
                 }.start();
@@ -247,7 +265,6 @@ public class ExeExecutionFragment extends Fragment {
 
         }
     }
-
 
     private Boolean isExeTenuta(Esercizio esercizio) {
         return esercizio instanceof EsercizioTenuta;

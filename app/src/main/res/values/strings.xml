@@ -30,6 +30,13 @@
     <string name="start_plan">Comincia allenamento</string>
     <string name="archive_plan">Archivio allenamenti</string>
     <string name="personal_area">Area Personale</string>
+    <string name="set_example">Set: 0/n</string>
+    <string name="rep_example">Rep: n</string>
+    <string name="Video_Example">Video On</string>
+    <string name="tempo_di_tenuta_example">Tempo di tenuta:</string>
+    <string name="rec_example">Rec: 60</string>
+    <string name="start">Start</string>
+    <string name="indicazioni_example">Indicazioni: bla bla bla bla</string>
 
     <!-- Number Picker numeri giornate-->
     <string-array name="exerciseType">

@@ -54,7 +54,11 @@ public interface Esercizio {
 
     String toStringResumeEndSchedule();
 
-    String getRipetizioneEsercizioString();
+    String getRepForExecution();
+
+    String getSetForExecution();
+
+    String getRecForExecution();
 
     void setNumeroRipetizioniDopoSerie();
 

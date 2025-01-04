@@ -5,7 +5,6 @@ import android.widget.Toast;
 
 public final class ExerciseConstants {
 
-    public static final String[] recoverList = {"5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90"};
     public static final String TAG_START_ACTIVITY = "Starting sctivity";
     public static final String TAG_START_FRAGMENT = "Starting fragment";
     public static final String ERROR_ARGUMENT = "Arguments is null";

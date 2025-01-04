@@ -64,14 +64,15 @@
                 android:layout_weight="1"
                 android:background="@color/text_color" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/buttonBack"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:layout_gravity="center"
                 android:background="@drawable/circled_button"
-                android:src="@drawable/home"
-                app:tint="@color/text_color" />
+                android:layout_gravity="center"
+                android:src="@drawable/home_lightblue"
+                app:tint="@color/text_color"
+                />
 
             <View
                 android:layout_width="match_parent"

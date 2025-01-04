@@ -198,8 +198,18 @@ public class EsercizioSerie implements Esercizio, Serializable {
     }
 
     @Override
-    public String getRipetizioneEsercizioString() {
-        return "Ripetizioni: " + ripetizioni;
+    public String getRepForExecution() {
+        return "Rep: " + ripetizioni;
+    }
+
+    @Override
+    public String getSetForExecution() {
+        return "Set: " + this.getSerieCompletate() + "/" + this.getSerie();
+    }
+
+    @Override
+    public String getRecForExecution() {
+        return "Rec: " + this.getRecupero() + "\"";
     }
 
     @Override
