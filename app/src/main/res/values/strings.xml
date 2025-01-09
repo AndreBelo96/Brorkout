@@ -37,6 +37,10 @@
     <string name="rec_example">Rec: 60</string>
     <string name="start">Start</string>
     <string name="indicazioni_example">Indicazioni: bla bla bla bla</string>
+    <string name="ic_home_back_button">ic home back button</string>
+    <string name="plan_title_example">Prova titolo plan</string>
+    <string name="exe_example">ESERICZI0 1 \nESERCIZIO 2</string>
+    <string name="day_n">Giornata n</string>
 
     <!-- Number Picker numeri giornate-->
     <string-array name="exerciseType">

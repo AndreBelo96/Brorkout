@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.select_plan;
+package com.andrea.belotti.brorkout.view.selection;
 
 import android.os.Bundle;
 

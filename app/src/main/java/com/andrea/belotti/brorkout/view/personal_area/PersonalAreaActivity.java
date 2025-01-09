@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.activity;
+package com.andrea.belotti.brorkout.view.personal_area;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.utils.ImageUtils;
+import com.andrea.belotti.brorkout.view.StartingMenuActivity;
 
 import java.io.IOException;
 

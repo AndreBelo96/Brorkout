@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.activity;
+package com.andrea.belotti.brorkout.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.view.personal_area.PersonalAreaActivity;
+import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
+import com.andrea.belotti.brorkout.view.selection.SelectScheduleActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.utils.ImageUtils;
+import com.andrea.belotti.brorkout.view.creation.ScheduleCreatorActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -72,10 +76,8 @@ public class StartingMenuActivity extends AppCompatActivity {
         });
 
         archivioBtn.setOnClickListener(v -> {
-
             Intent intent = new Intent(getBaseContext(), ScheduleArchiveActivity.class);
             startActivity(intent);
-
         });
 
         personalAreaBtn.setOnClickListener(v -> {
@@ -84,10 +86,8 @@ public class StartingMenuActivity extends AppCompatActivity {
         });
 
         optionBtn.setOnClickListener(v -> {
-
             Toast toast = Toast.makeText(context, optionActivity, duration);
             toast.show();
-
         });
 
     }

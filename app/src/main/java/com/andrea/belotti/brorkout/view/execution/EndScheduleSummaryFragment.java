@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.execute_plan;
+package com.andrea.belotti.brorkout.view.execution;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,9 @@ import android.widget.Space;
 import android.widget.TextView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.StartingMenuActivity;
+import com.andrea.belotti.brorkout.adapter.EndScheduleRecapAdapter;
+import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
+import com.andrea.belotti.brorkout.view.StartingMenuActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
@@ -29,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.EXE_KO_COLOR;
@@ -68,7 +72,6 @@ public class EndScheduleSummaryFragment extends Fragment {
         context = getContext();
 
         TextView textTitolo = view.findViewById(R.id.textTitoloEGiornata);
-        Button buttonBack = view.findViewById(R.id.buttonBackToMainMenu);
 
         Scheda scheda = null;
         Integer giorno = null;
@@ -81,65 +84,24 @@ public class EndScheduleSummaryFragment extends Fragment {
         }
 
         if (scheda != null && giorno != null) {
-            createTableOfExercises(scheda.getGiornate().get(giorno - 1).getEsercizi(), view);
+            createTableOfExercises(scheda.getGiornate().get(giorno).getEsercizi(), view);
             savePlanLocal(scheda);
             textTitolo.setText(scheda.getNome() + " giorno " + giorno);
         } else {
             Log.i(tag, ExerciseConstants.DATA_ARGUMENT_NULL);
         }
 
-        buttonBack.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), StartingMenuActivity.class);
-            startActivity(intent);
-        });
-
         return view;
     }
 
     private void createTableOfExercises(List<Esercizio> exeList, View view) {
-        // Layout
-        LinearLayout layoutElencoEsecizi = view.findViewById(R.id.layoutSummaryEndSchedule);
 
-        for (Esercizio esercizio : exeList) {
-
-            LinearLayout layoutExercise = new LinearLayout(context);
-            layoutExercise.setOrientation(LinearLayout.VERTICAL);
-
-            // TextView
-            TextView resumeExeTextView = new TextView(context);
-            resumeExeTextView.setTextSize(NORMAL_SIZE);
-            resumeExeTextView.setText(esercizio.toStringResumeEndSchedule());
-            resumeExeTextView.setTextColor(TEXT_BUTTON_COLOR);
-
-            // Adding to the list the exercise
-            layoutExercise.addView(resumeExeTextView);
-
-            if (esercizio.getSerieCompletate() >= Integer.parseInt(esercizio.getSerie())) {
-                layoutExercise.setBackgroundColor(EXE_OK_COLOR);
-            } else {
-                layoutExercise.setBackgroundColor(EXE_KO_COLOR);
-            }
-
-            // Space
-            Space exercicesSpacePrev = new Space(context);
-            exercicesSpacePrev.setMinimumHeight(10);
-
-            Space exercicesSpaceBack = new Space(context);
-            exercicesSpaceBack.setMinimumHeight(10);
-
-            // Line
-            View lineView = new View(context);
-            lineView.setLayoutParams(wrapParams);
-            lineView.setMinimumHeight(3);
-            lineView.setBackgroundColor(TEXT_BUTTON_COLOR);
-
-            //Adding to the layout the exe
-            layoutElencoEsecizi.addView(layoutExercise);
-            layoutElencoEsecizi.addView(exercicesSpacePrev);
-            layoutElencoEsecizi.addView(lineView);
-            layoutElencoEsecizi.addView(exercicesSpaceBack);
-
-        }
+        // set recyclerView info
+        RecyclerView recyclerView = view.findViewById(R.id.summary_end_plan_view);
+        EndScheduleRecapAdapter adapter = new EndScheduleRecapAdapter(context, exeList);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(adapter);
     }
 
 

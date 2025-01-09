@@ -8,12 +8,11 @@ import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
+import com.andrea.belotti.brorkout.view.creation.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeIncrFragment;
 import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExePirFragment;

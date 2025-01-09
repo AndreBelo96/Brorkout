@@ -4,16 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/blue_200"
+    android:background="@color/backgroundMenu"
     android:orientation="vertical"
-    tools:context=".fragment.select_plan.ManagerListFragment">
+    tools:context=".view.selection.ManagerListFragment">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="@color/light_blue_200"
-            app:tabIconTint="@color/light_blue_200"
+            app:tabIndicatorColor="@color/text_color"
+            app:tabIconTint="@color/text_color"
             android:background="#00000000">
 
             <com.google.android.material.tabs.TabItem

@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
+import com.andrea.belotti.brorkout.view.creation.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
@@ -30,6 +30,7 @@ public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEserciz
     FragmentManager fragmentManager;
     private List<Esercizio> esercizi;
     private List<CardView> cardViewList = new ArrayList<>();
+
     public ItemEsercizioCreateAdapter(Context context, ScheduleCreatorActivity activity, FragmentManager fragmentManager) {
         this.context = context;
         this.activity = activity;
@@ -48,7 +49,6 @@ public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEserciz
         return new ViewHolder(view);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @Override
     public void onBindViewHolder(@NonNull ItemEsercizioCreateAdapter.ViewHolder holder, int position) {
 

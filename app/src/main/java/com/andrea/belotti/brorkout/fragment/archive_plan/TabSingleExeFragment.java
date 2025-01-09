@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
+import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;

@@ -17,29 +17,26 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.fragment.archive_plan.TabSingleExeFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
 
 import java.util.Arrays;
+import java.util.List;
 
-public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.ViewHolder> {
+public class EndScheduleRecapAdapter extends RecyclerView.Adapter<EndScheduleRecapAdapter.ViewHolder> {
 
-    public Esercizio[] esercizi;
+    private List<Esercizio> esercizi;
     Context context;
-    ScheduleArchiveActivity activity;
-    FragmentManager fragmentManager;
 
-    public EsercizioAdapter(Context context, Esercizio[] esercizi, ScheduleArchiveActivity activity, FragmentManager fragmentManager) {
+    public EndScheduleRecapAdapter(Context context, List<Esercizio> esercizi) {
         this.context = context;
         this.esercizi = esercizi;
-        this.activity = activity;
-        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
     @Override
-    public EsercizioAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public EndScheduleRecapAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.item_list_exercises, parent, false);
         return new ViewHolder(view);
@@ -47,39 +44,30 @@ public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.View
 
     @RequiresApi(api = Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
     @Override
-    public void onBindViewHolder(@NonNull EsercizioAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull EndScheduleRecapAdapter.ViewHolder holder, int position) {
 
-        if (esercizi[position].getSerieCompletate() < Integer.valueOf(esercizi[position].getSerie())) {
+        if (esercizi.get(position).getSerieCompletate() < Integer.valueOf(esercizi.get(position).getSerie())) {
             holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.exe_ko));
         } else {
             holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.exe_ok));
         }
 
-        holder.exeName.setText(esercizi[position].getName());
-        holder.exeSerie.setText("Set: " + esercizi[position].getSerieCompletate() + "/" + esercizi[position].getSerie());
-        holder.exeRipetizioni.setText("Rep: " + esercizi[position].getRipetizioni());
-        holder.exeRecupero.setText("Rec: " + esercizi[position].getRecupero() + " \"");
+        holder.exeName.setText(esercizi.get(position).getName());
+        holder.exeSerie.setText("Set: " + esercizi.get(position).getSerieCompletate() + "/" + esercizi.get(position).getSerie());
+        holder.exeRipetizioni.setText("Rep: " + esercizi.get(position).getRipetizioni());
+        holder.exeRecupero.setText("Rec: " + esercizi.get(position).getRecupero() + " \"");
 
-        if ("TENUTE".equalsIgnoreCase(esercizi[position].getTipoEsercizio())) {
+        if ("TENUTE".equalsIgnoreCase(esercizi.get(position).getTipoEsercizio())) {
             holder.exeImg.setImageResource(R.drawable.tenute_img);
-        } else if ("serie".equalsIgnoreCase(esercizi[position].getTipoEsercizio())) {
+        } else if ("serie".equalsIgnoreCase(esercizi.get(position).getTipoEsercizio())) {
             holder.exeImg.setImageResource(R.drawable.serie_img);
         }
-
-        holder.cardView.setOnClickListener(v -> {
-
-            activity.setPath(activity.getPath() +  esercizi[position].getName());
-
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, TabSingleExeFragment.newInstance(Arrays.stream(esercizi).toList(), position));
-            fragmentTransaction.commit();
-        });
 
     }
 
     @Override
     public int getItemCount() {
-        return esercizi.length;
+        return esercizi.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

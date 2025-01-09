@@ -1,83 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/blue_200"
-    tools:context=".fragment.select_plan.SceltaGiornoArchivioFragment">
+    android:background="@color/backgroundMenu"
+    tools:context=".view.selection.SceltaGiornoArchivioFragment">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scheduleView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout12"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
-
-        <ScrollView
-            android:id="@+id/eserciziScrollView"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="@dimen/_400sdp">
-            <LinearLayout
-                android:id="@+id/scheduleView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:gravity="center"
-                android:orientation="vertical">
-            </LinearLayout>
-        </ScrollView>
-
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/back_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/delete_plan_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_top_button"
             android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/_10sdp">
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginBottom="@dimen/_10sdp">
+                android:layout_height="match_parent"
+                android:text="Elimina scheda"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-                <Button
-                    android:id="@+id/eliminaScheda"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Elimina scheda"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textColor="@color/light_blue_200"
-                    android:background="@drawable/circled_button"
-                    app:backgroundTint="@color/light_blue_200"/>
+        <LinearLayout
+            android:id="@+id/modify_plan_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/blue_top_button"
+            android:orientation="vertical"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp">
 
-                <Button
-                    android:id="@+id/modifySchedule"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Modifica scheda"
-                    android:textColor="@color/light_blue_200"
-                    android:background="@drawable/circled_button"
-                    app:backgroundTint="@color/light_blue_200"/>
-
-            </LinearLayout>
-
-
-
-            <Button
-                android:id="@+id/backSceltaSchede"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Torna a scelta schede"
-                android:textColor="@color/light_blue_200"
-                android:background="@drawable/circled_button"
-                app:backgroundTint="@color/light_blue_200"/>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Modifica scheda"
+                android:textAlignment="center"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/blue_top_button"
+        android:orientation="vertical"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Indietro"
+            android:textAlignment="center"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

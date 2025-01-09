@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.select_plan;
+package com.andrea.belotti.brorkout.view.selection;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,10 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.adapter.PlanSelectedAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
@@ -24,9 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ListaSchedeOnlineArchivioFragment extends Fragment {
 
@@ -43,7 +42,7 @@ public class ListaSchedeOnlineArchivioFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_schede_list, container, false);
 
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Schedules").child("user").getRef();
-
+        SelectScheduleActivity activity = (SelectScheduleActivity) this.getActivity();
 
         context = getContext();
         List<Scheda> schedaOnlineList = new ArrayList<>();
@@ -65,7 +64,15 @@ public class ListaSchedeOnlineArchivioFragment extends Fragment {
 
                     //TODO mettere fuori se possibile
                     if (!schedaOnlineList.isEmpty()) {
-                        createView(schedaOnlineList, view);
+
+                        // set recyclerView info
+                        RecyclerView recyclerView = view.findViewById(R.id.scheduleListView);
+                        PlanSelectedAdapter adapter = new PlanSelectedAdapter(context, getParentFragmentManager(), activity);
+                        adapter.setPlans(schedaOnlineList);
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                        recyclerView.setAdapter(adapter);
+
                     } else {
                         Log.e(tag, "Lista schede online vuota");
                     }
@@ -81,46 +88,7 @@ public class ListaSchedeOnlineArchivioFragment extends Fragment {
         return view;
     }
 
-    private void createView(List<Scheda> schedaList, View view) {
-        LinearLayout scheduleLayout;
 
-        scheduleLayout = view.findViewById(R.id.scheduleListView);
-
-
-
-        for (Scheda scheda : schedaList) {
-            Button button = new Button(context);
-            //text
-            button.setText(scheda.getNome());
-            button.setTextSize(15f);
-            button.setTextColor(ExerciseConstants.Color.TEXT_BUTTON_COLOR);
-            // button
-            button.setBackground(ContextCompat.getDrawable(context,R.drawable.circled_button));
-            button.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorbuttonbase));
-
-            //margin
-            //TODO da levare
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-
-            button.setLayoutParams(params);
-
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) button.getLayoutParams();
-            marginLayoutParams.setMargins(0,0,0, 10);
-
-
-            button.setOnClickListener(v -> {
-
-                FragmentTransaction fragmentTransaction = getParentFragment().getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaGiornoArchivioFragment.newInstance(scheda));
-                fragmentTransaction.commit();
-
-            });
-
-            scheduleLayout.addView(button);
-
-        }
-    }
 
 
 }

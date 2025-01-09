@@ -1,58 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/blue_200"
-    tools:context=".fragment.execute_plan.EndScheduleSummaryFragment">
+    android:background="@color/backgroundMenu"
+    tools:context=".view.execution.EndScheduleSummaryFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textTitoloEGiornata"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:hint="@string/plan_title_example"
+        android:textAppearance="@style/subTitleWhite"
+        android:textColor="@color/text_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textTitoloEGiornata"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:textSize="@dimen/_30sdp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/light_blue_200"
-            android:text="Titolo e giornata" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_290sdp"
-            android:layout_marginTop="@dimen/_10sdp">
-            <LinearLayout
-                android:id="@+id/layoutSummaryEndSchedule"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            </LinearLayout>
-        </ScrollView>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="vertical">
-
-                <Button
-                    android:id="@+id/buttonBackToMainMenu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:text="Back to main menu"
-                    android:textColor="@color/light_blue_200"
-                    android:background="@drawable/circled_button"
-                    app:backgroundTint="@color/light_blue_200"/>
-        </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/summary_end_plan_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTitoloEGiornata">
+    </androidx.recyclerview.widget.RecyclerView>
 
 
-    </LinearLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

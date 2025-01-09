@@ -1,6 +1,5 @@
-package com.andrea.belotti.brorkout.activity;
+package com.andrea.belotti.brorkout.view.archive;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -8,7 +7,6 @@ import android.widget.TextView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.model.Giornata;
-import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 

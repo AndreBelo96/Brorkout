@@ -1,6 +1,7 @@
-package com.andrea.belotti.brorkout.fragment.execute_plan;
+package com.andrea.belotti.brorkout.view.execution;
 
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.*;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,11 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
@@ -22,9 +24,6 @@ import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 import com.andrea.belotti.brorkout.model.Scheda;
 
 import java.util.List;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 public class ExeExecutionFragment extends Fragment {
 
@@ -96,7 +95,7 @@ public class ExeExecutionFragment extends Fragment {
         buttonEndSchedule.setOnClickListener(v -> {
             esercizioList.get(countExe).setAppuntiAtleta(commentiAtleta.getText().toString());
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerViewGestoreScheda, EndScheduleSummaryFragment.newInstance(plan, day));
+            fragmentTransaction.replace(R.id.fragmentContainerViewGestoreScheda, EndScheduleSummaryFragment.newInstance(plan, day-1));
             fragmentTransaction.commit();
         });
 
@@ -130,7 +129,7 @@ public class ExeExecutionFragment extends Fragment {
                             setNewExePage(numeroEsercizi, view, esercizioList, true);
                         }
 
-                        if (esercizioList.get(countExe).getSerieCompletate() >= ((Integer.parseInt(esercizioList.get(countExe).getSerie()))  - 1) &&
+                        if (esercizioList.get(countExe).getSerieCompletate() >= ((Integer.parseInt(esercizioList.get(countExe).getSerie())) - 1) &&
                                 esercizioList.get(countExe).getVideo()) {
                             textVideo.setVisibility(View.VISIBLE);
                         }
@@ -180,12 +179,11 @@ public class ExeExecutionFragment extends Fragment {
             nextExerciseText.setText("--");
         }
 
-        if (countExe <= 0 ) {
+        if (countExe <= 0) {
             previousExerciseText.setText("--");
         } else {
             previousExerciseText.setText(esercizioList.get(countExe - 1).getName());
         }
-
 
 
         if (esercizioList.get(countExe).getSerieCompletate() >= Integer.parseInt(esercizioList.get(countExe).getSerie()) - 1 &&

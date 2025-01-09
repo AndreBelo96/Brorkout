@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundMenu"
-    tools:context=".activity.ExecutionScheduleActivity">
+    tools:context=".view.execution.ExecutionScheduleActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewGestoreScheda"
@@ -47,7 +47,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_gravity="center"
                 android:background="@drawable/circled_button"
-                android:src="@drawable/home_lightblue"
+                android:src="@drawable/ic_home"
                 app:tint="@color/text_color" />
 
             <View

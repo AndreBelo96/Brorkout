@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.activity;
+package com.andrea.belotti.brorkout.view.execution;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,11 @@ import android.util.Log;
 import android.widget.ImageButton;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.execute_plan.ExeExecutionFragment;
+import com.andrea.belotti.brorkout.view.StartingMenuActivity;
 import com.andrea.belotti.brorkout.model.Scheda;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class ExecutionScheduleActivity extends AppCompatActivity {
 
@@ -31,8 +32,9 @@ public class ExecutionScheduleActivity extends AppCompatActivity {
                 Scheda schedaOutPut = (Scheda) bundleInput.getSerializable("scheda");
                 Integer giornoOutPut = bundleInput.get("giorno") != null ? (Integer) bundleInput.get("giorno") : 1;
 
-                getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainerViewGestoreScheda,
-                        ExeExecutionFragment.newInstance(schedaOutPut, giornoOutPut), "ExeExecutionFragment").commit();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.fragmentContainerViewGestoreScheda, ExeExecutionFragment.newInstance(schedaOutPut, giornoOutPut), "ExeExecutionFragment");
+                fragmentTransaction.commit();
             }
         }
 

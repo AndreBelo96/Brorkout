@@ -14,7 +14,7 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.ScheduleArchiveActivity;
+import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backgroundMenu"
-    tools:context=".fragment.execute_plan.ExeExecutionFragment">
+    tools:context=".view.execution.ExeExecutionFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"

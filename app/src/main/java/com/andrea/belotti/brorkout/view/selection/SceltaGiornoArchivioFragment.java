@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.select_plan;
+package com.andrea.belotti.brorkout.view.selection;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.activity.SelectScheduleActivity;
-import com.andrea.belotti.brorkout.activity.ExecutionScheduleActivity;
-import com.andrea.belotti.brorkout.activity.ScheduleCreatorActivity;
+import com.andrea.belotti.brorkout.adapter.DaySelectedAdapter;
+import com.andrea.belotti.brorkout.adapter.PlanSelectedAdapter;
+import com.andrea.belotti.brorkout.view.execution.ExecutionScheduleActivity;
+import com.andrea.belotti.brorkout.view.creation.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.constants.StringOutputConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
@@ -28,6 +29,8 @@ import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
@@ -68,30 +71,31 @@ public class SceltaGiornoArchivioFragment extends Fragment {
 
         context = getContext();
         Scheda schedaScelta = null;
-        Button deleteSchedaBtn = view.findViewById(R.id.eliminaScheda);
-        Button modifySchedaBtn = view.findViewById(R.id.modifySchedule);
-        Button backSceltaSchede = view.findViewById(R.id.backSceltaSchede);
+        LinearLayout deletePlanBtn = view.findViewById(R.id.delete_plan_button);
+        LinearLayout modifyPlanBtn = view.findViewById(R.id.modify_plan_button);
+        LinearLayout backBtn = view.findViewById(R.id.back_button);
+
+        SelectScheduleActivity activity = (SelectScheduleActivity) this.getActivity();
 
         if (getArguments() != null) {
             schedaScelta = (Scheda) getArguments().get(SCHEDA);
         }
 
         if (schedaScelta != null) {
-            createView(schedaScelta, view);
+            createView(schedaScelta, view, activity);
         } else {
             Log.e(tag, "Scheda vuota");
         }
 
         Scheda finalSchedaScelta = schedaScelta;
-        backSceltaSchede.setOnClickListener(v -> {
 
+        backBtn.setOnClickListener(v -> {
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerArchivioView, ManagerListFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
             fragmentTransaction.commit();
-
         });
 
-        deleteSchedaBtn.setOnClickListener(v -> {
+        deletePlanBtn.setOnClickListener(v -> {
             SelectScheduleActivity.deleteData(finalSchedaScelta.getNome());
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
@@ -99,7 +103,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        modifySchedaBtn.setOnClickListener(v -> {
+        modifyPlanBtn.setOnClickListener(v -> {
 
             Bundle bundle = new Bundle();
             bundle.putSerializable("Scheda", finalSchedaScelta);
@@ -116,45 +120,15 @@ public class SceltaGiornoArchivioFragment extends Fragment {
     }
 
 
-    private void createView(Scheda scheda, View view) {
-        LinearLayout scheduleLayout = view.findViewById(R.id.scheduleView);
-        int count = 1;
+    private void createView(Scheda scheda, View view, SelectScheduleActivity activity) {
 
-        for (Giornata giornata : scheda.getGiornate()) {
-            Button button = new Button(context);
-            button.setText("Giornata " + count);
-            scheduleLayout.addView(button);
+        RecyclerView recyclerView = view.findViewById(R.id.scheduleView);
+        DaySelectedAdapter adapter = new DaySelectedAdapter(context, activity);
+        adapter.setDays(scheda.getGiornate());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(adapter);
 
-            for (Esercizio esercizio : giornata.getEsercizi()) {
-                TextView exerciseName = new TextView(context);
-                exerciseName.setText(esercizio.getName());
-                exerciseName.setTextColor(Color.rgb(3,169,244));
-                scheduleLayout.addView(exerciseName);
-            }
-
-            int finalCount = count;
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-
-                    if (scheda.getGiornate().get(finalCount-1).getEsercizi() == null ||
-                            scheda.getGiornate().get(finalCount-1).getEsercizi().isEmpty()) {
-                        Log.e(tag, "Esercizi vuoti");
-                        Toast toast = Toast.makeText(context, "Modificare la scheda e inserire almeno un esercizio nella giornata selezionata", StringOutputConstants.shortDuration);
-                        toast.show();
-                        return;
-                    }
-
-                    Intent intent = new Intent(getContext(), ExecutionScheduleActivity.class);
-                    intent.putExtra("scheda", scheda);
-                    intent.putExtra("giorno", finalCount);
-                    Toast toast = Toast.makeText(context, SUCCESS_CREATING_STRING, duration);
-                    toast.show();
-                    startActivity(intent);
-                }
-            });
-
-            count++;
-        }
     }
 
 }

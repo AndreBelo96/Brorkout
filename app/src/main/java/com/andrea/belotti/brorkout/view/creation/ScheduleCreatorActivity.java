@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.activity;
+package com.andrea.belotti.brorkout.view.creation;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.view.StartingMenuActivity;
 import com.andrea.belotti.brorkout.fragment.create_plan.CreationMenuFragment;
 import com.andrea.belotti.brorkout.fragment.create_plan.CreationPlanFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;

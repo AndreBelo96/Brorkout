@@ -13,19 +13,19 @@
         android:theme="@style/Theme.Brorkout"
         tools:targetApi="31">
         <activity
-            android:name=".activity.ScheduleArchiveActivity"
+            android:name=".view.archive.ScheduleArchiveActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PersonalAreaActivity"
+            android:name=".view.personal_area.PersonalAreaActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.ScheduleCreatorActivity"
+            android:name=".view.creation.ScheduleCreatorActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.SelectScheduleActivity"
+            android:name=".view.selection.SelectScheduleActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.StartingMenuActivity"
+            android:name=".view.StartingMenuActivity"
             android:exported="true"
             android:theme="@style/Theme.Brorkout">
             <intent-filter>
@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.ExecutionScheduleActivity"
+            android:name=".view.execution.ExecutionScheduleActivity"
             android:exported="false"
             android:label="@string/title_activity_gestore_scheda"
             android:theme="@style/Theme.Brorkout.NoActionBar" />
