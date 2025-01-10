@@ -56,9 +56,9 @@ public class StartingMenuPresenter implements StartingMenuContract.Presenter {
     @Override
     public Bitmap getImage() {
         SharedPreferences pref = view.getSharedPreferences();
-        if (ImageUtils.covertFromStringToBitmap(pref.getString(IMAGE_DATA, "")) != null) {
-            return ImageUtils.covertFromStringToBitmap(pref.getString(IMAGE_DATA, ""));
-        }
-        return BitmapFactory.decodeResource(context.getResources(), R.drawable.immagine_profilo_vuoto);
+
+        Bitmap personalImage = ImageUtils.covertFromStringToBitmap(pref.getString(IMAGE_DATA, ""));
+
+        return personalImage != null ? personalImage : BitmapFactory.decodeResource(context.getResources(), R.drawable.immagine_profilo_vuoto);
     }
 }
