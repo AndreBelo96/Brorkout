@@ -1,23 +1,33 @@
 package com.andrea.belotti.brorkout.constants;
 
+import android.content.res.Resources;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.andrea.belotti.brorkout.R;
+
 public final class ExerciseConstants {
 
-    public static final String TAG_START_ACTIVITY = "Starting sctivity";
+    public static final String TAG_START_ACTIVITY = "Starting activity";
     public static final String TAG_START_FRAGMENT = "Starting fragment";
     public static final String ERROR_ARGUMENT = "Arguments is null";
     public static final String DATA_ARGUMENT_NULL = "A data in arguments is null";
+    public static final String PREFERENCES_NAME = "MySharedPref";
+
     private static final String UTILITY_CLASS = "Utility class";
 
     private ExerciseConstants() {
         throw new IllegalStateException(UTILITY_CLASS);
     }
 
+    public class MainMenuConstants {
+
+        public static final String INTENT_DATA_MODIFY_CREATOR = "modifica";
+    }
+
     public static final class PersonalData {
 
-        public static final String USERNAME = "username";
+        public static final String USERNAME = "Username";
         public static final String WEIGHT = "weight";
         public static final String HEIGHT = "height";
         public static final String FAT_PERCENTILE = "fat_percentile";

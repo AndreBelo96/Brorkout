@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator;
+package com.andrea.belotti.brorkout.view.creation.schedulecreator;
 
 import static com.andrea.belotti.brorkout.utils.AppMethodsUtils.deleteFragmentFromStack;
 
@@ -18,11 +18,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.fragment.create_plan.CreationPlanFragment;
-import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeIncrFragment;
-import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExePirFragment;
-import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeSerFragment;
-import com.andrea.belotti.brorkout.fragment.create_plan.collectdata.DataExeTenFragment;
+import com.andrea.belotti.brorkout.view.creation.CreationPlanFragment;
+import com.andrea.belotti.brorkout.view.creation.collect_data.DataExeIncrFragment;
+import com.andrea.belotti.brorkout.view.creation.collect_data.DataExePirFragment;
+import com.andrea.belotti.brorkout.view.creation.collect_data.DataExeSerFragment;
+import com.andrea.belotti.brorkout.view.creation.collect_data.DataExeTenFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
 import com.andrea.belotti.brorkout.model.EsercizioPiramidale;

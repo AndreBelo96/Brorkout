@@ -11,9 +11,9 @@
     <string name="title_activity_gestore_scheda">GestoreScheda</string>
     <string name="title_activity_schedule_creator">ScheduleCreator</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="UseSchedule">Use schedule</string>
+    <string name="SelectSchedule">Select schedule</string>
     <string name="CreateSchedule">Create schedule</string>
-    <string name="ArchvioSchedule">Archivio activity</string>
+    <string name="ArchiveSchedule">Archivio activity</string>
     <string name="OptionSchedule">Option activity</string>
     <string name="PersonalArea">Personal Area</string>
     <string name="username">Username</string>

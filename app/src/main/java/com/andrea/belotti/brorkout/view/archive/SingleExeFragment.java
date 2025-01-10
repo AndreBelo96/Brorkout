@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.archive_plan;
+package com.andrea.belotti.brorkout.view.archive;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.INCREMENTALE;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.PIRAMIDALE;

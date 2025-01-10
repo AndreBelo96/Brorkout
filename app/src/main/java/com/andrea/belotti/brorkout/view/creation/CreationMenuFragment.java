@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.create_plan;
+package com.andrea.belotti.brorkout.view.creation;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicTextView;
@@ -27,10 +27,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.view.creation.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.adapter.CreationCopyPlanAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.constants.StringOutputConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -236,13 +234,13 @@ public class CreationMenuFragment extends Fragment {
 
                 if (scheduleName.isEmpty()) {
                     Log.e(tag, "Titolo scheda vuoto");
-                    Toast toast = Toast.makeText(context, "Titolo scheda vuoto", StringOutputConstants.shortDuration);
+                    Toast toast = Toast.makeText(context, "Titolo scheda vuoto", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
                 if (day.isEmpty()) {
                     Log.e(tag, "Numero di giorni non selezionato");
-                    Toast toast = Toast.makeText(context, "Numero di giorni non selezionato", StringOutputConstants.shortDuration);
+                    Toast toast = Toast.makeText(context, "Numero di giorni non selezionato", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
@@ -258,14 +256,14 @@ public class CreationMenuFragment extends Fragment {
 
                 if (scheduleName.isEmpty()) {
                     Log.e(tag, "Titolo scheda vuoto");
-                    Toast toast = Toast.makeText(context, "Titolo scheda vuoto", StringOutputConstants.shortDuration);
+                    Toast toast = Toast.makeText(context, "Titolo scheda vuoto", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
 
                 if (selectedPlan == null) {
                     Log.e(tag, "Scheda da clonare non scelta");
-                    Toast toast = Toast.makeText(context, "Scheda da clonare non scelta", StringOutputConstants.shortDuration);
+                    Toast toast = Toast.makeText(context, "Scheda da clonare non scelta", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }

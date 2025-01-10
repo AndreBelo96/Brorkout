@@ -12,9 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.view.StartingMenuActivity;
-import com.andrea.belotti.brorkout.fragment.create_plan.CreationMenuFragment;
-import com.andrea.belotti.brorkout.fragment.create_plan.CreationPlanFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.MetaData;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -34,10 +33,10 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
     private static SharedPreferences sharedPreferences;
     // log
     private final String tag = this.getClass().getSimpleName();
+
     // shared variables between fragments
     private Esercizio addExeInCreation;
-
-
+    private Giornata dayToCopy;
     private int selectedExe = -1;
 
     @Getter
@@ -126,5 +125,13 @@ public class ScheduleCreatorActivity extends AppCompatActivity {
 
     public void setSelectedExe(int selectedExe) {
         this.selectedExe = selectedExe;
+    }
+
+    public Giornata getDayToCopy() {
+        return dayToCopy;
+    }
+
+    public void setDayToCopy(Giornata dayToCopy) {
+        this.dayToCopy = dayToCopy;
     }
 }

@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.archive_plan;
+package com.andrea.belotti.brorkout.view.archive;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import android.widget.GridLayout;
 import android.widget.LinearLayout;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 

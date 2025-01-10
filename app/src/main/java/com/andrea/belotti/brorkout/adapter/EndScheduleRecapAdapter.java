@@ -12,16 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.fragment.archive_plan.TabSingleExeFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class EndScheduleRecapAdapter extends RecyclerView.Adapter<EndScheduleRecapAdapter.ViewHolder> {

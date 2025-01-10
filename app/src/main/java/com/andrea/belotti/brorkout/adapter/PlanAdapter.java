@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
-import com.andrea.belotti.brorkout.fragment.archive_plan.DaysFragment;
+import com.andrea.belotti.brorkout.view.archive.DaysFragment;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 
 public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {

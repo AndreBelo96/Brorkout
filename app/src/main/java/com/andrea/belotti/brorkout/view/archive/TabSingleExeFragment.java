@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.archive_plan;
+package com.andrea.belotti.brorkout.view.archive;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ESERCIZI;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ESERCIZIO_SCELTO;
@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
+import com.andrea.belotti.brorkout.adapter.SingleExeAdapter;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;

@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.create_plan;
+package com.andrea.belotti.brorkout.view.creation;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +18,10 @@ import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.view.execution.ExecutionScheduleActivity;
-import com.andrea.belotti.brorkout.view.creation.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.adapter.ViewPagerPlanGeneratorAdapter;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator.AddExeFragment;
-import com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator.ModifyExeFragment;
+import com.andrea.belotti.brorkout.view.creation.schedulecreator.AddExeFragment;
+import com.andrea.belotti.brorkout.view.creation.schedulecreator.ModifyExeFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
@@ -170,7 +168,7 @@ public class CreationPlanFragment extends Fragment {
             //viewPagerPlanGeneratorAdapter.resetButtonList(tabLayout.getSelectedTabPosition());
             fragmentTransaction.commit();
 
-            // Refresh viewPager2 // TODO ma va?
+            // Refresh viewPager2
             viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
         });
 
@@ -197,12 +195,36 @@ public class CreationPlanFragment extends Fragment {
             viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
         });
 
+        copyButton.setOnClickListener(v -> {
+            assert activity != null;
+            int currentDaySelect = viewPager2.getCurrentItem();
+            activity.setDayToCopy(scheda.getGiornate().get(currentDaySelect));
+
+            Toast toast = Toast.makeText(getContext(), "Giornata copiata con successo!", ExerciseConstants.ToastMessageConstants.DURATION);
+            toast.show();
+        });
+
+        pasteButton.setOnClickListener(v -> {
+            assert activity != null;
+
+            if(activity.getDayToCopy() == null) {
+                Toast toast = Toast.makeText(getContext(), "Non è stato salvato nulla da incollare", ExerciseConstants.ToastMessageConstants.DURATION);
+                toast.show();
+                return;
+            }
+
+            int currentDaySelect = viewPager2.getCurrentItem();
+            scheda.getGiornate().set(currentDaySelect, activity.getDayToCopy());
+            viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
+            viewPager2.setCurrentItem(currentDaySelect);
+        });
+
         createSchedule.setOnClickListener(v -> {
 
             if (scheda.getGiornate().get(0).getEsercizi() == null ||
                     scheda.getGiornate().get(0).getEsercizi().isEmpty()) {
                 Log.e(tag, "Esercizi vuoti");
-                Toast toast = Toast.makeText(context, "Inserire almeno un esercizio nella prima giornata", StringOutputConstants.shortDuration);
+                Toast toast = Toast.makeText(context, "Inserire almeno un esercizio nella prima giornata", Toast.LENGTH_SHORT);
                 toast.show();
                 return;
             }

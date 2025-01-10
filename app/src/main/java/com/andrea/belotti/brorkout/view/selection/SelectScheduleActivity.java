@@ -12,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.constants.StringOutputConstants;
-import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 import com.andrea.belotti.brorkout.view.StartingMenuActivity;
@@ -78,7 +76,7 @@ public class SelectScheduleActivity extends AppCompatActivity {
 
         if (selectedPlan.getGiornate().get(day).getEsercizi().isEmpty()) {
             Log.e(tag, "Esercizi vuoti");
-            Toast toast = Toast.makeText(context, "Modificare la scheda e inserire almeno un esercizio nella giornata selezionata", StringOutputConstants.shortDuration);
+            Toast toast = Toast.makeText(context, "Modificare la scheda e inserire almeno un esercizio nella giornata selezionata", Toast.LENGTH_SHORT);
             toast.show();
             return;
         }

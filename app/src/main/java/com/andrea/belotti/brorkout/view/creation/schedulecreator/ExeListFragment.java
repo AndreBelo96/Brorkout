@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator;
+package com.andrea.belotti.brorkout.view.creation.schedulecreator;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
 

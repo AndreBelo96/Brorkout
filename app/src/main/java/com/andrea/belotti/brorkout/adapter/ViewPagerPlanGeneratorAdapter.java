@@ -1,6 +1,6 @@
 package com.andrea.belotti.brorkout.adapter;
 
-import com.andrea.belotti.brorkout.fragment.create_plan.schedulecreator.ExeListFragment;
+import com.andrea.belotti.brorkout.view.creation.schedulecreator.ExeListFragment;
 import com.andrea.belotti.brorkout.model.Scheda;
 
 import androidx.annotation.NonNull;

@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.fragment.create_plan.collectdata;
+package com.andrea.belotti.brorkout.view.creation.collect_data;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +10,6 @@ import android.widget.EditText;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
-import com.andrea.belotti.brorkout.model.EsercizioSerie;
 
 import androidx.fragment.app.Fragment;
 

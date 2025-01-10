@@ -84,7 +84,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerArchiveView"
-        android:name="com.andrea.belotti.brorkout.fragment.archive_plan.YearsFragment"
+        android:name="com.andrea.belotti.brorkout.view.archive.YearsFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
