@@ -20,7 +20,7 @@ public class GenerateDrawableObjUtils {
     public static TextView createBasicTextView(Context context, String text, float textSize) {
 
         TextView textView = new TextView(context);
-        textView.setTextAppearance(R.style.blueText);
+        textView.setTextAppearance(R.style.blue_text);
         textView.setText(text);
         textView.setTextSize(textSize);
         textView.setGravity(1);

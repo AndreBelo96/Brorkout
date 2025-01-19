@@ -11,12 +11,15 @@
     <string name="title_activity_gestore_scheda">GestoreScheda</string>
     <string name="title_activity_schedule_creator">ScheduleCreator</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="IntroActivity">Intro activity</string>
+    <string name="LoginActivity">Login activity</string>
+    <string name="SignUpActivity">Sign-Up activity</string>
+    <string name="StartingMenuActivity">Menu activity</string>
     <string name="SelectSchedule">Select schedule</string>
     <string name="CreateSchedule">Create schedule</string>
     <string name="ArchiveSchedule">Archivio activity</string>
     <string name="OptionSchedule">Option activity</string>
     <string name="PersonalArea">Personal Area</string>
-    <string name="username">Username</string>
 
 
     <!-- Number Picker -->
@@ -41,6 +44,36 @@
     <string name="plan_title_example">Prova titolo plan</string>
     <string name="exe_example">ESERICZI0 1 \nESERCIZIO 2</string>
     <string name="day_n">Giornata n</string>
+
+
+    <!-- Intro variables -->
+    <string name="appName">Brorkout</string>
+    <string name="welcome_back_to_brorkout">Bentornato a Brorkout!</string>
+    <string name="login">Accedi</string>
+    <string name="signup">Registrati</string>
+
+    <!-- Login and sign-up variables -->
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Ripeti la password</string>
+
+    <string name="signup_underline"><u>Registrati</u>.</string>
+    <string name="login_underline"><u>Accedi</u>.</string>
+
+    <string name="welcome_back">Bentornato</string>
+    <string name="sign_in_account">Accedi al tuo account</string>
+    <string name="signup_account">Crea il tuo account</string>
+    <string name="remember_me">Ricordami</string>
+    <string name="dont_have_account">Non hai un account?</string>
+    <string name="have_account">Hai già un account?</string>
+
+    <!-- Image info variables -->
+    <string name="background_info">Background image intro</string>
+    <string name="intro_image">Intro Image</string>
+    <string name="brorkout_icon">Brorkout icon</string>
+    <string name="login_image_info">login image</string>
+
 
     <!-- Number Picker numeri giornate-->
     <string-array name="exerciseType">

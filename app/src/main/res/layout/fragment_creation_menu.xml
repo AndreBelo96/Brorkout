@@ -167,6 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Numero Giorni Scheda"
+            android:textColor="@color/text_color"
             android:gravity="center"
             android:textStyle="bold"
             android:textSize="30sp"

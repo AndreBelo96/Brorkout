@@ -1,0 +1,25 @@
+package com.andrea.belotti.brorkout.contract.manager;
+
+import android.graphics.Bitmap;
+
+public interface StartingMenuContract {
+
+    interface Presenter {
+        void onArchiveClick();
+        void onCreatePlanClick();
+        void onPersonalAreaClick();
+        void onSelectionClick();
+        void onOptionClick();
+        String getUsername();
+        Bitmap getImage();
+    }
+
+    interface View {
+        void replaceWithScheduleArchiveActivity(String message);
+        void replaceWithScheduleCreatorActivity(String message);
+        void replaceWithSelectionPlanActivity(String message);
+        void replaceWithPersonalAreaActivity(String message);
+        void replaceWithOptionActivity(String message);
+    }
+
+}

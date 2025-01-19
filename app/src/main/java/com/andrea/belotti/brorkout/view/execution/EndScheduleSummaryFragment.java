@@ -1,22 +1,17 @@
 package com.andrea.belotti.brorkout.view.execution;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Space;
 import android.widget.TextView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.EndScheduleRecapAdapter;
-import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
-import com.andrea.belotti.brorkout.view.StartingMenuActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
@@ -35,10 +30,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.EXE_KO_COLOR;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.EXE_OK_COLOR;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.TEXT_BUTTON_COLOR;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Size.NORMAL_SIZE;
 
 
 public class EndScheduleSummaryFragment extends Fragment {

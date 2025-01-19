@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.utils.ImageUtils;
-import com.andrea.belotti.brorkout.view.StartingMenuActivity;
+import com.andrea.belotti.brorkout.view.manager.StartingMenuActivity;
 
 import java.io.IOException;
 
@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.PersonalData.IMAGE_DATA;
+import static com.andrea.belotti.brorkout.constants.ExerciseConstants.PreferencesConstants.USERNAME_PREFERENCES;
 
 public class PersonalAreaActivity extends AppCompatActivity {
 
@@ -76,7 +77,7 @@ public class PersonalAreaActivity extends AppCompatActivity {
             // To store data
             SharedPreferences.Editor myEdit = sharedPreferences.edit();
 
-            myEdit.putString(ExerciseConstants.PersonalData.USERNAME, username);
+            myEdit.putString(USERNAME_PREFERENCES, username);
             myEdit.putString(ExerciseConstants.PersonalData.WEIGHT, weight);
             myEdit.putString(ExerciseConstants.PersonalData.HEIGHT, height);
             myEdit.putString(ExerciseConstants.PersonalData.FAT_PERCENTILE, fatPercentile);
@@ -108,7 +109,7 @@ public class PersonalAreaActivity extends AppCompatActivity {
 
         Log.i(this.getClass().getSimpleName(), "Init activity");
 
-        usernameET.setText(sharedPreferences.getString(ExerciseConstants.PersonalData.USERNAME, "Username"));
+        usernameET.setText(sharedPreferences.getString(USERNAME_PREFERENCES, "Username"));
         weightET.setText(sharedPreferences.getString(ExerciseConstants.PersonalData.WEIGHT, ""));
         heightET.setText(sharedPreferences.getString(ExerciseConstants.PersonalData.HEIGHT, ""));
         fatPercentileET.setText(sharedPreferences.getString(ExerciseConstants.PersonalData.FAT_PERCENTILE, ""));

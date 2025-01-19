@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:textAppearance="@style/blueText"
+                android:textAppearance="@style/blue_text"
                 android:hint="@string/plan_title_example"
                 android:textSize="20sp"/>
 

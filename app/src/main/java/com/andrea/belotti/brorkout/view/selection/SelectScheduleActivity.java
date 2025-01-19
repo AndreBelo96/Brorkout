@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
-import com.andrea.belotti.brorkout.view.StartingMenuActivity;
+import com.andrea.belotti.brorkout.view.manager.StartingMenuActivity;
 import com.andrea.belotti.brorkout.view.execution.ExecutionScheduleActivity;
 
 public class SelectScheduleActivity extends AppCompatActivity {

@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Indietro"
-            android:textAppearance="@style/blueText"
+            android:textAppearance="@style/blue_text"
             android:textSize="18dp" />
 
     </LinearLayout>

@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:gravity="center"
-                    android:textAppearance="@style/blueText"
+                    android:textAppearance="@style/blue_text"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:textAppearance="@style/blueText"
+                    android:textAppearance="@style/blue_text"
                     android:textSize="15sp" />
 
                 <TextView
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:textAppearance="@style/blueText"
+                    android:textAppearance="@style/blue_text"
                     android:textSize="15sp" />
 
                 <TextView
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:textAppearance="@style/blueText"
+                    android:textAppearance="@style/blue_text"
                     android:textSize="15sp" />
         </LinearLayout>
 

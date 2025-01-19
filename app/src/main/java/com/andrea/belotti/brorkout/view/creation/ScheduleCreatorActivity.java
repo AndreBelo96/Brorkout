@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.model.Giornata;
-import com.andrea.belotti.brorkout.view.StartingMenuActivity;
+import com.andrea.belotti.brorkout.view.manager.StartingMenuActivity;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.MetaData;
 import com.andrea.belotti.brorkout.model.Scheda;

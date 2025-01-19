@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.view.StartingMenuActivity;
+import com.andrea.belotti.brorkout.view.manager.StartingMenuActivity;
 import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;

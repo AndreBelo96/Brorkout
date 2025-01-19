@@ -52,7 +52,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:hint="Tipo: Incrementale"
-                android:textAppearance="@style/blueText"
+                android:textAppearance="@style/blue_text"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -68,7 +68,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="Set: 2/5"
-                    android:textAppearance="@style/blueText"
+                    android:textAppearance="@style/blue_text"
                     android:textSize="20sp" />
 
                 <TextView
@@ -79,7 +79,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="Rep: 10"
-                    android:textAppearance="@style/blueText"
+                    android:textAppearance="@style/blue_text"
                     android:textSize="20sp" />
 
                 <TextView
@@ -90,7 +90,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="Rec: 60s"
-                    android:textAppearance="@style/blueText"
+                    android:textAppearance="@style/blue_text"
                     android:textSize="20sp" />
             </LinearLayout>
 
@@ -107,7 +107,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="Elastico?"
-                    android:textAppearance="@style/blueText"
+                    android:textAppearance="@style/blue_text"
                     android:textSize="20sp" />
 
                 <TextView
@@ -118,7 +118,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:hint="Zavorre?"
-                    android:textAppearance="@style/blueText"
+                    android:textAppearance="@style/blue_text"
                     android:textSize="20sp" />
 
             </LinearLayout>
@@ -136,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Indicazioni:"
-                android:textAppearance="@style/blueText"
+                android:textAppearance="@style/blue_text"
                 android:textSize="20sp" />
 
             <View
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Appunti:"
-                android:textAppearance="@style/blueText"
+                android:textAppearance="@style/blue_text"
                 android:textSize="20sp" />
 
         </LinearLayout>
