@@ -17,12 +17,9 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.contract.login.SignupContract;
 import com.andrea.belotti.brorkout.model.User;
-import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupPresenter implements SignupContract.Presenter {

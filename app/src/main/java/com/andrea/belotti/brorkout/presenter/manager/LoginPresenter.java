@@ -23,14 +23,12 @@ public class LoginPresenter implements LoginContract.Presenter {
     private final LoginContract.View view;
     private final Context context;
     private final SharedPreferences pref;
-    private FirebaseAuth firebaseAuth;
+
 
     public LoginPresenter(LoginContract.View view, Context context, SharedPreferences pref) {
         this.view = view;
         this.context = context;
         this.pref = pref;
-
-
     }
 
     @Override
@@ -47,7 +45,7 @@ public class LoginPresenter implements LoginContract.Presenter {
         }
 
         // Initialize Firebase Auth
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         firebaseAuth
                 .signInWithEmailAndPassword(email, password)
