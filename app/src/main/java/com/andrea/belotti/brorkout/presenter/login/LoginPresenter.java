@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.presenter.manager;
+package com.andrea.belotti.brorkout.presenter.login;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.LoginConstants.NOT_VALID_EMAIL;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.LoginConstants.NOT_VALID_PASSWORD;

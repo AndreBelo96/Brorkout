@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.contract.manager.IntroContract;
-import com.andrea.belotti.brorkout.presenter.login.IntroPresenter;
+import com.andrea.belotti.brorkout.presenter.manager.IntroPresenter;
 import com.andrea.belotti.brorkout.view.login.LoginActivity;
 import com.andrea.belotti.brorkout.view.login.SignUpActivity;
 

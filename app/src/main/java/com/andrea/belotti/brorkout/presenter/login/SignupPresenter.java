@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.presenter.manager;
+package com.andrea.belotti.brorkout.presenter.login;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.LoginConstants.MIN_PASSWORD_CHAR;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.LoginConstants.NOT_VALID_EMAIL;
@@ -19,8 +19,9 @@ import android.util.Log;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.contract.login.SignupContract;
 import com.andrea.belotti.brorkout.model.User;
+import com.andrea.belotti.brorkout.repository.UserRepository;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignupPresenter implements SignupContract.Presenter {
 
@@ -71,11 +72,15 @@ public class SignupPresenter implements SignupContract.Presenter {
 
                         User user = new User(username, email);
 
-                        // TODO crea un metodo a parte per la gestione dei dati a Database
-                        FirebaseDatabase.getInstance()
-                                .getReference("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(user);
+                        UserRepository userRepository = new UserRepository();
+
+                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                        assert currentUser != null;
+
+                        String id = currentUser.getUid();
+
+                        userRepository.saveUser(id, user);
 
                         editor.putString(USERNAME_PREFERENCES, username);
                         editor.apply();

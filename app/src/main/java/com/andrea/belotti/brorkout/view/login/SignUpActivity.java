@@ -1,9 +1,6 @@
 package com.andrea.belotti.brorkout.view.login;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.PREFERENCES_NAME;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.PreferencesConstants.EMAIL_PREFERENCES;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.PreferencesConstants.PASSWORD_PREFERENCES;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.PreferencesConstants.REMEMBER_ME_PREFERENCES;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.TAG_START_ACTIVITY;
 
 import android.app.Activity;
@@ -14,21 +11,14 @@ import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.contract.login.LoginContract;
 import com.andrea.belotti.brorkout.contract.login.SignupContract;
-import com.andrea.belotti.brorkout.presenter.manager.LoginPresenter;
-import com.andrea.belotti.brorkout.presenter.manager.SignupPresenter;
+import com.andrea.belotti.brorkout.presenter.login.SignupPresenter;
 import com.andrea.belotti.brorkout.view.manager.IntroActivity;
 import com.andrea.belotti.brorkout.view.manager.StartingMenuActivity;
 

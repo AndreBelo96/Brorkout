@@ -10,6 +10,7 @@ public interface StartingMenuContract {
         void onPersonalAreaClick();
         void onSelectionClick();
         void onOptionClick();
+        void onLogoutClick();
         String getUsername();
         Bitmap getImage();
     }
@@ -20,6 +21,7 @@ public interface StartingMenuContract {
         void replaceWithSelectionPlanActivity(String message);
         void replaceWithPersonalAreaActivity(String message);
         void replaceWithOptionActivity(String message);
+        void replaceWithIntroActivity(String message);
     }
 
 }

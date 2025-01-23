@@ -18,6 +18,7 @@ gson = "2.11.0"
 jacksonVersion = "2.17.1"
 lombok = "1.18.32"
 activity = "1.10.0"
+hiltAndroid  = "2.51.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -38,7 +39,7 @@ lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" 
 jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jacksonVersion" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
-

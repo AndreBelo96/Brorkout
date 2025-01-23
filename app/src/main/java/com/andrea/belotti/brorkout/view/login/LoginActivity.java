@@ -21,7 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.contract.login.LoginContract;
-import com.andrea.belotti.brorkout.presenter.manager.LoginPresenter;
+import com.andrea.belotti.brorkout.presenter.login.LoginPresenter;
 import com.andrea.belotti.brorkout.view.manager.IntroActivity;
 import com.andrea.belotti.brorkout.view.manager.StartingMenuActivity;
 

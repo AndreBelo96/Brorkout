@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.presenter.login;
+package com.andrea.belotti.brorkout.presenter.manager;
 
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.PersonalData.IMAGE_DATA;
 import static com.andrea.belotti.brorkout.constants.ExerciseConstants.PreferencesConstants.USERNAME_PREFERENCES;
@@ -9,20 +9,22 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.contract.manager.StartingMenuContract;
 import com.andrea.belotti.brorkout.utils.ImageUtils;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class StartingMenuPresenter implements StartingMenuContract.Presenter {
 
     private final StartingMenuContract.View view;
     private final Context context;
     private final SharedPreferences pref;
+    private final FirebaseAuth firebaseAuth;
 
     public StartingMenuPresenter(StartingMenuContract.View view, Context context, SharedPreferences pref) {
         this.view = view;
         this.context = context;
         this.pref = pref;
+        this.firebaseAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -48,6 +50,12 @@ public class StartingMenuPresenter implements StartingMenuContract.Presenter {
     @Override
     public void onOptionClick() {
         view.replaceWithOptionActivity(context.getResources().getString(R.string.OptionSchedule));
+    }
+
+    @Override
+    public void onLogoutClick() {
+        firebaseAuth.signOut();
+        view.replaceWithIntroActivity(context.getResources().getString(R.string.IntroActivity));
     }
 
     @Override

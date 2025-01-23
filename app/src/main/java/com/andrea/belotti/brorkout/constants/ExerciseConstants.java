@@ -59,6 +59,10 @@ public final class ExerciseConstants {
         public static final String INTENT_DATA_MODIFY_CREATOR = "modifica";
     }
 
+    public class TableName {
+        public static final String USERS_TABLE = "Users";
+    }
+
     public class PreferencesConstants {
         public static final String EMAIL_PREFERENCES = "Email";
         public static final String PASSWORD_PREFERENCES = "Password";

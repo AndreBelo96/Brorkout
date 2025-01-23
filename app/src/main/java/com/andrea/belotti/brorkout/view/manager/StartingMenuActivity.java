@@ -7,6 +7,7 @@ import static com.andrea.belotti.brorkout.constants.ExerciseConstants.TAG_START_
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.contract.manager.StartingMenuContract;
-import com.andrea.belotti.brorkout.presenter.login.StartingMenuPresenter;
+import com.andrea.belotti.brorkout.presenter.manager.StartingMenuPresenter;
 import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.view.creation.ScheduleCreatorActivity;
 import com.andrea.belotti.brorkout.view.personal_area.PersonalAreaActivity;
@@ -31,7 +32,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class StartingMenuActivity extends AppCompatActivity implements StartingMenuContract.View {
 
     private static final String TAG = StartingMenuActivity.class.getSimpleName();
-    private StartingMenuContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class StartingMenuActivity extends AppCompatActivity implements StartingM
         setContentView(R.layout.activity_main_menu);
 
         // ---- Initialize variables ----
-        presenter = new StartingMenuPresenter(this, this.getBaseContext(), getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE));
+        StartingMenuContract.Presenter presenter = new StartingMenuPresenter(this, this.getBaseContext(), getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE));
 
         LinearLayout startWorkoutBtn = findViewById(R.id.startWorkoutBtn);
         LinearLayout createScheduleBtn = findViewById(R.id.createScheduleBtn);
@@ -51,12 +51,14 @@ public class StartingMenuActivity extends AppCompatActivity implements StartingM
         LinearLayout optionBtn = findViewById(R.id.optionBtn);
         TextView username = findViewById(R.id.userNameText);
         CircleImageView image = findViewById(R.id.profile_image);
+        ImageView logoutBtn = findViewById(R.id.logoutBtn);
 
         // ---- Set Variables ----
         username.setText(presenter.getUsername());
         image.setImageBitmap(presenter.getImage());
 
         // ---- Click Listeners ----
+        logoutBtn.setOnClickListener(v -> presenter.onLogoutClick());
         startWorkoutBtn.setOnClickListener(v -> presenter.onSelectionClick());
         createScheduleBtn.setOnClickListener(v -> presenter.onCreatePlanClick());
         archiveBtn.setOnClickListener(v -> presenter.onArchiveClick());
@@ -92,6 +94,14 @@ public class StartingMenuActivity extends AppCompatActivity implements StartingM
     @Override
     public void replaceWithPersonalAreaActivity(String message) {
         Intent intent = new Intent(getBaseContext(), PersonalAreaActivity.class);
+        Toast toast = Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
+        startActivity(intent);
+    }
+
+    @Override
+    public void replaceWithIntroActivity(String message) {
+        Intent intent = new Intent(getBaseContext(), IntroActivity.class);
         Toast toast = Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT);
         toast.show();
         startActivity(intent);
