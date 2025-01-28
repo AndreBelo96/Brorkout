@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context=".view.archive.MonthsFragment">
+    tools:context=".plans_archive.view.MonthsFragment">
 
     <TextView
         android:id="@+id/textView4"

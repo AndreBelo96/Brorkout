@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="20dp"
     android:background="@color/backgroundMenu"
-    tools:context=".view.creation.ScheduleCreatorActivity">
+    tools:context=".plans_creation.view.PlanCreatorActivity">
 
     <LinearLayout
         android:id="@+id/headerContainer"
@@ -29,7 +29,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerViewScheduleCreator"
-        android:name="com.andrea.belotti.brorkout.view.creation.CreationMenuFragment"
+        android:name="com.andrea.belotti.brorkout.plans_creation.view.CreationMenuFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginVertical="20dp"

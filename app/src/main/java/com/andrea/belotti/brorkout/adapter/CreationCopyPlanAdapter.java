@@ -14,8 +14,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.view.creation.CreationMenuFragment;
-import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.plans_creation.view.CreationMenuFragment;
+import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.List;
 
 public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPlanAdapter.ViewHolder> {
 
-    private Scheda[] plans;
+    private  List<Scheda> plans;
     private View view;
     private Context context;
     private CreationMenuFragment fragment;
@@ -34,7 +34,7 @@ public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPl
 
     private List<CardView> cardViewList = new ArrayList<>();
 
-    public CreationCopyPlanAdapter(View view, Context context, Scheda[] plans, CreationMenuFragment fragment) {
+    public CreationCopyPlanAdapter(View view, Context context, List<Scheda> plans, CreationMenuFragment fragment) {
         this.view = view;
         this.context = context;
         this.plans = plans;
@@ -54,24 +54,24 @@ public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPl
     public void onBindViewHolder(@NonNull CreationCopyPlanAdapter.ViewHolder holder, int position) {
 
 
-        holder.planName.setText(plans[position].getNome());
+        holder.planName.setText(plans.get(position).getNome());
         cardViewList.add(holder.cardView);
 
         holder.cardView.setOnClickListener(v -> {
-            fragment.setSelectedPlan(plans[position]);
+            fragment.setSelectedPlan(plans.get(position));
             ScheduleCreatingUtils.setCardViewBasicColor(cardViewList);
             holder.cardView.setBackgroundResource(R.drawable.basic_button_pressed_bg);
         });
 
         holder.planImg.setOnClickListener(v-> {
-            fragment.setInfoPlan(plans[position], view, context);
+            fragment.setInfoPlan(plans.get(position), view, context);
         });
 
     }
 
     @Override
     public int getItemCount() {
-        return plans.length;
+        return plans.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

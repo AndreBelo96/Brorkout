@@ -1,6 +1,6 @@
 package com.andrea.belotti.brorkout.model;
 
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.TENUTA;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.ExeType.TENUTA;
 
 import org.apache.commons.lang3.StringUtils;
 

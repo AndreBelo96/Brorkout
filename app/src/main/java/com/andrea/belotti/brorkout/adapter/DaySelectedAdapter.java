@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
-import com.andrea.belotti.brorkout.view.selection.SelectScheduleActivity;
+import com.andrea.belotti.brorkout.plans_selection.view.SelectScheduleActivity;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class DaySelectedAdapter extends RecyclerView.Adapter<DaySelectedAdapter.
 
         StringBuilder exercises = new StringBuilder();
 
-        for(Esercizio exe : days.get(position).getEsercizi()) {
+        for(Esercizio exe : days.get(position).getExercises()) {
             exercises.append(exe.getName()).append("\n");
         }
 

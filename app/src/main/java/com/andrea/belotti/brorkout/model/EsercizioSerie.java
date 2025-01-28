@@ -1,6 +1,6 @@
 package com.andrea.belotti.brorkout.model;
 
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.SERIE;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.ExeType.SERIE;
 
 import org.apache.commons.lang3.StringUtils;
 

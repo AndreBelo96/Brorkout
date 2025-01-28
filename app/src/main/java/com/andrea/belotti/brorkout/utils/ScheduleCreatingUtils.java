@@ -1,8 +1,8 @@
 package com.andrea.belotti.brorkout.utils;
 
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.Color.TEXT_BUTTON_COLOR;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.ROOT;
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.Color.TEXT_BUTTON_COLOR;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.ROOT;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,7 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 import com.fasterxml.jackson.core.JsonProcessingException;

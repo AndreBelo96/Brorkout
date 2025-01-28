@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.view.archive.SingleExeFragment;
+import com.andrea.belotti.brorkout.plans_archive.view.SingleExeFragment;
 
 import java.util.List;
 

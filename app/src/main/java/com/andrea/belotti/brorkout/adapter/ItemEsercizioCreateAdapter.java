@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.view.creation.ScheduleCreatorActivity;
+import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivity;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
@@ -26,12 +26,12 @@ public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEserciz
         implements EserciziCreazioneCallback.ListaEserciziTouchHelperContract {
 
     Context context;
-    ScheduleCreatorActivity activity;
+    PlanCreatorActivity activity;
     FragmentManager fragmentManager;
     private List<Esercizio> esercizi;
     private List<CardView> cardViewList = new ArrayList<>();
 
-    public ItemEsercizioCreateAdapter(Context context, ScheduleCreatorActivity activity, FragmentManager fragmentManager) {
+    public ItemEsercizioCreateAdapter(Context context, PlanCreatorActivity activity, FragmentManager fragmentManager) {
         this.context = context;
         this.activity = activity;
         this.fragmentManager = fragmentManager;

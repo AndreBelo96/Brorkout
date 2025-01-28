@@ -17,8 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.view.archive.ScheduleArchiveActivity;
-import com.andrea.belotti.brorkout.view.archive.TabSingleExeFragment;
+import com.andrea.belotti.brorkout.plans_archive.view.ScheduleArchiveActivity;
+import com.andrea.belotti.brorkout.plans_archive.view.TabSingleExeFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
 
 import java.util.Arrays;

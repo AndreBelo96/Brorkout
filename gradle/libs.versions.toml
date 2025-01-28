@@ -16,7 +16,7 @@ circledImage = "3.1.0"
 javaUtils = "3.14.0"
 gson = "2.11.0"
 jacksonVersion = "2.17.1"
-lombok = "1.18.32"
+lombok = "1.18.36"
 activity = "1.10.0"
 hiltAndroid  = "2.51.1"
 
@@ -35,11 +35,16 @@ sdp = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "sdpText" 
 circled-image = { group = "de.hdodenhof", name = "circleimageview", version.ref = "circledImage" }
 java-utils = { group = "org.apache.commons", name = "commons-lang3", version.ref = "javaUtils" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
-lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
 jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "jacksonVersion" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+
+#dagger hilt
+dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltAndroid" }
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
+dagger-hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }

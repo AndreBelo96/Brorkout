@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/prova1"
-    tools:context=".view.archive.ScheduleArchiveActivity">
+    tools:context=".plans_archive.view.ScheduleArchiveActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -84,7 +84,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerArchiveView"
-        android:name="com.andrea.belotti.brorkout.view.archive.YearsFragment"
+        android:name="com.andrea.belotti.brorkout.plans_archive.view.YearsFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

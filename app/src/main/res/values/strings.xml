@@ -65,6 +65,7 @@
     <string name="sign_in_account">Accedi al tuo account</string>
     <string name="signup_account">Crea il tuo account</string>
     <string name="remember_me">Ricordami</string>
+    <string name="personal">Scheda Personale</string>
     <string name="dont_have_account">Non hai un account?</string>
     <string name="have_account">Hai già un account?</string>
 

@@ -1,7 +1,7 @@
 package com.andrea.belotti.brorkout.adapter;
 
-import com.andrea.belotti.brorkout.view.creation.schedulecreator.ExeListFragment;
-import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.plans_creation.view.schedulecreator.ExeListFragment;
+import com.andrea.belotti.brorkout.entity.Scheda;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

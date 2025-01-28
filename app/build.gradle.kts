@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
+    //alias(libs.plugins.dagger.hilt.plugin)
 }
 
 android {
@@ -37,7 +38,6 @@ android {
 
 dependencies {
 
-    implementation(libs.lombok)
     implementation(libs.jackson.core)
     implementation(libs.gson)
     implementation(libs.java.utils)
@@ -48,13 +48,23 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-    implementation(libs.firebase.database)
-    implementation(libs.firebase.auth)
+
     implementation(libs.activity)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    // # FIREBASE #
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.auth)
 
+    // # LOMBOK #
+    implementation(libs.lombok)
+    compileOnly(libs.lombok)
+    annotationProcessor(libs.lombok)
+
+    // # HILT #
+    //implementation(libs.dagger.hilt)
+    //implementation(libs.dagger.hilt.compiler)
 }

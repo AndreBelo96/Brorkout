@@ -1,17 +1,14 @@
 package com.andrea.belotti.brorkout.model.nodes;
 
-import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.entity.Scheda;
 
 import java.io.Serializable;
-import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class PlanCompletedNode implements Serializable, BaseNode {
 
     private Long id;

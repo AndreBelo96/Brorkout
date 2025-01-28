@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Brorkout"
         tools:targetApi="31" >
         <activity
-            android:name=".view.manager.IntroActivity"
+            android:name=".app_intro.view.IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,28 +22,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name=".app_login.view.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.login.SignUpActivity"
+            android:name=".app_signup.view.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".view.archive.ScheduleArchiveActivity"
+            android:name=".plans_archive.view.ScheduleArchiveActivity"
             android:exported="false" />
         <activity
-            android:name=".view.personal_area.PersonalAreaActivity"
+            android:name=".app_personal_area.view.PersonalAreaActivity"
             android:exported="false" />
         <activity
-            android:name=".view.creation.ScheduleCreatorActivity"
+            android:name=".plans_creation.view.PlanCreatorActivity"
             android:exported="false" />
         <activity
-            android:name=".view.selection.SelectScheduleActivity"
+            android:name=".plans_selection.view.SelectScheduleActivity"
             android:exported="false" />
         <activity
-            android:name=".view.manager.StartingMenuActivity"
+            android:name=".app_starting_menu.view.StartingMenuActivity"
             android:exported="false"/>
         <activity
-            android:name=".view.execution.ExecutionScheduleActivity"
+            android:name=".plans_execution.view.ExecutionScheduleActivity"
             android:exported="false"
             android:label="@string/title_activity_gestore_scheda"
             android:theme="@style/Theme.Brorkout.NoActionBar" />

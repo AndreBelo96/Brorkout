@@ -1,6 +1,6 @@
 package com.andrea.belotti.brorkout.model;
 
-import static com.andrea.belotti.brorkout.constants.ExerciseConstants.ExeType.PIRAMIDALE;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.ExeType.PIRAMIDALE;
 
 import org.apache.commons.lang3.StringUtils;
 

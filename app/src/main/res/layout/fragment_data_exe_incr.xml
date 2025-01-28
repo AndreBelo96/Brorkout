@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/backgroundMenu"
-    tools:context=".view.creation.collect_data.DataExeIncrFragment">
+    tools:context=".plans_creation.view.collect_data.DataExeIncrFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

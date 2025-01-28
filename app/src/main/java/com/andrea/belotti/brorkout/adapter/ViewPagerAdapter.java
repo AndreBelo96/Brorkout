@@ -1,8 +1,8 @@
 package com.andrea.belotti.brorkout.adapter;
 
-import com.andrea.belotti.brorkout.view.selection.ListaSchedeLocalArchivioFragment;
-import com.andrea.belotti.brorkout.view.selection.ListaSchedeOnlineArchivioFragment;
-import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.plans_selection.view.ListaSchedeLocalArchivioFragment;
+import com.andrea.belotti.brorkout.plans_selection.view.ListaSchedeOnlineArchivioFragment;
+import com.andrea.belotti.brorkout.entity.Scheda;
 
 import java.util.List;
 

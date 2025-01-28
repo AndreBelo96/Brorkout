@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backgroundMenu"
-    tools:context=".view.selection.SceltaGiornoArchivioFragment">
+    tools:context=".plans_selection.view.SceltaGiornoArchivioFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
