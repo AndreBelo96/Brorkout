@@ -34,7 +34,7 @@
                     android:gravity="center_vertical"
                     android:hint="email"
                     android:textAppearance="@style/blue_text"
-                    android:textSize="20sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/delete_user_image"
                     app:layout_constraintStart_toStartOf="parent"
@@ -42,8 +42,8 @@
 
                 <ImageView
                     android:id="@+id/delete_user_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:contentDescription="@string/brorkout_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,7 @@
                     android:gravity="center_vertical"
                     android:hint="username"
                     android:textAppearance="@style/blue_text"
-                    android:textSize="20sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/profile_image"
                     app:layout_constraintStart_toStartOf="parent"
@@ -75,8 +75,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/immagine_profilo_vuoto"
                     app:civ_border_color="@color/backgroundMenu"
                     app:civ_border_width="@dimen/_4sdp"

@@ -7,7 +7,6 @@
     android:background="@color/backgroundMenu"
     tools:context=".plans_creation.view.CreationMenuFragment">
 
-
     <LinearLayout
         android:id="@+id/titleLayout"
         android:layout_width="match_parent"
@@ -438,7 +437,7 @@
             android:paddingTop="13dp"
             android:background="@drawable/blue_top_button">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -449,36 +448,28 @@
                     android:id="@+id/email_amico"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:hint="Email amico"
-                    android:ems="10"
-                    android:textSize="15sp"
                     android:textColor="@color/text_color"
-                    android:textStyle="bold"/>
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/select_friend_btn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
+                <ImageView
                     android:id="@+id/select_friend_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:elevation="6dp"
-                    android:background="@drawable/blue_top_button"
-                    android:backgroundTint="@color/text_color"
-                    android:orientation="vertical">
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    app:srcCompat="@drawable/ic_send"
+                    app:tint="@color/text_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingVertical="10dp"
-                        android:paddingHorizontal="20dp"
-                        android:text="Seleziona"
-                        android:textAlignment="center"
-                        android:textColor="@color/buttonUnpressed"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/users_container"

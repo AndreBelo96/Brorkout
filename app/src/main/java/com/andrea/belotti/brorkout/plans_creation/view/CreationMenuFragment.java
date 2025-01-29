@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,6 +38,9 @@ import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,17 +119,43 @@ public class CreationMenuFragment extends Fragment {
         // Initialize share-plan layout
         shareInfoContainer = view.findViewById(R.id.share_container);
         EditText email = view.findViewById(R.id.email_amico);
-        LinearLayout selectFriendBtn = view.findViewById(R.id.select_friend_btn);
+        ImageView selectFriendBtn = view.findViewById(R.id.select_friend_btn);
         usersSharePlanContainer = view.findViewById(R.id.users_container);
         LinearLayout backShareButton = view.findViewById(R.id.back_share_button);
 
-        List<User> users = new ArrayList<>(); // Listener -> devo apssarlo nella getUser
+        List<User> users = new ArrayList<>(); // Qui dentro ho tutte le persone utilizzatori della scehda -> devo fare in modo che venga salvato in un singleton
 
         ShareFriendItemAdapter shareAdapter = new ShareFriendItemAdapter(getContext(), users);
+
         // Serve listener
+        ValueEventListener shareListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        User user = dataSnapshot.getValue(User.class);
+                        users.add(user);
+                    }
+                    shareAdapter.notifyItemInserted(users.size());
+                    Toast toast = Toast.makeText(getContext(), "Utente aggiunto", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else {
+                    Toast toast = Toast.makeText(getContext(), "Utente Insesistente", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
         usersSharePlanContainer.setHasFixedSize(true);
         usersSharePlanContainer.setLayoutManager(new LinearLayoutManager(context));
         usersSharePlanContainer.setAdapter(shareAdapter);
+
+
 
         // Initialize Create Button
         createPlanButton = view.findViewById(R.id.confirm_button);
@@ -154,6 +184,8 @@ public class CreationMenuFragment extends Fragment {
         plansContainer.setHasFixedSize(true);
         plansContainer.setLayoutManager(new LinearLayoutManager(context));
         plansContainer.setAdapter(adapter);
+
+
 
         // ---------------------- ClickListeners ----------------------
 
@@ -257,17 +289,10 @@ public class CreationMenuFragment extends Fragment {
 
         selectFriendBtn.setOnClickListener(v -> {
 
-            User friend = repoUser.getUsersByEmail(email.getText().toString());
+            repoUser.getUsersByEmail(email.getText().toString(), shareListener);
 
-            if (friend.getEmail() == null) {
-                Toast toast = Toast.makeText(context, "Non esiste questa email", Toast.LENGTH_SHORT);
-                toast.show();
-                return;
-            }
-
-            Toast toast = Toast.makeText(context, "Esiste", Toast.LENGTH_SHORT);
-            toast.show();
         });
+
         // ---------------------- Create Click Listeners ----------------------
         createPlanButton.setOnClickListener(v -> {
 

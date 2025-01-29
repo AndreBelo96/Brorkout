@@ -28,35 +28,11 @@ public class UserRepository {
                 .setValue(user);
     }
 
-    public User getUsersByEmail(String email) {
+    public void getUsersByEmail(String email, ValueEventListener listener) {
 
         Query query = userTableRef.orderByChild("email").equalTo(email);
 
-        // TODO https://stackoverflow.com/questions/30659569/wait-until-firebase-retrieves-data
-        // Passa un listener che aggiorna la recycler view degli utenti, altrimenti dice nessun User
-        // 1. SELECT * FROM Users where email = email
-        AtomicReference<User> friend = new AtomicReference<>(new User());
-
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if (snapshot.exists()) {
-                    snapshot.getChildren().forEach(c -> {
-                        friend.set(c.getValue(User.class));
-                    });
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-
-        });
-
-        return friend.get();
+        query.addListenerForSingleValueEvent(listener);
 
     }
 

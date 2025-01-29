@@ -45,7 +45,11 @@ public class ShareFriendItemAdapter extends RecyclerView.Adapter<ShareFriendItem
 
         // settaggio immagine se salvata
 
-        holder.delete.setOnClickListener(v -> users.remove(position));
+        holder.delete.setOnClickListener(v -> {
+            users.remove(position);
+            //this.notifyItemRemoved(position); -> non aggiorna la lista, capire
+            this.notifyDataSetChanged();
+        });
 
     }
 
