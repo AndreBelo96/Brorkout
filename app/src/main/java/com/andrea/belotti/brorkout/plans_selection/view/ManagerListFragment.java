@@ -12,30 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.adapter.ViewPagerAdapter;
+import com.andrea.belotti.brorkout.plans_selection.adapter.TabLayoutSelectScheduleAdapter;
 import com.andrea.belotti.brorkout.entity.Scheda;
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ManagerListFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
-
-    TabLayout tabLayout;
-    ViewPager2 viewPager2;
-    ViewPagerAdapter viewPagerAdapter;
-    List<Scheda> schedaLocalList = new ArrayList<>();
-
-    public static ManagerListFragment newInstance(List<Scheda> param1) {
-        ManagerListFragment fragment = new ManagerListFragment();
-        Bundle args = new Bundle();
-        args.putSerializable("ListaSchede", (Serializable) param1);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,20 +28,15 @@ public class ManagerListFragment extends Fragment {
         Log.i(tag, "Starting Fragment");
 
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            schedaLocalList = (List<Scheda>) getArguments().get("ListaSchede");
-        }
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_manager_list, container, false);
 
-        tabLayout = view.findViewById(R.id.tabLayout);
-        viewPager2 = view.findViewById(R.id.viewPager);
+        TabLayout tabLayout = view.findViewById(R.id.tabLayout);
+        ViewPager2 viewPager2 = view.findViewById(R.id.viewPager);
 
-        viewPagerAdapter = new ViewPagerAdapter(this, schedaLocalList);
+        TabLayoutSelectScheduleAdapter tabLayoutSelectScheduleAdapter = new TabLayoutSelectScheduleAdapter(this);
 
-        viewPager2.setAdapter(viewPagerAdapter);
+        viewPager2.setAdapter(tabLayoutSelectScheduleAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -67,12 +46,12 @@ public class ManagerListFragment extends Fragment {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                // TODO document why this method is empty
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                // TODO document why this method is empty
             }
         });
 
@@ -86,13 +65,5 @@ public class ManagerListFragment extends Fragment {
 
         return view;
     }
-
-
-    public void changeFragment(Scheda scheda) {
-        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainerArchivioView, SceltaGiornoArchivioFragment.newInstance(scheda));
-        fragmentTransaction.commit();
-    }
-
 
 }

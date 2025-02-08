@@ -3,8 +3,10 @@ package com.andrea.belotti.brorkout.repository;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.TableName.USERS_TABLE;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.andrea.belotti.brorkout.entity.User;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,5 +37,12 @@ public class UserRepository {
         query.addListenerForSingleValueEvent(listener);
 
     }
+
+    public void getById(String userId, ValueEventListener listener) {
+
+        userTableRef.orderByChild("id").equalTo(userId).addListenerForSingleValueEvent(listener);
+
+    }
+
 
 }

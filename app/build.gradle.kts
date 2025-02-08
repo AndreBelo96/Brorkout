@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
-    //alias(libs.plugins.dagger.hilt.plugin)
 }
+
 
 android {
     namespace = "com.andrea.belotti.brorkout"
@@ -27,10 +27,20 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/gradle/incremental.annotation.processors"
+
+        }
+    }
+    
     buildFeatures {
         viewBinding = true
     }
@@ -64,7 +74,6 @@ dependencies {
     compileOnly(libs.lombok)
     annotationProcessor(libs.lombok)
 
-    // # HILT #
-    //implementation(libs.dagger.hilt)
-    //implementation(libs.dagger.hilt.compiler)
 }
+
+

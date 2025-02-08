@@ -6,7 +6,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 

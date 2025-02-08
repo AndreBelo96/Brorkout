@@ -72,7 +72,7 @@ public class ScheduleCreatingUtils {
         Scheda scheda = new Scheda();
         try {
             scheda = JsonGeneratorUtil.generateScheduleFromJson(schedule);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             Log.e("TAG", e.getMessage());
         }
         return scheda;

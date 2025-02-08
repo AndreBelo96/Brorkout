@@ -1,4 +1,7 @@
-package com.andrea.belotti.brorkout.model;
+package com.andrea.belotti.brorkout.entity;
+
+
+import com.andrea.belotti.brorkout.model.Esercizio;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,9 +17,7 @@ public class Giornata implements Serializable {
 
     private int numberOfDays;
     private List<Esercizio> exercises;
-    private String createDate;
+    private String creationDate;
     private String updateDate;
-
-
 
 }

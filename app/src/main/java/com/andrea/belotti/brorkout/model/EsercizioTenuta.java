@@ -2,6 +2,9 @@ package com.andrea.belotti.brorkout.model;
 
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.ExeType.TENUTA;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -189,11 +192,11 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     }
 
     @Override
-    public String toStringResumeEndSchedule() {
-        return " Nome esercizio: " + nomeEsercizio +
-                "\n Numero serie: " + serieCompletate + "/" + serie +
-                "\n Ripetizioni: " + ripetizioni + " per " + tempoEsecuzione + "\"" +
-                "\n Commenti atleta: " + appuntiAtleta;
+    public EsercizioTenuta toObjectForDB(String jsonString) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(EsercizioIncrementale.class, new InterfaceAdapter());
+        Gson gson = builder.create();
+        return gson.fromJson(jsonString, EsercizioTenuta.class);
     }
 
     @Override

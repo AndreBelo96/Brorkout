@@ -19,7 +19,7 @@ import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.entity.Giornata;
 
 public class ExercisesFragment extends Fragment {
 

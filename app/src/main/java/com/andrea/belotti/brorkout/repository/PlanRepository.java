@@ -5,7 +5,7 @@ import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.Tabl
 import androidx.annotation.NonNull;
 
 import com.andrea.belotti.brorkout.entity.Scheda;
-import com.andrea.belotti.brorkout.entity.SchedaDTO;
+import com.andrea.belotti.brorkout.entity.SchedaEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,29 +21,31 @@ import java.util.UUID;
 
 public class PlanRepository {
 
-    DatabaseReference plansDataRef;
+    DatabaseReference plansTableRef;
 
     public PlanRepository() {
-        plansDataRef = FirebaseDatabase.getInstance().getReference(PLANS_TABLE);
+        plansTableRef = FirebaseDatabase.getInstance().getReference(PLANS_TABLE);
     }
 
     public void updatePlan(String id, Scheda plan) {
-        plansDataRef.child(id)
+        plansTableRef.child(id)
                 .setValue(plan);
     }
 
-    public void insertPlan(SchedaDTO plan) {
+    public void insertPlan(SchedaEntity plan) {
 
         UUID uuid = UUID.randomUUID();
 
-        plansDataRef.child(uuid.toString())
+        plan.setId(uuid.toString());
+
+        plansTableRef.child(uuid.toString())
                 .setValue(plan);
     }
 
 
     public List<Scheda> getByIdCreator(String idCreator) {
 
-        Query query = plansDataRef.orderByChild("idCreator").equalTo(idCreator);
+        Query query = plansTableRef.orderByChild("idCreator").equalTo(idCreator);
 
         List<Scheda> plans = new ArrayList<>();
 
@@ -55,11 +57,11 @@ public class PlanRepository {
                 if (snapshot.exists()) {
                     snapshot.getChildren().forEach(c -> {
 
-                        SchedaDTO schedaDTO = c.getValue(SchedaDTO.class);
+                        SchedaEntity schedaEntity = c.getValue(SchedaEntity.class);
 
                         Scheda scheda = null;
                         try {
-                            scheda = new Scheda(schedaDTO);
+                            scheda = new Scheda(schedaEntity);
                         } catch (JsonProcessingException e) {
                             throw new RuntimeException(e);
                         }
@@ -80,42 +82,11 @@ public class PlanRepository {
 
     }
 
-    public List<Scheda> getByIdUser(String idUser) {
+    public void getAllByUserId(String userId, ValueEventListener listener) {
 
-        Query query = plansDataRef.orderByChild("idUser").equalTo(idUser);
+        Query query = plansTableRef.orderByChild("idUser").equalTo(userId);
 
-        List<Scheda> plans = new ArrayList<>();
-
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                plans.clear();
-
-                if (snapshot.exists()) {
-                    snapshot.getChildren().forEach(c -> {
-
-                        SchedaDTO schedaDTO = c.getValue(SchedaDTO.class);
-
-                        Scheda scheda = null;
-                        try {
-                            scheda = new Scheda(schedaDTO);
-                        } catch (JsonProcessingException e) {
-                            throw new RuntimeException(e);
-                        }
-
-                        plans.add(scheda);
-
-                    });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        return plans;
+        query.addListenerForSingleValueEvent(listener);
 
     }
 

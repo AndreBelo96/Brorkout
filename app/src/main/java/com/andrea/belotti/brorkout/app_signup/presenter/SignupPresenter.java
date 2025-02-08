@@ -80,6 +80,8 @@ public class SignupPresenter implements SignupContract.Presenter {
 
                         String id = currentUser.getUid();
 
+                        user.setId(id);
+
                         userRepository.saveUser(id, user);
 
                         editor.putString(USERNAME_PREFERENCES, username);

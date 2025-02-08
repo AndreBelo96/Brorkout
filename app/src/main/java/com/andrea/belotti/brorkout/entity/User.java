@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User implements Serializable {
 
+    private String id;
     private String username;
     private String email;
     private String base64Image;

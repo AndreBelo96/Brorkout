@@ -8,24 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.adapter.PlanSelectedAdapter;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.entity.Scheda;
-import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ListaSchedeOnlineArchivioFragment extends Fragment {
 
@@ -41,7 +26,7 @@ public class ListaSchedeOnlineArchivioFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_schede_list, container, false);
 
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Schedules").child("user").getRef();
+        /*DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Schedules").child("user").getRef();
         SelectScheduleActivity activity = (SelectScheduleActivity) this.getActivity();
 
         context = getContext();
@@ -62,7 +47,6 @@ public class ListaSchedeOnlineArchivioFragment extends Fragment {
                         }
                     });
 
-                    //TODO mettere fuori se possibile
                     if (!schedaOnlineList.isEmpty()) {
 
                         // set recyclerView info
@@ -82,7 +66,7 @@ public class ListaSchedeOnlineArchivioFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
 
         return view;

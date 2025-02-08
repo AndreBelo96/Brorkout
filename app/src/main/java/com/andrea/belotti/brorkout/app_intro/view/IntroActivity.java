@@ -16,6 +16,7 @@ import com.andrea.belotti.brorkout.app_intro.presenter.IntroPresenter;
 import com.andrea.belotti.brorkout.app_login.view.LoginActivity;
 import com.andrea.belotti.brorkout.app_signup.view.SignUpActivity;
 
+
 public class IntroActivity extends AppCompatActivity implements IntroContract.View {
 
     // log

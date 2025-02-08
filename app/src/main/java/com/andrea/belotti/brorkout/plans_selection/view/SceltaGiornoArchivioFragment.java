@@ -2,7 +2,6 @@ package com.andrea.belotti.brorkout.plans_selection.view;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,19 +11,16 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.adapter.DaySelectedAdapter;
+import com.andrea.belotti.brorkout.plans_selection.adapter.DaySelectedAdapter;
 import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivity;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.entity.Scheda;
-import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static android.content.Context.MODE_PRIVATE;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 
@@ -32,13 +28,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
 
-    // Storing data into SharedPreferences
-    private static android.content.SharedPreferences sharedPreferences;
-
     private static Context context;
-    private static final int duration = Toast.LENGTH_SHORT;
-    private static final String SUCCESS_CREATING_STRING = "Scheda salvata con successo";
-
 
     public static SceltaGiornoArchivioFragment newInstance(Scheda scheda) {
         SceltaGiornoArchivioFragment fragment = new SceltaGiornoArchivioFragment();
@@ -48,15 +38,12 @@ public class SceltaGiornoArchivioFragment extends Fragment {
         return fragment;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
 
-
-        sharedPreferences = this.getActivity().getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_scelta_giorno_archivio, container, false);
@@ -83,15 +70,16 @@ public class SceltaGiornoArchivioFragment extends Fragment {
 
         backBtn.setOnClickListener(v -> {
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, ManagerListFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
+            fragmentTransaction.replace(R.id.fragmentContainerPlanList, new ManagerListFragment());
             fragmentTransaction.commit();
         });
 
         deletePlanBtn.setOnClickListener(v -> {
             SelectScheduleActivity.deleteData(finalSchedaScelta.getNome());
 
+            // TODO probabilemnte devo salvare ID nella scheda
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchivioView, ListaSchedeLocalArchivioFragment.newInstance(ScheduleCreatingUtils.createListaSchede(sharedPreferences)));
+            fragmentTransaction.replace(R.id.fragmentContainerPlanList, new SelectSchedePersonaliFragment());
             fragmentTransaction.commit();
         });
 
@@ -101,7 +89,7 @@ public class SceltaGiornoArchivioFragment extends Fragment {
             bundle.putSerializable("Scheda", finalSchedaScelta);
 
             Intent intent = new Intent(context, PlanCreatorActivity.class);
-            Toast toast = Toast.makeText(context, "robe", duration);
+            Toast toast = Toast.makeText(context, "robe", Toast.LENGTH_SHORT);
             toast.show();
             intent.putExtra("modifica", true);
             intent.putExtra("SchedaDati", bundle);

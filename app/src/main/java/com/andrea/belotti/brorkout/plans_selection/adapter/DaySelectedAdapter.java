@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.adapter;
+package com.andrea.belotti.brorkout.plans_selection.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.plans_selection.view.SelectScheduleActivity;
 
 import java.util.List;

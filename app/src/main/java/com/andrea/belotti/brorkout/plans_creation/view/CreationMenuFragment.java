@@ -27,15 +27,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.CreationCopyPlanAdapter;
+import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.entity.User;
 import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.plans_creation.adapter.ShareFriendItemAdapter;
 import com.andrea.belotti.brorkout.repository.PlanRepository;
 import com.andrea.belotti.brorkout.repository.UserRepository;
-import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.model.Giornata;
-import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
+import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
+import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -48,26 +49,19 @@ import java.util.List;
 public class CreationMenuFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
-
+    CreateSingleton singletonProva;
     private Boolean isNew = false;
     private Boolean isCopy = false;
-
     private Scheda selectedPlan = null;
     private String day = "";
-
     private LinearLayout treePlanContainer;
     private LinearLayout infoPlanContainer;
     private LinearLayout copyPlanContainer;
-
     // # Share #
     private LinearLayout shareSelectionLayout;
     private LinearLayout shareInfoContainer;
     private RecyclerView usersSharePlanContainer;
-
-
     private LinearLayout createPlanButton;
-
-    //TODO fare inject con signelton
     private PlanRepository planRepo;
     private UserRepository repoUser;
 
@@ -76,6 +70,8 @@ public class CreationMenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
+
+        singletonProva = CreateSingleton.getInstance();
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_creation_menu, container, false);
@@ -123,19 +119,54 @@ public class CreationMenuFragment extends Fragment {
         usersSharePlanContainer = view.findViewById(R.id.users_container);
         LinearLayout backShareButton = view.findViewById(R.id.back_share_button);
 
-        List<User> users = new ArrayList<>(); // Qui dentro ho tutte le persone utilizzatori della scehda -> devo fare in modo che venga salvato in un singleton
+        List<User> users = new ArrayList<>();
+        FirebaseUser currentFireBaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        ShareFriendItemAdapter shareAdapter = new ShareFriendItemAdapter(getContext(), users);
-
-        // Serve listener
-        ValueEventListener shareListener = new ValueEventListener() {
+        // CurrentUser listener
+        ValueEventListener currentUserListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
+                if (snapshot.exists()) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         User user = dataSnapshot.getValue(User.class);
                         users.add(user);
                     }
+
+                    Toast toast = Toast.makeText(getContext(), "Utente aggiunto", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else {
+                    Toast toast = Toast.makeText(getContext(), "Utente Insesistente", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+
+        repoUser.getById(currentFireBaseUser.getUid(), currentUserListener);
+
+        ShareFriendItemAdapter shareAdapter = new ShareFriendItemAdapter(getContext(), users);
+
+        // Share listener
+        ValueEventListener shareListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        User user = dataSnapshot.getValue(User.class);
+
+                        if (users.stream().anyMatch(u -> user.getEmail().equals(u.getEmail()))) {
+                            Toast toast = Toast.makeText(getContext(), "Utente già presente nella lsita", Toast.LENGTH_SHORT);
+                            toast.show();
+                            return;
+                        }
+
+                        users.add(user);
+                    }
+
                     shareAdapter.notifyItemInserted(users.size());
                     Toast toast = Toast.makeText(getContext(), "Utente aggiunto", Toast.LENGTH_SHORT);
                     toast.show();
@@ -156,7 +187,6 @@ public class CreationMenuFragment extends Fragment {
         usersSharePlanContainer.setAdapter(shareAdapter);
 
 
-
         // Initialize Create Button
         createPlanButton = view.findViewById(R.id.confirm_button);
 
@@ -174,17 +204,16 @@ public class CreationMenuFragment extends Fragment {
 
         CreationCopyPlanAdapter adapter;
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         adapter = new CreationCopyPlanAdapter(
                 view,
                 context,
-                planRepo.getByIdCreator(user.getUid().toString()),
+                planRepo.getByIdCreator(currentFireBaseUser.getUid().toString()),
                 this);
         plansContainer.setHasFixedSize(true);
         plansContainer.setLayoutManager(new LinearLayoutManager(context));
         plansContainer.setAdapter(adapter);
-
 
 
         // ---------------------- ClickListeners ----------------------
@@ -266,12 +295,15 @@ public class CreationMenuFragment extends Fragment {
 
         // ---------------------- Share Click Listeners ----------------------
 
-        isPersonalBtn.setOnClickListener(v-> {
+        isPersonalBtn.setOnClickListener(v -> {
 
             if (isPersonalBtn.isChecked()) {
                 shareBtn.setVisibility(View.INVISIBLE);
+                users.clear();
+                repoUser.getById(currentFireBaseUser.getUid(), currentUserListener);
             } else {
                 shareBtn.setVisibility(View.VISIBLE);
+                users.clear();
             }
         });
 
@@ -311,6 +343,9 @@ public class CreationMenuFragment extends Fragment {
                     toast.show();
                     return;
                 }
+
+                // Save Users in singleton
+                singletonProva.setUsersToShare(users);
 
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(scheduleName, Integer.parseInt(day)));

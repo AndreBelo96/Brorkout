@@ -18,7 +18,9 @@ gson = "2.11.0"
 jacksonVersion = "2.17.1"
 lombok = "1.18.36"
 activity = "1.10.0"
-hiltAndroid  = "2.51.1"
+
+hiltVersion = "2.51.1"
+hiltNavigationVersion = "1.2.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -40,11 +42,14 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
 
 #dagger hilt
-dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }
-dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltAndroid" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltVersion" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationVersion" }
+hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hiltVersion" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltVersion" }
+
 
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
-dagger-hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
+hilt-application = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }

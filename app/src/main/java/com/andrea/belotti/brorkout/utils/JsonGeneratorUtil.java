@@ -2,7 +2,7 @@ package com.andrea.belotti.brorkout.utils;
 
 import android.util.Log;
 
-import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.model.nodes.Node;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.InterfaceAdapter;
@@ -26,20 +26,18 @@ public class JsonGeneratorUtil {
         return json;
     }
 
-    public static Scheda generateScheduleFromJson(String jsonString) throws JsonProcessingException {
+    public static Scheda generateScheduleFromJson(String jsonString) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Esercizio.class, new InterfaceAdapter());
         Gson gson = builder.create();
-        Scheda scheda = gson.fromJson(jsonString, Scheda.class);
-        return scheda;
+        return gson.fromJson(jsonString, Scheda.class);
     }
 
-    public static Giornata generateExercisesFromJson(String jsonString) throws JsonProcessingException {
+
+    public static Giornata generateGiornataFromJson(String jsonString) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(Esercizio.class, new InterfaceAdapter());
-        Gson gson = builder.create();
-        Giornata day = gson.fromJson(jsonString, Giornata.class);
-        return day;
+        return builder.create().fromJson(jsonString, Giornata.class);
     }
 
     public static Node generateNodeFromJson(String jsonString) throws JsonProcessingException {

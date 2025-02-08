@@ -20,7 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 
 import java.util.List;

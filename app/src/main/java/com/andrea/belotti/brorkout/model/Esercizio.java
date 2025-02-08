@@ -52,7 +52,7 @@ public interface Esercizio {
 
     String toString();
 
-    String toStringResumeEndSchedule();
+    Esercizio toObjectForDB(String jsonString);
 
     String getRepForExecution();
 

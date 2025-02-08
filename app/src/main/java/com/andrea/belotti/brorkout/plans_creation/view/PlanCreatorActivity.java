@@ -1,10 +1,6 @@
 package com.andrea.belotti.brorkout.plans_creation.view;
 
-import static com.andrea.belotti.brorkout.utils.JsonGeneratorUtil.generateJsonFromObject;
-import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -14,40 +10,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.entity.SchedaDTO;
-import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.app_starting_menu.view.StartingMenuActivity;
-import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.entity.SchedaEntity;
+import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.plans_creation.contract.PlanCreatorContract;
 import com.andrea.belotti.brorkout.plans_creation.presenter.PlanCreatorPresenter;
 import com.andrea.belotti.brorkout.repository.PlanRepository;
-import com.andrea.belotti.brorkout.utils.JsonGeneratorUtil;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
 
-
-
 public class PlanCreatorActivity extends AppCompatActivity implements PlanCreatorContract.View {
 
-    // Storing data into SharedPreferences
-    private static SharedPreferences sharedPreferences;
     // log
     private final String tag = this.getClass().getSimpleName();
 
     PlanRepository repo;
 
+    CreateSingleton singletonProva;
+
     // shared variables between fragments
     private Esercizio addExeInCreation;
     private Giornata dayToCopy;
     private int selectedExe = -1;
-
     @Getter
     @Setter
     private Scheda planToCreate;
@@ -57,12 +48,12 @@ public class PlanCreatorActivity extends AppCompatActivity implements PlanCreato
 
         Log.i(tag, "Starting activity");
 
+        singletonProva = CreateSingleton.getInstance();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_creator);
 
-        // TODO fare nel singleton
         Bundle inputData = getIntent().getExtras().getBundle("SchedaDati");
-        sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
         ImageView backButton = findViewById(R.id.buttonBack);
 
@@ -87,7 +78,6 @@ public class PlanCreatorActivity extends AppCompatActivity implements PlanCreato
         }
 
 
-
         backButton.setOnClickListener(v -> {
             presenter.onBackClick();
         });
@@ -96,27 +86,16 @@ public class PlanCreatorActivity extends AppCompatActivity implements PlanCreato
 
     public void saveData(Scheda scheda) {
 
-        // MAPPING
-        SchedaDTO dto = new SchedaDTO();
+        // Retrieve user's list
+        List<User> users = singletonProva.getUsersToShare();
 
-        List<String> giornate = new ArrayList<>();
+        for (User user : users) {
+            SchedaEntity dto = new SchedaEntity(scheda);
+            dto.setIdUser(user.getId());
 
-        for (Giornata day : scheda.getGiornate()) {
-            giornate.add(generateJsonFromObject(day));
+            // DATABASE
+            repo.insertPlan(dto);
         }
-
-        // TODO Fai costruttore
-
-        dto.setGiornate(giornate);
-        dto.setNumeroGiornate(scheda.getNumeroGiornate());
-        dto.setNome(scheda.getNome());
-        dto.setCreationDate(scheda.getCreationDate());
-        dto.setUpdateDate(scheda.getUpdateDate());
-        dto.setIdCreator(scheda.getIdCreator());
-        dto.setIdUser(scheda.getIdUser());
-
-        // DATABASE
-        repo.insertPlan(dto);
 
     }
 

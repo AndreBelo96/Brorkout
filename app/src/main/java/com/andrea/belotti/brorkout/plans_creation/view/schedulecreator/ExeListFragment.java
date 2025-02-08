@@ -17,7 +17,7 @@ import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivity;
 import com.andrea.belotti.brorkout.adapter.EserciziCreazioneCallback;
 import com.andrea.belotti.brorkout.adapter.ItemEsercizioCreateAdapter;
-import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.entity.Giornata;
 
 /**
  * A simple {@link Fragment} subclass.

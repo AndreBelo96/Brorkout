@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.adapter;
+package com.andrea.belotti.brorkout.plans_creation.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,12 +21,10 @@ public class PlanSelectedAdapter extends RecyclerView.Adapter<PlanSelectedAdapte
 
     private List<Scheda> plans;
     Context context;
-    FragmentManager fragmentManager;
     SelectScheduleActivity selectScheduleActivity;
 
-    public PlanSelectedAdapter(Context context, FragmentManager fragmentManager, SelectScheduleActivity selectScheduleActivity) {
+    public PlanSelectedAdapter(Context context, SelectScheduleActivity selectScheduleActivity) {
         this.context = context;
-        this.fragmentManager = fragmentManager;
         this.selectScheduleActivity = selectScheduleActivity;
     }
 
