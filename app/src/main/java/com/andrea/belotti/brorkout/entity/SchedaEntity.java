@@ -38,5 +38,6 @@ public class SchedaEntity implements Serializable {
         this.creationDate = plan.getCreationDate();
         this.updateDate = plan.getUpdateDate();
         this.idCreator = plan.getIdCreator();
+        this.idUser = plan.getIdUser();
 
     }}

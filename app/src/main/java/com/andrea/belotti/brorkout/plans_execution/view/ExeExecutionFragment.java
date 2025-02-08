@@ -18,11 +18,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.entity.SchedaEntity;
+import com.andrea.belotti.brorkout.repository.PlanRepository;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 import com.andrea.belotti.brorkout.entity.Scheda;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ExeExecutionFragment extends Fragment {
@@ -30,6 +33,8 @@ public class ExeExecutionFragment extends Fragment {
     private final String tag = this.getClass().getSimpleName();
 
     private Integer countExe = 0;
+
+    PlanRepository repo;
 
     public static ExeExecutionFragment newInstance(Scheda scheda, Integer giorno) {
         ExeExecutionFragment fragment = new ExeExecutionFragment();
@@ -51,6 +56,8 @@ public class ExeExecutionFragment extends Fragment {
         if (getArguments() == null) {
             return view;
         }
+
+        repo = new PlanRepository();
 
         Scheda plan = (Scheda) getArguments().get(SCHEDA);
         Integer day = (Integer) getArguments().get(GIORNATA);
@@ -94,6 +101,13 @@ public class ExeExecutionFragment extends Fragment {
 
         buttonEndSchedule.setOnClickListener(v -> {
             esercizioList.get(countExe).setAppuntiAtleta(commentiAtleta.getText().toString());
+
+            // update data to DB
+            plan.getGiornate().get(day-1).setUpdateDate(LocalDateTime.now().toString());
+            plan.setUpdateDate(LocalDateTime.now().toString());
+
+            repo.updatePlan(plan.getId(), new SchedaEntity(plan));
+
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerViewGestoreScheda, EndScheduleSummaryFragment.newInstance(plan, day-1));
             fragmentTransaction.commit();

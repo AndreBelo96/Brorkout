@@ -1,5 +1,6 @@
 package com.andrea.belotti.brorkout.plans_creation.view;
 
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.NUMERO_GIORNATE;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.TITOLO_SCHEDA;
@@ -257,8 +258,8 @@ public class CreationPlanFragment extends Fragment {
             activity.saveData(scheda);
 
             Intent intent = new Intent(getActivity(), ExecutionScheduleActivity.class);
-            intent.putExtra("scheda", scheda);
-            intent.putExtra("giornoScelto", 1);
+            intent.putExtra(SCHEDA, scheda);
+            intent.putExtra(GIORNATA, 1);
             startActivity(intent);
         });
 

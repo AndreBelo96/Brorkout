@@ -27,7 +27,7 @@ public class PlanRepository {
         plansTableRef = FirebaseDatabase.getInstance().getReference(PLANS_TABLE);
     }
 
-    public void updatePlan(String id, Scheda plan) {
+    public void updatePlan(String id, SchedaEntity plan) {
         plansTableRef.child(id)
                 .setValue(plan);
     }
