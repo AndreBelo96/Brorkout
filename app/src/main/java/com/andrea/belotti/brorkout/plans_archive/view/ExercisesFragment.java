@@ -27,12 +27,8 @@ public class ExercisesFragment extends Fragment {
     private Context context;
     private ScheduleArchiveActivity activity;
 
-    public static ExercisesFragment newInstance(Giornata day) {
-        ExercisesFragment fragment = new ExercisesFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(GIORNATA, day);
-        fragment.setArguments(args);
-        return fragment;
+    public static ExercisesFragment newInstance() {
+        return new ExercisesFragment();
     }
 
     @Override
@@ -65,13 +61,13 @@ public class ExercisesFragment extends Fragment {
 
         buttonBack.setOnClickListener(v -> {
 
-            String path = activity.getPath();
+            /*String path = activity.getPath();
             String sub[] = path.split("/");
 
-            activity.setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/");
+            activity.setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/");*/
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance(activity.getPlanCompletedNode()));
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance());
             fragmentTransaction.commit();
 
         });

@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.adapter;
+package com.andrea.belotti.brorkout.plans_archive.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,21 +13,21 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.plans_archive.view.ScheduleArchiveActivity;
+import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 import com.andrea.belotti.brorkout.plans_archive.view.DaysFragment;
-import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
+
+import java.util.List;
 
 public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
 
-    public PlanCompletedNode[] plans;
+    public List<Scheda> plans;
     Context context;
-    ScheduleArchiveActivity activity;
     FragmentManager fragmentManager;
 
-    public PlanAdapter(Context context, PlanCompletedNode[] plans, ScheduleArchiveActivity activity, FragmentManager fragmentManager) {
+    public PlanAdapter(Context context, List<Scheda> plans, FragmentManager fragmentManager) {
+        this.plans= plans;
         this.context = context;
-        this.plans = plans;
-        this.activity = activity;
         this.fragmentManager = fragmentManager;
     }
 
@@ -42,23 +42,23 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull PlanAdapter.ViewHolder holder, int position) {
 
-        holder.planName.setText(plans[position].getName());
-        holder.dayText.setText("Giornate presenti: " + plans[position].getPlan().getNumeroGiornate());
+        holder.planName.setText(plans.get(position).getNome());
+        holder.dayText.setText("Giornate presenti: " + plans.get(position).getNumeroGiornate());
 
         holder.card.setOnClickListener(v -> {
 
-            activity.setPath(activity.getPath() +  plans[position].getName() + "/");
-            activity.setPlanCompletedNode(plans[position]);
+            ArchiveSingleton.getInstance().setChosenPlan(plans.get(position));
+            ArchiveSingleton.getInstance().setPath(ArchiveSingleton.getInstance().getPath() + "/" + plans.get(position).getNome());
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance( plans[position]));
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance());
             fragmentTransaction.commit();
         });
     }
 
     @Override
     public int getItemCount() {
-        return plans.length;
+        return plans.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

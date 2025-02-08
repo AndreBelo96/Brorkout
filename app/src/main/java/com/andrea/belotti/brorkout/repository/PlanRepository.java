@@ -34,11 +34,7 @@ public class PlanRepository {
 
     public void insertPlan(SchedaEntity plan) {
 
-        UUID uuid = UUID.randomUUID();
-
-        plan.setId(uuid.toString());
-
-        plansTableRef.child(uuid.toString())
+        plansTableRef.child(plan.getId())
                 .setValue(plan);
     }
 
@@ -87,6 +83,15 @@ public class PlanRepository {
         Query query = plansTableRef.orderByChild("idUser").equalTo(userId);
 
         query.addListenerForSingleValueEvent(listener);
+
+    }
+
+    public void getAthletePlansByCoachId(String coachId, ValueEventListener listener) {
+
+        Query query = plansTableRef.orderByChild("idCreator").equalTo(coachId);
+
+        query.addListenerForSingleValueEvent(listener);
+
 
     }
 

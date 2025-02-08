@@ -14,6 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class UserRepository {
@@ -44,5 +45,12 @@ public class UserRepository {
 
     }
 
+    public void getAllByIdAthleteList(List<String> userIds, ValueEventListener listener) {
+
+        for (String userId : userIds) {
+            userTableRef.orderByChild("id").equalTo(userId).addListenerForSingleValueEvent(listener);
+        }
+
+    }
 
 }

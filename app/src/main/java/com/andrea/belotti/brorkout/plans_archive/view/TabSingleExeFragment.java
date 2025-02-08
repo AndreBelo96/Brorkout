@@ -84,7 +84,7 @@ public class TabSingleExeFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                activity.setPath(activity.getPath().substring(0, activity.getPath().length() - 1) + exes.get(position).getName());
+                //activity.setPath(activity.getPath().substring(0, activity.getPath().length() - 1) + exes.get(position).getName());
                 tabLayout.getTabAt(position).select();
             }
         });
@@ -94,13 +94,13 @@ public class TabSingleExeFragment extends Fragment {
 
         buttonBack.setOnClickListener(v -> {
 
-            String path = activity.getPath();
+            /*String path = activity.getPath();
             String[] sub = path.split("/");
 
-            activity.setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/" + sub[3] + "/");
+            activity.setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/" + sub[3] + "/");*/
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(activity.getDay()));
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance());
             fragmentTransaction.commit();
 
         });

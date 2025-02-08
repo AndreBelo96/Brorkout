@@ -142,6 +142,7 @@ public final class ExerciseConstants {
         public static final String ESERCIZIO = "Esercizio";
         public static final String ESERCIZI = "ListaEsercizi";
         public static final String ESERCIZIO_SCELTO = "EsercizioScelto";
+        public static final String ID_USER = "UserId";
         public static final String NODE = "Node";
 
         private MemorizeConstants() {

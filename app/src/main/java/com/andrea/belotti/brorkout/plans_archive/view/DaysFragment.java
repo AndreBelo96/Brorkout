@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
@@ -34,12 +35,8 @@ public class DaysFragment extends Fragment {
     private ScheduleArchiveActivity activity;
 
 
-    public static DaysFragment newInstance(PlanCompletedNode plan) {
-        DaysFragment fragment = new DaysFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(SCHEDA, plan);
-        fragment.setArguments(args);
-        return fragment;
+    public static DaysFragment newInstance() {
+        return new DaysFragment();
     }
 
 
@@ -75,13 +72,13 @@ public class DaysFragment extends Fragment {
 
         buttonBack.setOnClickListener(v -> {
 
-            String path = activity.getPath();
+            /*String path = activity.getPath();
             String sub[] = path.split("/");
 
-            activity.setPath(sub[0] + "/" + sub[1] + "/");
+            activity.setPath(sub[0] + "/" + sub[1] + "/");*/
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansFragment.newInstance(activity.getMonthNode()));
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansFragment.newInstance(ArchiveSingleton.getInstance().getChosenUserId()));
             fragmentTransaction.commit();
 
         });
@@ -120,11 +117,11 @@ public class DaysFragment extends Fragment {
 
                 dayButton.setOnClickListener(v -> {
 
-                    activity.setPath(activity.getPath() + day.getNumberOfDays() + "/");
-                    activity.setDay(day);
+                    /*activity.setPath(activity.getPath() + day.getNumberOfDays() + "/");
+                    activity.setDay(day);*/
 
                     FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(day));
+                    fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance());
                     fragmentTransaction.commit();
                 });
             }

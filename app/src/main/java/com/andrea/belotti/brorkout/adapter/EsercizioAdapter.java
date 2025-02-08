@@ -68,7 +68,7 @@ public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.View
 
         holder.cardView.setOnClickListener(v -> {
 
-            activity.setPath(activity.getPath() +  esercizi[position].getName());
+            //activity.setPath(activity.getPath() +  esercizi[position].getName());
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerArchiveView, TabSingleExeFragment.newInstance(Arrays.stream(esercizi).toList(), position));

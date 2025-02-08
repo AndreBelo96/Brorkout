@@ -39,6 +39,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 public class CreationPlanFragment extends Fragment {
@@ -253,6 +254,9 @@ public class CreationPlanFragment extends Fragment {
             scheda.setUpdateDate(LocalDateTime.now().toString());
             scheda.setIdCreator(user.getUid());
             scheda.setIdUser(user.getUid());
+
+            UUID uuid = UUID.randomUUID();
+            scheda.setId(uuid.toString());
 
             //Salvataggio a DB e in locale
             activity.saveData(scheda);
