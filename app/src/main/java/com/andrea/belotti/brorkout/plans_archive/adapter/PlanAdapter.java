@@ -51,7 +51,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.ViewHolder> {
             ArchiveSingleton.getInstance().setPath(ArchiveSingleton.getInstance().getPath() + "/" + plans.get(position).getNome());
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance());
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance(plans.get(position)));
             fragmentTransaction.commit();
         });
     }

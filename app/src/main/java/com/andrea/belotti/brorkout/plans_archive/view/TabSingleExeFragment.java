@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.SingleExeAdapter;
 import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
@@ -84,7 +85,6 @@ public class TabSingleExeFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                //activity.setPath(activity.getPath().substring(0, activity.getPath().length() - 1) + exes.get(position).getName());
                 tabLayout.getTabAt(position).select();
             }
         });
@@ -94,13 +94,13 @@ public class TabSingleExeFragment extends Fragment {
 
         buttonBack.setOnClickListener(v -> {
 
-            /*String path = activity.getPath();
+            String path = ArchiveSingleton.getInstance().getPath();
             String[] sub = path.split("/");
 
-            activity.setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/" + sub[3] + "/");*/
+            ArchiveSingleton.getInstance().setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/");
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance());
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(ArchiveSingleton.getInstance().getChosenDay()));
             fragmentTransaction.commit();
 
         });

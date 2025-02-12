@@ -1,6 +1,7 @@
 package com.andrea.belotti.brorkout.plans_archive.view;
 
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
+import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.entity.Giornata;
@@ -27,8 +29,12 @@ public class ExercisesFragment extends Fragment {
     private Context context;
     private ScheduleArchiveActivity activity;
 
-    public static ExercisesFragment newInstance() {
-        return new ExercisesFragment();
+    public static ExercisesFragment newInstance(Giornata day) {
+        ExercisesFragment fragment = new ExercisesFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(GIORNATA, day);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -44,10 +50,11 @@ public class ExercisesFragment extends Fragment {
         activity = (ScheduleArchiveActivity) this.getActivity();
 
         // retrieve data
-        Giornata day = new Giornata();
-        if (getArguments() != null) {
-            day = (Giornata) getArguments().get(GIORNATA);
+        if (getArguments() == null) {
+            return view;
         }
+
+        Giornata day = (Giornata) getArguments().get(GIORNATA);
 
         // set recyclerView info
         RecyclerView recyclerView = view.findViewById(R.id.exercises);
@@ -61,13 +68,13 @@ public class ExercisesFragment extends Fragment {
 
         buttonBack.setOnClickListener(v -> {
 
-            /*String path = activity.getPath();
-            String sub[] = path.split("/");
+            String path = ArchiveSingleton.getInstance().getPath();
+            String[] sub = path.split("/");
 
-            activity.setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/");*/
+            ArchiveSingleton.getInstance().setPath(sub[0] + "/" + sub[1] + "/");
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance());
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance(ArchiveSingleton.getInstance().getChosenPlan()));
             fragmentTransaction.commit();
 
         });

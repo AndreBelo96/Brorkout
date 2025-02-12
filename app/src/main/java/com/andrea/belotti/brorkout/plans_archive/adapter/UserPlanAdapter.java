@@ -14,11 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.entity.User;
-import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
-import com.andrea.belotti.brorkout.plans_archive.view.DaysFragment;
 import com.andrea.belotti.brorkout.plans_archive.view.PlansFragment;
-import com.andrea.belotti.brorkout.plans_archive.view.ScheduleArchiveActivity;
 
 import java.util.List;
 

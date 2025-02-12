@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -68,6 +69,7 @@ public class PlansFragment extends Fragment {
         // Initialize data
         LinearLayout buttonBack = view.findViewById(R.id.back);
         RecyclerView recyclerView = view.findViewById(R.id.plans);
+        TextView title = view.findViewById(R.id.titlePlan);
 
         List<Scheda> athletePlans = new ArrayList<>();
 

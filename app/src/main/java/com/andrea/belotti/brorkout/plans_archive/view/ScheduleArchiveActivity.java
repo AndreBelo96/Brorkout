@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.app_starting_menu.view.StartingMenuActivity;
+import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 
 public class ScheduleArchiveActivity extends AppCompatActivity {
 
@@ -20,7 +22,10 @@ public class ScheduleArchiveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_archive);
 
+        TextView pathArchive = findViewById(R.id.pathArchive);
         ImageButton backButton = findViewById(R.id.backButton);
+
+        pathArchive.setText(ArchiveSingleton.getInstance().getPath());
 
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), StartingMenuActivity.class);

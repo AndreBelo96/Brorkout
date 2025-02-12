@@ -1,10 +1,10 @@
 package com.andrea.belotti.brorkout.plans_archive.view;
 
-import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.GridLayoutDimension.DAYS_NUMBER;
-import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicButtonLayout;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicCardView;
 import static com.andrea.belotti.brorkout.utils.GenerateDrawableObjUtils.createBasicTextView;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.GridLayoutDimension.DAYS_NUMBER;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -19,10 +19,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.entity.Giornata;
+import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.entity.Giornata;
-import com.andrea.belotti.brorkout.model.nodes.PlanCompletedNode;
 
 import java.util.List;
 
@@ -32,11 +32,12 @@ public class DaysFragment extends Fragment {
     private final String tag = this.getClass().getSimpleName();
     private Context context;
 
-    private ScheduleArchiveActivity activity;
-
-
-    public static DaysFragment newInstance() {
-        return new DaysFragment();
+    public static DaysFragment newInstance(Scheda plan) {
+        DaysFragment fragment = new DaysFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(SCHEDA, plan);
+        fragment.setArguments(args);
+        return fragment;
     }
 
 
@@ -50,19 +51,17 @@ public class DaysFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_days, container, false);
 
-        // da prendere nel bundle
-        PlanCompletedNode planNode = new PlanCompletedNode();
-
-        if (getArguments() != null) {
-            planNode = (PlanCompletedNode) getArguments().get(SCHEDA);
+        if (getArguments() == null) {
+            return view;
         }
+
+        Scheda plan = (Scheda) getArguments().getSerializable(SCHEDA);
 
         GridLayout daysLayout = view.findViewById(R.id.days);
 
-        activity = (ScheduleArchiveActivity) this.getActivity();
 
-        if (planNode.getPlan() != null) {
-            initView(planNode, daysLayout);
+        if (plan != null) {
+            initView(plan, daysLayout);
         } else {
             initEmptyView(daysLayout);
         }
@@ -72,10 +71,10 @@ public class DaysFragment extends Fragment {
 
         buttonBack.setOnClickListener(v -> {
 
-            /*String path = activity.getPath();
-            String sub[] = path.split("/");
+            String path = ArchiveSingleton.getInstance().getPath();
+            String[] sub = path.split("/");
 
-            activity.setPath(sub[0] + "/" + sub[1] + "/");*/
+            ArchiveSingleton.getInstance().setPath(sub[0] + "/");
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansFragment.newInstance(ArchiveSingleton.getInstance().getChosenUserId()));
@@ -92,8 +91,8 @@ public class DaysFragment extends Fragment {
         daysLayout.addView(createBasicTextView(context, "Nessuna scheda completata", 20f));
     }
 
-    private void initView(PlanCompletedNode planNode, GridLayout daysLayout) {
-        List<Giornata> days = planNode.getPlan().getGiornate();
+    private void initView(Scheda plan, GridLayout daysLayout) {
+        List<Giornata> days = plan.getGiornate();
         setDayButtons(days, daysLayout);
     }
 
@@ -117,15 +116,14 @@ public class DaysFragment extends Fragment {
 
                 dayButton.setOnClickListener(v -> {
 
-                    /*activity.setPath(activity.getPath() + day.getNumberOfDays() + "/");
-                    activity.setDay(day);*/
+                    ArchiveSingleton.getInstance().setChosenDay(day);
+                    ArchiveSingleton.getInstance().setPath(ArchiveSingleton.getInstance().getPath() + "/" + day.getNumberOfDays());
 
                     FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance());
+                    fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(day));
                     fragmentTransaction.commit();
                 });
             }
-
 
             daysLayout.addView(containerView);
         }
