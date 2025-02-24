@@ -1,6 +1,10 @@
 package com.andrea.belotti.brorkout.plans_creation;
 
+import com.andrea.belotti.brorkout.entity.Giornata;
+import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.Esercizio;
+
 import java.util.List;
 
 import lombok.Getter;
@@ -14,10 +18,19 @@ public class CreateSingleton {
     // private static instance variable to hold the singleton instance
     private static volatile CreateSingleton INSTANCE = null;
 
+    private List<User> usersToShare;
+
+    private Scheda planToCreate;
+
+    private Esercizio addExeInCreation;
+
+    private Giornata dayToCopy;
+
+    private int selectedExe = -1;
+
+
     // private constructor to prevent instantiation of the class
     private CreateSingleton() {}
-
-    private List<User> usersToShare;
 
     public static CreateSingleton getInstance() {
         // Check if the instance is already created

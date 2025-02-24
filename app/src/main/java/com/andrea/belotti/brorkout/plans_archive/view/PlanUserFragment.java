@@ -35,7 +35,6 @@ import java.util.List;
 
 public class PlanUserFragment extends Fragment {
 
-    PlanRepository planRepository;
     UserRepository userRepository;
 
     public static PlanUserFragment newInstance() {
@@ -49,9 +48,6 @@ public class PlanUserFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_plan_user, container, false);
-
-        planRepository = new PlanRepository();
-        userRepository = new UserRepository();
 
         LinearLayout myPlansBtn = view.findViewById(R.id.myPlansBtn);
         TextView athleteTitle = view.findViewById(R.id.titleAthlete);
@@ -127,7 +123,7 @@ public class PlanUserFragment extends Fragment {
             }
         };
 
-        planRepository.getAthletePlansByCoachId(coachId, plansAthleteListListener);
+        PlanRepository.getInstance().getAthletePlansByCoachId(coachId, plansAthleteListListener);
 
 
         myPlansBtn.setOnClickListener(v -> {

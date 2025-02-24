@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivity;
 import com.andrea.belotti.brorkout.adapter.EserciziCreazioneCallback;
 import com.andrea.belotti.brorkout.adapter.ItemEsercizioCreateAdapter;
 import com.andrea.belotti.brorkout.entity.Giornata;
@@ -59,14 +58,12 @@ public class ExeListFragment extends Fragment {
 
     private void initView(Giornata giornata, RecyclerView exeRecyclerView, Context context) {
 
-        PlanCreatorActivity activity = (PlanCreatorActivity) this.getActivity();
-
         // set recyclerView info
 
         //exeRecyclerView.setHasFixedSize(true);
         exeRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        ItemEsercizioCreateAdapter adapter = new ItemEsercizioCreateAdapter(context, activity, getParentFragmentManager());
+        ItemEsercizioCreateAdapter adapter = new ItemEsercizioCreateAdapter(context, getParentFragmentManager());
         adapter.setEsercizi(giornata.getExercises());
 
         ItemTouchHelper.Callback callback = new EserciziCreazioneCallback(adapter);

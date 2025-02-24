@@ -19,7 +19,7 @@ import com.andrea.belotti.brorkout.app_intro.view.IntroActivity;
 import com.andrea.belotti.brorkout.app_starting_menu.contract.StartingMenuContract;
 import com.andrea.belotti.brorkout.app_starting_menu.presenter.StartingMenuPresenter;
 import com.andrea.belotti.brorkout.plans_archive.view.ScheduleArchiveActivity;
-import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivity;
+import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivityView;
 import com.andrea.belotti.brorkout.app_personal_area.view.PersonalAreaActivity;
 import com.andrea.belotti.brorkout.plans_selection.view.SelectScheduleActivity;
 
@@ -77,7 +77,7 @@ public class StartingMenuActivity extends AppCompatActivity implements StartingM
 
     @Override
     public void replaceWithScheduleCreatorActivity(String message) {
-        Intent intent = new Intent(getBaseContext(), PlanCreatorActivity.class);
+        Intent intent = new Intent(getBaseContext(), PlanCreatorActivityView.class);
         intent.putExtra(INTENT_DATA_MODIFY_CREATOR, false);
         Toast toast = Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT);
         toast.show();

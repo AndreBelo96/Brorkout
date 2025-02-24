@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivity;
+import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
@@ -26,14 +26,12 @@ public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEserciz
         implements EserciziCreazioneCallback.ListaEserciziTouchHelperContract {
 
     Context context;
-    PlanCreatorActivity activity;
     FragmentManager fragmentManager;
     private List<Esercizio> esercizi;
     private List<CardView> cardViewList = new ArrayList<>();
 
-    public ItemEsercizioCreateAdapter(Context context, PlanCreatorActivity activity, FragmentManager fragmentManager) {
+    public ItemEsercizioCreateAdapter(Context context, FragmentManager fragmentManager) {
         this.context = context;
-        this.activity = activity;
         this.fragmentManager = fragmentManager;
     }
 
@@ -62,12 +60,12 @@ public class ItemEsercizioCreateAdapter extends RecyclerView.Adapter<ItemEserciz
 
         holder.cardView.setOnClickListener(v -> {
 
-            if (position == activity.getSelectedExe()) {
-                activity.setSelectedExe(-1);
+            if (position == CreateSingleton.getInstance().getSelectedExe()) {
+                CreateSingleton.getInstance().setSelectedExe(-1);
                 holder.cardView.setBackgroundResource(R.drawable.blue_top_button);
             } else {
                 ScheduleCreatingUtils.setCardViewBasicColor(cardViewList);
-                activity.setSelectedExe(position);
+                CreateSingleton.getInstance().setSelectedExe(position);
                 holder.cardView.setBackgroundResource(R.drawable.basic_button_pressed_bg);
             }
         });

@@ -1,5 +1,6 @@
 package com.andrea.belotti.brorkout.repository;
 
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.TableName.PLANS_TABLE;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.TableName.USERS_TABLE;
 
 import androidx.annotation.NonNull;
@@ -22,9 +23,30 @@ public class UserRepository {
 
     DatabaseReference userTableRef;
 
-    public UserRepository() {
+    // private static instance variable to hold the singleton instance
+    private static volatile UserRepository INSTANCE = null;
+
+    // private constructor to prevent instantiation of the class
+    private UserRepository() {
         userTableRef =  FirebaseDatabase.getInstance().getReference(USERS_TABLE);
     }
+
+    public static UserRepository getInstance() {
+        // Check if the instance is already created
+        if(INSTANCE == null) {
+            // synchronize the block to ensure only one thread can execute at a time
+            synchronized (UserRepository.class) {
+                // check again if the instance is already created
+                if (INSTANCE == null) {
+                    // create the singleton instance
+                    INSTANCE = new UserRepository();
+                }
+            }
+        }
+        // return the singleton instance
+        return INSTANCE;
+    }
+
 
     public void saveUser(String id, User user) {
         userTableRef.child(id)

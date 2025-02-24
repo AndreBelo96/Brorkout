@@ -25,9 +25,11 @@ import com.andrea.belotti.brorkout.adapter.ViewPagerPlanGeneratorAdapter;
 import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.entity.Giornata;
+import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
 import com.andrea.belotti.brorkout.plans_creation.view.schedulecreator.AddExeFragment;
 import com.andrea.belotti.brorkout.plans_creation.view.schedulecreator.ModifyExeFragment;
 import com.andrea.belotti.brorkout.plans_execution.view.ExecutionScheduleActivity;
+import com.andrea.belotti.brorkout.repository.PlanRepository;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -50,20 +52,9 @@ public class CreationPlanFragment extends Fragment {
     private final String tag = this.getClass().getSimpleName();
     TabLayout tabLayout;
 
-    public static CreationPlanFragment newInstance(String scheduleTitle, Integer giorni) {
+    public static CreationPlanFragment newInstance(Scheda scheda) {
         CreationPlanFragment fragment = new CreationPlanFragment();
         Bundle args = new Bundle();
-        args.putInt(NUMERO_GIORNATE, giorni);
-        args.putString(TITOLO_SCHEDA, scheduleTitle);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public static CreationPlanFragment newInstance(String scheduleTitle, Integer giorni, Scheda scheda) {
-        CreationPlanFragment fragment = new CreationPlanFragment();
-        Bundle args = new Bundle();
-        args.putInt(NUMERO_GIORNATE, giorni);
-        args.putString(TITOLO_SCHEDA, scheduleTitle);
         args.putSerializable(SCHEDA, scheda);
         fragment.setArguments(args);
         return fragment;
@@ -78,8 +69,8 @@ public class CreationPlanFragment extends Fragment {
         viewPager2.setCurrentItem(dayToAddExe);
     }
 
-    public static void addExeToPlan(PlanCreatorActivity activity, Integer numberExe) {
-        scheda.getGiornate().get(viewPager2.getCurrentItem()).getExercises().set(numberExe, activity.getAddExeCreation());
+    public static void addExeToPlan(Integer numberExe) {
+        scheda.getGiornate().get(viewPager2.getCurrentItem()).getExercises().set(numberExe, CreateSingleton.getInstance().getAddExeInCreation());
         viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
     }
 
@@ -91,13 +82,10 @@ public class CreationPlanFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
-        int numeroGiornate = 0;
-        String titoloScheda = "";
+
         Scheda datiScheda = null;
 
         if (getArguments() != null) {
-            numeroGiornate = getArguments().getInt(NUMERO_GIORNATE);
-            titoloScheda = getArguments().getString(TITOLO_SCHEDA);
             datiScheda = (Scheda) getArguments().getSerializable(SCHEDA);
         }
 
@@ -107,7 +95,7 @@ public class CreationPlanFragment extends Fragment {
         Context context = getContext();
 
         // Initialize plan with data
-        scheda = initWorkoutPlan(titoloScheda, numeroGiornate, datiScheda);
+        scheda = datiScheda;
 
         tabLayout = view.findViewById(R.id.tabDayListLayout);
         viewPager2 = view.findViewById(R.id.viewDayListPager);
@@ -123,9 +111,7 @@ public class CreationPlanFragment extends Fragment {
 
         viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
 
-        initTabLayout(tabLayout, numeroGiornate, context);
-
-        PlanCreatorActivity activity = (PlanCreatorActivity) this.getActivity();
+        initTabLayout(tabLayout, datiScheda.getNumeroGiornate(), context);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -163,11 +149,10 @@ public class CreationPlanFragment extends Fragment {
         });
 
         modifyButton.setOnClickListener(v -> {
-            assert activity != null;
 
             List<Esercizio> tabDayExercicesList = scheda.getGiornate().get(tabLayout.getSelectedTabPosition()).getExercises();
 
-            int exeToModify = activity.getSelectedExe();
+            int exeToModify = CreateSingleton.getInstance().getSelectedExe();
 
 
             if (tabDayExercicesList.size() <= exeToModify || exeToModify < 0) {
@@ -177,7 +162,7 @@ public class CreationPlanFragment extends Fragment {
             }
 
             // set selected exercise to null
-            activity.setSelectedExe(-1);
+            CreateSingleton.getInstance().setSelectedExe(-1);
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.fragmentContainerViewScheduleCreator, ModifyExeFragment.newInstance(scheda.getGiornate().get(tabLayout.getSelectedTabPosition()), exeToModify));
@@ -192,11 +177,10 @@ public class CreationPlanFragment extends Fragment {
         });
 
         deleteButton.setOnClickListener(v -> {
-            assert activity != null;
 
             List<Esercizio> tabDayExercicesList = scheda.getGiornate().get(tabLayout.getSelectedTabPosition()).getExercises();
 
-            int exeToDelete = activity.getSelectedExe();
+            int exeToDelete = CreateSingleton.getInstance().getSelectedExe();
 
             if (tabDayExercicesList.size() <= exeToDelete || exeToDelete < 0) {
                 Toast toast = Toast.makeText(getContext(), "Exe not selected", ExerciseConstants.ToastMessageConstants.DURATION);
@@ -208,32 +192,30 @@ public class CreationPlanFragment extends Fragment {
             tabDayExercicesList.remove(exeToDelete);
 
             // set selected exercise to null
-            activity.setSelectedExe(-1);
+            CreateSingleton.getInstance().setSelectedExe(-1);
 
             // Refresh viewPager2
             viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
         });
 
         copyButton.setOnClickListener(v -> {
-            assert activity != null;
             int currentDaySelect = viewPager2.getCurrentItem();
-            activity.setDayToCopy(scheda.getGiornate().get(currentDaySelect));
+            CreateSingleton.getInstance().setDayToCopy(scheda.getGiornate().get(currentDaySelect));
 
             Toast toast = Toast.makeText(getContext(), "Giornata copiata con successo!", ExerciseConstants.ToastMessageConstants.DURATION);
             toast.show();
         });
 
         pasteButton.setOnClickListener(v -> {
-            assert activity != null;
 
-            if (activity.getDayToCopy() == null) {
+            if (CreateSingleton.getInstance().getDayToCopy() == null) {
                 Toast toast = Toast.makeText(getContext(), "Non è stato salvato nulla da incollare", ExerciseConstants.ToastMessageConstants.DURATION);
                 toast.show();
                 return;
             }
 
             int currentDaySelect = viewPager2.getCurrentItem();
-            scheda.getGiornate().set(currentDaySelect, activity.getDayToCopy());
+            scheda.getGiornate().set(currentDaySelect, CreateSingleton.getInstance().getDayToCopy());
             viewPager2.setAdapter(viewPagerPlanGeneratorAdapter);
             viewPager2.setCurrentItem(currentDaySelect);
         });
@@ -259,7 +241,7 @@ public class CreationPlanFragment extends Fragment {
             scheda.setId(uuid.toString());
 
             //Salvataggio a DB e in locale
-            activity.saveData(scheda);
+            PlanRepository.getInstance().saveData(scheda);
 
             Intent intent = new Intent(getActivity(), ExecutionScheduleActivity.class);
             intent.putExtra(SCHEDA, scheda);
@@ -268,33 +250,6 @@ public class CreationPlanFragment extends Fragment {
         });
 
         return view;
-    }
-
-    private Scheda initWorkoutPlan(String titoloScheda, int numeroGiornate, Scheda datiScheda) {
-
-        Scheda scheda = new Scheda(); // TODO TESTARE
-
-        if (datiScheda != null && StringUtils.isEmpty(titoloScheda)) {
-            return datiScheda;
-        } else if (datiScheda != null && StringUtils.isNotEmpty(titoloScheda)) {
-            scheda.setNome(titoloScheda);
-            scheda.setNumeroGiornate(numeroGiornate);
-            scheda.setGiornate(datiScheda.getGiornate());
-        } else {
-            scheda.setNome(titoloScheda);
-            scheda.setNumeroGiornate(numeroGiornate);
-            List<Giornata> giornateList = new ArrayList<>();
-            for (int i = 1; i <= numeroGiornate; i++) {
-                Giornata g = new Giornata();
-                List<Esercizio> exeList = new ArrayList<>();
-                g.setExercises(exeList);
-                g.setNumberOfDays(i);
-                giornateList.add(g);
-            }
-            scheda.setGiornate(giornateList);
-        }
-
-        return scheda;
     }
 
     private void initTabLayout(TabLayout tabLayout, int numeroGiornate, Context context) {

@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.plans_creation.view.CreationMenuFragment;
+import com.andrea.belotti.brorkout.plans_creation.view.CreationMenuFragmentView;
 import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
@@ -26,7 +26,7 @@ public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPl
     private  List<Scheda> plans;
     private View view;
     private Context context;
-    private CreationMenuFragment fragment;
+    private CreationMenuFragmentView fragment;
 
     public List<CardView> getCardViewList() {
         return cardViewList;
@@ -34,7 +34,7 @@ public class CreationCopyPlanAdapter extends RecyclerView.Adapter<CreationCopyPl
 
     private List<CardView> cardViewList = new ArrayList<>();
 
-    public CreationCopyPlanAdapter(View view, Context context, List<Scheda> plans, CreationMenuFragment fragment) {
+    public CreationCopyPlanAdapter(View view, Context context, List<Scheda> plans, CreationMenuFragmentView fragment) {
         this.view = view;
         this.context = context;
         this.plans = plans;

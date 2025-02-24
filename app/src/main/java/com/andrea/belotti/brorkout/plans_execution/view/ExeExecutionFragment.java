@@ -34,7 +34,6 @@ public class ExeExecutionFragment extends Fragment {
 
     private Integer countExe = 0;
 
-    PlanRepository repo;
 
     public static ExeExecutionFragment newInstance(Scheda scheda, Integer giorno) {
         ExeExecutionFragment fragment = new ExeExecutionFragment();
@@ -56,8 +55,6 @@ public class ExeExecutionFragment extends Fragment {
         if (getArguments() == null) {
             return view;
         }
-
-        repo = new PlanRepository();
 
         Scheda plan = (Scheda) getArguments().get(SCHEDA);
         Integer day = (Integer) getArguments().get(GIORNATA);
@@ -106,7 +103,7 @@ public class ExeExecutionFragment extends Fragment {
             plan.getGiornate().get(day-1).setUpdateDate(LocalDateTime.now().toString());
             plan.setUpdateDate(LocalDateTime.now().toString());
 
-            repo.updatePlan(plan.getId(), new SchedaEntity(plan));
+            PlanRepository.getInstance().updatePlan(plan.getId(), new SchedaEntity(plan));
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerViewGestoreScheda, EndScheduleSummaryFragment.newInstance(plan, day-1));

@@ -72,8 +72,6 @@ public class SignupPresenter implements SignupContract.Presenter {
 
                         User user = new User(username, email);
 
-                        UserRepository userRepository = new UserRepository();
-
                         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
                         assert currentUser != null;
@@ -82,7 +80,7 @@ public class SignupPresenter implements SignupContract.Presenter {
 
                         user.setId(id);
 
-                        userRepository.saveUser(id, user);
+                        UserRepository.getInstance().saveUser(id, user);
 
                         editor.putString(USERNAME_PREFERENCES, username);
                         editor.apply();

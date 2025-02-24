@@ -32,6 +32,9 @@ import com.andrea.belotti.brorkout.entity.User;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.plans_creation.adapter.ShareFriendItemAdapter;
+import com.andrea.belotti.brorkout.plans_creation.contract.CreationMenuContract;
+import com.andrea.belotti.brorkout.plans_creation.presenter.CreationMenuPresenter;
+import com.andrea.belotti.brorkout.plans_creation.presenter.PlanCreatorActivityPresenter;
 import com.andrea.belotti.brorkout.repository.PlanRepository;
 import com.andrea.belotti.brorkout.repository.UserRepository;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
@@ -43,13 +46,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreationMenuFragment extends Fragment {
+public class CreationMenuFragmentView extends Fragment implements CreationMenuContract.View {
 
     private final String tag = this.getClass().getSimpleName();
-    CreateSingleton singletonProva;
+
     private Boolean isNew = false;
     private Boolean isCopy = false;
     private Scheda selectedPlan = null;
@@ -59,11 +63,8 @@ public class CreationMenuFragment extends Fragment {
     private LinearLayout copyPlanContainer;
     // # Share #
     private LinearLayout shareSelectionLayout;
-    private LinearLayout shareInfoContainer;
-    private RecyclerView usersSharePlanContainer;
+
     private LinearLayout createPlanButton;
-    private PlanRepository planRepo;
-    private UserRepository repoUser;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
@@ -71,17 +72,15 @@ public class CreationMenuFragment extends Fragment {
 
         Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
 
-        singletonProva = CreateSingleton.getInstance();
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_creation_menu, container, false);
 
-        Context context = getContext();
-
-        planRepo = new PlanRepository();
-        repoUser = new UserRepository();
-
         // ------------------------ Initialize Variables ------------------------
+
+        CreationMenuPresenter presenter = new CreationMenuPresenter(this, getContext());
+
+        RecyclerView usersSharePlanContainer;
+        LinearLayout shareInfoContainer;
 
         // Initialize Title text
         EditText planTitle = view.findViewById(R.id.titoloScheda);
@@ -119,6 +118,9 @@ public class CreationMenuFragment extends Fragment {
         usersSharePlanContainer = view.findViewById(R.id.users_container);
         LinearLayout backShareButton = view.findViewById(R.id.back_share_button);
 
+        // ------------------------ Logic to move in the presenter ------------------------
+
+        // Setup data --- DA qui
         List<User> users = new ArrayList<>();
         FirebaseUser currentFireBaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -146,7 +148,9 @@ public class CreationMenuFragment extends Fragment {
             }
         };
 
-        repoUser.getById(currentFireBaseUser.getUid(), currentUserListener);
+        UserRepository.getInstance().getById(currentFireBaseUser.getUid(), currentUserListener);
+
+        // A Quin dentro un metodo del presenter -> deve tornare una lista di utenti :D
 
         ShareFriendItemAdapter shareAdapter = new ShareFriendItemAdapter(getContext(), users);
 
@@ -183,7 +187,7 @@ public class CreationMenuFragment extends Fragment {
         };
 
         usersSharePlanContainer.setHasFixedSize(true);
-        usersSharePlanContainer.setLayoutManager(new LinearLayoutManager(context));
+        usersSharePlanContainer.setLayoutManager(new LinearLayoutManager( getContext()));
         usersSharePlanContainer.setAdapter(shareAdapter);
 
 
@@ -208,11 +212,11 @@ public class CreationMenuFragment extends Fragment {
 
         adapter = new CreationCopyPlanAdapter(
                 view,
-                context,
-                planRepo.getByIdCreator(currentFireBaseUser.getUid().toString()),
+                getContext(),
+                PlanRepository.getInstance().getByIdCreator(currentFireBaseUser.getUid().toString()),
                 this);
         plansContainer.setHasFixedSize(true);
-        plansContainer.setLayoutManager(new LinearLayoutManager(context));
+        plansContainer.setLayoutManager(new LinearLayoutManager( getContext()));
         plansContainer.setAdapter(adapter);
 
 
@@ -300,7 +304,7 @@ public class CreationMenuFragment extends Fragment {
             if (isPersonalBtn.isChecked()) {
                 shareBtn.setVisibility(View.INVISIBLE);
                 users.clear();
-                repoUser.getById(currentFireBaseUser.getUid(), currentUserListener);
+                UserRepository.getInstance().getById(currentFireBaseUser.getUid(), currentUserListener);
             } else {
                 shareBtn.setVisibility(View.VISIBLE);
                 users.clear();
@@ -321,7 +325,7 @@ public class CreationMenuFragment extends Fragment {
 
         selectFriendBtn.setOnClickListener(v -> {
 
-            repoUser.getUsersByEmail(email.getText().toString(), shareListener);
+            UserRepository.getInstance().getUsersByEmail(email.getText().toString(), shareListener);
 
         });
 
@@ -333,22 +337,43 @@ public class CreationMenuFragment extends Fragment {
 
                 if (scheduleName.isEmpty()) {
                     Log.e(tag, "Titolo scheda vuoto");
-                    Toast toast = Toast.makeText(context, "Titolo scheda vuoto", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText( getContext(), "Titolo scheda vuoto", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
                 if (day.isEmpty()) {
                     Log.e(tag, "Numero di giorni non selezionato");
-                    Toast toast = Toast.makeText(context, "Numero di giorni non selezionato", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText( getContext(), "Numero di giorni non selezionato", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
 
                 // Save Users in singleton
-                singletonProva.setUsersToShare(users);
+                CreateSingleton.getInstance().setUsersToShare(users);
+
+                String now = LocalDateTime.now().toString();
+                int numberOfDays = Integer.parseInt(day);
+
+                List<Giornata> giornateList = new ArrayList<>();
+                for (int i = 1; i <= numberOfDays; i++) {
+                    Giornata g = new Giornata();
+                    List<Esercizio> exeList = new ArrayList<>();
+                    g.setExercises(exeList);
+                    g.setNumberOfDays(i);
+                    giornateList.add(g);
+                }
+
+                Scheda plan = new Scheda();
+                plan.setNome(scheduleName);
+                plan.setNumeroGiornate(numberOfDays);
+                plan.setGiornate(giornateList);
+
+
+                plan.setCreationDate(now);
+                plan.setUpdateDate(now);
 
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(scheduleName, Integer.parseInt(day)));
+                fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(plan));
                 fragmentTransaction.commit();
             }
 
@@ -358,20 +383,25 @@ public class CreationMenuFragment extends Fragment {
 
                 if (scheduleName.isEmpty()) {
                     Log.e(tag, "Titolo scheda vuoto");
-                    Toast toast = Toast.makeText(context, "Titolo scheda vuoto", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText( getContext(), "Titolo scheda vuoto", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
 
                 if (selectedPlan == null) {
                     Log.e(tag, "Scheda da clonare non scelta");
-                    Toast toast = Toast.makeText(context, "Scheda da clonare non scelta", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText( getContext(), "Scheda da clonare non scelta", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
+                String now = LocalDateTime.now().toString();
+
+                selectedPlan.setNome(scheduleName);
+                selectedPlan.setCreationDate(now);
+                selectedPlan.setUpdateDate(now);
 
                 FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(scheduleName, selectedPlan.getGiornate().size(), selectedPlan));
+                fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(selectedPlan));
                 fragmentTransaction.commit();
             }
 

@@ -39,7 +39,6 @@ import java.util.List;
 public class PlansFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
-    PlanRepository planRepository;
 
     public static PlansFragment newInstance(String idUser) {
         PlansFragment fragment = new PlansFragment();
@@ -56,8 +55,6 @@ public class PlansFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_plans, container, false);
-
-        planRepository = new PlanRepository();
 
         // Retrieve data
         if (getArguments() == null) {
@@ -107,7 +104,7 @@ public class PlansFragment extends Fragment {
             }
         };
 
-        planRepository.getAllByUserId(idUser, athletePlansListener);
+        PlanRepository.getInstance().getAllByUserId(idUser, athletePlansListener);
 
         buttonBack.setOnClickListener(v -> {
             ArchiveSingleton.getInstance().setPath("");

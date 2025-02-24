@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivity;
+import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.plans_creation.view.collect_data.DataExeIncrFragment;
 import com.andrea.belotti.brorkout.plans_creation.view.collect_data.DataExePirFragment;
@@ -70,8 +70,6 @@ public class ModifyExeFragment extends Fragment {
         LinearLayout saveButton = view.findViewById(R.id.salva);
         LinearLayout annullaButton = view.findViewById(R.id.annulla);
 
-        PlanCreatorActivity activity = (PlanCreatorActivity) this.getActivity();
-
         saveButton.setOnClickListener(v -> {
 
             Esercizio esercizio = createExe(view, typeExePicker);
@@ -83,10 +81,10 @@ public class ModifyExeFragment extends Fragment {
             }
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            activity.setAddExeCreation(esercizio);
+            CreateSingleton.getInstance().setAddExeInCreation(esercizio);
             deleteFragmentFromStack(fragmentTransaction, this, getActivity());
 
-            CreationPlanFragment.addExeToPlan(activity, numeroEsercizio);
+            CreationPlanFragment.addExeToPlan(numeroEsercizio);
 
         });
 

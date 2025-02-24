@@ -34,8 +34,6 @@ public class SelectSchedePersonaliFragment extends Fragment {
     private final String tag = this.getClass().getSimpleName();
     private Context context;
 
-    PlanRepository planRepository;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,9 +47,6 @@ public class SelectSchedePersonaliFragment extends Fragment {
         SelectScheduleActivity activity = (SelectScheduleActivity) this.getActivity();
 
         List<Scheda> myPlans = new ArrayList<>();
-
-        // TODO singleton
-        planRepository = new PlanRepository();
 
         // TODO fai listener, fai Contract e presenter
 
@@ -96,7 +91,7 @@ public class SelectSchedePersonaliFragment extends Fragment {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String userId = currentUser.getUid();
 
-        planRepository.getAllByUserId(userId, myPlanListener);
+        PlanRepository.getInstance().getAllByUserId(userId, myPlanListener);
 
         return view;
     }

@@ -45,10 +45,5 @@ public class Scheda implements Serializable {
 
     }
 
-    public Scheda(List<Giornata> giornate) {
-        this.giornate = giornate;
-        this.numeroGiornate = giornate.size();
-        this.creationDate = LocalDateTime.now().toString();
-    }
 
 }

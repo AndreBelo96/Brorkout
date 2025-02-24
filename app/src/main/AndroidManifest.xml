@@ -34,7 +34,7 @@
             android:name=".app_personal_area.view.PersonalAreaActivity"
             android:exported="false" />
         <activity
-            android:name=".plans_creation.view.PlanCreatorActivity"
+            android:name=".plans_creation.view.PlanCreatorActivityView"
             android:exported="false" />
         <activity
             android:name=".plans_selection.view.SelectScheduleActivity"

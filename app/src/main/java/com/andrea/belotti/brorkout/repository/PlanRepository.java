@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.entity.SchedaEntity;
+import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,9 +25,30 @@ public class PlanRepository {
 
     DatabaseReference plansTableRef;
 
-    public PlanRepository() {
+    // private static instance variable to hold the singleton instance
+    private static volatile PlanRepository INSTANCE = null;
+
+    // private constructor to prevent instantiation of the class
+    private PlanRepository() {
         plansTableRef = FirebaseDatabase.getInstance().getReference(PLANS_TABLE);
     }
+
+    public static PlanRepository getInstance() {
+        // Check if the instance is already created
+        if(INSTANCE == null) {
+            // synchronize the block to ensure only one thread can execute at a time
+            synchronized (PlanRepository.class) {
+                // check again if the instance is already created
+                if (INSTANCE == null) {
+                    // create the singleton instance
+                    INSTANCE = new PlanRepository();
+                }
+            }
+        }
+        // return the singleton instance
+        return INSTANCE;
+    }
+
 
     public void updatePlan(String id, SchedaEntity plan) {
         plansTableRef.child(id)
@@ -37,7 +60,6 @@ public class PlanRepository {
         plansTableRef.child(plan.getId())
                 .setValue(plan);
     }
-
 
     public List<Scheda> getByIdCreator(String idCreator) {
 
@@ -92,6 +114,18 @@ public class PlanRepository {
 
         query.addListenerForSingleValueEvent(listener);
 
+
+    }
+
+    public void saveData(Scheda scheda) {
+
+        for (User user : CreateSingleton.getInstance().getUsersToShare()) {
+            SchedaEntity dto = new SchedaEntity(scheda);
+            dto.setIdUser(user.getId());
+
+            // DATABASE
+            INSTANCE.insertPlan(dto);
+        }
 
     }
 

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.plans_selection.adapter.DaySelectedAdapter;
-import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivity;
+import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivityView;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.entity.Scheda;
 
@@ -21,6 +21,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MainMenuConstants.INTENT_DATA_MODIFY_CREATOR;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 
@@ -85,14 +86,11 @@ public class SceltaGiornoArchivioFragment extends Fragment {
 
         modifyPlanBtn.setOnClickListener(v -> {
 
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("Scheda", finalSchedaScelta);
-
-            Intent intent = new Intent(context, PlanCreatorActivity.class);
+            Intent intent = new Intent(context, PlanCreatorActivityView.class);
             Toast toast = Toast.makeText(context, "robe", Toast.LENGTH_SHORT);
             toast.show();
-            intent.putExtra("modifica", true);
-            intent.putExtra("SchedaDati", bundle);
+            intent.putExtra(INTENT_DATA_MODIFY_CREATOR, true);
+            intent.putExtra(SCHEDA, finalSchedaScelta);
             startActivity(intent);
         });
 
