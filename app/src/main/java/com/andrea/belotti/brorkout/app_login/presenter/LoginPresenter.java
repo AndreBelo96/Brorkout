@@ -15,6 +15,7 @@ import android.util.Log;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.app_login.contract.LoginContract;
+import com.andrea.belotti.brorkout.repository.UserRepository;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginPresenter implements LoginContract.Presenter {
@@ -56,6 +57,8 @@ public class LoginPresenter implements LoginContract.Presenter {
                         Log.d(TAG_LOGIN_ACTIVITY, "signInWithEmail:success");
 
                         final SharedPreferences.Editor editor = pref.edit();
+
+                        UserRepository.getInstance().getById(firebaseAuth.getCurrentUser().getUid());
 
                         if (rememberMe) {
                             editor.putString(EMAIL_PREFERENCES, email);

@@ -23,7 +23,7 @@ import com.andrea.belotti.brorkout.app_signup.presenter.SignupPresenter;
 import com.andrea.belotti.brorkout.app_intro.view.IntroActivity;
 import com.andrea.belotti.brorkout.app_starting_menu.view.StartingMenuActivity;
 
-public class SignUpActivity extends AppCompatActivity implements SignupContract.View{
+public class SignUpActivity extends AppCompatActivity implements SignupContract.View {
 
     private final String tag = this.getClass().getSimpleName();
     private SignupContract.Presenter presenter;

@@ -6,7 +6,12 @@ import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.Tabl
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.andrea.belotti.brorkout.GeneralSingleton;
+import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.entity.SchedaEntity;
 import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.utils.AppMethodsUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -15,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -53,9 +59,9 @@ public class UserRepository {
                 .setValue(user);
     }
 
-    public void getUsersByEmail(String email, ValueEventListener listener) {
+    public void getUsersByEmail(String friendCode, ValueEventListener listener) {
 
-        Query query = userTableRef.orderByChild("email").equalTo(email);
+        Query query = userTableRef.orderByChild("friendCode").equalTo(AppMethodsUtils.generate8CharString(friendCode));
 
         query.addListenerForSingleValueEvent(listener);
 
@@ -75,4 +81,26 @@ public class UserRepository {
 
     }
 
+    public void getById(String userId) {
+
+        Query query = userTableRef.orderByChild("id").equalTo(userId);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        GeneralSingleton.getInstance().setLoggedUser(dataSnapshot.getValue(User.class));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 }

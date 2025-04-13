@@ -11,17 +11,22 @@ import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.Pref
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.PreferencesConstants.USERNAME_PREFERENCES;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.TAG_LOGIN_ACTIVITY;
 import static com.andrea.belotti.brorkout.utils.AppMethodsUtils.isValidEmail;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.TableName.METADATA_TABLE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.andrea.belotti.brorkout.GeneralSingleton;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.app_signup.contract.SignupContract;
 import com.andrea.belotti.brorkout.entity.User;
 import com.andrea.belotti.brorkout.repository.UserRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignupPresenter implements SignupContract.Presenter {
 
@@ -70,22 +75,39 @@ public class SignupPresenter implements SignupContract.Presenter {
                             editor.putBoolean(REMEMBER_ME_PREFERENCES, true);
                         }
 
-                        User user = new User(username, email);
+                        DatabaseReference friendTableRef =
+                                FirebaseDatabase.getInstance().getReference(METADATA_TABLE).child("friend_id").child("latest");
+                        
+                        // Attach a listener to read the data at our posts reference
+                        friendTableRef.get().addOnCompleteListener(taskFriend -> {
 
-                        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                            if (taskFriend.isSuccessful()) {
 
-                        assert currentUser != null;
+                                if (taskFriend.getResult().exists()) {
 
-                        String id = currentUser.getUid();
+                                    DataSnapshot dataSnapshot = taskFriend.getResult();
+                                    long friendId = (long)dataSnapshot.getValue();
 
-                        user.setId(id);
+                                    User user = User.createUser(username, email, (friendId + 1));
+                                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-                        UserRepository.getInstance().saveUser(id, user);
+                                    assert currentUser != null;
 
-                        editor.putString(USERNAME_PREFERENCES, username);
-                        editor.apply();
+                                    String id = currentUser.getUid();
 
-                        view.replaceWithStartingMenuActivity(context.getResources().getString(R.string.StartingMenuActivity));
+                                    user.setId(id);
+
+                                    UserRepository.getInstance().saveUser(id, user);
+                                    friendTableRef.setValue(friendId + 1);
+
+                                    editor.putString(USERNAME_PREFERENCES, username);
+                                    editor.apply();
+
+                                    view.replaceWithStartingMenuActivity(context.getResources().getString(R.string.StartingMenuActivity));
+
+                                }
+                            }
+                        });
 
                     } else {
                         view.writeMessage(UNSUCCESSFULLY_SIGN_IN);

@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="280dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,9 +31,11 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/top_background" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -42,6 +44,7 @@
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
         android:src="@drawable/immagine_profilo_vuoto"
         app:civ_border_color="@color/backgroundMenu"
         app:civ_border_width="@dimen/_4sdp"
@@ -78,6 +81,37 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_image">
+
+        <TextView
+            android:id="@+id/friendIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="1234567890"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/backgroundMenu"
+            android:textColorHint="@color/backgroundMenu"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:id="@+id/friendIdCopy"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/ic_copy"
+            app:tint="@color/backgroundMenu" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"

@@ -62,6 +62,7 @@ public final class ExerciseConstants {
     public class TableName {
         public static final String USERS_TABLE = "Users";
         public static final String PLANS_TABLE = "Plans";
+        public static final String METADATA_TABLE = "Metadata";
     }
 
     public class PreferencesConstants {

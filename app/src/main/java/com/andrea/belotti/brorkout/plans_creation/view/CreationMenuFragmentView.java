@@ -27,18 +27,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.CreationCopyPlanAdapter;
+import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.entity.Scheda;
 import com.andrea.belotti.brorkout.entity.User;
 import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.plans_creation.adapter.ShareFriendItemAdapter;
 import com.andrea.belotti.brorkout.plans_creation.contract.CreationMenuContract;
 import com.andrea.belotti.brorkout.plans_creation.presenter.CreationMenuPresenter;
-import com.andrea.belotti.brorkout.plans_creation.presenter.PlanCreatorActivityPresenter;
 import com.andrea.belotti.brorkout.repository.PlanRepository;
 import com.andrea.belotti.brorkout.repository.UserRepository;
-import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
-import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -46,7 +43,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,16 +50,12 @@ public class CreationMenuFragmentView extends Fragment implements CreationMenuCo
 
     private final String tag = this.getClass().getSimpleName();
 
-    private Boolean isNew = false;
-    private Boolean isCopy = false;
     private Scheda selectedPlan = null;
-    private String day = "";
     private LinearLayout treePlanContainer;
     private LinearLayout infoPlanContainer;
     private LinearLayout copyPlanContainer;
     // # Share #
     private LinearLayout shareSelectionLayout;
-
     private LinearLayout createPlanButton;
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -77,7 +69,7 @@ public class CreationMenuFragmentView extends Fragment implements CreationMenuCo
 
         // ------------------------ Initialize Variables ------------------------
 
-        CreationMenuPresenter presenter = new CreationMenuPresenter(this, getContext());
+        CreationMenuPresenter presenter = new CreationMenuPresenter(this);
 
         RecyclerView usersSharePlanContainer;
         LinearLayout shareInfoContainer;
@@ -113,14 +105,13 @@ public class CreationMenuFragmentView extends Fragment implements CreationMenuCo
 
         // Initialize share-plan layout
         shareInfoContainer = view.findViewById(R.id.share_container);
-        EditText email = view.findViewById(R.id.email_amico);
+        EditText friendCode = view.findViewById(R.id.friend_code);
         ImageView selectFriendBtn = view.findViewById(R.id.select_friend_btn);
         usersSharePlanContainer = view.findViewById(R.id.users_container);
         LinearLayout backShareButton = view.findViewById(R.id.back_share_button);
 
         // ------------------------ Logic to move in the presenter ------------------------
 
-        // Setup data --- DA qui
         List<User> users = new ArrayList<>();
         FirebaseUser currentFireBaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -149,9 +140,6 @@ public class CreationMenuFragmentView extends Fragment implements CreationMenuCo
         };
 
         UserRepository.getInstance().getById(currentFireBaseUser.getUid(), currentUserListener);
-
-        // A Quin dentro un metodo del presenter -> deve tornare una lista di utenti :D
-
         ShareFriendItemAdapter shareAdapter = new ShareFriendItemAdapter(getContext(), users);
 
         // Share listener
@@ -187,16 +175,13 @@ public class CreationMenuFragmentView extends Fragment implements CreationMenuCo
         };
 
         usersSharePlanContainer.setHasFixedSize(true);
-        usersSharePlanContainer.setLayoutManager(new LinearLayoutManager( getContext()));
+        usersSharePlanContainer.setLayoutManager(new LinearLayoutManager(getContext()));
         usersSharePlanContainer.setAdapter(shareAdapter);
-
 
         // Initialize Create Button
         createPlanButton = view.findViewById(R.id.confirm_button);
 
-
         // ------------------------ Set Variables ------------------------
-
         List<LinearLayout> daysButtonList = new ArrayList<>();
         daysButtonList.add(buttonDay1);
         daysButtonList.add(buttonDay2);
@@ -206,208 +191,55 @@ public class CreationMenuFragmentView extends Fragment implements CreationMenuCo
         daysButtonList.add(buttonDay6);
         daysButtonList.add(buttonDay7);
 
-        CreationCopyPlanAdapter adapter;
+        CreationCopyPlanAdapter adapter = new CreationCopyPlanAdapter(view, getContext(), PlanRepository.getInstance().getByIdCreator(currentFireBaseUser.getUid().toString()), this);
 
-
-
-        adapter = new CreationCopyPlanAdapter(
-                view,
-                getContext(),
-                PlanRepository.getInstance().getByIdCreator(currentFireBaseUser.getUid().toString()),
-                this);
         plansContainer.setHasFixedSize(true);
-        plansContainer.setLayoutManager(new LinearLayoutManager( getContext()));
+        plansContainer.setLayoutManager(new LinearLayoutManager(getContext()));
         plansContainer.setAdapter(adapter);
 
 
         // ---------------------- ClickListeners ----------------------
 
         // ---------------------- New Schedule Click Listeners ----------------------
-        newSchedule.setOnClickListener(v -> {
-            isNew = !isNew;
-            isCopy = false;
 
-            if (isNew) {
-                newSchedule.setBackgroundResource(R.drawable.basic_button_pressed_bg);
-                buttonDaysContainer.setVisibility(View.VISIBLE);
-                createPlanButton.setVisibility(View.VISIBLE);
-                shareSelectionLayout.setVisibility(View.VISIBLE);
-            } else {
-                newSchedule.setBackgroundResource(R.drawable.blue_top_button); //TODO metodo
-                buttonDaysContainer.setVisibility(View.GONE);
-                createPlanButton.setVisibility(View.GONE);
-                shareSelectionLayout.setVisibility(View.GONE);
-                day = "";
-                ScheduleCreatingUtils.setBasicColor(daysButtonList);
-            }
+        newSchedule.setOnClickListener(v -> presenter.onNewPlanClick(newSchedule, buttonDaysContainer, createPlanButton, shareSelectionLayout, copyScheduleBtn, copyPlanContainer, infoPlanContainer, shareInfoContainer, daysButtonList, adapter));
 
-            copyScheduleBtn.setBackgroundResource(R.drawable.blue_top_button);
-            copyPlanContainer.setVisibility(View.GONE);
-            infoPlanContainer.setVisibility(View.GONE);
-            shareInfoContainer.setVisibility(View.GONE);
-            selectedPlan = null;
-            ScheduleCreatingUtils.setCardViewBasicColor(adapter.getCardViewList());
-
-        });
-
-        daysButtonList.forEach(b -> b.setOnClickListener(v -> {
-            day = ((TextView) b.getChildAt(0)).getText().toString();
-            ScheduleCreatingUtils.setBasicColor(daysButtonList);
-            b.setBackgroundResource(R.drawable.basic_button_pressed_bg);
-        }));
+        daysButtonList.forEach(b -> b.setOnClickListener(v -> presenter.onDayButtonClick(b, daysButtonList)));
 
         // ---------------------- Copy Schedule Click Listeners ----------------------
-        copyScheduleBtn.setOnClickListener(v -> {
-
-            isCopy = !isCopy;
-            isNew = false;
-
-            if (isCopy) {
-                copyScheduleBtn.setBackgroundResource(R.drawable.basic_button_pressed_bg);
-                createPlanButton.setVisibility(View.VISIBLE);
-                shareSelectionLayout.setVisibility(View.VISIBLE);
-                copyPlanContainer.setVisibility(View.VISIBLE);
-                infoPlanContainer.setVisibility(View.GONE);
-                shareInfoContainer.setVisibility(View.GONE);
-            } else {
-                copyScheduleBtn.setBackgroundResource(R.drawable.blue_top_button);
-                createPlanButton.setVisibility(View.GONE);
-                shareSelectionLayout.setVisibility(View.GONE);
-                copyPlanContainer.setVisibility(View.GONE);
-                infoPlanContainer.setVisibility(View.GONE);
-                shareInfoContainer.setVisibility(View.GONE);
-                ScheduleCreatingUtils.setCardViewBasicColor(adapter.getCardViewList());
-                selectedPlan = null;
-            }
-
-            newSchedule.setBackgroundResource(R.drawable.blue_top_button);
-            buttonDaysContainer.setVisibility(View.GONE);
-            infoPlanContainer.setVisibility(View.GONE);
-            shareInfoContainer.setVisibility(View.GONE);
-            day = "";
-            ScheduleCreatingUtils.setBasicColor(daysButtonList);
-
-        });
+        copyScheduleBtn.setOnClickListener(v -> presenter.onCopyPlanClick(newSchedule, buttonDaysContainer, createPlanButton, shareSelectionLayout, copyScheduleBtn, copyPlanContainer, infoPlanContainer, shareInfoContainer, daysButtonList, adapter));
 
         // ---------------------- Info Schedule Click Listeners ----------------------
-        backInfoButton.setOnClickListener(v -> {
-            infoPlanContainer.setVisibility(View.GONE);
-            copyPlanContainer.setVisibility(View.VISIBLE);
-            createPlanButton.setVisibility(View.VISIBLE);
-            shareSelectionLayout.setVisibility(View.VISIBLE);
-        });
+        backInfoButton.setOnClickListener(v -> presenter.onBackInfoClick(copyPlanContainer, infoPlanContainer, createPlanButton, shareSelectionLayout));
 
         // ---------------------- Share Click Listeners ----------------------
 
-        isPersonalBtn.setOnClickListener(v -> {
+        isPersonalBtn.setOnClickListener(v -> presenter.onPersonalPlanClick(users, shareBtn, isPersonalBtn, currentFireBaseUser, currentUserListener));
 
-            if (isPersonalBtn.isChecked()) {
-                shareBtn.setVisibility(View.INVISIBLE);
-                users.clear();
-                UserRepository.getInstance().getById(currentFireBaseUser.getUid(), currentUserListener);
-            } else {
-                shareBtn.setVisibility(View.VISIBLE);
-                users.clear();
-            }
-        });
+        shareBtn.setOnClickListener(v -> presenter.onShareClick(createPlanButton, shareSelectionLayout, shareInfoContainer));
 
-        shareBtn.setOnClickListener(v -> {
-            shareInfoContainer.setVisibility(View.VISIBLE);
-            shareSelectionLayout.setVisibility(View.GONE);
-            createPlanButton.setVisibility(View.GONE);
-        });
+        backShareButton.setOnClickListener(v -> presenter.onBackShareClick(createPlanButton, shareSelectionLayout, shareInfoContainer));
 
-        backShareButton.setOnClickListener(v -> {
-            shareInfoContainer.setVisibility(View.GONE);
-            shareSelectionLayout.setVisibility(View.VISIBLE);
-            createPlanButton.setVisibility(View.VISIBLE);
-        });
-
-        selectFriendBtn.setOnClickListener(v -> {
-
-            UserRepository.getInstance().getUsersByEmail(email.getText().toString(), shareListener);
-
-        });
+        selectFriendBtn.setOnClickListener(v -> UserRepository.getInstance().getUsersByEmail(friendCode.getText().toString(), shareListener));
 
         // ---------------------- Create Click Listeners ----------------------
-        createPlanButton.setOnClickListener(v -> {
-
-            if (isNew) {
-                String scheduleName = planTitle.getText().toString();
-
-                if (scheduleName.isEmpty()) {
-                    Log.e(tag, "Titolo scheda vuoto");
-                    Toast toast = Toast.makeText( getContext(), "Titolo scheda vuoto", Toast.LENGTH_SHORT);
-                    toast.show();
-                    return;
-                }
-                if (day.isEmpty()) {
-                    Log.e(tag, "Numero di giorni non selezionato");
-                    Toast toast = Toast.makeText( getContext(), "Numero di giorni non selezionato", Toast.LENGTH_SHORT);
-                    toast.show();
-                    return;
-                }
-
-                // Save Users in singleton
-                CreateSingleton.getInstance().setUsersToShare(users);
-
-                String now = LocalDateTime.now().toString();
-                int numberOfDays = Integer.parseInt(day);
-
-                List<Giornata> giornateList = new ArrayList<>();
-                for (int i = 1; i <= numberOfDays; i++) {
-                    Giornata g = new Giornata();
-                    List<Esercizio> exeList = new ArrayList<>();
-                    g.setExercises(exeList);
-                    g.setNumberOfDays(i);
-                    giornateList.add(g);
-                }
-
-                Scheda plan = new Scheda();
-                plan.setNome(scheduleName);
-                plan.setNumeroGiornate(numberOfDays);
-                plan.setGiornate(giornateList);
-
-
-                plan.setCreationDate(now);
-                plan.setUpdateDate(now);
-
-                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(plan));
-                fragmentTransaction.commit();
-            }
-
-            if (isCopy) {
-
-                String scheduleName = planTitle.getText().toString();
-
-                if (scheduleName.isEmpty()) {
-                    Log.e(tag, "Titolo scheda vuoto");
-                    Toast toast = Toast.makeText( getContext(), "Titolo scheda vuoto", Toast.LENGTH_SHORT);
-                    toast.show();
-                    return;
-                }
-
-                if (selectedPlan == null) {
-                    Log.e(tag, "Scheda da clonare non scelta");
-                    Toast toast = Toast.makeText( getContext(), "Scheda da clonare non scelta", Toast.LENGTH_SHORT);
-                    toast.show();
-                    return;
-                }
-                String now = LocalDateTime.now().toString();
-
-                selectedPlan.setNome(scheduleName);
-                selectedPlan.setCreationDate(now);
-                selectedPlan.setUpdateDate(now);
-
-                FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, CreationPlanFragment.newInstance(selectedPlan));
-                fragmentTransaction.commit();
-            }
-
-        });
+        createPlanButton.setOnClickListener(v -> presenter.onCreatePlanClick(users, planTitle));
 
         return view;
+    }
+
+    @Override
+    public void logTagOnScreen(String message) {
+        Log.e(tag, message);
+        Toast toast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
+    @Override
+    public void replaceFragment(CreationPlanFragment fragment) {
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainerViewScheduleCreator, fragment);
+        fragmentTransaction.commit();
     }
 
     public void setInfoPlan(Scheda plan, View view, Context context) {
