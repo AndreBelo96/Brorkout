@@ -100,6 +100,8 @@ public class SignupPresenter implements SignupContract.Presenter {
                                     UserRepository.getInstance().saveUser(id, user);
                                     friendTableRef.setValue(friendId + 1);
 
+                                    UserRepository.getInstance().getById(firebaseAuth.getCurrentUser().getUid());
+
                                     editor.putString(USERNAME_PREFERENCES, username);
                                     editor.apply();
 

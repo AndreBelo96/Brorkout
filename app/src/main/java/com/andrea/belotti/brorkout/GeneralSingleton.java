@@ -14,8 +14,6 @@ public class GeneralSingleton {
 
     private User loggedUser;
 
-    private long latestFriendId;
-
     // private constructor to prevent instantiation of the class
     private GeneralSingleton() {}
 

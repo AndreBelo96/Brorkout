@@ -1,7 +1,9 @@
 package com.andrea.belotti.brorkout.app_personal_area.view;
 
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.PersonalData.IMAGE_DATA;
+import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.PreferencesConstants.USERNAME_PREFERENCES;
+
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -16,31 +18,49 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.andrea.belotti.brorkout.GeneralSingleton;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.app_personal_area.contract.PersonalAreaContract;
 import com.andrea.belotti.brorkout.app_personal_area.presenter.PersonalAreaPresenter;
-import com.andrea.belotti.brorkout.app_signup.contract.SignupContract;
-import com.andrea.belotti.brorkout.app_signup.presenter.SignupPresenter;
-import com.andrea.belotti.brorkout.utils.AppMethodsUtils;
-import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.utils.ImageUtils;
 import com.andrea.belotti.brorkout.app_starting_menu.view.StartingMenuActivity;
+import com.andrea.belotti.brorkout.utils.AppMethodsUtils;
+import com.andrea.belotti.brorkout.utils.ImageUtils;
+import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 
 import java.io.IOException;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.PersonalData.IMAGE_DATA;
-import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.PreferencesConstants.USERNAME_PREFERENCES;
 
 public class PersonalAreaActivity extends AppCompatActivity implements PersonalAreaContract.View {
 
     CircleImageView image;
     SharedPreferences sharedPreferences;
+    ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    // do your operation from here...
+                    if (data != null && data.getData() != null) {
+                        Uri selectedImageUri = data.getData();
+                        Bitmap selectedImageBitmap = null;
+                        try {
+                            selectedImageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        image.setImageBitmap(selectedImageBitmap);
+                        // To store data
+                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                        myEdit.putString(IMAGE_DATA, ImageUtils.convertImgToString(selectedImageBitmap));
+                        myEdit.apply();
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +101,7 @@ public class PersonalAreaActivity extends AppCompatActivity implements PersonalA
             imageChooser();
         });
 
-        copyIdFriend.setOnClickListener( v-> {
+        copyIdFriend.setOnClickListener(v -> {
             AppMethodsUtils.setClipboard(getBaseContext(), friendId.getText().toString());
             Toast toast = Toast.makeText(getBaseContext(), "Codice amico copiato correttamente", Toast.LENGTH_SHORT);
             toast.show();
@@ -116,7 +136,6 @@ public class PersonalAreaActivity extends AppCompatActivity implements PersonalA
 
     }
 
-
     void imageChooser() {
         Intent i = new Intent();
         i.setType("image/*");
@@ -124,31 +143,6 @@ public class PersonalAreaActivity extends AppCompatActivity implements PersonalA
 
         launchSomeActivity.launch(i);
     }
-
-
-    ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Intent data = result.getData();
-                    // do your operation from here...
-                    if (data != null && data.getData() != null) {
-                        Uri selectedImageUri = data.getData();
-                        Bitmap selectedImageBitmap = null;
-                        try {
-                            selectedImageBitmap = MediaStore.Images.Media.getBitmap( this.getContentResolver(), selectedImageUri);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        image.setImageBitmap(selectedImageBitmap);
-                        // To store data
-                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                        myEdit.putString(IMAGE_DATA, ImageUtils.convertImgToString(selectedImageBitmap));
-                        myEdit.apply();
-                    }
-                }
-            });
-
 
     @Override
     public void replaceWithStartingMenuActivity(String message) {
