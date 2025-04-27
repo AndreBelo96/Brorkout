@@ -44,16 +44,6 @@ public final class ExerciseConstants {
 
     }
 
-    public static final class GridLayoutDimension {
-
-        public static final int MONTHS_NUMBER = 12;
-        public static final int DAYS_NUMBER = 7;
-
-        private GridLayoutDimension() {
-        }
-
-    }
-
     public class MainMenuConstants {
 
         public static final String INTENT_DATA_MODIFY_CREATOR = "modifica";
@@ -78,6 +68,10 @@ public final class ExerciseConstants {
         public static final String SUCCESSFULLY_SIGN_IN = "Successfully signed in";
         public static final String UNSUCCESSFULLY_SIGN_IN = "Sign in failed!";
         public static final int MIN_PASSWORD_CHAR = 8;
+    }
+
+    public class ArchiveConstants {
+        public static final String NO_EXE_DAY = "Non sono presenti schede in questa giornata";
     }
 
     public final class DataBase {
