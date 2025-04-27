@@ -1,21 +1,16 @@
 package com.andrea.belotti.brorkout.plans_creation.presenter;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.CreationCopyPlanAdapter;
-import com.andrea.belotti.brorkout.entity.Giornata;
-import com.andrea.belotti.brorkout.entity.Scheda;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
 import com.andrea.belotti.brorkout.plans_creation.contract.CreationMenuContract;
@@ -25,7 +20,7 @@ import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ValueEventListener;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -190,14 +185,20 @@ public class CreationMenuPresenter implements CreationMenuContract.Presenter {
             // Save Users in singleton
             CreateSingleton.getInstance().setUsersToShare(users);
 
-            String now = LocalDateTime.now().toString();
+            String now = LocalDate.now().toString();
             int numberOfDays = Integer.parseInt(day);
 
             List<Giornata> giornateList = new ArrayList<>();
             for (int i = 1; i <= numberOfDays; i++) {
                 Giornata g = new Giornata();
                 List<Esercizio> exeList = new ArrayList<>();
+
+                String date = LocalDate.now().toString();
+
                 g.setExercises(exeList);
+                g.setCreationDate(date);
+                g.setUpdateDate(date);
+                g.setUsed(false);
                 g.setNumberOfDays(i);
                 giornateList.add(g);
             }
@@ -225,7 +226,7 @@ public class CreationMenuPresenter implements CreationMenuContract.Presenter {
                 view.logTagOnScreen("Scheda da clonare non scelta");
                 return;
             }
-            String now = LocalDateTime.now().toString();
+            String now = LocalDate.now().toString();
 
             selectedPlan.setNome(scheduleName);
             selectedPlan.setCreationDate(now);

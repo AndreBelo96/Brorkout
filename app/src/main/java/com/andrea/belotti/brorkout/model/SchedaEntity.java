@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.entity;
+package com.andrea.belotti.brorkout.model;
 
 import static com.andrea.belotti.brorkout.utils.JsonGeneratorUtil.generateJsonFromObject;
 

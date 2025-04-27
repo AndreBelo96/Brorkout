@@ -5,7 +5,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.andrea.belotti.brorkout.adapter.CreationCopyPlanAdapter;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.plans_creation.view.CreationPlanFragment;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ValueEventListener;

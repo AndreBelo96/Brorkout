@@ -16,9 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.entity.Scheda;
-import com.andrea.belotti.brorkout.entity.SchedaEntity;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.SchedaEntity;
+import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 import com.andrea.belotti.brorkout.plans_archive.adapter.UserPlanAdapter;
 import com.andrea.belotti.brorkout.repository.PlanRepository;
@@ -128,19 +128,13 @@ public class PlanUserFragment extends Fragment {
 
         myPlansBtn.setOnClickListener(v -> {
 
-            // TODO Mi serve il Singleton qui? -> Basterebbe passarlo nel newInstance
             ArchiveSingleton.getInstance().setChosenUserId(coachId);
-            ArchiveSingleton.getInstance().setPath("mie");
+            ArchiveSingleton.getInstance().setUserSelectedPlans(new ArrayList<>());
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansFragment.newInstance(coachId));
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansCalendarFragment.newInstance(coachId));
             fragmentTransaction.commit();
         });
-
-
-
-
-
 
 
         return view;

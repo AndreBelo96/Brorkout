@@ -27,9 +27,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.CreationCopyPlanAdapter;
-import com.andrea.belotti.brorkout.entity.Giornata;
-import com.andrea.belotti.brorkout.entity.Scheda;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.plans_creation.adapter.ShareFriendItemAdapter;
 import com.andrea.belotti.brorkout.plans_creation.contract.CreationMenuContract;

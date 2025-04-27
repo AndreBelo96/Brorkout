@@ -13,7 +13,7 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.User;
 
 import java.util.List;
 

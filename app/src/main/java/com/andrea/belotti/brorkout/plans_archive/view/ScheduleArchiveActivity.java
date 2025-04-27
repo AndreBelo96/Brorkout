@@ -22,10 +22,7 @@ public class ScheduleArchiveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_archive);
 
-        TextView pathArchive = findViewById(R.id.pathArchive);
         ImageButton backButton = findViewById(R.id.backButton);
-
-        pathArchive.setText(ArchiveSingleton.getInstance().getPath());
 
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(getBaseContext(), StartingMenuActivity.class);

@@ -1,7 +1,6 @@
 package com.andrea.belotti.brorkout.plans_archive.view;
 
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
-import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -18,10 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
+import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.entity.Giornata;
 
 public class ExercisesFragment extends Fragment {
 
@@ -67,18 +66,10 @@ public class ExercisesFragment extends Fragment {
         LinearLayout buttonBack = view.findViewById(R.id.back);
 
         buttonBack.setOnClickListener(v -> {
-
-            String path = ArchiveSingleton.getInstance().getPath();
-            String[] sub = path.split("/");
-
-            ArchiveSingleton.getInstance().setPath(sub[0] + "/" + sub[1] + "/");
-
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, DaysFragment.newInstance(ArchiveSingleton.getInstance().getChosenPlan()));
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansCalendarFragment.newInstance(ArchiveSingleton.getInstance().getChosenUserId()));
             fragmentTransaction.commit();
-
         });
-
 
         return view;
     }

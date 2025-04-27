@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.EserciziCreazioneCallback;
 import com.andrea.belotti.brorkout.adapter.ItemEsercizioCreateAdapter;
-import com.andrea.belotti.brorkout.entity.Giornata;
+import com.andrea.belotti.brorkout.model.Giornata;
 
 /**
  * A simple {@link Fragment} subclass.

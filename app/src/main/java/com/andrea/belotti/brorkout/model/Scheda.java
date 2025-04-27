@@ -1,11 +1,10 @@
-package com.andrea.belotti.brorkout.entity;
+package com.andrea.belotti.brorkout.model;
 
 import static com.andrea.belotti.brorkout.utils.JsonGeneratorUtil.generateGiornataFromJson;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

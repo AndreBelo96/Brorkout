@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.app_starting_menu.view.StartingMenuActivity;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 
 public class ExecutionScheduleActivity extends AppCompatActivity {
 

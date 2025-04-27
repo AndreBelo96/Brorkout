@@ -1,7 +1,10 @@
 package com.andrea.belotti.brorkout.plans_archive;
 
-import com.andrea.belotti.brorkout.entity.Giornata;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.model.Scheda;
+
+import java.time.LocalDate;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,11 +16,12 @@ public class ArchiveSingleton {
     // private static instance variable to hold the singleton instance
     private static volatile ArchiveSingleton INSTANCE = null;
 
-    // public value
-    private String path;
     private String chosenUserId;
-    private Scheda chosenPlan;
     private Giornata chosenDay;
+
+    // Caching
+    private List<Scheda> userSelectedPlans;
+    private LocalDate selectedDate;
 
     // private constructor to prevent instantiation of the class
     private ArchiveSingleton() {

@@ -229,4 +229,15 @@ public class EsercizioPiramidale implements Esercizio, Serializable {
                 StringUtils.isEmpty(this.getPicco());
     }
 
+    @Override
+    public CompleteState isExeComplete() {
+        if (serieCompletate == 0) {
+            return CompleteState.INCOMPLETE_KO;
+        } else if (serieCompletate < Integer.valueOf(serie)) {
+            return CompleteState.COMPLETE_OK;
+        } else {
+            return CompleteState.INCOMPLETE;
+        }
+    }
+
 }

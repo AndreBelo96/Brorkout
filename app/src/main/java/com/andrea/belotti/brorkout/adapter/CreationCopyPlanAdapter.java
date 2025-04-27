@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.plans_creation.view.CreationMenuFragmentView;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.ScheduleCreatingUtils;
 
 import java.util.ArrayList;

@@ -4,9 +4,9 @@ import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.Tabl
 
 import androidx.annotation.NonNull;
 
-import com.andrea.belotti.brorkout.entity.Scheda;
-import com.andrea.belotti.brorkout.entity.SchedaEntity;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.SchedaEntity;
+import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.firebase.database.DataSnapshot;
@@ -18,7 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 public class PlanRepository {

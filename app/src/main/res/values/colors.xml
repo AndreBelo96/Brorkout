@@ -7,6 +7,8 @@
     <color name="light_blue_200">#9BAACD</color>
     <color name="light_blue_500">#FF62739A</color>
     <color name="light_blue_700">#FF4F628E</color>
+
+    <color name="gray">#888</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
@@ -27,5 +29,6 @@
 
     <color name="no_color">#00000000</color>
     <color name="exe_ok">#DD8BC34A</color>
+    <color name="exe_partial_ko">#CBDA9C3E</color>
     <color name="exe_ko">#DDEF5144</color>
 </resources>

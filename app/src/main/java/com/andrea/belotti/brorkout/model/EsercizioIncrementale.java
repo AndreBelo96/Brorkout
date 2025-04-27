@@ -2,7 +2,6 @@ package com.andrea.belotti.brorkout.model;
 
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.ExeType.INCREMENTALE;
 
-import com.andrea.belotti.brorkout.entity.Giornata;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -12,7 +11,7 @@ import java.io.Serializable;
 
 public class EsercizioIncrementale implements Esercizio, Serializable {
 
-    private String type = INCREMENTALE;
+    private final String type = INCREMENTALE;
     private String nomeEsercizio;
     private String tipoEsercizio;
     private String serie;
@@ -218,8 +217,8 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
     }
 
     @Override
-    public void setNumeroRipetizioniDopoSerie(){
-        int incrementoRipetizioni = (Integer.parseInt(picco) - Integer.parseInt(inizio)) / (Integer.parseInt(serie)-1);
+    public void setNumeroRipetizioniDopoSerie() {
+        int incrementoRipetizioni = (Integer.parseInt(picco) - Integer.parseInt(inizio)) / (Integer.parseInt(serie) - 1);
         this.setRipetizioni((Integer.parseInt(this.getRipetizioni()) + incrementoRipetizioni) + "");
     }
 
@@ -229,5 +228,16 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
                 StringUtils.isEmpty(this.getRecupero()) ||
                 StringUtils.isEmpty(this.getName()) ||
                 StringUtils.isEmpty(this.getInizio());
+    }
+
+    @Override
+    public CompleteState isExeComplete() {
+        if (serieCompletate == 0) {
+            return CompleteState.INCOMPLETE_KO;
+        } else if (serieCompletate < Integer.valueOf(serie)) {
+            return CompleteState.COMPLETE_OK;
+        } else {
+            return CompleteState.INCOMPLETE;
+        }
     }
 }

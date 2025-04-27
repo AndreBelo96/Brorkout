@@ -13,10 +13,11 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
-import com.andrea.belotti.brorkout.plans_archive.view.PlansFragment;
+import com.andrea.belotti.brorkout.plans_archive.view.PlansCalendarFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserPlanAdapter extends RecyclerView.Adapter<UserPlanAdapter.ViewHolder> {
@@ -51,10 +52,10 @@ public class UserPlanAdapter extends RecyclerView.Adapter<UserPlanAdapter.ViewHo
             String idUser = users.get(position).getId();
 
             ArchiveSingleton.getInstance().setChosenUserId(idUser);
-            ArchiveSingleton.getInstance().setPath(username);
+            ArchiveSingleton.getInstance().setUserSelectedPlans(new ArrayList<>());
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansFragment.newInstance(idUser));
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansCalendarFragment.newInstance(idUser));
             fragmentTransaction.commit();
         });
     }

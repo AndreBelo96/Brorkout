@@ -8,11 +8,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.plans_selection.view.SelectScheduleActivity;
 
 import java.util.List;

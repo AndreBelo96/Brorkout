@@ -1,8 +1,8 @@
 package com.andrea.belotti.brorkout.plans_creation;
 
-import com.andrea.belotti.brorkout.entity.Giornata;
-import com.andrea.belotti.brorkout.entity.Scheda;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.Giornata;
+import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.model.Esercizio;
 
 import java.util.List;

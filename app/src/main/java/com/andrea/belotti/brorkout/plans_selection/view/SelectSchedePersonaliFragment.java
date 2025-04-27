@@ -10,10 +10,10 @@ import android.widget.Toast;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.plans_creation.adapter.PlanSelectedAdapter;
-import com.andrea.belotti.brorkout.entity.SchedaEntity;
+import com.andrea.belotti.brorkout.model.SchedaEntity;
 import com.andrea.belotti.brorkout.repository.PlanRepository;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

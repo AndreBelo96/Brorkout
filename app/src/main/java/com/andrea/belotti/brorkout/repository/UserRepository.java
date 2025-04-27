@@ -5,7 +5,7 @@ import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.Tabl
 import androidx.annotation.NonNull;
 
 import com.andrea.belotti.brorkout.GeneralSingleton;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.utils.AppMethodsUtils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

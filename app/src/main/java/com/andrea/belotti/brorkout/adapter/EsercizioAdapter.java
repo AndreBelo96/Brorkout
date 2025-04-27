@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
+import com.andrea.belotti.brorkout.model.CompleteState;
 import com.andrea.belotti.brorkout.plans_archive.view.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.plans_archive.view.TabSingleExeFragment;
 import com.andrea.belotti.brorkout.model.Esercizio;
@@ -49,12 +50,7 @@ public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.View
     @Override
     public void onBindViewHolder(@NonNull EsercizioAdapter.ViewHolder holder, int position) {
 
-        if (esercizi[position].getSerieCompletate() < Integer.valueOf(esercizi[position].getSerie())) {
-            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.exe_ko));
-        } else {
-            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.exe_ok));
-        }
-
+        holder.cardView.setCardBackgroundColor(setExeColor(esercizi[position].isExeComplete()));
         holder.exeName.setText(esercizi[position].getName());
         holder.exeSerie.setText("Set: " + esercizi[position].getSerieCompletate() + "/" + esercizi[position].getSerie());
         holder.exeRipetizioni.setText("Rep: " + esercizi[position].getRipetizioni());
@@ -67,8 +63,6 @@ public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.View
         }
 
         holder.cardView.setOnClickListener(v -> {
-
-            //activity.setPath(activity.getPath() +  esercizi[position].getName());
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerArchiveView, TabSingleExeFragment.newInstance(Arrays.stream(esercizi).toList(), position));
@@ -102,4 +96,15 @@ public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.View
             exeRecupero =  itemView.findViewById(R.id.textRecupero_item);
         }
     }
+
+    private int setExeColor(CompleteState exeState) {
+        if (exeState == CompleteState.INCOMPLETE_KO) {
+            return ContextCompat.getColor(context, R.color.exe_ko);
+        } else  if (exeState == CompleteState.COMPLETE_OK)  {
+            return ContextCompat.getColor(context, R.color.exe_ok);
+        } else {
+            return ContextCompat.getColor(context, R.color.exe_partial_ko);
+        }
+    }
+
 }

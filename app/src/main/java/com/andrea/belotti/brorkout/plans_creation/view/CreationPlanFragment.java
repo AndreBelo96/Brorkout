@@ -1,9 +1,7 @@
 package com.andrea.belotti.brorkout.plans_creation.view;
 
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
-import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.NUMERO_GIORNATE;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.SCHEDA;
-import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.TITOLO_SCHEDA;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,9 +20,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.ViewPagerPlanGeneratorAdapter;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.model.Esercizio;
-import com.andrea.belotti.brorkout.entity.Giornata;
 import com.andrea.belotti.brorkout.plans_creation.CreateSingleton;
 import com.andrea.belotti.brorkout.plans_creation.view.schedulecreator.AddExeFragment;
 import com.andrea.belotti.brorkout.plans_creation.view.schedulecreator.ModifyExeFragment;
@@ -36,10 +33,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.apache.commons.lang3.StringUtils;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -222,18 +216,17 @@ public class CreationPlanFragment extends Fragment {
 
         createSchedule.setOnClickListener(v -> {
 
-            if (scheda.getGiornate().get(0).getExercises() == null ||
-                    scheda.getGiornate().get(0).getExercises().isEmpty()) {
+            if (scheda.getGiornate().stream().anyMatch(day -> day.getExercises() == null || day.getExercises().isEmpty())) {
                 Log.e(tag, "Esercizi vuoti");
-                Toast toast = Toast.makeText(context, "Inserire almeno un esercizio nella prima giornata", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(context, "Inserire almeno un esercizio per giornata", Toast.LENGTH_SHORT);
                 toast.show();
                 return;
             }
             //TODO non va bene cosi
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-            scheda.setCreationDate(LocalDateTime.now().toString());
-            scheda.setUpdateDate(LocalDateTime.now().toString());
+            scheda.setCreationDate(LocalDate.now().toString());
+            scheda.setUpdateDate(LocalDate.now().toString());
             scheda.setIdCreator(user.getUid());
             scheda.setIdUser(user.getUid());
 

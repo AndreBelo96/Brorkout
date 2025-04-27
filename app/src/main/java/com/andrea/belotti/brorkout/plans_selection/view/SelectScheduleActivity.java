@@ -5,7 +5,6 @@ import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.Memo
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -15,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.app_starting_menu.view.StartingMenuActivity;
 import com.andrea.belotti.brorkout.plans_execution.view.ExecutionScheduleActivity;
 

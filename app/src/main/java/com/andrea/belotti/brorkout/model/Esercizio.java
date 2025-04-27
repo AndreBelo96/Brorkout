@@ -64,4 +64,5 @@ public interface Esercizio {
 
     boolean isExeNotOk();
 
+    CompleteState isExeComplete();
 }

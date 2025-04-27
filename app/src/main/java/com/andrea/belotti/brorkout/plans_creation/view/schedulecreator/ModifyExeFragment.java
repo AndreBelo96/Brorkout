@@ -24,7 +24,7 @@ import com.andrea.belotti.brorkout.model.EsercizioIncrementale;
 import com.andrea.belotti.brorkout.model.EsercizioPiramidale;
 import com.andrea.belotti.brorkout.model.EsercizioSerie;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
-import com.andrea.belotti.brorkout.entity.Giornata;
+import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.utils.ExeTypeCastUtil;
 
 import androidx.fragment.app.Fragment;

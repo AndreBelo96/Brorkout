@@ -2,11 +2,9 @@ package com.andrea.belotti.brorkout.utils;
 
 import android.util.Log;
 
-import com.andrea.belotti.brorkout.entity.Giornata;
+import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.InterfaceAdapter;
-import com.andrea.belotti.brorkout.entity.Scheda;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

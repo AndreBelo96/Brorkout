@@ -3,7 +3,7 @@ package com.andrea.belotti.brorkout.plans_creation.contract;
 
 import androidx.fragment.app.Fragment;
 
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 
 public interface PlanCreatorActivityContract {
 

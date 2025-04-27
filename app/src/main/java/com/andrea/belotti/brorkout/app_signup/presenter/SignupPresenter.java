@@ -17,10 +17,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import com.andrea.belotti.brorkout.GeneralSingleton;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.app_signup.contract.SignupContract;
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.repository.UserRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

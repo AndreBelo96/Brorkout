@@ -3,12 +3,13 @@ package com.andrea.belotti.brorkout.plans_creation.presenter;
 import android.content.Context;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.plans_creation.contract.PlanCreatorActivityContract;
 import com.andrea.belotti.brorkout.plans_creation.view.CreationMenuFragmentView;
 import com.andrea.belotti.brorkout.plans_creation.view.CreationPlanFragment;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 public class PlanCreatorActivityPresenter implements PlanCreatorActivityContract.Presenter {
 
@@ -28,7 +29,7 @@ public class PlanCreatorActivityPresenter implements PlanCreatorActivityContract
     @Override
     public void setFragmentActivityCreate(boolean isUpdate, Scheda chosenPlan) {
         if (isUpdate) {
-            chosenPlan.setUpdateDate(LocalDateTime.now().toString());
+            chosenPlan.setUpdateDate(LocalDate.now().toString());
             view.setFragmentInView(CreationPlanFragment.newInstance(chosenPlan));
         } else {
             view.setFragmentInView(new CreationMenuFragmentView());

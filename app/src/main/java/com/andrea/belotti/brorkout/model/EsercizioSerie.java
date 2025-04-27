@@ -228,4 +228,15 @@ public class EsercizioSerie implements Esercizio, Serializable {
                 StringUtils.isEmpty(this.getRipetizioni());
     }
 
+    @Override
+    public CompleteState isExeComplete() {
+        if (serieCompletate == 0) {
+            return CompleteState.INCOMPLETE_KO;
+        } else if (serieCompletate < Integer.valueOf(serie)) {
+            return CompleteState.COMPLETE_OK;
+        } else {
+            return CompleteState.INCOMPLETE;
+        }
+    }
+
 }

@@ -18,14 +18,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.entity.SchedaEntity;
+import com.andrea.belotti.brorkout.model.SchedaEntity;
 import com.andrea.belotti.brorkout.repository.PlanRepository;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ExeExecutionFragment extends Fragment {
@@ -100,8 +100,9 @@ public class ExeExecutionFragment extends Fragment {
             esercizioList.get(countExe).setAppuntiAtleta(commentiAtleta.getText().toString());
 
             // update data to DB
-            plan.getGiornate().get(day-1).setUpdateDate(LocalDateTime.now().toString());
-            plan.setUpdateDate(LocalDateTime.now().toString());
+            plan.getGiornate().get(day-1).setUpdateDate(LocalDate.now().toString());
+            plan.getGiornate().get(day-1).setUsed(true);
+            plan.setUpdateDate(LocalDate.now().toString());
 
             PlanRepository.getInstance().updatePlan(plan.getId(), new SchedaEntity(plan));
 

@@ -1,6 +1,6 @@
 package com.andrea.belotti.brorkout;
 
-import com.andrea.belotti.brorkout.entity.User;
+import com.andrea.belotti.brorkout.model.User;
 
 import lombok.Getter;
 import lombok.Setter;

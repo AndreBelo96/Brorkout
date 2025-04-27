@@ -94,11 +94,6 @@ public class TabSingleExeFragment extends Fragment {
 
         buttonBack.setOnClickListener(v -> {
 
-            String path = ArchiveSingleton.getInstance().getPath();
-            String[] sub = path.split("/");
-
-            ArchiveSingleton.getInstance().setPath(sub[0] + "/" + sub[1] + "/" + sub[2] + "/");
-
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(ArchiveSingleton.getInstance().getChosenDay()));
             fragmentTransaction.commit();

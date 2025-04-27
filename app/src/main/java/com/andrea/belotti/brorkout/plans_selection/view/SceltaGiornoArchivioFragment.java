@@ -14,7 +14,7 @@ import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.plans_selection.adapter.DaySelectedAdapter;
 import com.andrea.belotti.brorkout.plans_creation.view.PlanCreatorActivityView;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
-import com.andrea.belotti.brorkout.entity.Scheda;
+import com.andrea.belotti.brorkout.model.Scheda;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;

@@ -3,7 +3,6 @@ package com.andrea.belotti.brorkout.plans_selection.view;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.util.Log;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.plans_selection.adapter.TabLayoutSelectScheduleAdapter;
-import com.andrea.belotti.brorkout.entity.Scheda;
 import com.google.android.material.tabs.TabLayout;
 
 
