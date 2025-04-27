@@ -4,16 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.app_starting_menu.view.StartingMenuActivity;
-import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 
 public class ScheduleArchiveActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +27,4 @@ public class ScheduleArchiveActivity extends AppCompatActivity {
         });
 
     }
-
 }

@@ -38,7 +38,6 @@ public class PlanUserFragment extends Fragment {
     UserRepository userRepository;
 
     public static PlanUserFragment newInstance() {
-
         return new PlanUserFragment();
     }
 

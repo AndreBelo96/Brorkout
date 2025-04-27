@@ -5,6 +5,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="next"> -&gt; </string>
     <string name="previous"> &lt;- </string>
+    <string name="back"> Indietro </string>
 
     <string name="bg_image_info">Background gradient image</string>
 

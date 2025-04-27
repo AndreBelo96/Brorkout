@@ -26,6 +26,9 @@ public class PlansCalendarFragment extends Fragment implements CalendarAdapter.O
 
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
+    private LinearLayout backButton;
+    private LinearLayout previous;
+    private LinearLayout next;
 
     public static PlansCalendarFragment newInstance(String idUser) {
         PlansCalendarFragment fragment = new PlansCalendarFragment();
@@ -46,16 +49,19 @@ public class PlansCalendarFragment extends Fragment implements CalendarAdapter.O
         }
 
         String idUser = getArguments().getString(ID_USER);
-
         PlansCalendarPresenter presenter = new PlansCalendarPresenter(this, getContext());
 
         initWidgets(view);
         presenter.setMonthView(calendarRecyclerView, monthYearText, idUser);
 
-        LinearLayout previous = view.findViewById(R.id.previous);
-        LinearLayout next = view.findViewById(R.id.next);
         previous.setOnClickListener(v -> presenter.previousMonthAction(calendarRecyclerView, monthYearText, idUser));
         next.setOnClickListener(v -> presenter.nextMonthAction(calendarRecyclerView, monthYearText, idUser));
+
+        backButton.setOnClickListener(v -> {
+            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlanUserFragment.newInstance());
+            fragmentTransaction.commit();
+        });
 
         return view;
     }
@@ -63,6 +69,9 @@ public class PlansCalendarFragment extends Fragment implements CalendarAdapter.O
     private void initWidgets(View view) {
         calendarRecyclerView = view.findViewById(R.id.calendarRecyclerView);
         monthYearText = view.findViewById(R.id.monthYearTV);
+        backButton = view.findViewById(R.id.back);
+        previous = view.findViewById(R.id.previous);
+        next = view.findViewById(R.id.next);
     }
 
 
