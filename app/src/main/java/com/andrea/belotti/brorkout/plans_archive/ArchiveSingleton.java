@@ -2,6 +2,7 @@ package com.andrea.belotti.brorkout.plans_archive;
 
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,10 +18,12 @@ public class ArchiveSingleton {
     private static volatile ArchiveSingleton INSTANCE = null;
 
     private String chosenUserId;
+    private String planName;
     private Giornata chosenDay;
+    private User selectedUser;
 
     // Caching
-    private List<Scheda> userSelectedPlans;
+    private List<Scheda> selectedUserPlans;
     private LocalDate selectedDate;
 
     // private constructor to prevent instantiation of the class

@@ -44,35 +44,8 @@ public class PlansCalendarPresenter implements PlansCalendarContract.Presenter {
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, view, context);
         ArchiveSingleton.getInstance().setSelectedDate(selectedDate);
 
-        if (ArchiveSingleton.getInstance().getUserSelectedPlans().isEmpty()) {
-
-            ValueEventListener calendarListener = new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            SchedaEntity plan = dataSnapshot.getValue(SchedaEntity.class);
-
-                            Scheda scheda;
-                            try {
-                                scheda = new Scheda(plan);
-                            } catch (JsonProcessingException e) {
-                                throw new RuntimeException(e);
-                            }
-                            ArchiveSingleton.getInstance().getUserSelectedPlans().add(scheda);
-                        }
-
-                        calendarAdapter.notifyDataSetChanged();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            };
-
-            PlanRepository.getInstance().getAllByUserId(idUser, calendarListener);
+        if (ArchiveSingleton.getInstance().getSelectedUserPlans().isEmpty()) {
+            PlanRepository.getInstance().getAllByUserId(idUser, generateCalendarListener(calendarAdapter));
         }
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(context.getApplicationContext(), 7);
@@ -89,6 +62,14 @@ public class PlansCalendarPresenter implements PlansCalendarContract.Presenter {
         selectedDate = selectedDate.plusMonths(1);
         setMonthView(calendarRecyclerView, monthYearText, idUser);
     }
+
+    @Override
+    public void setAthleteName(TextView titleTV) {
+        String user = ArchiveSingleton.getInstance().getSelectedUser().getUsername();
+        titleTV.setText("Schede di " + user);
+    }
+
+    // ----- Private Methods -----
 
     private String monthYearFromDate(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM yyyy");
@@ -128,6 +109,36 @@ public class PlansCalendarPresenter implements PlansCalendarContract.Presenter {
             case 5 -> 4;
             case 6 -> 5;
             default -> -1;
+        };
+
+    }
+
+    private ValueEventListener generateCalendarListener(CalendarAdapter calendarAdapter) {
+
+        return new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        SchedaEntity plan = dataSnapshot.getValue(SchedaEntity.class);
+
+                        Scheda scheda;
+                        try {
+                            scheda = new Scheda(plan);
+                        } catch (JsonProcessingException e) {
+                            throw new RuntimeException(e);
+                        }
+                        ArchiveSingleton.getInstance().getSelectedUserPlans().add(scheda);
+                    }
+
+                    calendarAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Non-compliant - method is empty
+            }
         };
 
     }

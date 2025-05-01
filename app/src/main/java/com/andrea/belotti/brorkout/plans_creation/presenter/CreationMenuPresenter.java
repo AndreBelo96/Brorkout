@@ -199,7 +199,7 @@ public class CreationMenuPresenter implements CreationMenuContract.Presenter {
                 g.setCreationDate(date);
                 g.setUpdateDate(date);
                 g.setUsed(false);
-                g.setNumberOfDays(i);
+                g.setNumberOfDay(i);
                 giornateList.add(g);
             }
 

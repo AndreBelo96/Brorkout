@@ -17,6 +17,8 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.
     public final View eventLine;
     @Setter
     private Giornata eventDay;
+    @Setter
+    private String planName;
     private final CalendarAdapter.OnItemListener onItemListener;
 
     public CalendarViewHolder(@NonNull View itemView, CalendarAdapter.OnItemListener onItemListener) {
@@ -29,7 +31,7 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.
 
     @Override
     public void onClick(View v) {
-        onItemListener.onItemClick(eventDay);
+        onItemListener.onItemClick(eventDay,planName);
     }
 
 }

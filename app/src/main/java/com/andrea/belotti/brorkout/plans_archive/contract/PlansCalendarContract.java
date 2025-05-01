@@ -12,6 +12,7 @@ public interface PlansCalendarContract {
         void setMonthView(RecyclerView calendarRecyclerView, TextView monthYearText, String idUser);
         void previousMonthAction(RecyclerView calendarRecyclerView, TextView monthYearText, String idUser);
         void nextMonthAction(RecyclerView calendarRecyclerView, TextView monthYearText, String idUser);
+        void setAthleteName(TextView titleTV);
     }
 
     interface View extends CalendarAdapter.OnItemListener {

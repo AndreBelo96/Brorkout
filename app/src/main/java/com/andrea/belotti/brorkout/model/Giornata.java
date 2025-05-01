@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Giornata implements Serializable {
 
-    private int numberOfDays;
+    private int numberOfDay;
     private List<Esercizio> exercises;
     private String creationDate;
     private String updateDate;

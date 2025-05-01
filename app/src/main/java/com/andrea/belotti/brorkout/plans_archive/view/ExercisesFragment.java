@@ -2,13 +2,13 @@ package com.andrea.belotti.brorkout.plans_archive.view;
 
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.GIORNATA;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,16 +17,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
-import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 
 public class ExercisesFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
-    private Context context;
-    private ScheduleArchiveActivity activity;
+
+    private RecyclerView recyclerView;
+    private TextView titleView;
+    private LinearLayout buttonBack;
 
     public static ExercisesFragment newInstance(Giornata day) {
         ExercisesFragment fragment = new ExercisesFragment();
@@ -37,41 +39,57 @@ public class ExercisesFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        context = getContext();
+        Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_exercises, container, false);
 
-        activity = (ScheduleArchiveActivity) this.getActivity();
-
-        // retrieve data
+        // Check data
         if (getArguments() == null) {
             return view;
         }
 
-        Giornata day = (Giornata) getArguments().get(GIORNATA);
+        initWidgets(view);
 
-        // set recyclerView info
-        RecyclerView recyclerView = view.findViewById(R.id.exercises);
-        EsercizioAdapter adapter = new EsercizioAdapter(context, day.getExercises().toArray(new Esercizio[0]), activity, getParentFragmentManager());
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        Giornata day = (Giornata) getArguments().get(GIORNATA);
+        setTitle(day.getNumberOfDay());
+        ScheduleArchiveActivity activity = (ScheduleArchiveActivity) this.getActivity();
+
+        EsercizioAdapter adapter = new EsercizioAdapter(getContext(), day.getExercises().toArray(new Esercizio[0]), activity, getParentFragmentManager());
         recyclerView.setAdapter(adapter);
 
-        // back button
-        LinearLayout buttonBack = view.findViewById(R.id.back);
-
-        buttonBack.setOnClickListener(v -> {
-            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansCalendarFragment.newInstance(ArchiveSingleton.getInstance().getChosenUserId()));
-            fragmentTransaction.commit();
-        });
+        buttonBack.setOnClickListener(v -> onClickBack());
 
         return view;
+    }
+
+    private void initWidgets(View view) {
+        titleView = view.findViewById(R.id.userPlanDayTV);
+        recyclerView = view.findViewById(R.id.exercises);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        buttonBack = view.findViewById(R.id.back);
+    }
+
+    private void setTitle(int day) {
+
+        StringBuilder exeTile = new StringBuilder("Scheda ")
+                .append(ArchiveSingleton.getInstance().getPlanName())
+                .append(" di ")
+                .append(ArchiveSingleton.getInstance().getSelectedUser().getUsername())
+                .append(" Giornata ")
+                .append(day);
+
+        titleView.setText(exeTile);
+    }
+
+    private void onClickBack() {
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansCalendarFragment.newInstance(ArchiveSingleton.getInstance().getChosenUserId()));
+        fragmentTransaction.commit();
     }
 
 }

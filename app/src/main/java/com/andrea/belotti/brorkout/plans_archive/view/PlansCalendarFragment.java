@@ -3,6 +3,7 @@ package com.andrea.belotti.brorkout.plans_archive.view;
 import static com.andrea.belotti.brorkout.utils.constants.ExerciseConstants.MemorizeConstants.ID_USER;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,10 @@ import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 
 public class PlansCalendarFragment extends Fragment implements CalendarAdapter.OnItemListener, PlansCalendarContract.View {
 
+    private final String tag = this.getClass().getSimpleName();
+
     private TextView monthYearText;
+    private TextView titleText;
     private RecyclerView calendarRecyclerView;
     private LinearLayout backButton;
     private LinearLayout previous;
@@ -39,8 +43,10 @@ public class PlansCalendarFragment extends Fragment implements CalendarAdapter.O
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_plans_calendar, container, false);
 
@@ -53,6 +59,7 @@ public class PlansCalendarFragment extends Fragment implements CalendarAdapter.O
 
         initWidgets(view);
         presenter.setMonthView(calendarRecyclerView, monthYearText, idUser);
+        presenter.setAthleteName(titleText);
 
         previous.setOnClickListener(v -> presenter.previousMonthAction(calendarRecyclerView, monthYearText, idUser));
         next.setOnClickListener(v -> presenter.nextMonthAction(calendarRecyclerView, monthYearText, idUser));
@@ -69,6 +76,7 @@ public class PlansCalendarFragment extends Fragment implements CalendarAdapter.O
     private void initWidgets(View view) {
         calendarRecyclerView = view.findViewById(R.id.calendarRecyclerView);
         monthYearText = view.findViewById(R.id.monthYearTV);
+        titleText = view.findViewById(R.id.titleTV);
         backButton = view.findViewById(R.id.back);
         previous = view.findViewById(R.id.previous);
         next = view.findViewById(R.id.next);
@@ -76,7 +84,7 @@ public class PlansCalendarFragment extends Fragment implements CalendarAdapter.O
 
 
     @Override
-    public void onItemClick(Giornata day) {
+    public void onItemClick(Giornata day, String planName) {
 
         if (day == null) {
             Toast toast = Toast.makeText(getContext(), ExerciseConstants.ArchiveConstants.NO_EXE_DAY, Toast.LENGTH_SHORT);
@@ -85,6 +93,7 @@ public class PlansCalendarFragment extends Fragment implements CalendarAdapter.O
         }
 
         ArchiveSingleton.getInstance().setChosenDay(day);
+        ArchiveSingleton.getInstance().setPlanName(planName);
 
         FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(day));

@@ -7,6 +7,15 @@
     android:gravity="center"
     tools:context=".plans_archive.view.PlansCalendarFragment">
 
+    <TextView
+        android:id="@+id/titleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atleta"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textColor="@color/backgroundMenu"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -46,7 +55,6 @@
                     android:textSize="20sp" />
             </LinearLayout>
 
-
             <TextView
                 android:id="@+id/monthYearTV"
                 android:layout_width="0dp"
@@ -79,6 +87,7 @@
                     android:textStyle="bold"
                     android:textSize="20sp" />
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andrea.belotti.brorkout.GeneralSingleton;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.model.SchedaEntity;
@@ -37,20 +38,22 @@ public class PlanUserFragment extends Fragment {
 
     UserRepository userRepository;
 
+    private LinearLayout myPlansBtn;
+    private TextView athleteTitle;
+    private RecyclerView athletePlansListView;
+
     public static PlanUserFragment newInstance() {
         return new PlanUserFragment();
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_plan_user, container, false);
 
-        LinearLayout myPlansBtn = view.findViewById(R.id.myPlansBtn);
-        TextView athleteTitle = view.findViewById(R.id.titleAthlete);
-        RecyclerView athletePlansListView = view.findViewById(R.id.recyclerViewAthletePlans);
+        initWidgets(view);
 
         List<User> athletes = new ArrayList<>();
         List<String> athleteIds = new ArrayList<>();
@@ -124,11 +127,13 @@ public class PlanUserFragment extends Fragment {
 
         PlanRepository.getInstance().getAthletePlansByCoachId(coachId, plansAthleteListListener);
 
-
+        // Premo su mie schede
         myPlansBtn.setOnClickListener(v -> {
 
+            // TODO capire se è giusto questo, meglio suare l'id dell'utente loggato
             ArchiveSingleton.getInstance().setChosenUserId(coachId);
-            ArchiveSingleton.getInstance().setUserSelectedPlans(new ArrayList<>());
+            ArchiveSingleton.getInstance().setSelectedUserPlans(new ArrayList<>());
+            ArchiveSingleton.getInstance().setSelectedUser(GeneralSingleton.getInstance().getLoggedUser());
 
             FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansCalendarFragment.newInstance(coachId));
@@ -138,4 +143,11 @@ public class PlanUserFragment extends Fragment {
 
         return view;
     }
+
+    private void initWidgets(View view) {
+        myPlansBtn = view.findViewById(R.id.myPlansBtn);
+        athleteTitle = view.findViewById(R.id.titleAthlete);
+        athletePlansListView = view.findViewById(R.id.recyclerViewAthletePlans);
+    }
+
 }

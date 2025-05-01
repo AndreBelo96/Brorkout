@@ -44,7 +44,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     public void onBindViewHolder(@NonNull CalendarViewHolder holder, int position) {
         holder.dayOfMonth.setText(daysOfMonth.get(position));
 
-        List<Scheda> plans = ArchiveSingleton.getInstance().getUserSelectedPlans();
+        List<Scheda> plans = ArchiveSingleton.getInstance().getSelectedUserPlans();
 
         if  (plans == null || plans.isEmpty()) {
             return;
@@ -56,6 +56,7 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
                     holder.eventLine.setBackgroundColor(getEventColor(day));
                     holder.eventLine.setVisibility(View.VISIBLE);
                     holder.setEventDay(day);
+                    holder.setPlanName(plan.getNome());
                 }
             }
         }
@@ -69,7 +70,9 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
 
     private boolean checkDate(LocalDate dayDate, int position) {
         LocalDate selectedDate = ArchiveSingleton.getInstance().getSelectedDate();
-        return dayDate.getDayOfMonth() == position && selectedDate.getMonth() == dayDate.getMonth() && selectedDate.getYear() == dayDate.getYear();
+        return String.valueOf(dayDate.getDayOfMonth()).equals(daysOfMonth.get(position)) &&
+                selectedDate.getMonth() == dayDate.getMonth() &&
+                selectedDate.getYear() == dayDate.getYear();
     }
 
     private int getEventColor(Giornata day) {
@@ -84,6 +87,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder> {
     }
 
     public interface OnItemListener {
-        void onItemClick(Giornata eventDay);
+        void onItemClick(Giornata eventDay, String planName);
     }
 }

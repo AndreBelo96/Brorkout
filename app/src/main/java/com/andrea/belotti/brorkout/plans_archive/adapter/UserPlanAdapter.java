@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.andrea.belotti.brorkout.GeneralSingleton;
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.model.User;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
@@ -52,7 +53,8 @@ public class UserPlanAdapter extends RecyclerView.Adapter<UserPlanAdapter.ViewHo
             String idUser = users.get(position).getId();
 
             ArchiveSingleton.getInstance().setChosenUserId(idUser);
-            ArchiveSingleton.getInstance().setUserSelectedPlans(new ArrayList<>());
+            ArchiveSingleton.getInstance().setSelectedUserPlans(new ArrayList<>());
+            ArchiveSingleton.getInstance().setSelectedUser(users.get(position));
 
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragmentContainerArchiveView, PlansCalendarFragment.newInstance(idUser));

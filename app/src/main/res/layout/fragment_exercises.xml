@@ -8,11 +8,11 @@
     tools:context=".plans_archive.view.ExercisesFragment">
 
     <TextView
-        android:id="@+id/titlePlan"
+        android:id="@+id/userPlanDayTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Esercizi"
+        android:text="Titolo"
         android:paddingVertical="5dp"
         android:paddingHorizontal="25dp"
         android:textAppearance="@style/subTitleWhite"
@@ -21,6 +21,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/exercisesPlanTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="5dp"
+        android:text="Esercizi"
+        android:textAppearance="@style/subTitleWhite"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userPlanDayTV" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exercises"
         android:layout_width="match_parent"
@@ -28,7 +42,7 @@
         android:layout_marginVertical="10dp"
         app:layout_constraintBottom_toTopOf="@+id/back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titlePlan" />
+        app:layout_constraintTop_toBottomOf="@+id/exercisesPlanTV" />
 
     <LinearLayout
         android:id="@+id/back"

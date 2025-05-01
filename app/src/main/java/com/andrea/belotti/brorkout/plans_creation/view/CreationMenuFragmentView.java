@@ -251,7 +251,7 @@ public class CreationMenuFragmentView extends Fragment implements CreationMenuCo
         for (Giornata day : plan.getGiornate()) {
             LinearLayout dayLayout = createHorizotalLinearLayout(context, 0, 0, 0, 0);
             dayLayout.setGravity(Gravity.CENTER);
-            TextView dayName = createBasicTextView(context, "Giornata " + day.getNumberOfDays(), 20f);
+            TextView dayName = createBasicTextView(context, "Giornata " + day.getNumberOfDay(), 20f);
 
             ImageView dayImageView = new ImageView(context);
             dayImageView.setBackgroundResource(R.drawable.point_tree_view);
