@@ -19,16 +19,22 @@ import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.adapter.SingleExeAdapter;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
+import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 
 public class TabSingleExeFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
+
+    private LinearLayout buttonBack;
+    private TabLayout tabLayout;
+    private ViewPager2 viewPager2;
 
     public static TabSingleExeFragment newInstance(List<Esercizio> exes, int chosenExe) {
         TabSingleExeFragment fragment = new TabSingleExeFragment();
@@ -43,41 +49,43 @@ public class TabSingleExeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.i(tag, "Starting Fragment...");
+        Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
 
-        super.onCreate(savedInstanceState);
-
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tab_single_exe, container, false);
 
         if (getArguments() == null) {
-            Log.i(tag, "No Data!!");
+            Log.i(tag, ExerciseConstants.ERROR_ARGUMENT);
             return view;
         }
 
-        Log.i(tag, "Retrieve Data...");
+        Log.i(tag, ExerciseConstants.RETRIEVING_DATA);
         List<Esercizio> exes = (List<Esercizio>) getArguments().get(ESERCIZI);
         int chosenExe = getArguments().getInt(ESERCIZIO_SCELTO);
-        Log.i(tag, "Data Retrieve!!");
+        Log.i(tag, ExerciseConstants.DATA_RETRIEVE);
 
         if (exes == null || exes.isEmpty()) {
-            Log.e(tag, "Unexpected Data Value!!");
+            Log.e(tag, ExerciseConstants.DATA_ARGUMENT_NULL);
             return view;
         }
 
-        ScheduleArchiveActivity activity = (ScheduleArchiveActivity) this.getActivity();
-
-        if (activity == null) {
-            Log.e(tag, "Unexpected Activity Value!!");
-            return view;
-        }
-
-        TabLayout tabLayout = view.findViewById(R.id.tabLayout);
-        ViewPager2 viewPager2 = view.findViewById(R.id.pager);
         SingleExeAdapter singleExeAdapter = new SingleExeAdapter(this, exes);
 
+        initWidgets(view);
+        setupWidgets(chosenExe, singleExeAdapter);
         initTabLayout(tabLayout, exes.size(), getContext());
 
+        buttonBack.setOnClickListener(v -> onBackClick());
+
+        return view;
+    }
+
+    private void initWidgets(View view) {
+        buttonBack = view.findViewById(R.id.back);
+        tabLayout = view.findViewById(R.id.tabLayout);
+        viewPager2 = view.findViewById(R.id.pager);
+    }
+
+    private void setupWidgets(int chosenExe, SingleExeAdapter singleExeAdapter) {
         viewPager2.setAdapter(singleExeAdapter);
         viewPager2.setCurrentItem(chosenExe);
 
@@ -85,22 +93,15 @@ public class TabSingleExeFragment extends Fragment {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                tabLayout.getTabAt(position).select();
+                Objects.requireNonNull(tabLayout.getTabAt(position)).select();
             }
         });
+    }
 
-        // Back button
-        LinearLayout buttonBack = view.findViewById(R.id.back);
-
-        buttonBack.setOnClickListener(v -> {
-
-            FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(ArchiveSingleton.getInstance().getChosenDay()));
-            fragmentTransaction.commit();
-
-        });
-
-        return view;
+    private void onBackClick() {
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainerArchiveView, ExercisesFragment.newInstance(ArchiveSingleton.getInstance().getChosenDay()));
+        fragmentTransaction.commit();
     }
 
     private void initTabLayout(TabLayout tabLayout, int numberOfDays, Context context) {
@@ -110,5 +111,6 @@ public class TabSingleExeFragment extends Fragment {
             tabLayout.addView(tabItem);
         }
     }
+
 
 }

@@ -20,9 +20,11 @@ import com.andrea.belotti.brorkout.adapter.EsercizioAdapter;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.Giornata;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
+import com.andrea.belotti.brorkout.plans_archive.contract.ExercisesContract;
+import com.andrea.belotti.brorkout.plans_archive.presenter.ExercisesPresenter;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 
-public class ExercisesFragment extends Fragment {
+public class ExercisesFragment extends Fragment implements ExercisesContract.View {
 
     private final String tag = this.getClass().getSimpleName();
 
@@ -46,15 +48,25 @@ public class ExercisesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_exercises, container, false);
 
-        // Check data
+        // Retrieve data
         if (getArguments() == null) {
+            Log.i(tag, ExerciseConstants.ERROR_ARGUMENT);
             return view;
         }
 
-        initWidgets(view);
-
+        Log.i(tag, ExerciseConstants.RETRIEVING_DATA);
         Giornata day = (Giornata) getArguments().get(GIORNATA);
-        setTitle(day.getNumberOfDay());
+        Log.i(tag, ExerciseConstants.DATA_RETRIEVE);
+
+        if (day == null) {
+            Log.e(tag, ExerciseConstants.DATA_ARGUMENT_NULL);
+            return view;
+        }
+
+        ExercisesPresenter presenter = new ExercisesPresenter();
+
+        initWidgets(view);
+        presenter.setTitle(titleView, day.getNumberOfDay());
         ScheduleArchiveActivity activity = (ScheduleArchiveActivity) this.getActivity();
 
         EsercizioAdapter adapter = new EsercizioAdapter(getContext(), day.getExercises().toArray(new Esercizio[0]), activity, getParentFragmentManager());
@@ -72,18 +84,6 @@ public class ExercisesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         buttonBack = view.findViewById(R.id.back);
-    }
-
-    private void setTitle(int day) {
-
-        StringBuilder exeTile = new StringBuilder("Scheda ")
-                .append(ArchiveSingleton.getInstance().getPlanName())
-                .append(" di ")
-                .append(ArchiveSingleton.getInstance().getSelectedUser().getUsername())
-                .append(" Giornata ")
-                .append(day);
-
-        titleView.setText(exeTile);
     }
 
     private void onClickBack() {

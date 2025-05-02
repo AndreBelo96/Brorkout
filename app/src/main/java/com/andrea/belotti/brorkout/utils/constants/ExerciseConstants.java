@@ -5,12 +5,14 @@ import android.widget.Toast;
 
 public final class ExerciseConstants {
 
-    public static final String TAG_START_ACTIVITY = "Starting activity";
-    public static final String TAG_START_FRAGMENT = "Starting fragment";
+    public static final String TAG_START_ACTIVITY = "Starting activity... ";
+    public static final String TAG_START_FRAGMENT = "Starting fragment... ";
     public static final String TAG_LOGIN_ACTIVITY = "Login Activity";
     public static final String ERROR_ARGUMENT = "Arguments is null";
-    public static final String DATA_ARGUMENT_NULL = "A data in arguments is null";
+    public static final String DATA_ARGUMENT_NULL = "Data in arguments is null or empty";
     public static final String PREFERENCES_NAME = "MySharedPref";
+    public static final String RETRIEVING_DATA = "Retrieve Data...";
+    public static final String DATA_RETRIEVE = "Data Retrieve!!";
 
     private static final String UTILITY_CLASS = "Utility class";
 

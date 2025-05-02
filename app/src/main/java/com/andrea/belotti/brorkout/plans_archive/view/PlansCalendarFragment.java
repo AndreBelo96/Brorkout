@@ -51,10 +51,18 @@ public class PlansCalendarFragment extends Fragment implements CalendarAdapter.O
         View view = inflater.inflate(R.layout.fragment_plans_calendar, container, false);
 
         if (getArguments() == null) {
+            Log.i(tag, ExerciseConstants.ERROR_ARGUMENT);
             return view;
         }
 
+        Log.i(tag, ExerciseConstants.RETRIEVING_DATA);
         String idUser = getArguments().getString(ID_USER);
+        Log.i(tag, ExerciseConstants.DATA_RETRIEVE);
+
+        if (idUser == null || idUser.isEmpty()) {
+            Log.e(tag, ExerciseConstants.DATA_ARGUMENT_NULL);
+        }
+
         PlansCalendarPresenter presenter = new PlansCalendarPresenter(this, getContext());
 
         initWidgets(view);

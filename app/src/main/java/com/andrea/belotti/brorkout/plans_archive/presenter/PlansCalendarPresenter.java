@@ -66,7 +66,11 @@ public class PlansCalendarPresenter implements PlansCalendarContract.Presenter {
     @Override
     public void setAthleteName(TextView titleTV) {
         String user = ArchiveSingleton.getInstance().getSelectedUser().getUsername();
-        titleTV.setText("Schede di " + user);
+
+        StringBuilder builder = new StringBuilder("Schede di ")
+                .append(user);
+
+        titleTV.setText(builder);
     }
 
     // ----- Private Methods -----
