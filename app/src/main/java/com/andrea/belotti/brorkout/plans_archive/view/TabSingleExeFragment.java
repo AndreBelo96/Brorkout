@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.adapter.SingleExeAdapter;
+import com.andrea.belotti.brorkout.plans_archive.adapter.SingleExeAdapter;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.plans_archive.ArchiveSingleton;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;

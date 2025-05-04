@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.adapter;
+package com.andrea.belotti.brorkout.plans_archive.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,8 +21,7 @@ public class SingleExeAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        SingleExeFragment exeFragment = SingleExeFragment.newInstance(exeList.get(position));
-        return exeFragment;
+        return SingleExeFragment.newInstance(exeList.get(position));
     }
 
 
