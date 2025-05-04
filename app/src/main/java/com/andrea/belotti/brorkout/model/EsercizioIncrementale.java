@@ -235,9 +235,9 @@ public class EsercizioIncrementale implements Esercizio, Serializable {
         if (serieCompletate == 0) {
             return CompleteState.INCOMPLETE_KO;
         } else if (serieCompletate < Integer.valueOf(serie)) {
-            return CompleteState.COMPLETE_OK;
-        } else {
             return CompleteState.INCOMPLETE;
+        } else {
+            return CompleteState.COMPLETE_OK;
         }
     }
 }

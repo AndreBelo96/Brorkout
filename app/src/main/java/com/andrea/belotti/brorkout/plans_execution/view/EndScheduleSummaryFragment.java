@@ -1,6 +1,5 @@
 package com.andrea.belotti.brorkout.plans_execution.view;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,19 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.adapter.EndScheduleRecapAdapter;
-import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.plans_execution.adapter.EndScheduleRecapAdapter;
 import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.model.Scheda;
 import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 
 import java.util.List;
-
 
 public class EndScheduleSummaryFragment extends Fragment {
 
     private final String tag = this.getClass().getSimpleName();
 
-    private Context context;
+    private RecyclerView recyclerView;
+    private TextView titleView;
 
     public static EndScheduleSummaryFragment newInstance(Scheda scheda, Integer giorni) {
         EndScheduleSummaryFragment fragment = new EndScheduleSummaryFragment();
@@ -37,44 +36,44 @@ public class EndScheduleSummaryFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
 
         View view = inflater.inflate(R.layout.fragment_end_schedule_summary, container, false);
-        context = getContext();
 
-        TextView textTitolo = view.findViewById(R.id.textTitoloEGiornata);
-
-        Scheda scheda = null;
-        Integer giorno = null;
-
-        if (getArguments() != null) {
-            scheda = (Scheda) getArguments().get(ExerciseConstants.MemorizeConstants.SCHEDA);
-            giorno = (Integer) getArguments().get(ExerciseConstants.MemorizeConstants.NUMERO_GIORNATE);
-        } else {
+        if (getArguments() == null) {
             Log.i(tag, ExerciseConstants.ERROR_ARGUMENT);
+            return view;
         }
 
-        if (scheda != null && giorno != null) {
-            createTableOfExercises(scheda.getGiornate().get(giorno).getExercises(), view);
-            textTitolo.setText(scheda.getNome() + " giorno " + giorno);
+        Scheda scheda = (Scheda) getArguments().get(ExerciseConstants.MemorizeConstants.SCHEDA);
+        Integer giorno = (Integer) getArguments().get(ExerciseConstants.MemorizeConstants.NUMERO_GIORNATE);
 
-        } else {
+        if (scheda == null || giorno == null) {
             Log.i(tag, ExerciseConstants.DATA_ARGUMENT_NULL);
+            return view;
         }
+
+        initWidgets(view);
+
+        titleView.setText(new StringBuilder(scheda.getNome()).append(" giorno ").append(giorno));
+
+        createTableOfExercises(scheda.getGiornate().get(giorno).getExercises());
 
         return view;
     }
 
-    private void createTableOfExercises(List<Esercizio> exeList, View view) {
+    private void initWidgets(View view) {
+        titleView = view.findViewById(R.id.textTitoloEGiornata);
+        recyclerView = view.findViewById(R.id.summary_end_plan_view);
+    }
 
+    private void createTableOfExercises(List<Esercizio> exeList) {
         // set recyclerView info
-        RecyclerView recyclerView = view.findViewById(R.id.summary_end_plan_view);
-        EndScheduleRecapAdapter adapter = new EndScheduleRecapAdapter(context, exeList);
+        EndScheduleRecapAdapter adapter = new EndScheduleRecapAdapter(getContext(), exeList);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }
 

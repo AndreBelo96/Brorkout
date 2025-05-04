@@ -1,4 +1,4 @@
-package com.andrea.belotti.brorkout.adapter;
+package com.andrea.belotti.brorkout.plans_execution.adapter;
 
 import android.content.Context;
 import android.os.Build;
@@ -11,17 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
 import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.utils.AppMethodsUtils;
 
 import java.util.List;
 
 public class EndScheduleRecapAdapter extends RecyclerView.Adapter<EndScheduleRecapAdapter.ViewHolder> {
 
-    private List<Esercizio> esercizi;
+    private final List<Esercizio> esercizi;
     Context context;
 
     public EndScheduleRecapAdapter(Context context, List<Esercizio> esercizi) {
@@ -41,22 +41,20 @@ public class EndScheduleRecapAdapter extends RecyclerView.Adapter<EndScheduleRec
     @Override
     public void onBindViewHolder(@NonNull EndScheduleRecapAdapter.ViewHolder holder, int position) {
 
-        if (esercizi.get(position).getSerieCompletate() < Integer.valueOf(esercizi.get(position).getSerie())) {
-            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.exe_ko));
-        } else {
-            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(context, R.color.exe_ok));
-        }
 
+        holder.cardView.setCardBackgroundColor(AppMethodsUtils.setExeColor(esercizi.get(position).isExeComplete(), context));
         holder.exeName.setText(esercizi.get(position).getName());
-        holder.exeSerie.setText("Set: " + esercizi.get(position).getSerieCompletate() + "/" + esercizi.get(position).getSerie());
-        holder.exeRipetizioni.setText("Rep: " + esercizi.get(position).getRipetizioni());
-        holder.exeRecupero.setText("Rec: " + esercizi.get(position).getRecupero() + " \"");
+        holder.exeSerie.setText(new StringBuilder("Set: ")
+                .append(esercizi.get(position).getSerieCompletate())
+                .append("/")
+                .append(esercizi.get(position).getSerie()));
+        holder.exeRipetizioni.setText(new StringBuilder("Rep: ")
+                .append(esercizi.get(position).getRipetizioni()));
+        holder.exeRecupero.setText(new StringBuilder("Rec: ")
+                .append(esercizi.get(position).getRecupero())
+                .append(" \""));
 
-        if ("TENUTE".equalsIgnoreCase(esercizi.get(position).getTipoEsercizio())) {
-            holder.exeImg.setImageResource(R.drawable.tenute_img);
-        } else if ("serie".equalsIgnoreCase(esercizi.get(position).getTipoEsercizio())) {
-            holder.exeImg.setImageResource(R.drawable.serie_img);
-        }
+        holder.exeImg.setImageResource(AppMethodsUtils.setImageExe());
 
     }
 
@@ -65,7 +63,8 @@ public class EndScheduleRecapAdapter extends RecyclerView.Adapter<EndScheduleRec
         return esercizi.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         CardView cardView;
         TextView exeName;
@@ -82,7 +81,9 @@ public class EndScheduleRecapAdapter extends RecyclerView.Adapter<EndScheduleRec
             exeSerie = itemView.findViewById(R.id.textSerie_item);
             exeRipetizioni = itemView.findViewById(R.id.textRipetizioni_item);
             cardView = itemView.findViewById(R.id.cardId);
-            exeRecupero =  itemView.findViewById(R.id.textRecupero_item);
+            exeRecupero = itemView.findViewById(R.id.textRecupero_item);
         }
     }
+
+
 }

@@ -28,7 +28,7 @@
 
 
     <color name="no_color">#00000000</color>
-    <color name="exe_ok">#DD8BC34A</color>
-    <color name="exe_partial_ko">#CBDA9C3E</color>
-    <color name="exe_ko">#DDEF5144</color>
+    <color name="exe_ok">#8BC34A</color>
+    <color name="exe_partial_ko">#FFEB3B</color>
+    <color name="exe_ko">#F44336</color>
 </resources>

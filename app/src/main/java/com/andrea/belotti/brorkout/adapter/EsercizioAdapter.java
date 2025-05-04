@@ -17,10 +17,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.model.CompleteState;
+import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.plans_archive.view.ScheduleArchiveActivity;
 import com.andrea.belotti.brorkout.plans_archive.view.TabSingleExeFragment;
-import com.andrea.belotti.brorkout.model.Esercizio;
+import com.andrea.belotti.brorkout.utils.AppMethodsUtils;
 
 import java.util.Arrays;
 
@@ -50,17 +50,21 @@ public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.View
     @Override
     public void onBindViewHolder(@NonNull EsercizioAdapter.ViewHolder holder, int position) {
 
-        holder.cardView.setCardBackgroundColor(setExeColor(esercizi[position].isExeComplete()));
+        holder.cardView.setCardBackgroundColor(AppMethodsUtils.setExeColor(esercizi[position].isExeComplete(), context));
         holder.exeName.setText(esercizi[position].getName());
-        holder.exeSerie.setText("Set: " + esercizi[position].getSerieCompletate() + "/" + esercizi[position].getSerie());
-        holder.exeRipetizioni.setText("Rep: " + esercizi[position].getRipetizioni());
-        holder.exeRecupero.setText("Rec: " + esercizi[position].getRecupero() + " \"");
 
-        if ("TENUTE".equalsIgnoreCase(esercizi[position].getTipoEsercizio())) {
-            holder.exeImg.setImageResource(R.drawable.tenute_img);
-        } else if ("serie".equalsIgnoreCase(esercizi[position].getTipoEsercizio())) {
-            holder.exeImg.setImageResource(R.drawable.serie_img);
-        }
+        holder.exeSerie.setText(new StringBuilder("Set: ")
+                .append(esercizi[position].getSerieCompletate())
+                .append("/")
+                .append(esercizi[position].getSerie()));
+        holder.exeRipetizioni.setText(new StringBuilder("Rep: ")
+                .append(esercizi[position].getRipetizioni()));
+        holder.exeRecupero.setText(new StringBuilder("Rec: ")
+                .append(esercizi[position].getRecupero())
+                .append(" \""));
+
+        holder.exeImg.setImageResource(AppMethodsUtils.setImageExe());
+        holder.exeImg.setColorFilter(ContextCompat.getColor(context, R.color.blue_700), android.graphics.PorterDuff.Mode.MULTIPLY);
 
         holder.cardView.setOnClickListener(v -> {
 
@@ -76,7 +80,7 @@ public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.View
         return esercizi.length;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         CardView cardView;
         TextView exeName;
@@ -93,18 +97,9 @@ public class EsercizioAdapter extends RecyclerView.Adapter<EsercizioAdapter.View
             exeSerie = itemView.findViewById(R.id.textSerie_item);
             exeRipetizioni = itemView.findViewById(R.id.textRipetizioni_item);
             cardView = itemView.findViewById(R.id.cardId);
-            exeRecupero =  itemView.findViewById(R.id.textRecupero_item);
+            exeRecupero = itemView.findViewById(R.id.textRecupero_item);
         }
     }
 
-    private int setExeColor(CompleteState exeState) {
-        if (exeState == CompleteState.INCOMPLETE_KO) {
-            return ContextCompat.getColor(context, R.color.exe_ko);
-        } else  if (exeState == CompleteState.COMPLETE_OK)  {
-            return ContextCompat.getColor(context, R.color.exe_ok);
-        } else {
-            return ContextCompat.getColor(context, R.color.exe_partial_ko);
-        }
-    }
 
 }
