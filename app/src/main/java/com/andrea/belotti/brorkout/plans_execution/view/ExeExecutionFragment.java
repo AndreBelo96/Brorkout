@@ -18,12 +18,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.andrea.belotti.brorkout.R;
-import com.andrea.belotti.brorkout.model.SchedaEntity;
-import com.andrea.belotti.brorkout.repository.PlanRepository;
-import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 import com.andrea.belotti.brorkout.model.Esercizio;
 import com.andrea.belotti.brorkout.model.EsercizioTenuta;
 import com.andrea.belotti.brorkout.model.Scheda;
+import com.andrea.belotti.brorkout.model.SchedaEntity;
+import com.andrea.belotti.brorkout.repository.PlanRepository;
+import com.andrea.belotti.brorkout.utils.constants.ExerciseConstants;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -49,7 +49,7 @@ public class ExeExecutionFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         Log.i(tag, ExerciseConstants.TAG_START_FRAGMENT);
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_exe_execution, container, false);
 
         if (getArguments() == null) {
