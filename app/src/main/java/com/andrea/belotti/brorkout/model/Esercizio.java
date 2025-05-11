@@ -20,8 +20,8 @@ public interface Esercizio {
     String getRecupero();
     void setRecupero(String recupero);
 
-    Boolean getVideo();
-    void setVideo(Boolean video);
+    boolean getVideo();
+    void setVideo(boolean video);
 
     String getIndicazioniCoach();
     void setIndicazioniCoach(String indicazioniCoach);
@@ -65,4 +65,6 @@ public interface Esercizio {
     boolean isExeNotOk();
 
     CompleteState isExeComplete();
+
+    boolean isExeTypeTenuta();
 }

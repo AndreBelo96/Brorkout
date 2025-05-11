@@ -17,7 +17,7 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     private String serie;
     private int serieCompletate;
     private String recupero;
-    private Boolean isVideo;
+    private boolean isVideo;
     private String indicazioniCoach;
     private String appuntiAtleta;
     private String ripetizioni;
@@ -84,12 +84,12 @@ public class EsercizioTenuta implements Esercizio, Serializable {
     }
 
     @Override
-    public Boolean getVideo() {
+    public boolean getVideo() {
         return isVideo;
     }
 
     @Override
-    public void setVideo(Boolean video) {
+    public void setVideo(boolean video) {
         this.isVideo = video;
     }
 
@@ -237,5 +237,10 @@ public class EsercizioTenuta implements Esercizio, Serializable {
         } else {
             return CompleteState.COMPLETE_OK;
         }
+    }
+
+    @Override
+    public boolean isExeTypeTenuta() {
+        return true;
     }
 }
